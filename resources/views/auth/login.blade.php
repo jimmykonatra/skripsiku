@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -15,7 +14,6 @@
   <!-- Custom styles for this template-->
   <link href="{{asset('css/sb-admin.css')}}" rel="stylesheet">
 </head>
-
 <body class="bg-dark">
   <div class="container">
     <div class="card card-login mx-auto mt-5">
@@ -23,24 +21,19 @@
       <div class="card-body">
         <form class="form-horizontal" method="POST" action="{{ route('login') }}">
           {{ csrf_field() }}
-          <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+          <div class="form-group{{ $errors->has('username') ? ' has-error' : '' }}">
             <label for="exampleInputEmail1">Email Address</label>
-            <input id="email" type="text" class="form-control" name="email" value="{{ old('email') }}" required autofocus>
-             @if ($errors->has('email'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-             @endif
+            <input id="email" type="text" class="form-control" name="username" value="{{ old('username') }}" required autofocus>            @if ($errors->has('username'))
+            <span class="help-block">
+              <strong>{{ $errors->first('username') }}</strong>
+            </span> @endif
           </div>
           <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
             <label for="exampleInputPassword1">Password</label>
-            <input id="password" type="password" class="form-control" name="password" required>
-
-                                @if ($errors->has('password'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
+            <input id="password" type="password" class="form-control" name="password" required> @if ($errors->has('password'))
+            <span class="help-block">
+              <strong>{{ $errors->first('password') }}</strong>
+            </span> @endif
           </div>
           <div class="form-group">
             <div class="form-check">
@@ -50,7 +43,7 @@
           </div>
           <button type="submit" class="btn btn-primary">
                                     Login
-                                </button>
+          </button>
         </form>
         
       </div>
@@ -62,5 +55,4 @@
   <!-- Core plugin JavaScript-->
   <script src="{{asset('css/jquery-easing/jquery.easing.min.js')}}"></script>
 </body>
-
 </html>
