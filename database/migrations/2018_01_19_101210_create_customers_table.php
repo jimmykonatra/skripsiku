@@ -18,7 +18,7 @@ class CreateCustomersTable extends Migration
             $table->string('nama');
             $table->string('kota');
             $table->string('no_telepon');
-            $table->integer('hapuskah');
+            $table->boolean('hapuskah');
             $table->timestamps();
         });
     }

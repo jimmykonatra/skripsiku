@@ -14,7 +14,14 @@ class CreateBerkasNotaTable extends Migration
     public function up()
     {
         Schema::create('berkas_nota', function (Blueprint $table) {
-            $table->increments('id');
+            $table->unsignedInteger('berkas_id');
+            $table->unsignedInteger('nota_id');
+            $table->date('tanggal_terima');
+            $table->date('tanggal_kembali');
+            $table->enum('jenis',['asli','fotokopi']);
+            $table->string('keterangan');
+            $table->boolean('hapuskah');
+            $table->primary(['berkas_id','nota_id']);
             $table->timestamps();
         });
     }

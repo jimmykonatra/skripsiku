@@ -16,7 +16,7 @@ class CreateJenisPengeluaransTable extends Migration
         Schema::create('jenis_pengeluarans', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nama');
-            $table->integer('hapuskah');
+            $table->boolean('hapuskah');
             $table->timestamps();
         });
     }

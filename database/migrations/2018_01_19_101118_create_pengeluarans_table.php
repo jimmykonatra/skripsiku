@@ -19,7 +19,7 @@ class CreatePengeluaransTable extends Migration
             $table->integer('nominal');
             $table->string('keterangan');
             $table->string('status_lunas');
-            $table->integer('hapuskah');
+            $table->boolean('hapuskah');
             $table->unsignedInteger('kasir_id');
             $table->unsignedInteger('jenis_pengeluaran_id');
             $table->timestamps();

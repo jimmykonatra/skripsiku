@@ -15,6 +15,11 @@ class CreateCicilansTable extends Migration
     {
         Schema::create('cicilans', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('lama_cicilan');
+            $table->bigInteger('nominal');
+            $table->boolean('hapuskah');
+            $table->unsignedInteger('tipe_id');
+            $table->unsignedInteger('bank_id');
             $table->timestamps();
         });
     }

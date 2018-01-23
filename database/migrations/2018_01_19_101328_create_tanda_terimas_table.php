@@ -15,6 +15,14 @@ class CreateTandaTerimasTable extends Migration
     {
         Schema::create('tanda_terimas', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('nama');
+            $table->double('booking_fee');
+            $table->double('angsuran');
+            $table->double('dana_kpr');
+            $table->double('uang_tambahan');
+            $table->double('total');
+            $table->unsignedInteger('tipe_id');
+            $table->unsignedInteger('kasir_id');
             $table->timestamps();
         });
     }

@@ -15,6 +15,19 @@ class CreateTipesTable extends Migration
     {
         Schema::create('tipes', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('nama');
+            $table->string('jalan');
+            $table->string('blok');
+            $table->double('luas_tanah');
+            $table->double('luas_bangunan');
+            $table->integer('kamar_tidur');
+            $table->integer('kamar_mandi');
+            $table->integer('listrik');
+            $table->double('harga_asli');
+            $table->double('harga_jual');
+            $table->double('uang_muka');
+            $table->string('deskripsi');
+            $table->boolean('hapuskah');
             $table->timestamps();
         });
     }

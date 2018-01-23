@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePerumahansTable extends Migration
+class CreateSpesifikasiTipeTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,11 @@ class CreatePerumahansTable extends Migration
      */
     public function up()
     {
-        Schema::create('perumahans', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('alamat');
-            $table->string('nama');
-            $table->double('luas');
-            $table->boolean('hapuskah');
+        Schema::create('spesifikasi_tipe', function (Blueprint $table) {
+            $table->unsignedInteger('spesifikasi_id');
+            $table->unsignedInteger('tipe_id');
+            $table->string('isi');
+            $table->primary(['spesifikasi_id','tipe_id']);
             $table->timestamps();
         });
     }
@@ -30,6 +29,6 @@ class CreatePerumahansTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('perumahans');
+        Schema::dropIfExists('spesifikasi_tipe');
     }
 }
