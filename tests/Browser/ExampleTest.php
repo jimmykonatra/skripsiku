@@ -21,7 +21,7 @@ class ExampleTest extends DuskTestCase
                 ->type('username', 'qwe')
                 ->type('password', 'qwe')
                 ->press('Login')
-                ->assertPathIs('/home');
+                ->assertPathIs('
         });
     }
 }
