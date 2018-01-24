@@ -26,7 +26,10 @@ class CreateBuktiPemesananRumahsTable extends Migration
             $table->unsignedInteger('kasir_id');
             $table->unsignedInteger('marketing_id');
             $table->unsignedInteger('customer_id');
+            $table->boolean('hapuskah');
             $table->timestamps();
+
+            
         });
     }
 

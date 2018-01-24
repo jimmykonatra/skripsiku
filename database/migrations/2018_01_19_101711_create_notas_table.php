@@ -17,17 +17,17 @@ class CreateNotasTable extends Migration
             $table->increments('id');
             $table->date('tanggal_buat');
             $table->bigInteger('total');
-            $table->date('tanggal_terima_berkas');
-            $table->date('tanggal_pengembalian_berkas');
             $table->date('tanggal_serah_terima');
             $table->enum('status_kelengkapan',['lengkap','tidak_lengkap']);
-            $table->boolean('hapuskah');
             $table->string('keterangan');
             $table->unsignedInteger('customer_id');
             $table->unsignedInteger('marketing_id');
             $table->unsignedInteger('kasir_id');
             $table->unsignedInteger('rumah_id');
+            $table->boolean('hapuskah');
             $table->timestamps();
+
+           
         });
     }
 

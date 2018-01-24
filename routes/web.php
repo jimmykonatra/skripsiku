@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -12,10 +14,14 @@
 */
 
 Route::get('/', function () {
-    return view('auth.login');
+    if(Auth::check())
+    {
+        return redirect('beranda');
+    }
+    return redirect('login');
 });
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/beranda', 'BerandaController@index')->name('beranda');
 

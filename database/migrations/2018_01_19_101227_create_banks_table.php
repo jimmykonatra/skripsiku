@@ -21,6 +21,7 @@ class CreateBanksTable extends Migration
             $table->string('alamat');
             $table->boolean('hapuskah');
             $table->timestamps();
+            
         });
     }
 

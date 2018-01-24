@@ -17,9 +17,9 @@ class CreateKprsTable extends Migration
             $table->increments('id');
             $table->date('tanggal_cair');
             $table->date('tanggal_acc');
-            $table->boolean('hapuskah');
             $table->unsignedInteger('bank_id');
             $table->unsignedInteger('nota_id');
+            $table->boolean('hapuskah');
             $table->timestamps();
         });
     }

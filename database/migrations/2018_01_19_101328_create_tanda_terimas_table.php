@@ -21,9 +21,13 @@ class CreateTandaTerimasTable extends Migration
             $table->double('dana_kpr');
             $table->double('uang_tambahan');
             $table->double('total');
+            $table->unsignedInteger('customer_id');
             $table->unsignedInteger('tipe_id');
             $table->unsignedInteger('kasir_id');
+            $table->boolean('hapuskah');
             $table->timestamps();
+
+          
         });
     }
 

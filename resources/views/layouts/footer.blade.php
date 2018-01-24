@@ -22,7 +22,11 @@
           <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
           <div class="modal-footer">
             <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-            <a class="btn btn-primary" href="login.html">Logout</a>
+            <a href="{{ route('logout') }}" class="btn btn-primary" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display:none;">
+					  {{ csrf_field() }}
+				    </form>
           </div>
         </div>
       </div>
@@ -33,11 +37,11 @@
     <!-- Core plugin JavaScript-->
     <script src="{{asset('css/jquery-easing/jquery.easing.min.js')}}"></script>
     <!-- Page level plugin JavaScript-->
-    <script src="{{asset('css/chart.js/Chart.min.js')}}"></script>
+    {{--  <script src="{{asset('css/chart.js/Chart.min.js')}}"></script>  --}}
     <script src="{{asset('css/datatables/jquery.dataTables.js')}}"></script>
     <script src="{{asset('css/datatables/dataTables.bootstrap4.js')}}"></script>
     <!-- Custom scripts for all pages-->
     <script src="{{asset('js/sb-admin.min.js')}}"></script>
     <!-- Custom scripts for this page-->
     <script src="{{asset('js/sb-admin-datatables.min.js')}}"></script>
-    <script src="{{asset('js/sb-admin-charts.min.js')}}"></script>
+    {{--  <script src="{{asset('js/sb-admin-charts.min.js')}}"></script>  --}}

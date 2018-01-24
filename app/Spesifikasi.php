@@ -6,6 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Spesifikasi extends Model
 {
-    protected $fillable = ['lantai','kanopi'];
+    protected $fillable = ['nama'];
 
 }

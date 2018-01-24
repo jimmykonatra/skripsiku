@@ -21,9 +21,9 @@ class CreateRumahsTable extends Migration
             $table->tinyInteger('status_booking');
             $table->tinyInteger('status_terjual');
             $table->string('keterangan');
-            $table->boolean('hapuskah');
             $table->unsignedInteger('perumahan_id');
             $table->unsignedInteger('tipe_id');
+            $table->boolean('hapuskah');
             $table->timestamps();
         });
     }
