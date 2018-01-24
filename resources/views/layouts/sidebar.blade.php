@@ -5,25 +5,26 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
-        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
-          <a class="nav-link" href="index.html">
+        <li class="nav-item {{Request::is('beranda*') ? 'active' : '' }}" data-toggle="tooltip" data-placement="right" title="Dashboard">
+          <a class="nav-link" href={{('beranda')}}>
             <i class="fa fa-fw fa-dashboard"></i>
             <span class="nav-link-text">Beranda</span>
           </a>
         </li>
-        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Charts">
-          <a class="nav-link" href="charts.html">
+        <li class="nav-item {{Request::is('tentangkami*') ? 'active' : '' }}" data-toggle="tooltip" data-placement="right" title="Charts">
+          <a class="nav-link" href={{('tentangkami')}}>
             <i class="fa fa-fw fa-area-chart"></i>
             <span class="nav-link-text">Tentang Kami</span>
           </a>
         </li>
-        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Components">
+        <li class="nav-item {{Request::is('karyawan') || Request::is('customer') ||  Request::is('bank') ||  Request::is('tipe') ||  Request::is('rumah') ||  Request::is('perumahan') ? 'active' : '' }}" data-toggle="tooltip" data-placement="right" title="Components">
           <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseComponents" data-parent="#exampleAccordion">
             <i class="fa fa-fw fa-wrench"></i>
             <span class="nav-link-text">Data</span>
           </a>
-          <ul class="sidenav-second-level collapse" id="collapseComponents">
-            <li>
+        </li>
+          <ul class="sidenav-second-level collapse text-center" id="collapseComponents">
+            <li class="{{Request::is('karyawan') ? 'active' : '' }}">
               <a href={{url('karyawan')}}>Karyawan</a>
             </li>
             <li>
@@ -51,7 +52,7 @@
               <a href="jenispengeluaran.html">Jenis Pengeluaran</a>
             </li>
           </ul>
-        </li>
+      
         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Example Pages">
           <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseExamplePages" data-parent="#exampleAccordion">
             <i class="fa fa-fw fa-file"></i>
@@ -119,7 +120,6 @@
       </ul>
       <ul class="navbar-nav ml-auto">
         <li class="nav-item">
-          
         </li>
         <li class="nav-item">
           <a class="nav-link" data-toggle="modal" data-target="#exampleModal">

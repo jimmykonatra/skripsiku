@@ -1,4 +1,4 @@
-@extends('layouts.master') @section('title', 'Welcome to Sumber Langgeng Sejahtera')
+@extends('layouts.master') @section('title', 'Sumber Langgeng Sejahtera')
 
 @section('content')
 @include('layouts.sidebar')
