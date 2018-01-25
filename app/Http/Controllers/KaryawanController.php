@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Karyawan;
+use App\User;
 
 class KaryawanController extends Controller
 {
@@ -56,9 +57,20 @@ class KaryawanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request)
     {
-        //
+        $id = $request->id;
+        $karyawan = Karyawan::find($id);
+        return response()->json(
+            [
+                'id'=>$id,
+                'nama'=>$karyawan->nama,
+                'alamat'=>$karyawan->alamat,
+                'email'=>$karyawan->email,
+                'notelepon'=>$karyawan->no_telepon,
+                'jabatan'=>$karyawan->user->jabatan
+            ]
+        );
     }
 
     /**
@@ -68,9 +80,28 @@ class KaryawanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $id = $request->karyawan;
+        $karyawan = Karyawan::find($id);
+        $user = User::where('id',$karyawan->user_id)->first();
+        $jabatan = $request->jabatan;
+        if($jabatan == 0){
+            $jabatan = 'Kasir';
+        }
+        else{
+            $jabatan = 'Marketing';
+        }
+        $karyawan->nama = $request->nama;
+        $karyawan->alamat = $request->alamat;
+        $karyawan->no_telepon = $request->notelepon;
+        $karyawan->email = $request->email;
+        $user->password = bcrypt($request->password);
+        $user->jabatan = $jabatan;
+        $karyawan->save();
+        $user->save();
+        
+        return redirect('karyawan');
     }
 
     /**

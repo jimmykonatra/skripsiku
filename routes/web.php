@@ -26,4 +26,5 @@ Auth::routes();
 Route::get('beranda', 'BerandaController@index')->name('beranda');
 Route::get('karyawan', 'KaryawanController@index');
 Route::post('karyawan/hapus','KaryawanController@destroy');
+Route::post('karyawan/lihat', 'KaryawanController@edit');
 Route::post('karyawan/ubah','KaryawanController@update');
