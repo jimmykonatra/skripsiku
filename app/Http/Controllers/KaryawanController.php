@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Karyawan;
 use App\User;
+use Illuminate\Support\Facades\Session;
 
 class KaryawanController extends Controller
 {
@@ -37,8 +38,50 @@ class KaryawanController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        $username = $request->username;
+        $nama = $request->nama;
+        $alamat = $request->alamat;
+        $notelepon = $request->notelepon;
+        $email = $request->email;
+        $password = $request->password;
+        $jabatan = $request->jabatan;
+
+        if($jabatan == 0){
+            $jabatan = 'Kasir';
+        } 
+        else {
+            $jabatan = 'Marketing';
+        }
+        
+        $user = User::firstOrNew(
+            [
+                'username' => $username            
+            ],
+            [
+                'password' => bcrypt($password),
+                'jabatan' => $jabatan
+            ]
+            
+            );
+
+            if(!($user->exists)) {
+                $user->save();
+                $karyawan = new Karyawan([
+                    'nama' => $nama,
+                    'alamat' => $alamat,
+                    'no_telepon' => $notelepon,
+                    'email' => $email,
+                    'hapuskah' => 0
+                ]);
+                $user->karyawans()->save($karyawan);
+                Session::flash('flash_msg','Data Karyawan Berhasil Disimpan');
+            } 
+            else {
+                Session::flash('error_msg','Data Karyawan Sudah Ada');     
+            }
+            return redirect('karyawan');
+            
+        }
 
     /**
      * Display the specified resource.

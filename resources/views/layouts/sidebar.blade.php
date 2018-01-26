@@ -24,11 +24,11 @@
           </a>
         </li>
           <ul class="sidenav-second-level collapse text-center" id="collapseComponents">
-            <li class="{{Request::is('karyawan') ? 'active' : '' }}">
+            <li class="{{Request::is('karyawan') || Request::is('customer')  ? 'active' : '' }}">
               <a href={{url('karyawan')}}>Karyawan</a>
             </li>
             <li>
-              <a href="customer.html">Customer</a>
+              <a href={{url('customer')}}>Customer</a>
             </li>
              <li>
               <a href="bank.html">Banks</a>

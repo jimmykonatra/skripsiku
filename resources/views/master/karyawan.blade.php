@@ -1,10 +1,13 @@
-@extends('layouts.master') @section('title', 'Sumber Langgeng Sejahtera') @section('content') @include('layouts.sidebar')
+@extends('layouts.master') @section('title', 'Sumber Langgeng Sejahtera') @section('content') 
+
+
+@include('layouts.sidebar')
 <!-- Example DataTables Card-->
 <div class="content-wrapper">
 	<div class="container-fluid">
 		<div class="card mb-3">
 			<div class="card-header">
-				<i class="fa fa-table"></i> Data Table Example</div>
+				<i class="fa fa-table"></i> Data Karyawan</div>
 			<div class="card-body">
 
 				@include('layouts.flash')
@@ -83,7 +86,7 @@
 									<p>
 										<label class="col-lg-6">No Telepon: </label>
 										<input type="tel" pattern="^[+]?[0-9]{9,15}$" class="col-lg-4" id="noteleponUbahKaryawan" name="notelepon" placeholder="Masukkan No Telepon"
-										  required>
+										    required>
 									</p>
 									<p>
 										<label class="col-lg-6">Email: </label>
@@ -96,7 +99,7 @@
 									<p>
 										<label class="col-lg-6">Ulangi Kata Sandi: </label>
 										<input type="password" class="col-lg-4" id="repasswordUbahKaryawan" name="repassword" placeholder="Masukkan Ulang Kata Sandi"
-										  required>
+										    required>
 									</p>
 									<p>
 										<label class="col-lg-6">Jabatan: </label>
@@ -159,27 +162,40 @@
 					<form action="{{url('karyawan/tambah')}}" method="post" id="formTambahKaryawan">
 						{{csrf_field()}}
 						<p>
+							<label class="col-lg-6">Username: </label>
+							<input type="text" class="col-lg-4" id="usernameTambahKaryawan" name="username" placeholder="Masukkan Username Karyawan" required>
+						</p>
+						<p>
 							<label class="col-lg-6">Nama: </label>
-							<input type="text" class="col-lg-4" id="nama" name="nama" placeholder="Masukkan Nama Karyawan" required>
+							<input type="text" class="col-lg-4" id="namaTambahKaryawan" name="nama" placeholder="Masukkan Nama Karyawan" required>
 						</p>
 						<p>
 							<label class="col-lg-6">Alamat: </label>
-							<input type="text" class="col-lg-4" id="alamat" name="alamat" placeholder="Masukkan Alamat Karyawan" required>
+							<input type="text" class="col-lg-4" id="alamatTambahKaryawan" name="alamat" placeholder="Masukkan Alamat Karyawan" required>
 						</p>
 						<p>
 							<label class="col-lg-6">No Telepon: </label>
-							<input type="tel" pattern="^[+]?[0-9]{9,15}$" class="col-lg-4" id="notelepon" name="notelepon" placeholder="Masukkan No Telepon"
-							  required>
+							<input type="tel" pattern="^[+]?[0-9]{9,15}$" class="col-lg-4" id="noteleponTambahKaryawan" name="notelepon" placeholder="Masukkan No Telepon"
+							    required>
 						</p>
 						<p>
 							<label class="col-lg-6">Email: </label>
-							<input type="email" class="col-lg-4" id="email" name="email" placeholder="Masukkan Alamat Email" required>
+							<input type="email" class="col-lg-4" id="emailTambahKaryawan" name="email" placeholder="Masukkan Alamat Email" required>
 						</p>
 						<p>
-							<label class="col-lg-6">Hak Akses: </label>
-							<select name="admin" id="admin" class="col-lg-4">
-								<option value="0">Karyawan</option>
-								<option value="1">Admin</option>
+							<label class="col-lg-6">Kata Sandi: </label>
+							<input type="password" class="col-lg-4" id="passwordTambahKaryawan" name="password" placeholder="Masukkan Kata Sandi" required>
+						</p>
+						<p>
+							<label class="col-lg-6">Ulangi Kata Sandi: </label>
+							<input type="password" class="col-lg-4" id="repasswordTambahKaryawan" name="repassword" placeholder="Masukkan Ulang Kata Sandi"
+							    required>
+						</p>
+						<p>
+							<label class="col-lg-6">Jabatan: </label>
+							<select name="jabatan" id="jabatanTambahKaryawan" class="col-lg-4">
+								<option value="0">Kasir</option>
+								<option value="1">Marketing</option>
 							</select>
 						</p>
 
@@ -200,15 +216,13 @@
 	<script>
 		$(document).ready(function () {
 
-			$('#formUbahKaryawan').on('submit', function(e)
-			{
+			$('#formUbahKaryawan').on('submit', function (e) {
 				e.preventDefault();
 				var pass = $('#passwordUbahKaryawan').val();
 				var repass = $('#repasswordUbahKaryawan').val();
-				if(pass == repass){
+				if (pass == repass) {
 					$('#formUbahKaryawan')[0].submit();
-				}
-				else{
+				} else {
 					alert('Password Tidak Sama');
 				}
 			});
@@ -225,6 +239,18 @@
 				$('#modalTambahKaryawan').modal('show');
 			});
 
+			$('#formTambahKaryawan').on('submit', function (e) {
+				e.preventDefault();
+				var pass = $('#passwordTambahKaryawan').val();
+				var repass = $('#repasswordTambahKaryawan').val();
+				if (pass == repass) {
+					$('#formTambahKaryawan')[0].submit();
+				} else {
+					alert('Password Tidak Sama');
+				}
+			});
+
+
 			$('.btnUbah').on('click', function (e) {
 				e.preventDefault();
 				var id = $(this).closest('tr').attr('id');
@@ -238,10 +264,9 @@
 						$('#alamatUbahKaryawan').val(data.alamat);
 						$('#emailUbahKaryawan').val(data.email);
 						$('#noteleponUbahKaryawan').val(data.notelepon);
-						if(data.jabatan=='Kasir'){
+						if (data.jabatan == 'Kasir') {
 							$('#jabatanUbahKaryawan').val(0);
-						}
-						else{
+						} else {
 							$('#jabatanUbahKaryawan').val(1);
 						}
 					}
