@@ -18,5 +18,13 @@ class CustomersTableSeeder extends Seeder
             'no_telepon' => '082123535748',
             'hapuskah' => 0
         ]);
+
+        DB::table('customers')->insert([
+            'nama' => 'Ria',
+            'kota' => 'Tuban',
+            'email' => 'ria@gmail.com',
+            'no_telepon' => '082125859732',
+            'hapuskah' => 0
+        ]);
     }
 }

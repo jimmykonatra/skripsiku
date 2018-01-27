@@ -24,6 +24,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('beranda', 'BerandaController@index')->name('beranda');
+
 Route::get('karyawan', 'KaryawanController@index');
 Route::post('karyawan/hapus','KaryawanController@destroy');
 Route::post('karyawan/lihat', 'KaryawanController@edit');
@@ -35,3 +36,9 @@ Route::post('customer/hapus','CustomerController@destroy');
 Route::post('customer/lihat','CustomerController@edit');
 Route::post('customer/ubah', 'CustomerController@update');
 Route::post('customer/tambah', 'CustomerController@store');
+
+Route::get('bank', 'BankController@index');
+Route::post('bank/hapus', 'BankController@destroy');
+Route::post('bank/lihat', 'BankController@edit');
+Route::post('bank/ubah', 'BankController@update');
+Route::post('bank/tambah', 'BankController@store');
