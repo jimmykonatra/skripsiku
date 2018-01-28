@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Bank;
+use App\JenisPengeluaran;
 use Illuminate\Support\Facades\Session;
 
-class BankController extends Controller
+class JenisPengeluaranController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +15,8 @@ class BankController extends Controller
      */
     public function index()
     {
-        $bank = Bank::where('hapuskah',0)->get();
-        return view('master.bank', compact('bank'));
+        $jenispengeluaran = JenisPengeluaran::where('hapuskah',0)->get();
+        return view('master.jenispengeluaran', compact('jenispengeluaran'));
     }
 
     /**
@@ -38,19 +38,14 @@ class BankController extends Controller
     public function store(Request $request)
     {
         $nama = $request->nama;
-        $contactperson = $request->contactperson;
-        $notelepon = $request->notelepon;
-        $alamat = $request->alamat;
 
-        Bank::create([
+        JenisPengeluaran::create([
             'nama' => $nama,
-            'contact_person' => $contactperson,
-            'no_telepon' => $notelepon,
-            'alamat' => $alamat,
             'hapuskah' => 0
         ]);
-            Session::flash('flash_msg','Data Bank Berhasil Disimpan');
-            return redirect('bank');
+        Session::flash('flash_msg', 'Data Jenis Pengeluaran Berhasil Disimpan');
+        return redirect('jenispengeluaran');
+
     }
 
     /**
@@ -73,13 +68,10 @@ class BankController extends Controller
     public function edit(Request $request)
     {
         $id = $request->id;
-        $bank = Bank::find($id);
+        $jenispengeluaran = JenisPengeluaran::find($id);
         return response()->json([
             'id' => $id,
-            'nama' => $bank->nama,
-            'contactperson' => $bank->contact_person,
-            'notelepon' => $bank->no_telepon,
-            'alamat' => $bank->alamat
+            'nama' => $jenispengeluaran->nama
         ]);
     }
 
@@ -92,23 +84,16 @@ class BankController extends Controller
      */
     public function update(Request $request)
     {
-        $id = $request->bank;
+        $id = $request->jenispengeluaran;
         $nama = $request->nama;
-        $contactperson = $request->contactperson;
-        $notelepon = $request->notelepon;
-        $alamat = $request->alamat;
 
-        $bank = Bank::find($id);
+        $jenispengeluaran = JenisPengeluaran::find($id);
 
-        $bank->nama = $nama;
-        $bank->contact_person = $contactperson;
-        $bank->no_telepon = $notelepon;
-        $bank->alamat = $alamat;
-        $bank->save();
+        $jenispengeluaran->nama = $nama;
+        $jenispengeluaran->save();
 
-        Session::flash('flash_msg', 'Data Bank Berhasil Diubah');
-        return redirect('bank');
-        
+        Session::flash('flash_msg', 'Data Jenis Pengeluaran Berhasil Diubah');
+        return redirect('jenispengeluaran');
     }
 
     /**
@@ -119,9 +104,9 @@ class BankController extends Controller
      */
     public function destroy(Request $request)
     {
-        $bank = Bank::find($request->bank);
-        $bank->hapuskah = 1;
-        $bank->save();
-        return redirect('bank');
-    }
+        $jenispengeluaran = JenisPengeluaran::find($request->jenispengeluaran);
+        $jenispengeluaran->hapuskah = 1;
+        $jenispengeluaran->save();
+        return redirect('jenispengeluaran');
+    }   
 }

@@ -42,3 +42,9 @@ Route::post('bank/hapus', 'BankController@destroy');
 Route::post('bank/lihat', 'BankController@edit');
 Route::post('bank/ubah', 'BankController@update');
 Route::post('bank/tambah', 'BankController@store');
+
+Route::get('jenispengeluaran', 'JenisPengeluaranController@index');
+Route::post('jenispengeluaran/hapus', 'JenisPengeluaranController@destroy');
+Route::post('jenispengeluaran/lihat', 'JenisPengeluaranController@edit');
+Route::post('jenispengeluaran/ubah', 'JenisPengeluaranController@update');
+Route::post('jenispengeluaran/tambah', 'JenisPengeluaranController@store');

@@ -33,6 +33,9 @@
              <li class="{{Request::is('bank')  ? 'active' : '' }}">
               <a href={{url('bank')}}>Bank</a>
             </li>
+            <li class="{{Request::is('jenispengeluaran')  ? 'active' : '' }}">
+             <a href={{url('jenispengeluaran')}}>Jenis Pengeluaran</a>
+           </li>
              <li>
               <a href="tipe.html">Tipe</a>
             </li>
@@ -47,9 +50,6 @@
             </li>
              <li>
               <a href="pengeluaran.html">Pengeluaran</a>
-            </li>
-             <li>
-              <a href="jenispengeluaran.html">Jenis Pengeluaran</a>
             </li>
           </ul>
       
