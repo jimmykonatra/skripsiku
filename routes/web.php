@@ -48,3 +48,12 @@ Route::post('jenispengeluaran/hapus', 'JenisPengeluaranController@destroy');
 Route::post('jenispengeluaran/lihat', 'JenisPengeluaranController@edit');
 Route::post('jenispengeluaran/ubah', 'JenisPengeluaranController@update');
 Route::post('jenispengeluaran/tambah', 'JenisPengeluaranController@store');
+
+Route::get('nota', 'NotaController@index');
+Route::get('nota/buat', 'NotaController@create');
+Route::post('nota/hapus', 'NotaController@destroy');
+Route::post('nota/lihat', 'NotaController@edit');
+Route::post('nota/ubah', 'NotaController@update');
+Route::post('nota/tambah', 'NotaController@store');
+
+

@@ -15,6 +15,7 @@ class CreateNotasTable extends Migration
     {
         Schema::create('notas', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('nomor');
             $table->date('tanggal_buat');
             $table->bigInteger('total');
             $table->date('tanggal_serah_terima');
@@ -24,6 +25,7 @@ class CreateNotasTable extends Migration
             $table->unsignedInteger('marketing_id');
             $table->unsignedInteger('kasir_id');
             $table->unsignedInteger('rumah_id');
+            $table->unsignedInteger('tipe_id');
             $table->boolean('hapuskah');
             $table->timestamps();
 
