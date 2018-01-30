@@ -9,7 +9,6 @@ use App\User;
 use App\Rumah;
 use App\Nota;
 use App\Tipe;
-use SebastianBergmann\Environment\Console;
 use App\Berkas;
 use App\Karyawan;
 

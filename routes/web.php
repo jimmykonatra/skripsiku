@@ -43,6 +43,12 @@ Route::post('bank/lihat', 'BankController@edit');
 Route::post('bank/ubah', 'BankController@update');
 Route::post('bank/tambah', 'BankController@store');
 
+Route::get('perumahan', 'PerumahanController@index');
+Route::post('perumahan/hapus', 'PerumahanController@destroy');
+Route::post('perumahan/lihat', 'PerumahanController@edit');
+Route::post('perumahan/ubah', 'PerumahanController@update');
+Route::post('perumahan/tambah', 'PerumahanController@store');
+
 Route::get('jenispengeluaran', 'JenisPengeluaranController@index');
 Route::post('jenispengeluaran/hapus', 'JenisPengeluaranController@destroy');
 Route::post('jenispengeluaran/lihat', 'JenisPengeluaranController@edit');

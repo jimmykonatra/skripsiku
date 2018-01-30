@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Customer;
+use App\Perumahan;
 use Illuminate\Support\Facades\Session;
 
-class CustomerController extends Controller
+class PerumahanController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +15,8 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        $customer = Customer::where('hapuskah',0)->get();
-        return view('master.customer',compact('customer'));
+        $perumahan = Perumahan::where('hapuskah',0)->get();
+        return view('master.perumahan', compact('perumahan'));
     }
 
     /**
@@ -38,19 +38,18 @@ class CustomerController extends Controller
     public function store(Request $request)
     {
         $nama = $request->nama;
-        $kota = $request->kota;
-        $email = $request->email;
-        $notelepon = $request->notelepon;
-        
-        Customer::create([
+        $alamat = $request->alamat;
+        $luas = $request->luas;
+
+        Perumahan::Create([
             'nama' => $nama,
-            'kota' => $kota,
-            'email' => $email,
-            'no_telepon' => $notelepon,
+            'alamat' => $alamat,
+            'luas' => $luas,
             'hapuskah' => 0
         ]);
-        Session::flash('flash_msg','Data Customer Berhasil Disimpan');
-        return redirect('customer');
+        Session::flash('flash_msg', 'Data Perumahan Berhasil Disimpan');
+        return redirect('perumahan');
+
     }
 
     /**
@@ -73,13 +72,12 @@ class CustomerController extends Controller
     public function edit(Request $request)
     {
         $id = $request->id;
-        $customer = Customer::find($id);
+        $perumahan = Perumahan::find($id);
         return response()->json([
             'id' => $id,
-            'nama' => $customer->nama,
-            'kota' => $customer->kota,
-            'email' => $customer->email,
-            'notelepon' => $customer->no_telepon
+            'nama' => $perumahan->nama,
+            'alamat' => $perumahan->alamat,
+            'luas' => $perumahan->luas
         ]);
     }
 
@@ -92,26 +90,20 @@ class CustomerController extends Controller
      */
     public function update(Request $request)
     {
-        $id = $request->customer;
+        $id = $request->perumahan;
         $nama = $request->nama;
-        $kota = $request->kota;
-        $email = $request->email;
-        $notelepon = $request->notelepon;
-       
+        $alamat = $request->alamat;
+        $luas = $request->luas;
 
-        $customer = Customer::find($id);
+        $perumahan = Perumahan::find($id);
 
-        $customer->nama = $nama;
-        $customer->kota = $kota;
-        $customer->email = $email;
-        $customer->no_telepon = $notelepon;
-       
+        $perumahan->nama = $nama;
+        $perumahan->alamat = $alamat;
+        $perumahan->luas = $luas;
+        $perumahan->save();
 
-        $customer->save();
-        return redirect('customer');
-
-
-        
+        Session::flash('flash_msg', 'Data Customer Berhasil Diubah');
+        return redirect('perumahan');
     }
 
     /**
@@ -122,11 +114,13 @@ class CustomerController extends Controller
      */
     public function destroy(Request $request)
     {
-        $customer = Customer::find($request->customer);
-        $customer->hapuskah = 1;
-        $customer->save();
+        $perumahan = Perumahan::find($request->perumahan);
+        $perumahan->hapuskah = 1;
+        $perumahan->save();
 
-        Session::flash('flash_msg', 'Data Customer Berhasil Dihapus');
-        return redirect('customer');
+        Session::flash('flash_msg', 'Data Perumahan Berhasil Dihapus');
+        return redirect('perumahan');
+
+
     }
 }

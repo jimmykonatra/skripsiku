@@ -1,71 +1,48 @@
-@extends('layouts.master') @section('title', 'Sumber Langgeng Sejahtera') @section('content') @include('layouts.sidebar')
+@extends('layouts.master') @section('title', 'Sumber Langgeng Sejahtera') @section('content') 
+
+@include('layouts.sidebar')
 <!-- Example DataTables Card-->
 <div class="content-wrapper">
 	<div class="container-fluid">
 		<div class="card mb-3">
 			<div class="card-header">
-				<i class="fa fa-table"></i> Data Nota</div>
+				<i class="fa fa-table"></i> Data Perumahan</div>
 			<div class="card-body">
 
 				@include('layouts.flash')
 
 				<div class="pull-right" style="padding-bottom:20px">
-					<a href="{{url('nota/buat')}}" class="btn btn-success">
-						<i class="fa fa-plus"></i> Buat Nota
-					</a>
+					<button class="btn btnTambah btn-success" data-toggle="modal" data-target="#modalTambahPerumahan">
+						<i class="fa fa-plus"></i> Tambah Perumahan
+					</button>
 				</div>
 
 				<div class="table-responsive">
 					<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 						<thead>
 							<tr>
-								<th>Nomor Nota</th>
-								<th>Customer</th>
-								<th>Total</th>
-								<th>Tanggal Buat</th>
-								<th>Tanggal Serah Terima</th>
-								<th>Status Kelengkapan</th>
-								<th>Keterangan</th>
-								<th>Marketing</th>
-								<th>Kasir</th>
-								<th>Nomor Rumah</th>
+								<th>Nama</th>
+                                <th>Alamat</th>
+								<th>Luas(m2)</th>
 								<th>Edit</th>
 								<th>Delete</th>
 							</tr>
 						</thead>
 						<tfoot>
 							<tr>
-								<th>Nomor Nota</th>
-								<th>Customer</th>
-								<th>Total</th>
-								<th>Tanggal Buat</th>
-								<th>Tanggal Serah Terima</th>
-								<th>Status Kelengkapan</th>
-								<th>Keterangan</th>
-								<th>Marketing</th>
-								<th>Kasir</th>
-								<th>Nomor Rumah</th>
+								<th>Nama</th>
+                                <th>Alamat</th>
+								<th>Luas(m2)</th>
 								<th>Edit</th>
 								<th>Delete</th>
 							</tr>
 						</tfoot>
 						<tbody>
-							@foreach($nota as $nota)
-							<tr id="{{$nota->id}}">
-								<td>{{$nota->nomor}}</td>
-								<td>{{$nota->customer->nama}}</td>
-								<td>{{$nota->total}}</td>
-								<td>{{$nota->tanggal_buat}}</td>
-								<td>{{$nota->tanggal_serah_terima}}</td>
-								@if($nota->status_kelengkapan == 1)
-								<td>Lengkap</td>
-								@else
-								<td>Tidak Lengkap</td>
-								@endif
-								<td>{{$nota->keterangan}}</td>
-								<td></td>
-								<td></td>
-								<td>{{$nota->rumah->tipe->blok}}{{$nota->rumah->nomor}}</td>
+							@foreach($perumahan as $perumahan)
+							<tr id="{{$perumahan->id}}">
+								<td>{{$perumahan->nama}}</td>
+                                <td>{{$perumahan->alamat}}</td>
+                                <td>{{$perumahan->luas}}</td>
 								<td>
 									<button class="btn btnUbah btn-primary">Ubah</button>
 								</td>
@@ -78,37 +55,31 @@
 					</table>
 				</div>
 
-				<div class="modal fade" id="modalUbahBank">
+				<div class="modal fade" id="modalUbahPerumahan">
 					<div class="modal-dialog" role="document">
 						<div class="modal-content">
 							<div class="modal-header">
-								<h5 class="modal-title">Ubah Data Bank</h5>
+								<h5 class="modal-title">Ubah Data Perumahan</h5>
 								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 									<span aria-hidden="true">&times;</span>
 								</button>
 							</div>
 							<div class="modal-body">
-								<form action="{{url('bank/ubah')}}" method="post" id="formUbahBank">
+								<form action="{{url('perumahan/ubah')}}" method="post" id="formUbahperumahan">
 									{{csrf_field()}}
 									<p>
-										<input type="hidden" id="idUbah" name="bank">
-										<label class="col-lg-6">Nama: </label>
-										<input type="text" class="col-lg-4" id="namaUbahBank" name="nama" placeholder="Masukkan Nama Bank" required>
-									</p>
-									<p>
-										<label class="col-lg-6">Contact Person: </label>
-										<input type="text" class="col-lg-4" id="contactpersonUbahBank" name="contactperson" placeholder="Masukkan Contact Person"
-										    required>
-									</p>
-									<p>
-										<label class="col-lg-6">No Telepon: </label>
-										<input type="tel" pattern="^[+]?[0-9]{9,15}$" class="col-lg-4" id="noteleponUbahBank" name="notelepon" placeholder="Masukkan No Telepon"
-										    required>
+										<input type="hidden" id="idUbah" name="perumahan">
+										<label class="col-lg-6">Nama Perumahan: </label>
+										<input type="text" class="col-lg-4" id="namaUbahPerumahan" name="nama" placeholder="Masukkan Nama Perumahan" required>
 									</p>
 									<p>
 										<label class="col-lg-6">Alamat: </label>
-										<input type="text" class="col-lg-4" id="alamatUbahBank" name="alamat" placeholder="Masukkan Alamat" required>
-									</p>
+										<input type="text" class="col-lg-4" id="alamatUbahPerumahan" name="alamat" placeholder="Masukkan Alamat" required>
+                                    </p>
+                                    <p>
+										<label class="col-lg-6">Luas(m2): </label>
+										<input type="number" class="col-lg-4" id="luasUbahPerumahan" name="luas" placeholder="Masukkan Luas Perumahan" required>
+                                    </p>
 									<p style="text-align:center">
 										<button type="submit" class="btn btn-success" style="text-align:center" id="btnUbahKonfirmasi" class="btn btn-primary">
 											<i class="fa fa-check"></i>Ubah</button>
@@ -122,7 +93,7 @@
 					</div>
 				</div>
 
-				<div class="modal fade" id="modalHapusBank" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+				<div class="modal fade" id="modalHapusPerumahan" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 					<div class="modal-dialog" role="document">
 						<div class="modal-content">
 							<div class="modal-header">
@@ -136,9 +107,9 @@
 								<button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
 								<a href="#" class="btn btn-danger" onclick="event.preventDefault(); document.getElementById('hapus-form').submit();">Hapus</a>
 
-								<form id="hapus-form" action="{{ url('bank/hapus') }}" method="POST" style="display:none;">
+								<form id="hapus-form" action="{{ url('perumahan/hapus') }}" method="POST" style="display:none;">
 									{{ csrf_field() }}
-									<input type="hidden" name="bank" id="idHapus">
+									<input type="hidden" name="perumahan" id="idHapus">
 								</form>
 							</div>
 						</div>
@@ -149,37 +120,31 @@
 		</div>
 	</div>
 
-	<div class="modal fade" id="modalTambahBank">
+	<div class="modal fade" id="modalTambahPerumahan">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title">Tambah Data Nota</h5>
+					<h5 class="modal-title">Tambah Data Perumahan</h5>
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
 				<div class="modal-body">
-					<form action="{{url('bank/tambah')}}" method="post" id="formTambahBank">
+					<form action="{{url('perumahan/tambah')}}" method="post" id="formTambahPerumahan">
 						{{csrf_field()}}
 						<p>
 							<label class="col-lg-6">Nama: </label>
-							<input type="text" class="col-lg-4" id="namaTambahBank" name="nama" placeholder="Masukkan Nama Bank" required>
-						</p>
-						<p>
-							<label class="col-lg-6">Contact Person: </label>
-							<input type="text" class="col-lg-4" id="contactpersonTambahBank" name="contactperson" placeholder="Masukkan Contact Person Bank"
-							    required>
-						</p>
-						<p>
-							<label class="col-lg-6">No Telepon: </label>
-							<input type="tel" pattern="^[+]?[0-9]{9,15}$" class="col-lg-4" id="noteleponTambahBank" name="notelepon" placeholder="Masukkan No Telepon"
-							    required>
+							<input type="text" class="col-lg-4" id="namaTambahPerumahan" name="nama" placeholder="Masukkan Nama Perumahan" required>
 						</p>
 						<p>
 							<label class="col-lg-6">Alamat: </label>
-							<input type="text" class="col-lg-4" id="alamatTambahBank" name="alamat" placeholder="Masukkan Alamat Bank" required>
-						</p>
-						<p style="text-align:center">
+							<input type="text" class="col-lg-4" id="alamatTambahPerumahan" name="alamat" placeholder="Masukkan Alamat Perumahan" required>
+                        </p>
+                        <p>
+							<label class="col-lg-6">Luas(m2):</label>
+							<input type="text" class="col-lg-4" id="luasTambahPerumahan" name="luas" placeholder="Masukkan Luas Perumahan" required>
+                        </p>
+                        <p style="text-align:center">
 							<button type="submit" class="btn btn-success" style="text-align:center" id="btnTambahKonfirmasi" class="btn btn-primary">
 								<i class="fa fa-check"></i>Tambah</button>
 						</p>
@@ -200,30 +165,29 @@
 				e.preventDefault();
 				var id = $(this).closest('tr').attr('id');
 				$('#idHapus').val(id);
-				$('#modalHapusBank').modal('show');
+				$('#modalHapusPerumahan').modal('show');
 			});
 
 			$('.btnTambah').on('click', function (e) {
 				e.preventDefault();
-				$('#modalTambahBank').modal('show');
+				$('#modalTambahPerumahan').modal('show');
 			});
 
 			$('.btnUbah').on('click', function (e) {
 				e.preventDefault();
 				var id = $(this).closest('tr').attr('id');
-				$.post("{{url('bank/lihat')}}", {
+				$.post("{{url('perumahan/lihat')}}", {
 						'id': id,
 						'_token': "{{csrf_token()}}"
 					},
 					function (data) {
 						$('#idUbah').val(data.id);
-						$('#namaUbahBank').val(data.nama);
-						$('#contactpersonUbahBank').val(data.contactperson);
-						$('#noteleponUbahBank').val(data.notelepon);
-						$('#alamatUbahBank').val(data.alamat);
-					}
+						$('#namaUbahPerumahan').val(data.nama);
+                        $('#alamatUbahPerumahan').val(data.alamat);
+                        $('#luasUbahPerumahan').val(data.luas);
+						}
 				);
-				$('#modalUbahBank').modal('show');
+				$('#modalUbahPerumahan').modal('show');
 			});
 
 		});

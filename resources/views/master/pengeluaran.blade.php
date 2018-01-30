@@ -1,71 +1,51 @@
-@extends('layouts.master') @section('title', 'Sumber Langgeng Sejahtera') @section('content') @include('layouts.sidebar')
+@extends('layouts.master') @section('title', 'Sumber Langgeng Sejahtera') @section('content') 
+
+@include('layouts.sidebar')
 <!-- Example DataTables Card-->
 <div class="content-wrapper">
 	<div class="container-fluid">
 		<div class="card mb-3">
 			<div class="card-header">
-				<i class="fa fa-table"></i> Data Nota</div>
+				<i class="fa fa-table"></i> Data Bank</div>
 			<div class="card-body">
 
 				@include('layouts.flash')
 
 				<div class="pull-right" style="padding-bottom:20px">
-					<a href="{{url('nota/buat')}}" class="btn btn-success">
-						<i class="fa fa-plus"></i> Buat Nota
-					</a>
+					<button class="btn btnTambah btn-success" data-toggle="modal" data-target="#modalTambahBank">
+						<i class="fa fa-plus"></i> Tambah Bank
+					</button>
 				</div>
 
 				<div class="table-responsive">
 					<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 						<thead>
 							<tr>
-								<th>Nomor Nota</th>
-								<th>Customer</th>
-								<th>Total</th>
-								<th>Tanggal Buat</th>
-								<th>Tanggal Serah Terima</th>
-								<th>Status Kelengkapan</th>
-								<th>Keterangan</th>
-								<th>Marketing</th>
-								<th>Kasir</th>
-								<th>Nomor Rumah</th>
+								<th>Nama</th>
+                                <th>Contact Person</th>
+								<th>No Telepon</th>
+                                <th>Alamat</th>
 								<th>Edit</th>
 								<th>Delete</th>
 							</tr>
 						</thead>
 						<tfoot>
 							<tr>
-								<th>Nomor Nota</th>
-								<th>Customer</th>
-								<th>Total</th>
-								<th>Tanggal Buat</th>
-								<th>Tanggal Serah Terima</th>
-								<th>Status Kelengkapan</th>
-								<th>Keterangan</th>
-								<th>Marketing</th>
-								<th>Kasir</th>
-								<th>Nomor Rumah</th>
+								<th>Nama</th>
+                                <th>Contact Person</th>
+								<th>No Telepon</th>
+                                <th>Alamat</th>
 								<th>Edit</th>
 								<th>Delete</th>
 							</tr>
 						</tfoot>
 						<tbody>
-							@foreach($nota as $nota)
-							<tr id="{{$nota->id}}">
-								<td>{{$nota->nomor}}</td>
-								<td>{{$nota->customer->nama}}</td>
-								<td>{{$nota->total}}</td>
-								<td>{{$nota->tanggal_buat}}</td>
-								<td>{{$nota->tanggal_serah_terima}}</td>
-								@if($nota->status_kelengkapan == 1)
-								<td>Lengkap</td>
-								@else
-								<td>Tidak Lengkap</td>
-								@endif
-								<td>{{$nota->keterangan}}</td>
-								<td></td>
-								<td></td>
-								<td>{{$nota->rumah->tipe->blok}}{{$nota->rumah->nomor}}</td>
+							@foreach($bank as $bank)
+							<tr id="{{$bank->id}}">
+								<td>{{$bank->nama}}</td>
+                                <td>{{$bank->contact_person}}</td>
+                                <td>{{$bank->no_telepon}}</td>
+								<td>{{$bank->alamat}}</td>
 								<td>
 									<button class="btn btnUbah btn-primary">Ubah</button>
 								</td>
@@ -97,18 +77,17 @@
 									</p>
 									<p>
 										<label class="col-lg-6">Contact Person: </label>
-										<input type="text" class="col-lg-4" id="contactpersonUbahBank" name="contactperson" placeholder="Masukkan Contact Person"
-										    required>
-									</p>
-									<p>
+										<input type="text" class="col-lg-4" id="contactpersonUbahBank" name="contactperson" placeholder="Masukkan Contact Person" required>
+                                    </p>
+                                    <p>
 										<label class="col-lg-6">No Telepon: </label>
 										<input type="tel" pattern="^[+]?[0-9]{9,15}$" class="col-lg-4" id="noteleponUbahBank" name="notelepon" placeholder="Masukkan No Telepon"
 										    required>
-									</p>
-									<p>
+                                    </p>
+                                    <p>
 										<label class="col-lg-6">Alamat: </label>
 										<input type="text" class="col-lg-4" id="alamatUbahBank" name="alamat" placeholder="Masukkan Alamat" required>
-									</p>
+                                    </p>
 									<p style="text-align:center">
 										<button type="submit" class="btn btn-success" style="text-align:center" id="btnUbahKonfirmasi" class="btn btn-primary">
 											<i class="fa fa-check"></i>Ubah</button>
@@ -153,7 +132,7 @@
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title">Tambah Data Nota</h5>
+					<h5 class="modal-title">Tambah Data Bank</h5>
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
@@ -167,18 +146,17 @@
 						</p>
 						<p>
 							<label class="col-lg-6">Contact Person: </label>
-							<input type="text" class="col-lg-4" id="contactpersonTambahBank" name="contactperson" placeholder="Masukkan Contact Person Bank"
-							    required>
-						</p>
-						<p>
+							<input type="text" class="col-lg-4" id="contactpersonTambahBank" name="contactperson" placeholder="Masukkan Contact Person Bank" required>
+                        </p>
+                        <p>
 							<label class="col-lg-6">No Telepon: </label>
 							<input type="tel" pattern="^[+]?[0-9]{9,15}$" class="col-lg-4" id="noteleponTambahBank" name="notelepon" placeholder="Masukkan No Telepon"
 							    required>
-						</p>
-						<p>
+                        </p>	
+                        <p>
 							<label class="col-lg-6">Alamat: </label>
 							<input type="text" class="col-lg-4" id="alamatTambahBank" name="alamat" placeholder="Masukkan Alamat Bank" required>
-						</p>
+                        </p>		
 						<p style="text-align:center">
 							<button type="submit" class="btn btn-success" style="text-align:center" id="btnTambahKonfirmasi" class="btn btn-primary">
 								<i class="fa fa-check"></i>Tambah</button>
@@ -221,7 +199,7 @@
 						$('#contactpersonUbahBank').val(data.contactperson);
 						$('#noteleponUbahBank').val(data.notelepon);
 						$('#alamatUbahBank').val(data.alamat);
-					}
+						}
 				);
 				$('#modalUbahBank').modal('show');
 			});

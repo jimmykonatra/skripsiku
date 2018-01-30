@@ -36,6 +36,9 @@
             <li class="{{Request::is('jenispengeluaran')  ? 'active' : '' }}">
              <a href={{url('jenispengeluaran')}}>Jenis Pengeluaran</a>
            </li>
+           <li class="{{Request::is('perumahan')  ? 'active' : '' }}">
+             <a href={{url('perumahan')}}>Perumahan</a>
+           </li>
              <li>
               <a href="tipe.html">Tipe</a>
             </li>
