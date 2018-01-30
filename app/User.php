@@ -25,8 +25,8 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
     
-    public function karyawans()
+    public function karyawan()
     {
-        return $this->hasMany(Karyawan::class);
+        return $this->hasOne(Karyawan::class);
     }
 }

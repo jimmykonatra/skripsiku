@@ -19,13 +19,12 @@ class CreateNotasTable extends Migration
             $table->date('tanggal_buat');
             $table->bigInteger('total');
             $table->date('tanggal_serah_terima');
-            $table->enum('status_kelengkapan',['lengkap','tidak_lengkap']);
+            $table->tinyInteger('status_kelengkapan');
             $table->string('keterangan');
             $table->unsignedInteger('customer_id');
             $table->unsignedInteger('marketing_id');
             $table->unsignedInteger('kasir_id');
             $table->unsignedInteger('rumah_id');
-            $table->unsignedInteger('tipe_id');
             $table->boolean('hapuskah');
             $table->timestamps();
 

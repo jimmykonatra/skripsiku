@@ -15,8 +15,8 @@ class CreatePerumahansTable extends Migration
     {
         Schema::create('perumahans', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('alamat');
             $table->string('nama');
+            $table->string('alamat');
             $table->double('luas');
             $table->boolean('hapuskah');
             $table->timestamps();

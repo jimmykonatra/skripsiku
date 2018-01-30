@@ -9,6 +9,9 @@ use App\User;
 use App\Rumah;
 use App\Nota;
 use App\Tipe;
+use SebastianBergmann\Environment\Console;
+use App\Berkas;
+use App\Karyawan;
 
 class NotaController extends Controller
 {
@@ -21,6 +24,8 @@ class NotaController extends Controller
     {
         $nota = Nota::where('hapuskah',0)->get();
         return view('nota.nota' , compact('nota'));
+        
+
     }
 
     /**
@@ -33,8 +38,11 @@ class NotaController extends Controller
         $customer = Customer::all();
         $rumah = Rumah::all();
         // $blokrumah = Tipe::all();
-
-        return view('nota.buatnota', compact('customer','rumah'));
+        $berkas = Berkas::all();
+        
+        $marketing = User::join('karyawans','users.id','=','karyawans.user_id')->where([['jabatan','Marketing'],['karyawans.hapuskah',0]])->get();
+        $kasir = User::join('karyawans','users.id','=','karyawans.user_id')->where([['jabatan', 'Kasir'], ['karyawans.hapuskah', 0]])->get();
+        return view('nota.buatnota', compact('customer','rumah','berkas','marketing','kasir'));
 
     }
 
@@ -46,7 +54,53 @@ class NotaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $customer = $request->customer;
+        $nomornota = $request->nomornota;
+        $total = $request->total;
+        $rumah = $request->rumah;
+        $tanggalbuat = $request->ambiltanggalbuat;
+        $tanggalserahterima = $request->tanggalserahterima;
+        $berkas = $request->berkas;
+        $keterangan = $request->keterangan;
+
+        $jumlahberkas = Berkas::all()->count(); //untuk ambil jumlah berkas 
+        $marketing = $request->marketing;
+        $kasir = $request->kasir;
+
+        echo$tanggalbuat;
+        echo$tanggalserahterima;
+        
+        if(count($berkas) ==$jumlahberkas)
+        {
+            
+            $lengkap = 1;
+        } else {
+           
+            $lengkap = 0;
+        }
+
+        Nota::create([
+            'nomor' => $nomornota,
+            'tanggal_buat' => $tanggalbuat,
+            'total' => $total,
+            'tanggal_serah_terima' => $tanggalserahterima,
+            'status_kelengkapan' => $lengkap,
+            'keterangan' => $keterangan,
+            'customer_id' => $customer,
+            'marketing_id' => $marketing,
+            'kasir_id' => $kasir,
+            'rumah_id' => $rumah,
+            'hapuskah' => 0
+        ]);
+
+      
+
+
+
+
+
+
+
     }
 
     /**

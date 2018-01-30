@@ -58,12 +58,16 @@
                                 <td>{{$nota->tanggal_buat}}</td>
                                 <td>{{$nota->total}}</td>
                                 <td>{{$nota->tanggal_serah_terima}}</td>
-                                <td>{{$nota->status_kelengkapan}}</td>
+								@if($nota->status_kelengkapan == 1)
+								<td>Lengkap</td>
+								@else
+								<td>Tidak Lengkap</td>
+								@endif
                                 <td>{{$nota->keterangan}}</td>
                                 <td>{{$nota->customer->nama}}</td>
-                                <td>{{$nota->karyawan->user->nama}}</td>
-                                <td>{{$nota->karyawan->user->nama}}</td>
-                                <td>{{$nota->tipe->blok}}{{$nota->rumah->nomor}}</td>
+								<td></td>
+                                <td></td>
+                                <td>{{$nota->rumah->tipe->blok}}{{$nota->rumah->nomor}}</td>
 								<td>
 									<button class="btn btnUbah btn-primary">Ubah</button>
 								</td>
