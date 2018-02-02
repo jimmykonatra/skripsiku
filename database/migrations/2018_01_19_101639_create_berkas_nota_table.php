@@ -18,8 +18,6 @@ class CreateBerkasNotaTable extends Migration
             $table->unsignedInteger('nota_id');
             $table->date('tanggal_terima');
             $table->date('tanggal_kembali');
-            $table->enum('jenis',['asli','fotokopi']);
-            $table->string('keterangan');
             $table->boolean('hapuskah');
             $table->primary(['berkas_id','nota_id']);
             $table->timestamps();

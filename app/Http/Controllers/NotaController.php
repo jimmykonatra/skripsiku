@@ -11,6 +11,7 @@ use App\Nota;
 use App\Tipe;
 use App\Berkas;
 use App\Karyawan;
+use Illuminate\Support\Facades\DB;
 
 class NotaController extends Controller
 {
@@ -36,7 +37,6 @@ class NotaController extends Controller
     {
         $customer = Customer::all();
         $rumah = Rumah::all();
-        // $blokrumah = Tipe::all();
         $berkas = Berkas::all();
         
         $marketing = User::join('karyawans','users.id','=','karyawans.user_id')->where([['jabatan','Marketing'],['karyawans.hapuskah',0]])->get();
@@ -66,19 +66,16 @@ class NotaController extends Controller
         $marketing = $request->marketing;
         $kasir = $request->kasir;
 
-        echo$tanggalbuat;
-        echo$tanggalserahterima;
-        
+                
         if(count($berkas) ==$jumlahberkas)
         {
-            
             $lengkap = 1;
         } else {
            
             $lengkap = 0;
         }
 
-        Nota::create([
+        $inputnota = Nota::create([
             'nomor' => $nomornota,
             'tanggal_buat' => $tanggalbuat,
             'total' => $total,
@@ -92,14 +89,20 @@ class NotaController extends Controller
             'hapuskah' => 0
         ]);
 
-      
+        foreach ($berkas as $berkas) {
+            DB::table('berkas_nota')->insert([
+                'nota_id' => $inputnota->id,
+                'berkas_id' => $berkas,
+                'tanggal_terima' => $tanggalbuat,
+                'tanggal_kembali' => null,
+                'hapuskah' => 0
+            ]);
+            return redirect('nota');
+        }
 
-
-
-
-
-
-
+        
+    
+            
     }
 
     /**
@@ -121,7 +124,24 @@ class NotaController extends Controller
      */
     public function edit($id)
     {
-        //
+        $nota = Nota::find($id);
+        $customer = Customer::all();
+        $rumah = Rumah::all();
+        $berkas = Berkas::all();
+
+
+        $marketing = User::join('karyawans', 'users.id', '=', 'karyawans.user_id')->where([['jabatan', 'Marketing'], ['karyawans.hapuskah', 0]])->get();
+        $kasir = User::join('karyawans', 'users.id', '=', 'karyawans.user_id')->where([['jabatan', 'Kasir'], ['karyawans.hapuskah', 0]])->get();
+        
+        $cekberkas = DB::table('berkas_nota')->where('nota_id','=',$id)->get();
+
+        
+        return view('nota.ubahnota', compact('cekberkas','nota','customer', 'rumah', 'berkas', 'marketing', 'kasir'));
+
+     
+
+        
+        
     }
 
     /**

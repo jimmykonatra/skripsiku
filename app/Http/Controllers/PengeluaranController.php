@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Pengeluaran;
+use App\JenisPengeluaran;
 
 class PengeluaranController extends Controller
 {
@@ -24,7 +26,7 @@ class PengeluaranController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
@@ -80,6 +82,6 @@ class PengeluaranController extends Controller
      */
     public function destroy($id)
     {
-        //
+        
     }
 }

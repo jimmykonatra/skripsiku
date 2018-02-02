@@ -67,10 +67,10 @@
 								<td></td>
 								<td>{{$nota->rumah->tipe->blok}}{{$nota->rumah->nomor}}</td>
 								<td>
-									<button class="btn btnUbah btn-primary">Ubah</button>
+									<a href = "{{url('nota/lihat/'.$nota->id)}}" class="btn btn-primary">Ubah</a>
 								</td>
 								<td>
-									<button class="btn btnHapus btn-danger">Hapus</button>
+									<a href class="btn btnHapus btn-danger">Hapus</a>
 								</td>
 							</tr>
 							@endforeach
@@ -78,7 +78,7 @@
 					</table>
 				</div>
 
-				<div class="modal fade" id="modalUbahBank">
+				{{--  <div class="modal fade" id="modalUbahBank">
 					<div class="modal-dialog" role="document">
 						<div class="modal-content">
 							<div class="modal-header">
@@ -120,7 +120,7 @@
 							</div>
 						</div>
 					</div>
-				</div>
+				</div>  --}}
 
 				<div class="modal fade" id="modalHapusBank" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 					<div class="modal-dialog" role="document">

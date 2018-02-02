@@ -39,10 +39,9 @@
            <li class="{{Request::is('perumahan')  ? 'active' : '' }}">
              <a href={{url('perumahan')}}>Perumahan</a>
            </li>
-             <li>
-              <a href="tipe.html">Tipe</a>
-            </li>
-             <li>
+              <li class="{{Request::is('pengeluaran')  ? 'active' : '' }}">
+             <a href={{url('pengeluaran')}}>Pengeluaran</a></li>
+            <li>
               <a href="rumah.html">Rumah</a>
             </li>
              <li>
@@ -56,7 +55,7 @@
             </li>
           </ul>
       
-        <li class="nav-item  {{ Request::is('perumahan') ? 'active' : '' }}" data-toggle="tooltip" data-placement="right" title="Example Pages">
+        <li class="nav-item  {{ Request::is('nota') ? 'active' : '' }}" data-toggle="tooltip" data-placement="right" title="Example Pages">
           <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseExamplePages" data-parent="#exampleAccordion">
             <i class="fa fa-fw fa-file"></i>
             <span class="nav-link-text">Nota</span>

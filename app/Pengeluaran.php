@@ -8,4 +8,9 @@ class Pengeluaran extends Model
 {
         protected $fillable = ['tanggal', 'nominal', 'keterangan', 'status_lunas', 'kasir_id','jenis_pengeluaran_id', 'hapuskah'];
 
+
+        public function jenispengeluaran()
+        {
+                return $this->belongsTo(JenisPengeluaran::class);
+        }
 }

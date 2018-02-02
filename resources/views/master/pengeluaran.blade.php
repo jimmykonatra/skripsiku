@@ -1,19 +1,17 @@
-@extends('layouts.master') @section('title', 'Sumber Langgeng Sejahtera') @section('content') 
-
-@include('layouts.sidebar')
+@extends('layouts.master') @section('title', 'Sumber Langgeng Sejahtera') @section('content') @include('layouts.sidebar')
 <!-- Example DataTables Card-->
 <div class="content-wrapper">
 	<div class="container-fluid">
 		<div class="card mb-3">
 			<div class="card-header">
-				<i class="fa fa-table"></i> Data Bank</div>
+				<i class="fa fa-table"></i> Data Pengeluaran</div>
 			<div class="card-body">
 
 				@include('layouts.flash')
 
 				<div class="pull-right" style="padding-bottom:20px">
-					<button class="btn btnTambah btn-success" data-toggle="modal" data-target="#modalTambahBank">
-						<i class="fa fa-plus"></i> Tambah Bank
+					<button class="btn btnTambah btn-success" data-toggle="modal" data-target="#modalTambahPengeluaran">
+						<i class="fa fa-plus"></i> Tambah Pengeluaran
 					</button>
 				</div>
 
@@ -21,31 +19,37 @@
 					<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 						<thead>
 							<tr>
-								<th>Nama</th>
-                                <th>Contact Person</th>
-								<th>No Telepon</th>
-                                <th>Alamat</th>
+								<th>Jenis Pengeluaran</th>
+								<th>Tanggal</th>
+								<th>Nominal</th>
+								<th>Keterangan</th>
+								<th>Status Lunas</th>
+								<th>Kasir</th>
 								<th>Edit</th>
 								<th>Delete</th>
 							</tr>
 						</thead>
 						<tfoot>
 							<tr>
-								<th>Nama</th>
-                                <th>Contact Person</th>
-								<th>No Telepon</th>
-                                <th>Alamat</th>
+								<th>Jenis Pengeluaran</th>
+								<th>Tanggal</th>
+								<th>Nominal</th>
+								<th>Keterangan</th>
+								<th>Status Lunas</th>
+								<th>Kasir</th>
 								<th>Edit</th>
 								<th>Delete</th>
 							</tr>
 						</tfoot>
 						<tbody>
-							@foreach($bank as $bank)
-							<tr id="{{$bank->id}}">
-								<td>{{$bank->nama}}</td>
-                                <td>{{$bank->contact_person}}</td>
-                                <td>{{$bank->no_telepon}}</td>
-								<td>{{$bank->alamat}}</td>
+							@foreach($pengeluaran as $pengeluaran)
+							<tr id="{{$pengeluaran->id}}">
+								<td>{{$pengeluaran->jenispengeluaran->nama}}</td>
+								<td>{{$pengeluaran->tanggal}}</td>
+								<td>{{$pengeluaran->nominal}}</td>
+								<td>{{$pengeluaran->keterangan}}</td>
+								<td>{{$pengeluaran->status_lunas}}</td>
+								<td>{{$pengeluaran->karyawan->user->nama}}</td>
 								<td>
 									<button class="btn btnUbah btn-primary">Ubah</button>
 								</td>
@@ -58,36 +62,47 @@
 					</table>
 				</div>
 
-				<div class="modal fade" id="modalUbahBank">
+				<div class="modal fade" id="modalUbahPengeluaran">
 					<div class="modal-dialog" role="document">
 						<div class="modal-content">
 							<div class="modal-header">
-								<h5 class="modal-title">Ubah Data Bank</h5>
+								<h5 class="modal-title">Ubah Data Pengeluaran</h5>
 								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 									<span aria-hidden="true">&times;</span>
 								</button>
 							</div>
 							<div class="modal-body">
-								<form action="{{url('bank/ubah')}}" method="post" id="formUbahBank">
+								<form action="{{url('pengeluaran/ubah')}}" method="post" id="formUbahBank">
 									{{csrf_field()}}
 									<p>
 										<input type="hidden" id="idUbah" name="bank">
-										<label class="col-lg-6">Nama: </label>
-										<input type="text" class="col-lg-4" id="namaUbahBank" name="nama" placeholder="Masukkan Nama Bank" required>
+										<label class="col-lg-6">Jenis Pengeluaran: </label>
+										<input type="text" class="col-lg-4" id="jenispengeluaranUbahPengeluaran" name="jenispengeluaran" placeholder="Masukkan Nama Pengeluaran"
+										    required>
 									</p>
 									<p>
-										<label class="col-lg-6">Contact Person: </label>
-										<input type="text" class="col-lg-4" id="contactpersonUbahBank" name="contactperson" placeholder="Masukkan Contact Person" required>
-                                    </p>
-                                    <p>
-										<label class="col-lg-6">No Telepon: </label>
-										<input type="tel" pattern="^[+]?[0-9]{9,15}$" class="col-lg-4" id="noteleponUbahBank" name="notelepon" placeholder="Masukkan No Telepon"
+										<label for="tanggalbuat" class="col-lg-4">Tanggal Buat</label>
+										<input type="date" id="tanggalbuat" name="tanggalbuat" class="col-lg-6" min="{{date('Y-m-d')}}" value="{{date('Y-m-d')}}"
+										    data-date-format="dd-mm-yyyy" data-date-viewmode="years" required>
+										<input type="hidden" value="{{date('Y-m-d')}}" name="ambiltanggalbuat">
+									</p>
+									<p>
+										<label class="col-lg-6">Nominal: </label>
+										<input type="number" class="col-lg-4" id="nominalUbahPengeluaran" name="nominal" placeholder="Masukkan Nominal Pengeluaran"
 										    required>
-                                    </p>
-                                    <p>
-										<label class="col-lg-6">Alamat: </label>
-										<input type="text" class="col-lg-4" id="alamatUbahBank" name="alamat" placeholder="Masukkan Alamat" required>
-                                    </p>
+									</p>
+									<p>
+										<label class="col-lg-6">Keterangan: </label>
+										<input type="text" class="col-lg-4" id="keteranganUbahPengeluaran" name="keterangan" placeholder="Masukkan Keterangan Pengeluaran">
+									</p>
+									<p>
+										<label class="col-lg-6">Status Lunas: </label>
+										<input type="text" class="col-lg-4" id="statuslunasUbahPengeluaran" name="statuslunas" placeholder="Masukkan Status Lunas Pengeluaran">
+									</p>
+									<p>
+										<label class="col-lg-6">Kasir: </label>
+										<input type="text" class="col-lg-4" id="kasirUbahPengeluaran" name="kasir" placeholder="Masukkan Kasir">
+									</p>
 									<p style="text-align:center">
 										<button type="submit" class="btn btn-success" style="text-align:center" id="btnUbahKonfirmasi" class="btn btn-primary">
 											<i class="fa fa-check"></i>Ubah</button>
@@ -101,7 +116,7 @@
 					</div>
 				</div>
 
-				<div class="modal fade" id="modalHapusBank" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+				<div class="modal fade" id="modalHapusPengeluaran" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 					<div class="modal-dialog" role="document">
 						<div class="modal-content">
 							<div class="modal-header">
@@ -115,9 +130,9 @@
 								<button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
 								<a href="#" class="btn btn-danger" onclick="event.preventDefault(); document.getElementById('hapus-form').submit();">Hapus</a>
 
-								<form id="hapus-form" action="{{ url('bank/hapus') }}" method="POST" style="display:none;">
+								<form id="hapus-form" action="{{ url('pengeluaran/hapus') }}" method="POST" style="display:none;">
 									{{ csrf_field() }}
-									<input type="hidden" name="bank" id="idHapus">
+									<input type="hidden" name="pengeluaran" id="idHapus">
 								</form>
 							</div>
 						</div>
@@ -128,35 +143,47 @@
 		</div>
 	</div>
 
-	<div class="modal fade" id="modalTambahBank">
+	<div class="modal fade" id="modalTambahPengeluaran">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title">Tambah Data Bank</h5>
+					<h5 class="modal-title">Tambah Data Pengeluaran</h5>
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
 				<div class="modal-body">
-					<form action="{{url('bank/tambah')}}" method="post" id="formTambahBank">
+					<form action="{{url('pengeluaran/tambah')}}" method="post" id="formTambahPengeluaran">
 						{{csrf_field()}}
 						<p>
-							<label class="col-lg-6">Nama: </label>
-							<input type="text" class="col-lg-4" id="namaTambahBank" name="nama" placeholder="Masukkan Nama Bank" required>
+							<input type="hidden" id="idUbah" name="bank">
+							<label class="col-lg-6">Jenis Pengeluaran: </label>
+							<input type="text" class="col-lg-4" id="jenispengeluaranUbahPengeluaran" name="jenispengeluaran" placeholder="Masukkan Nama Pengeluaran"
+							    required>
 						</p>
 						<p>
-							<label class="col-lg-6">Contact Person: </label>
-							<input type="text" class="col-lg-4" id="contactpersonTambahBank" name="contactperson" placeholder="Masukkan Contact Person Bank" required>
-                        </p>
-                        <p>
-							<label class="col-lg-6">No Telepon: </label>
-							<input type="tel" pattern="^[+]?[0-9]{9,15}$" class="col-lg-4" id="noteleponTambahBank" name="notelepon" placeholder="Masukkan No Telepon"
+							<label for="tanggalbuat" class="col-lg-4">Tanggal Buat</label>
+							<input type="date" id="tanggalbuatUbahPengeluaran" name="tanggalbuat" class="col-lg-6" min="{{date('Y-m-d')}}" value="{{date('Y-m-d')}}"
+							    data-date-format="dd-mm-yyyy" data-date-viewmode="years" required>
+							<input type="hidden" value="{{date('Y-m-d')}}" name="ambiltanggalbuat">
+						</p>
+						<p>
+							<label class="col-lg-6">Nominal: </label>
+							<input type="number" class="col-lg-4" id="nominalUbahPengeluaran" name="nominal" placeholder="Masukkan Nominal Pengeluaran"
 							    required>
-                        </p>	
-                        <p>
-							<label class="col-lg-6">Alamat: </label>
-							<input type="text" class="col-lg-4" id="alamatTambahBank" name="alamat" placeholder="Masukkan Alamat Bank" required>
-                        </p>		
+						</p>
+						<p>
+							<label class="col-lg-6">Keterangan: </label>
+							<input type="text" class="col-lg-4" id="keteranganUbahPengeluaran" name="keterangan" placeholder="Masukkan Keterangan Pengeluaran">
+						</p>
+						<p>
+							<label class="col-lg-6">Status Lunas: </label>
+							<input type="text" class="col-lg-4" id="statuslunasUbahPengeluaran" name="statuslunas" placeholder="Masukkan Status Lunas Pengeluaran">
+						</p>
+						<p>
+							<label class="col-lg-6">Kasir: </label>
+							<input type="text" class="col-lg-4" id="kasirUbahPengeluaran" name="kasir" placeholder="Masukkan Kasir">
+						</p>
 						<p style="text-align:center">
 							<button type="submit" class="btn btn-success" style="text-align:center" id="btnTambahKonfirmasi" class="btn btn-primary">
 								<i class="fa fa-check"></i>Tambah</button>
@@ -178,12 +205,12 @@
 				e.preventDefault();
 				var id = $(this).closest('tr').attr('id');
 				$('#idHapus').val(id);
-				$('#modalHapusBank').modal('show');
+				$('#modalHapusPengeluaran').modal('show');
 			});
 
 			$('.btnTambah').on('click', function (e) {
 				e.preventDefault();
-				$('#modalTambahBank').modal('show');
+				$('#modalTambahPengeluaran').modal('show');
 			});
 
 			$('.btnUbah').on('click', function (e) {
@@ -195,13 +222,16 @@
 					},
 					function (data) {
 						$('#idUbah').val(data.id);
-						$('#namaUbahBank').val(data.nama);
-						$('#contactpersonUbahBank').val(data.contactperson);
-						$('#noteleponUbahBank').val(data.notelepon);
-						$('#alamatUbahBank').val(data.alamat);
-						}
+						$('#jenispengeluaranUbahPengeluaran').val(data.jenispengeluaran);
+						$('#tanggalbuatUbahPengeluaran').val(data.tanggalbuat);
+						$('#nominalUbahPengeluaran').val(data.nominal);
+						$('#keteranganUbahPengeluaran').val(data.keterangan);
+						$('#statuslunasUbahPengeluaran').val(data.statuslunas);
+						$('#kasirUbahPengeluaran').val(data.kasir);
+
+					}
 				);
-				$('#modalUbahBank').modal('show');
+				$('#modalUbahPengeluaran').modal('show');
 			});
 
 		});
