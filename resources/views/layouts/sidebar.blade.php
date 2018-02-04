@@ -62,7 +62,7 @@
           </a>
           <ul class="sidenav-second-level collapse" id="collapseExamplePages">
             <li class="{{Request::is('nota')  ? 'active' : '' }}">
-             <a href={{url('nota')}}>Buat Nota</a>
+             <a href={{url('nota')}}>Nota</a>
            </li>
         </ul>
       <ul class="navbar-nav sidenav-toggler">

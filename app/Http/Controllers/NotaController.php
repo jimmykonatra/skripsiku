@@ -162,8 +162,13 @@ class NotaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+        $nota = Nota::find($request->nota);
+        $nota->hapuskah = 1;
+        $nota->save();
+
+        Session::flash('flash_msg', 'Data Nota Berhasil Dihapus');
+        return redirect('nota');
     }
 }

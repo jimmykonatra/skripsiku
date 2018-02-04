@@ -1,4 +1,6 @@
-@extends('layouts.master') @section('title', 'Sumber Langgeng Sejahtera') @section('content') @include('layouts.sidebar')
+@extends('layouts.master') @section('title', 'Sumber Langgeng Sejahtera') @section('content') 
+
+@include('layouts.sidebar')
 <!-- Example DataTables Card-->
 <div class="content-wrapper">
 	<div class="container-fluid">
@@ -122,7 +124,7 @@
 					</div>
 				</div>  --}}
 
-				<div class="modal fade" id="modalHapusBank" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+				<div class="modal fade" id="modalHapusNota" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 					<div class="modal-dialog" role="document">
 						<div class="modal-content">
 							<div class="modal-header">
@@ -136,9 +138,9 @@
 								<button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
 								<a href="#" class="btn btn-danger" onclick="event.preventDefault(); document.getElementById('hapus-form').submit();">Hapus</a>
 
-								<form id="hapus-form" action="{{ url('bank/hapus') }}" method="POST" style="display:none;">
+								<form id="hapus-form" action="{{ url('nota/hapus') }}" method="POST" style="display:none;">
 									{{ csrf_field() }}
-									<input type="hidden" name="bank" id="idHapus">
+									<input type="hidden" name="nota" id="idHapus">
 								</form>
 							</div>
 						</div>
@@ -200,7 +202,7 @@
 				e.preventDefault();
 				var id = $(this).closest('tr').attr('id');
 				$('#idHapus').val(id);
-				$('#modalHapusBank').modal('show');
+				$('#modalHapusNota').modal('show');
 			});
 
 			$('.btnTambah').on('click', function (e) {
