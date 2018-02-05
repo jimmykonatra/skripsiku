@@ -10,6 +10,6 @@ class JenisPengeluaran extends Model
 
     public function pengeluaran()
     {
-        
+        return $this->hasMany(Pengeluaran::class);
     }
 }

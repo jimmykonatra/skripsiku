@@ -1,4 +1,6 @@
-@extends('layouts.master') @section('title', 'Sumber Langgeng Sejahtera') @section('content') @include('layouts.sidebar')
+@extends('layouts.master') @section('title', 'Sumber Langgeng Sejahtera') @section('content') 
+
+@include('layouts.sidebar')
 <!-- Example DataTables Card-->
 <div class="content-wrapper">
 	<div class="container-fluid">
@@ -44,12 +46,12 @@
 						<tbody>
 							@foreach($pengeluaran as $pengeluaran)
 							<tr id="{{$pengeluaran->id}}">
-								<td>{{$pengeluaran->jenispengeluaran->nama}}</td>
+								<td>{{$pengeluaran->jenis_pengeluaran->nama}}</td>
 								<td>{{$pengeluaran->tanggal}}</td>
 								<td>{{$pengeluaran->nominal}}</td>
 								<td>{{$pengeluaran->keterangan}}</td>
 								<td>{{$pengeluaran->status_lunas}}</td>
-								<td>{{$pengeluaran->karyawan->user->nama}}</td>
+								<td>{{$pengeluaran->kasir['nama']}}</td>
 								<td>
 									<button class="btn btnUbah btn-primary">Ubah</button>
 								</td>

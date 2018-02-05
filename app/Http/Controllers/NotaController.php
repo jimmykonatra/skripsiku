@@ -24,8 +24,6 @@ class NotaController extends Controller
     {
         $nota = Nota::where('hapuskah',0)->get();
         return view('nota.nota' , compact('nota'));
-        
-
     }
 
     /**

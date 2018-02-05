@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Pengeluaran;
 use App\JenisPengeluaran;
+use App\User;
 
 class PengeluaranController extends Controller
 {
@@ -16,7 +17,8 @@ class PengeluaranController extends Controller
     public function index()
     {
         $pengeluaran = Pengeluaran::where('hapuskah',0)->get();
-        return view('master.pengeluaran',compact('pengeluaran'));
+        $kasir = User::join('karyawans', 'users.id', '=', 'karyawans.user_id')->where([['jabatan', 'Kasir'], ['karyawans.hapuskah', 0]])->get();
+        return view('master.pengeluaran',compact('pengeluaran','kasir'));
     }
 
     /**
