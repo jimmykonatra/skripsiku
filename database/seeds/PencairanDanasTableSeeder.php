@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class PencairandanasTableSeeder extends Seeder
+class PencairanDanasTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -13,18 +13,16 @@ class PencairandanasTableSeeder extends Seeder
     {
         DB::table('pencairan_danas')->insert([
             'tanggal_cair_dana' => '2018-02-03',
-            'nomor bukti' => '34543',
+            'nomor_bukti' => '34543',
             'pemberi' => 'Ardi',
-            'penerima' => 'Rudi',
-            'hapuskah' => 0
+            'penerima' => 'Rudi'
         ]);
 
         DB::table('pencairan_danas')->insert([
             'tanggal_cair_dana' => '2024-03-29',
-            'nomor bukti' => '863234',
+            'nomor_bukti' => '863234',
             'pemberi' => 'Rika',
-            'penerima' => 'Rudi',
-            'hapuskah' => 0
+            'penerima' => 'Rudi'
         ]);
     }
 }
