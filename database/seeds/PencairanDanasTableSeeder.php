@@ -12,7 +12,7 @@ class PencairandanasTableSeeder extends Seeder
     public function run()
     {
         DB::table('pencairan_danas')->insert([
-            'tanggal_cair_dana' => '2018/02/03',
+            'tanggal_cair_dana' => '2018-02-03',
             'nomor bukti' => '34543',
             'pemberi' => 'Ardi',
             'penerima' => 'Rudi',
@@ -20,7 +20,7 @@ class PencairandanasTableSeeder extends Seeder
         ]);
 
         DB::table('pencairan_danas')->insert([
-            'tanggal_cair_dana' => '2024/03/29',
+            'tanggal_cair_dana' => '2024-03-29',
             'nomor bukti' => '863234',
             'pemberi' => 'Rika',
             'penerima' => 'Rudi',

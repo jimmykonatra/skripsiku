@@ -15,10 +15,10 @@ class CreateTandaTerimasTable extends Migration
     {
         Schema::create('tanda_terimas', function (Blueprint $table) {
             $table->increments('id');
-            $table->bigInteger('booking_fee')->nullable();
-            $table->bigInteger('dana_kpr')->nullable();
-            $table->bigInteger('angsuran')->nullable();
-            $table->bigInteger('uang_tambahan')->nullable();
+            $table->bigInteger('booking_fee')->default(0);
+            $table->bigInteger('dana_kpr')->default(0);
+            $table->bigInteger('angsuran')->default(0);
+            $table->bigInteger('uang_tambahan')->default(0);
             $table->bigInteger('total');
             $table->unsignedInteger('jual_rumah_id');
             $table->unsignedInteger('kasir_id');

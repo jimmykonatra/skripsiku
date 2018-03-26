@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\JualRumah;
 
 class DatabaseSeeder extends Seeder
 {
@@ -18,13 +19,17 @@ class DatabaseSeeder extends Seeder
                 JenisPengeluaransTableSeeder::class,
                 PerumahansTableSeeder::class,
                 PengeluaransTableSeeder::class,
+                PencairanDanasTableSeeder::class,
                 TipesTableSeeder::class,
-                TandaTerimasTableSeeder::class,
                 BerkasTableSeeder::class,
                 CicilansTableSeeder::class,
-                KprsTableSeeder::class, 
                 RumahsTableSeeder::class,
-                PencairanDanasTableSeeder::class
+                JualRumahsTableSeeder::class,
+                KprsTableSeeder::class,
+                TandaTerimasTableSeeder::class
+                
+                
+                
         ]);
        
     }
