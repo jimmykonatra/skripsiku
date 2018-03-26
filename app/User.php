@@ -27,6 +27,11 @@ class User extends Authenticatable
     
     public function karyawan()
     {
-        return $this->hasOne(Karyawan::class);
+        return $this->belongsTo(Karyawan::class);
+    }
+
+    public function kpr()
+    {
+        return $this->hasMany(Kpr::class);
     }
 }

@@ -15,7 +15,8 @@ class Karyawan extends Model
     
     public function pengeluaran()
     {
-        return $this->hasOne(Pengeluaran::class);
+        // return $this->hasMany('App\Pengeluaran', 'id');
+        return $this->hasMany(Pengeluaran::class);
     }
    
 }

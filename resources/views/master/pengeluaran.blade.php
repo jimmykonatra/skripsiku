@@ -44,14 +44,14 @@
 							</tr>
 						</tfoot>
 						<tbody>
-							@foreach($pengeluaran as $pengeluaran)
-							<tr id="{{$pengeluaran->id}}">
-								<td>{{$pengeluaran->jenis_pengeluaran->nama}}</td>
-								<td>{{$pengeluaran->tanggal}}</td>
-								<td>{{$pengeluaran->nominal}}</td>
-								<td>{{$pengeluaran->keterangan}}</td>
-								<td>{{$pengeluaran->status_lunas}}</td>
-								<td>{{$pengeluaran->kasir['nama']}}</td>
+							@foreach($pengeluaran as $data)
+							<tr id="{{$data->id}}">
+								<td>{{$data->jenis_pengeluaran->nama}}</td>
+								<td>{{$data->tanggal}}</td>
+								<td>{{$data->nominal}}</td>
+								<td>{{$data->keterangan}}</td>
+								<td>{{$data->status_lunas}}</td>
+								<td>{{$data->kasir->nama}}</td>
 								<td>
 									<button class="btn btnUbah btn-primary">Ubah</button>
 								</td>

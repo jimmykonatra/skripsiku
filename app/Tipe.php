@@ -12,4 +12,9 @@ class Tipe extends Model
 
         return $this->hasMany(Rumah::class);
     }
+
+    public function cicilan()
+    {
+        return $this->hasMany(Cicilan::class);
+    }
 }

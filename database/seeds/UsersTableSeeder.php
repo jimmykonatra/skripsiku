@@ -13,16 +13,16 @@ class UsersTableSeeder extends Seeder
     public function run()
     {
         User::firstOrCreate([
-            'username' => 'qwe',
-            'password' => bcrypt('qwe'),
-            'jabatan' => 'Marketing'
+            'username' => 'q',
+            'password' => bcrypt('q'),
+            'jabatan' => 'Kasir'
             
         ]);
 
         User::firstOrCreate([
-            'username' => 'asd',
-            'password' => bcrypt('asd'),
-            'jabatan' => 'Kasir'
+            'username' => 'qwe',
+            'password' => bcrypt('qwe'),
+            'jabatan' => 'Marketing'
             
         ]);
     }

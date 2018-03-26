@@ -29,6 +29,7 @@ class CreateTipesTable extends Migration
             $table->string('deskripsi');
             $table->string('gambar_denah');
             $table->string('gambar_rumah');
+            $table->string('lainnya');
             $table->boolean('hapuskah');
             $table->timestamps();
         });

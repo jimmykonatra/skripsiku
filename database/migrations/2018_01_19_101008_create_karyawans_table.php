@@ -19,8 +19,8 @@ class CreateKaryawansTable extends Migration
             $table->string('alamat');
             $table->string('email');
             $table->string('no_telepon');
-            $table->boolean('hapuskah');
             $table->unsignedInteger('user_id');
+            $table->boolean('hapuskah');
             $table->timestamps();
         });
     }

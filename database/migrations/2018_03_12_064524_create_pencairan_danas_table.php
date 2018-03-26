@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSpesifikasiTipeTable extends Migration
+class CreatePencairandanasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,12 @@ class CreateSpesifikasiTipeTable extends Migration
      */
     public function up()
     {
-        Schema::create('spesifikasi_tipe', function (Blueprint $table) {
-            $table->unsignedInteger('spesifikasi_id');
-            $table->unsignedInteger('tipe_id');
-            $table->string('isi');
-            $table->primary(['spesifikasi_id','tipe_id']);
+        Schema::create('pencairan_danas', function (Blueprint $table) {
+            $table->increments('id');
+            $table->date('tanggal_cair_dana');
+            $table->string('nomor_bukti');
+            $table->string('pemberi');
+            $table->string('penerima');
             $table->timestamps();
         });
     }
@@ -29,6 +30,6 @@ class CreateSpesifikasiTipeTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('spesifikasi_tipe');
+        Schema::dropIfExists('pencairandanas');
     }
 }

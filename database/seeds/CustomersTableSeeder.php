@@ -13,17 +13,23 @@ class CustomersTableSeeder extends Seeder
     {
         DB::table('customers')->insert([
             'nama' => 'Andi',
+            'alamat' => 'Jalan Tenggilis',
             'kota' => 'Surabaya',
             'email' => 'andi@gmail.com',
             'no_telepon' => '082123535748',
+            'no_ktp' => '81731723278625',
+            'no_rekening' => '733627262',
             'hapuskah' => 0
         ]);
 
         DB::table('customers')->insert([
-            'nama' => 'Ria',
-            'kota' => 'Tuban',
-            'email' => 'ria@gmail.com',
-            'no_telepon' => '082125859732',
+            'nama' => 'Rudi',
+            'alamat' => 'Jalan Merak',
+            'kota' => 'Surabaya',
+            'email' => 'rudi@gmail.com',
+            'no_telepon' => '066633435748',
+            'no_ktp' => '81428396025',
+            'no_rekening' => '142648972',
             'hapuskah' => 0
         ]);
     }

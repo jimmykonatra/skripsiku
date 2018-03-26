@@ -16,9 +16,13 @@ class CreateKprsTable extends Migration
         Schema::create('kprs', function (Blueprint $table) {
             $table->increments('id');
             $table->date('tanggal_cair');
-            $table->date('tanggal_acc');
+            $table->date('tanggal_akad_kredit');
+            $table->date('tanggal_serah_terima_sertifikat');
+            $table->string('pemberi');
+            $table->string('penerima');
             $table->unsignedInteger('bank_id');
-            $table->unsignedInteger('nota_id');
+            $table->unsignedInteger('jual_rumah_id');
+            $table->unsignedInteger('kasir_id');
             $table->boolean('hapuskah');
             $table->timestamps();
         });

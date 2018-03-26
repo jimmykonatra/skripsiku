@@ -15,7 +15,16 @@ class DatabaseSeeder extends Seeder
                 KaryawansTableSeeder::class,
                 CustomersTableSeeder::class,
                 BanksTableSeeder::class,
-                JenisPengeluaransTableSeeder::class
+                JenisPengeluaransTableSeeder::class,
+                PerumahansTableSeeder::class,
+                PengeluaransTableSeeder::class,
+                TipesTableSeeder::class,
+                TandaTerimasTableSeeder::class,
+                BerkasTableSeeder::class,
+                CicilansTableSeeder::class,
+                KprsTableSeeder::class, 
+                RumahsTableSeeder::class,
+                PencairanDanasTableSeeder::class
         ]);
        
     }

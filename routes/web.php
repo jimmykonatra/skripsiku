@@ -55,6 +55,11 @@ Route::post('pengeluaran/lihat', 'PengeluaranController@edit');
 Route::post('pengeluaran/ubah', 'PengeluaranController@update');
 Route::post('pengeluaran/tambah', 'PengeluaranController@store');
 
+Route::get('cicilan', 'CicilanController@index');
+Route::post('cicilan/hapus', 'CicilanController@destroy');
+Route::post('cicilan/lihat', 'CicilanController@edit');
+Route::post('cicilan/ubah', 'CicilanController@update');
+Route::post('cicilan/tambah', 'CicilanController@store');
 
 Route::get('jenispengeluaran', 'JenisPengeluaranController@index');
 Route::post('jenispengeluaran/hapus', 'JenisPengeluaranController@destroy');

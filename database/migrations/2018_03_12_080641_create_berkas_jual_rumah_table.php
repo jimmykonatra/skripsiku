@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateBerkasNotaTable extends Migration
+class CreateBerkasJualrumahTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,13 @@ class CreateBerkasNotaTable extends Migration
      */
     public function up()
     {
-        Schema::create('berkas_nota', function (Blueprint $table) {
+        Schema::create('berkas_jual_rumah', function (Blueprint $table) {
             $table->unsignedInteger('berkas_id');
-            $table->unsignedInteger('nota_id');
+            $table->unsignedInteger('jual_rumah_id');
             $table->date('tanggal_terima');
             $table->date('tanggal_kembali');
             $table->boolean('hapuskah');
-            $table->primary(['berkas_id','nota_id']);
-            $table->timestamps();
+            $table->primary(['berkas_id', 'jual_rumah_id']);
         });
     }
 
@@ -31,6 +30,6 @@ class CreateBerkasNotaTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('berkas_nota');
+        Schema::dropIfExists('berkas_jualrumah');
     }
 }

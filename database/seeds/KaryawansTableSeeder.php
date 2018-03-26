@@ -19,5 +19,14 @@ class KaryawansTableSeeder extends Seeder
             'hapuskah' => 0,
             'user_id' => 1
         ]);
+
+        DB::table('karyawans')->insert([
+            'nama' => 'Ria Setiawan',
+            'alamat' => 'Jalan Babatan',
+            'email' => 'ria@gmail.com',
+            'no_telepon' => '083424234234',
+            'hapuskah' => 0,
+            'user_id' => 2
+        ]);
     }
 }

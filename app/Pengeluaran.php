@@ -16,9 +16,18 @@ class Pengeluaran extends Model
                 // return $this->belongsTo('App\JenisPengeluaran','jenis_pengeluaran_id');
         }
 
-        public function kasir()
+        public function karyawan()
         {
+                // return $this->belongsTo(Karyawan::class);
                 return $this->belongsTo(Karyawan::class);
-                // return $this->belongsTo('App\Karyawan','kasir_id');
+        }
+        public static function kasir()
+        {       
+                return DB::table('karyawans')
+                        ->join('users','users.id','=','karyawans.user_id')
+                        ->join('pengeluarans','pengeluarans.kasir_id','=','karyawans.id')
+                        ->select('karyawans.nama')
+                        ->where('users.jabatan','=','Kasir')
+                        ->get();
         }
 }

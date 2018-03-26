@@ -17,7 +17,8 @@ class PengeluaranController extends Controller
     public function index()
     {
         $pengeluaran = Pengeluaran::where('hapuskah',0)->get();
-        $kasir = User::join('karyawans', 'users.id', '=', 'karyawans.user_id')->where([['jabatan', 'Kasir'], ['karyawans.hapuskah', 0]])->get();
+        //$kasir = User::join('karyawans', 'users.id', '=', 'karyawans.user_id')->where([['jabatan', 'Kasir'], ['karyawans.hapuskah', 0]])->get();
+        $kasir = Pengeluaran::kasir();
         return view('master.pengeluaran',compact('pengeluaran','kasir'));
     }
 
