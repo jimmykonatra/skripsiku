@@ -114,12 +114,12 @@ class PengeluaranController extends Controller
         $pengeluaran = Pengeluaran::find($id);
         return response()->json([
             'id' => $id,
-            'jenispengeluaran' => $pengeluaran->jenispengeluaran,
+            'jenispengeluaran' => $pengeluaran->jenis_pengeluaran_id,
             'tanggal' => $pengeluaran->tanggal,
             'nominal' => $pengeluaran->nominal,
             'keterangan' => $pengeluaran->keterangan,
             'statuslunas' => $pengeluaran->status_lunas,
-            'kasir' => $pengeluaran->kasir
+            'kasir' => $pengeluaran->kasir_id
         ]);
     }
 
@@ -130,9 +130,30 @@ class PengeluaranController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $id = $request->pengeluaran;
+        $jenispengeluaran = $request->jenispengeluaran;
+        $tanggal = $request->tanggalpengeluaran;
+        $nominal = $request->nominal;
+        $keterangan = $request->keterangan;
+        $statuslunas = $request->statuslunas;
+        $kasir = $request->kasir;
+
+        $pengeluaran = Pengeluaran::find($id);
+
+        $pengeluaran->jenis_pengeluaran_id = $jenispengeluaran;
+        $pengeluaran->tanggal = $tanggal;
+        $pengeluaran->nominal = $nominal;
+        $pengeluaran->keterangan = $keterangan;
+        $pengeluaran->status_lunas = $statuslunas;
+        $pengeluaran->kasir_id = $kasir;
+
+        $pengeluaran->save();
+
+        Session::flash('flash_msg', 'Data Pengeluaran Berhasil Disimpan');
+        return redirect('pengeluaran');
+
     }
 
     /**
@@ -141,8 +162,13 @@ class PengeluaranController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        
+        $pengeluaran = Pengeluaran::find($request->pengeluaran);
+        $pengeluaran->hapuskah = 1;
+        $pengeluaran->save();
+
+        Session::flash('flash_msg', 'Data pengeluaran Berhasil Dihapus');
+        return redirect('pengeluaran');
     }
 }

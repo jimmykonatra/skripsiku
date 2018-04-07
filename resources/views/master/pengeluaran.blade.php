@@ -77,7 +77,7 @@
 								<form action="{{url('pengeluaran/ubah')}}" method="post" id="formUbahBank">
 									{{csrf_field()}}
 									<p>
-										<input type="hidden" id="idUbah" name="bank">
+										<input type="hidden" id="idUbah" name="pengeluaran">
 										<label class="col-lg-6">Jenis Pengeluaran: </label>
 										<select name="jenispengeluaran"  id="jenispengeluaranUbahPengeluaran">
 										@foreach($jenispengeluaran as $data)
@@ -87,7 +87,7 @@
 									</p>
 									<p>
 										<label for="tanggalbuat" class="col-lg-4">Tanggal Buat</label>
-										<input type="date" id="tanggalUbahPengeluaran" name="tanggal" class="col-lg-6" min="{{date('Y-m-d')}}" value="{{date('Y-m-d')}}"
+										<input type="date" id="tanggalUbahPengeluaran" name="tanggalpengeluaran" class="col-lg-6" min="{{date('Y-m-d')}}" value="{{date('Y-m-d')}}"
 										    data-date-format="dd-mm-yyyy" data-date-viewmode="years" required>
 										<input type="hidden" value="{{date('Y-m-d')}}" name="ambiltanggalbuat">
 									</p>
@@ -173,7 +173,7 @@
 					<form action="{{url('pengeluaran/tambah')}}" method="post" id="formTambahPengeluaran">
 						{{csrf_field()}}
 						<p>
-							<input type="hidden" id="idUbah" name="bank">
+							<input type="hidden" id="idUbah" name="pengeluaran">
 							<label class="col-lg-6">Jenis Pengeluaran: </label>
 							<select name="jenispengeluaran">
 								@foreach($jenispengeluaran as $data)
@@ -255,7 +255,7 @@
 						$('#keteranganUbahPengeluaran').val(data.keterangan);
 						$('#statuslunasUbahPengeluaran').val(data.statuslunas);
 						$('#kasirUbahPengeluaran').val(data.kasir);
-
+						
 					}
 				);
 				$('#modalUbahPengeluaran').modal('show');
