@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Karyawan;
 use App\User;
+use DB;
 use Illuminate\Support\Facades\Session;
 
 class KaryawanController extends Controller
@@ -45,7 +46,7 @@ class KaryawanController extends Controller
         $email = $request->email;
         $password = $request->password;
         $jabatan = $request->jabatan;
-
+       
         if($jabatan == 0){
             $jabatan = 'Kasir';
         } 
@@ -63,17 +64,20 @@ class KaryawanController extends Controller
             ]
             
             );
+       
 
             if(!($user->exists)) {
                 $user->save();
+                $user_id = DB::table('users')->max('id');
                 $karyawan = new Karyawan([
                     'nama' => $nama,
                     'alamat' => $alamat,
                     'no_telepon' => $notelepon,
                     'email' => $email,
+                    'user_id' => $user_id,
                     'hapuskah' => 0
                 ]);
-                $user->karyawans()->save($karyawan);
+                $karyawan->save();
                 Session::flash('flash_msg','Data Karyawan Berhasil Disimpan');
             } 
             else {

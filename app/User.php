@@ -25,7 +25,7 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
     
-    public function karyawan()
+    public function karyawans()
     {
         return $this->belongsTo(Karyawan::class);
     }
@@ -33,5 +33,10 @@ class User extends Authenticatable
     public function kpr()
     {
         return $this->hasMany(Kpr::class);
+    }
+    
+    public function pengeluaran()
+    {
+        return $this->belongsTo(Pengeluaran::class);
     }
 }

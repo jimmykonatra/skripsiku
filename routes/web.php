@@ -75,3 +75,4 @@ Route::post('nota/ubah', 'NotaController@update');
 Route::post('nota/tambah', 'NotaController@store');
 
 
+

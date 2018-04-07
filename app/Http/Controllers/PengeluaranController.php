@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\Pengeluaran;
 use App\JenisPengeluaran;
 use App\User;
+use App\Karyawan;
+use DB;
+use Illuminate\Support\Facades\Session;
 
 class PengeluaranController extends Controller
 {
@@ -16,10 +19,36 @@ class PengeluaranController extends Controller
      */
     public function index()
     {
-        $pengeluaran = Pengeluaran::where('hapuskah',0)->get();
-        //$kasir = User::join('karyawans', 'users.id', '=', 'karyawans.user_id')->where([['jabatan', 'Kasir'], ['karyawans.hapuskah', 0]])->get();
-        $kasir = Pengeluaran::kasir();
-        return view('master.pengeluaran',compact('pengeluaran','kasir'));
+        // $pengeluaran = Pengeluaran::where('hapuskah',0)->get();
+        // $kasir = User::join('karyawans', 'users.id', '=', 'karyawans.user_id')->where([['jabatan', 'Kasir'], ['karyawans.hapuskah', 0]])->get();
+        // $pengeluaran = DB::table('pengeluarans')
+        //             ->join('jenis_pengeluarans','pengeluarans.jenis_pengeluaran_id','=','jenis_pengeluarans.id')
+        //             ->where('pengeluarans.hapuskah','=','0')
+        //             ->get();
+
+        $pengeluaran = DB::table('pengeluarans')
+                ->join('karyawans','pengeluarans.kasir_id','=','karyawans.user_id')
+                ->join('users','karyawans.user_id','=','users.id')
+                ->join('jenis_pengeluarans','pengeluarans.jenis_pengeluaran_id','=','jenis_pengeluarans.id')
+                ->select('pengeluarans.id as Id','jenis_pengeluarans.nama as JenisPengeluaran','pengeluarans.tanggal as TanggalPengeluaran','pengeluarans.nominal as Nominal','pengeluarans.keterangan as Keterangan','pengeluarans.status_lunas as StatusLunas','karyawans.nama as Kasir')
+                ->where('pengeluarans.hapuskah','=',0)
+                ->get();
+
+        $jenispengeluaran = DB::table('jenis_pengeluarans')
+                ->select('id as Id','nama as Nama')
+                ->where('hapuskah','=',0)
+                ->get();
+
+        $kasir = DB::table('karyawans')
+            ->join('users','karyawans.user_id','=','users.id')
+            ->select('users.id as Id', 'karyawans.nama as Nama')
+            ->where('users.jabatan','=','Kasir')
+            ->where('karyawans.hapuskah','=',0)
+            ->get();
+
+              
+                
+        return view('master.pengeluaran',compact('pengeluaran','jenispengeluaran','kasir'));
     }
 
     /**
@@ -40,7 +69,25 @@ class PengeluaranController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $jenispengeluaran = $request->jenispengeluaran;
+        $tanggal = $request->tanggalpengeluaran;
+        $nominal = $request->nominal;
+        $keterangan = $request->keterangan;
+        $statuslunas = $request->statuslunas;
+        $kasir = $request->kasir;
+
+        Pengeluaran::create([
+            'tanggal' => $tanggal,
+            'nominal' => $nominal,
+            'keterangan' => $keterangan,
+            'status_lunas' => $statuslunas,
+            'kasir_id' => $kasir,
+            'jenis_pengeluaran_id' => $jenispengeluaran,
+            'hapuskah' => 0
+        ]);
+        Session::flash('flash_msg', 'Data Pengeluaran Berhasil Disimpan');
+        return redirect('pengeluaran');
+
     }
 
     /**
@@ -60,9 +107,20 @@ class PengeluaranController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request)
     {
-        //
+        $id = $request->id;      
+
+        $pengeluaran = Pengeluaran::find($id);
+        return response()->json([
+            'id' => $id,
+            'jenispengeluaran' => $pengeluaran->jenispengeluaran,
+            'tanggal' => $pengeluaran->tanggal,
+            'nominal' => $pengeluaran->nominal,
+            'keterangan' => $pengeluaran->keterangan,
+            'statuslunas' => $pengeluaran->status_lunas,
+            'kasir' => $pengeluaran->kasir
+        ]);
     }
 
     /**

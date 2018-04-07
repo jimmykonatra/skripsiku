@@ -148,7 +148,7 @@
                             </select>
                         </p>
                         <p>
-                            <label class="col-lg-6">Tipe: </label>
+                            <label class="col-lg-6">Bank: </label>
                             <select name="bank" id="bankTambahCicilan" class="col-lg-4">
                                 @foreach($bank as $databank)
                                 <option value="{{$databank->id}}">{{$databank->nama}}</option>

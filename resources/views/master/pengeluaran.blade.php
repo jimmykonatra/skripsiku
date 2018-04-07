@@ -45,13 +45,13 @@
 						</tfoot>
 						<tbody>
 							@foreach($pengeluaran as $data)
-							<tr id="{{$data->id}}">
-								<td>{{$data->jenis_pengeluaran->nama}}</td>
-								<td>{{$data->tanggal}}</td>
-								<td>{{$data->nominal}}</td>
-								<td>{{$data->keterangan}}</td>
-								<td>{{$data->status_lunas}}</td>
-								<td>{{$data->kasir->nama}}</td>
+							<tr id="{{$data->Id}}">
+								<td>{{$data->JenisPengeluaran}}</td>
+								<td>{{$data->TanggalPengeluaran}}</td>
+								<td>{{$data->Nominal}}</td>
+								<td>{{$data->Keterangan}}</td>
+								<td>{{$data->StatusLunas}}</td>
+								<td>{{$data->Kasir}}</td>
 								<td>
 									<button class="btn btnUbah btn-primary">Ubah</button>
 								</td>
@@ -79,12 +79,15 @@
 									<p>
 										<input type="hidden" id="idUbah" name="bank">
 										<label class="col-lg-6">Jenis Pengeluaran: </label>
-										<input type="text" class="col-lg-4" id="jenispengeluaranUbahPengeluaran" name="jenispengeluaran" placeholder="Masukkan Nama Pengeluaran"
-										    required>
+										<select name="jenispengeluaran"  id="jenispengeluaranUbahPengeluaran">
+										@foreach($jenispengeluaran as $data)
+											<option value="{{$data->Id}}">{{$data->Nama}}</option>
+										@endforeach
+									</select>
 									</p>
 									<p>
 										<label for="tanggalbuat" class="col-lg-4">Tanggal Buat</label>
-										<input type="date" id="tanggalbuat" name="tanggalbuat" class="col-lg-6" min="{{date('Y-m-d')}}" value="{{date('Y-m-d')}}"
+										<input type="date" id="tanggalUbahPengeluaran" name="tanggal" class="col-lg-6" min="{{date('Y-m-d')}}" value="{{date('Y-m-d')}}"
 										    data-date-format="dd-mm-yyyy" data-date-viewmode="years" required>
 										<input type="hidden" value="{{date('Y-m-d')}}" name="ambiltanggalbuat">
 									</p>
@@ -99,11 +102,23 @@
 									</p>
 									<p>
 										<label class="col-lg-6">Status Lunas: </label>
-										<input type="text" class="col-lg-4" id="statuslunasUbahPengeluaran" name="statuslunas" placeholder="Masukkan Status Lunas Pengeluaran">
+										<select name="statuslunas" id="statuslunasUbahPengeluaran">
+											<option value="Hutang">Hutang</option>
+											<option value="Lunas">Lunas</option>
+										</select>
 									</p>
 									<p>
 										<label class="col-lg-6">Kasir: </label>
-										<input type="text" class="col-lg-4" id="kasirUbahPengeluaran" name="kasir" placeholder="Masukkan Kasir">
+										<select name="kasir" id="kasirUbahPengeluaran">
+										@foreach($kasir as $data)
+											@if($data->Nama == "Jimmy Konatra")
+											<option selected value="{{$data->Id}}">{{$data->Nama}}</option>
+											@else
+												<option value="{{$data->Id}}">{{$data->Nama}}</option>
+											@endif
+											
+										@endforeach
+										</select>
 									</p>
 									<p style="text-align:center">
 										<button type="submit" class="btn btn-success" style="text-align:center" id="btnUbahKonfirmasi" class="btn btn-primary">
@@ -160,31 +175,41 @@
 						<p>
 							<input type="hidden" id="idUbah" name="bank">
 							<label class="col-lg-6">Jenis Pengeluaran: </label>
-							<input type="text" class="col-lg-4" id="jenispengeluaranUbahPengeluaran" name="jenispengeluaran" placeholder="Masukkan Nama Pengeluaran"
-							    required>
+							<select name="jenispengeluaran">
+								@foreach($jenispengeluaran as $data)
+									<option value="{{$data->Id}}">{{$data->Nama}}</option>
+								@endforeach
+							</select>
 						</p>
 						<p>
-							<label for="tanggalbuat" class="col-lg-4">Tanggal Buat</label>
-							<input type="date" id="tanggalbuatUbahPengeluaran" name="tanggalbuat" class="col-lg-6" min="{{date('Y-m-d')}}" value="{{date('Y-m-d')}}"
+							<label for="tanggalbuat" class="col-lg-4">Tanggal Buat:</label>
+							<input type="date" name="tanggalpengeluaran" class="col-lg-6" min="{{date('Y-m-d')}}" value="{{date('Y-m-d')}}"
 							    data-date-format="dd-mm-yyyy" data-date-viewmode="years" required>
 							<input type="hidden" value="{{date('Y-m-d')}}" name="ambiltanggalbuat">
 						</p>
 						<p>
 							<label class="col-lg-6">Nominal: </label>
-							<input type="number" class="col-lg-4" id="nominalUbahPengeluaran" name="nominal" placeholder="Masukkan Nominal Pengeluaran"
+							<input type="number" class="col-lg-4" name="nominal" placeholder="Masukkan Nominal Pengeluaran"
 							    required>
 						</p>
 						<p>
 							<label class="col-lg-6">Keterangan: </label>
-							<input type="text" class="col-lg-4" id="keteranganUbahPengeluaran" name="keterangan" placeholder="Masukkan Keterangan Pengeluaran">
+							<input type="text" class="col-lg-4"name="keterangan" placeholder="Masukkan Keterangan Pengeluaran">
 						</p>
 						<p>
 							<label class="col-lg-6">Status Lunas: </label>
-							<input type="text" class="col-lg-4" id="statuslunasUbahPengeluaran" name="statuslunas" placeholder="Masukkan Status Lunas Pengeluaran">
+							<select name="statuslunas">
+									<option value="Hutang">Hutang</option>
+									<option value="Lunas">Lunas</option>
+							</select>
 						</p>
 						<p>
 							<label class="col-lg-6">Kasir: </label>
-							<input type="text" class="col-lg-4" id="kasirUbahPengeluaran" name="kasir" placeholder="Masukkan Kasir">
+							<select name="kasir">
+								@foreach($kasir as $data)
+									<option value="{{$data->Id}}">{{$data->Nama}}</option>
+								@endforeach
+							</select>
 						</p>
 						<p style="text-align:center">
 							<button type="submit" class="btn btn-success" style="text-align:center" id="btnTambahKonfirmasi" class="btn btn-primary">
@@ -218,14 +243,14 @@
 			$('.btnUbah').on('click', function (e) {
 				e.preventDefault();
 				var id = $(this).closest('tr').attr('id');
-				$.post("{{url('bank/lihat')}}", {
+				$.post("{{url('pengeluaran/lihat')}}", {
 						'id': id,
 						'_token': "{{csrf_token()}}"
 					},
 					function (data) {
 						$('#idUbah').val(data.id);
 						$('#jenispengeluaranUbahPengeluaran').val(data.jenispengeluaran);
-						$('#tanggalbuatUbahPengeluaran').val(data.tanggalbuat);
+						$('#tanggalUbahPengeluaran').val(data.tanggal);
 						$('#nominalUbahPengeluaran').val(data.nominal);
 						$('#keteranganUbahPengeluaran').val(data.keterangan);
 						$('#statuslunasUbahPengeluaran').val(data.statuslunas);
