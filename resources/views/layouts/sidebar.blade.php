@@ -46,14 +46,14 @@
           <li class="{{Request::is('cicilan')  ? 'active' : '' }}">
             <a href={{url( 'cicilan')}}>Cicilan</a>
           </li>
-        <li class="{{Request::is('rumah')  ? 'active' : '' }}">
+          <li class="{{Request::is('rumah')  ? 'active' : '' }}">
             <a href={{url('rumah')}}>Rumah</a>
           </li>
-          <li>
-            <a href="spesifikasi.html">Spesikasi</a>
+           <li class="{{Request::is('berkas')  ? 'active' : '' }}">
+            <a href={{url('berkas')}}>Berkas</a>
           </li>
-          <li>
-            <a href="pengeluaran.html">Pengeluaran</a>
+           <li class="{{Request::is('pencairandana')  ? 'active' : '' }}">
+            <a href={{url('pencairandana')}}>Pencairan Dana</a>
           </li>
         </ul>
       </li>

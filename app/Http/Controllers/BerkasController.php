@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Berkas;
+use Illuminate\Support\Facades\Session;
 
 class BerkasController extends Controller
 {
@@ -13,7 +15,9 @@ class BerkasController extends Controller
      */
     public function index()
     {
-        //
+        $berkas = Berkas::where('hapuskah',0)->get();
+
+        return view('master.berkas',compact('berkas'));
     }
 
     /**
@@ -34,7 +38,14 @@ class BerkasController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $nama = $request->nama;
+
+        Berkas::create([
+            'nama' => $nama,
+            'hapuskah' => 0
+        ]);
+        Session::flash('flash_msg', 'Data Berkas Berhasil Disimpan');
+        return redirect('berkas');
     }
 
     /**
@@ -54,9 +65,14 @@ class BerkasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request)
     {
-        //
+        $id = $request->id;
+        $berkas = Berkas::find($id);
+        return response()->json([
+            'id' => $id,
+            'nama' => $berkas->nama
+        ]);
     }
 
     /**
@@ -66,9 +82,18 @@ class BerkasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $id = $request->berkas;
+        $nama = $request->nama;
+
+        $berkas = Berkas::find($id);
+        $berkas->nama = $nama;
+        $berkas->save();
+
+        Session::flash('flash_msg', 'Data Berkas Berhasil Diubah');
+        return redirect('berkas');
+
     }
 
     /**
@@ -77,8 +102,14 @@ class BerkasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+        $id = $request->berkas;
+        $berkas = Berkas::find($id);
+        $berkas->hapuskah = 1;
+        $berkas->save();
+
+        Session::flash('flash_msg', 'Data Berkas Berhasil Dihapus');
+        return redirect('berkas');
     }
 }

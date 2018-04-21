@@ -19,6 +19,7 @@ class CreatePencairandanasTable extends Migration
             $table->string('nomor_bukti');
             $table->string('pemberi');
             $table->string('penerima');
+            $table->boolean('hapuskah');
             $table->timestamps();
         });
     }

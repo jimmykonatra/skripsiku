@@ -67,11 +67,25 @@ Route::post('jenispengeluaran/lihat', 'JenisPengeluaranController@edit');
 Route::post('jenispengeluaran/ubah', 'JenisPengeluaranController@update');
 Route::post('jenispengeluaran/tambah', 'JenisPengeluaranController@store');
 
+Route::get('pencairandana', 'PencairanDanaController@index');
+Route::post('pencairandana/hapus', 'PencairanDanaController@destroy');
+Route::post('pencairandana/lihat', 'PencairanDanaController@edit');
+Route::post('pencairandana/ubah', 'PencairanDanaController@update');
+Route::post('pencairandana/tambah', 'PencairanDanaController@store');
+
+
 Route::get('rumah', 'RumahController@index');
 Route::post('rumah/hapus', 'RumahController@destroy');
 Route::post('rumah/lihat', 'RumahController@edit');
 Route::post('rumah/ubah', 'RumahController@update');
 Route::post('rumah/tambah', 'RumahController@store');
+
+Route::get('berkas', 'BerkasController@index');
+Route::post('berkas/hapus', 'BerkasController@destroy');
+Route::post('berkas/lihat', 'BerkasController@edit');
+Route::post('berkas/ubah', 'BerkasController@update');
+Route::post('berkas/tambah', 'BerkasController@store');
+
 
 Route::get('nota', 'NotaController@index');
 Route::get('nota/buat', 'NotaController@create');

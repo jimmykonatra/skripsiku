@@ -102,7 +102,7 @@ class PerumahanController extends Controller
         $perumahan->luas = $luas;
         $perumahan->save();
 
-        Session::flash('flash_msg', 'Data Customer Berhasil Diubah');
+        Session::flash('flash_msg', 'Data Perumahan Berhasil Diubah');
         return redirect('perumahan');
     }
 

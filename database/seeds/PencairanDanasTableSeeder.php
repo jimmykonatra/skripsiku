@@ -15,14 +15,16 @@ class PencairanDanasTableSeeder extends Seeder
             'tanggal_cair_dana' => '2018-02-03',
             'nomor_bukti' => '34543',
             'pemberi' => 'Ardi',
-            'penerima' => 'Rudi'
+            'penerima' => 'Rudi',
+            'hapuskah' => 0
         ]);
 
         DB::table('pencairan_danas')->insert([
             'tanggal_cair_dana' => '2024-03-29',
             'nomor_bukti' => '863234',
             'pemberi' => 'Rika',
-            'penerima' => 'Rudi'
+            'penerima' => 'Rudi',
+            'hapuskah' => 0
         ]);
     }
 }
