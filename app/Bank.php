@@ -12,4 +12,9 @@ class Bank extends Model
     {
         return $this->hasMany(Kpr::class);
     }
+    
+    public function cicilan()
+    {
+        return $this->hasMany(Cicilan::class);
+    }
 }

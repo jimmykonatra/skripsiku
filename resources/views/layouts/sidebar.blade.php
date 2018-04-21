@@ -46,8 +46,8 @@
           <li class="{{Request::is('cicilan')  ? 'active' : '' }}">
             <a href={{url( 'cicilan')}}>Cicilan</a>
           </li>
-          <li>
-            <a href="perumahan.html">Perumahan</a>
+        <li class="{{Request::is('rumah')  ? 'active' : '' }}">
+            <a href={{url('rumah')}}>Rumah</a>
           </li>
           <li>
             <a href="spesifikasi.html">Spesikasi</a>

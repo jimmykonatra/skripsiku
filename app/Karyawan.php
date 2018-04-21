@@ -12,11 +12,4 @@ class Karyawan extends Model
     {
         return $this->belongsTo(User::class);
     }
-    
-    public function pengeluaran()
-    {
-        // return $this->hasMany('App\Pengeluaran', 'id');
-        return $this->hasMany(Pengeluaran::class);
-    }
-   
 }

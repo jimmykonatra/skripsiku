@@ -83,8 +83,8 @@ class CicilanController extends Controller
         $cicilan = Cicilan::find($id);
         return response()->json([
             'id' => $id,
-            'tipe' => $cicilan->tipe->nama,
-            'bank' => $cicilan->bank->nama,
+            'tipe' => $cicilan->tipe_id,
+            'bank' => $cicilan->bank_id,
             'lamacicilan' => $cicilan->lama_cicilan,
             'nominal' => $cicilan->nominal
         ]);
@@ -97,9 +97,27 @@ class CicilanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $id = $request->cicilan;
+        $tipe = $request->tipe;
+        $bank = $request->bank;
+        $lamacicilan = $request->lamacicilan;
+        $nominal = $request->nominal;
+
+        $cicilan = Cicilan::find($id);
+
+        $cicilan->tipe_id = $tipe;
+        $cicilan->bank_id = $bank;
+        $cicilan->lama_cicilan = $lamacicilan;
+        $cicilan->nominal = $nominal;
+
+        $cicilan->save();
+
+        Session::flash('flash_msg', 'Data Cicilan Berhasil Disimpan');
+        return redirect('cicilan');
+
+
     }
 
     /**

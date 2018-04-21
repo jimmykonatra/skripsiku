@@ -45,13 +45,13 @@
 						</tfoot>
 						<tbody>
 							@foreach($pengeluaran as $data)
-							<tr id="{{$data->Id}}">
-								<td>{{$data->JenisPengeluaran}}</td>
-								<td>{{$data->TanggalPengeluaran}}</td>
-								<td>{{$data->Nominal}}</td>
-								<td>{{$data->Keterangan}}</td>
-								<td>{{$data->StatusLunas}}</td>
-								<td>{{$data->Kasir}}</td>
+							<tr id="{{$data->id}}">
+								<td>{{$data->jenis_pengeluaran->nama}}</td>
+								<td>{{$data->tanggal}}</td>
+								<td>{{$data->nominal}}</td>
+								<td>{{$data->keterangan}}</td>
+								<td>{{$data->status_lunas}}</td>
+								<td>{{$data->kasir->karyawan->nama}}</td>
 								<td>
 									<button class="btn btnUbah btn-primary">Ubah</button>
 								</td>
@@ -81,7 +81,7 @@
 										<label class="col-lg-6">Jenis Pengeluaran: </label>
 										<select name="jenispengeluaran"  id="jenispengeluaranUbahPengeluaran">
 										@foreach($jenispengeluaran as $data)
-											<option value="{{$data->Id}}">{{$data->Nama}}</option>
+											<option value="{{$data->id}}">{{$data->nama}}</option>
 										@endforeach
 									</select>
 									</p>
@@ -111,11 +111,8 @@
 										<label class="col-lg-6">Kasir: </label>
 										<select name="kasir" id="kasirUbahPengeluaran">
 										@foreach($kasir as $data)
-											@if($data->Nama == "Jimmy Konatra")
-											<option selected value="{{$data->Id}}">{{$data->Nama}}</option>
-											@else
-												<option value="{{$data->Id}}">{{$data->Nama}}</option>
-											@endif
+											
+												<option value="{{$data->id}}">{{$data->karyawan->nama}}</option>
 											
 										@endforeach
 										</select>
@@ -177,7 +174,7 @@
 							<label class="col-lg-6">Jenis Pengeluaran: </label>
 							<select name="jenispengeluaran">
 								@foreach($jenispengeluaran as $data)
-									<option value="{{$data->Id}}">{{$data->Nama}}</option>
+									<option value="{{$data->id}}">{{$data->nama}}</option>
 								@endforeach
 							</select>
 						</p>
@@ -203,14 +200,16 @@
 									<option value="Lunas">Lunas</option>
 							</select>
 						</p>
-						<p>
-							<label class="col-lg-6">Kasir: </label>
-							<select name="kasir">
-								@foreach($kasir as $data)
-									<option value="{{$data->Id}}">{{$data->Nama}}</option>
-								@endforeach
-							</select>
-						</p>
+							<p>
+										<label class="col-lg-6">Kasir: </label>
+										<select name="kasir" id="kasirUbahPengeluaran">
+										@foreach($kasir as $data)
+											
+												<option value="{{$data->id}}">{{$data->karyawan->nama}}</option>
+											
+										@endforeach
+										</select>
+									</p>
 						<p style="text-align:center">
 							<button type="submit" class="btn btn-success" style="text-align:center" id="btnTambahKonfirmasi" class="btn btn-primary">
 								<i class="fa fa-check"></i>Tambah</button>

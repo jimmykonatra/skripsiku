@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Http\Controllers\PerumahanController;
 
 class Rumah extends Model
 {
@@ -11,5 +12,10 @@ class Rumah extends Model
     public function tipe()
     {
         return $this->belongsTo(Tipe::class);
+    }
+
+    public function perumahan()
+    {
+        return $this->belongsTo(Perumahan::class);
     }
 }

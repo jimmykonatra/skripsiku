@@ -25,9 +25,9 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
     
-    public function karyawans()
+    public function karyawan()
     {
-        return $this->belongsTo(Karyawan::class);
+        return $this->hasOne(Karyawan::class);
     }
 
     public function kpr()
@@ -37,6 +37,6 @@ class User extends Authenticatable
     
     public function pengeluaran()
     {
-        return $this->belongsTo(Pengeluaran::class);
+        return $this->hasMany(Pengeluaran::class, 'kasir_id');
     }
 }

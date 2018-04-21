@@ -19,32 +19,29 @@ class PengeluaranController extends Controller
      */
     public function index()
     {
-        // $pengeluaran = Pengeluaran::where('hapuskah',0)->get();
-        // $kasir = User::join('karyawans', 'users.id', '=', 'karyawans.user_id')->where([['jabatan', 'Kasir'], ['karyawans.hapuskah', 0]])->get();
         // $pengeluaran = DB::table('pengeluarans')
-        //             ->join('jenis_pengeluarans','pengeluarans.jenis_pengeluaran_id','=','jenis_pengeluarans.id')
-        //             ->where('pengeluarans.hapuskah','=','0')
-        //             ->get();
+        //         ->join('karyawans','pengeluarans.kasir_id','=','karyawans.user_id')
+        //         ->join('users','karyawans.user_id','=','users.id')
+        //         ->join('jenis_pengeluarans','pengeluarans.jenis_pengeluaran_id','=','jenis_pengeluarans.id')
+        //         ->select('pengeluarans.id as Id','jenis_pengeluarans.nama as JenisPengeluaran','pengeluarans.tanggal as TanggalPengeluaran','pengeluarans.nominal as Nominal','pengeluarans.keterangan as Keterangan','pengeluarans.status_lunas as StatusLunas','karyawans.nama as Kasir')
+        //         ->where('pengeluarans.hapuskah','=',0)
+        //         ->get();
 
-        $pengeluaran = DB::table('pengeluarans')
-                ->join('karyawans','pengeluarans.kasir_id','=','karyawans.user_id')
-                ->join('users','karyawans.user_id','=','users.id')
-                ->join('jenis_pengeluarans','pengeluarans.jenis_pengeluaran_id','=','jenis_pengeluarans.id')
-                ->select('pengeluarans.id as Id','jenis_pengeluarans.nama as JenisPengeluaran','pengeluarans.tanggal as TanggalPengeluaran','pengeluarans.nominal as Nominal','pengeluarans.keterangan as Keterangan','pengeluarans.status_lunas as StatusLunas','karyawans.nama as Kasir')
-                ->where('pengeluarans.hapuskah','=',0)
-                ->get();
+        // $jenispengeluaran = DB::table('jenis_pengeluarans')
+        //         ->select('id as Id','nama as Nama')
+        //         ->where('hapuskah','=',0)
+        //         ->get();
 
-        $jenispengeluaran = DB::table('jenis_pengeluarans')
-                ->select('id as Id','nama as Nama')
-                ->where('hapuskah','=',0)
-                ->get();
+        // $kasir = DB::table('karyawans')
+        //     ->join('users','karyawans.user_id','=','users.id')
+        //     ->select('users.id as Id', 'karyawans.nama as Nama')
+        //     ->where('users.jabatan','=','Kasir')
+        //     ->where('karyawans.hapuskah','=',0)
+        //     ->get();
 
-        $kasir = DB::table('karyawans')
-            ->join('users','karyawans.user_id','=','users.id')
-            ->select('users.id as Id', 'karyawans.nama as Nama')
-            ->where('users.jabatan','=','Kasir')
-            ->where('karyawans.hapuskah','=',0)
-            ->get();
+        $pengeluaran = Pengeluaran::where('hapuskah', 0)->get();
+        $jenispengeluaran = JenisPengeluaran::where('hapuskah',0)->get();
+        $kasir = User::where('jabatan','Kasir')->get();
 
               
                 

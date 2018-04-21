@@ -71,11 +71,19 @@
                                     <p>
                                         <input type="hidden" id="idUbah" name="cicilan">
                                         <label class="col-lg-6">Tipe: </label>
-                                        <input type="text" class="col-lg-4" id="tipeUbahCicilan" name="tipe" placeholder="Masukkan Tipe Rumah" required>
+                                        <select name="tipe" id="tipeUbahCicilan">
+                                            @foreach($tipe as $data)
+                                            <option value="{{$data->id}}">{{$data->nama}}</option>
+                                            @endforeach
+                                        </select>
                                     </p>
                                     <p>
                                         <label class="col-lg-6">Bank: </label>
-                                        <input type="text" class="col-lg-4" id="bankUbahCicilan" name="bank" placeholder="Masukkan Bank" required>
+                                        <select name="bank" id="bankUbahCicilan" class="col-lg-4">
+                                            @foreach($bank as $data)
+                                            <option value="{{$data->id}}">{{$data->nama}}</option>
+                                            @endforeach
+                                        </select>
                                     </p>
                                     <p>
                                         <label class="col-lg-6">Lama Cicilan: </label>
