@@ -70,6 +70,7 @@
 							<div class="modal-body">
 								<form action="{{url('pencairandana/ubah')}}" method="post" id="formUbahPencairanDana">
 									{{csrf_field()}}
+									<input type="hidden" name="pencairandana" id="idUbah">
                                     <p>
 										<label for="tanggalcairdana" class="col-lg-4">Tanggal Cair Dana:</label>
 										<input type="date" id="tanggalUbahPencairanDana" name="tanggal" class="col-lg-6" min="{{date('Y-m-d')}}" value="{{date('Y-m-d')}}"

@@ -15,9 +15,9 @@ class PencairanDanaController extends Controller
      */
     public function index()
     {
-        $pencairandana = PencairanDana::where('hapuskah',0)->get();
+        $pencairandana = PencairanDana::where('hapuskah', 0)->get();
 
-        return view('master.pencairandana',compact('pencairandana'));
+        return view('master.pencairandana', compact('pencairandana'));
     }
 
     /**
@@ -55,7 +55,7 @@ class PencairanDanaController extends Controller
 
     }
 
-     /**
+    /**
      * Display the specified resource.
      *
      * @param  int  $id
@@ -109,7 +109,7 @@ class PencairanDanaController extends Controller
         $pencairandana->save();
 
         Session::flash('flash_msg', 'Data Pencairan Dana Berhasil Diubah');
-        return redirect('Pencairan Dana');
+        return redirect('pencairandana');
     }
 
     /**
