@@ -39,4 +39,13 @@ class User extends Authenticatable
     {
         return $this->hasMany(Pengeluaran::class, 'kasir_id');
     }
+    public function kasir()
+    {
+        return $this->belongsTo(JualRumah::class, 'kasir_id');
+    }
+    public function marketing()
+    {
+        return $this->belongsTo(JualRumah::class, 'marketing_id');
+    }
+    
 }

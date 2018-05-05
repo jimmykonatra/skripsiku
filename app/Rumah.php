@@ -18,4 +18,8 @@ class Rumah extends Model
     {
         return $this->belongsTo(Perumahan::class);
     }
+    public function jualrumah()
+    {
+        return $this->belongsTo(JualRumah::class);
+    }
 }

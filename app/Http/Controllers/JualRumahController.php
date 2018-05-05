@@ -11,9 +11,10 @@ use App\Nota;
 use App\Tipe;
 use App\Berkas;
 use App\Karyawan;
+use App\JualRumah; 
 use Illuminate\Support\Facades\DB;
 
-class NotaController extends Controller
+class JualRumahController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -22,8 +23,8 @@ class NotaController extends Controller
      */
     public function index()
     {
-        $nota = Nota::where('hapuskah',0)->get();
-        return view('nota.nota' , compact('nota'));
+        $jualrumah = JualRumah::where('hapuskah',0)->get();
+        return view('jualrumah.jualrumah' , compact('jualrumah'));
     }
 
     /**

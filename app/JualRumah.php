@@ -33,6 +33,26 @@ class JualRumah extends Model
     {
         return $this->hasMany(TandaTerima::class);
     }
+    public function customer()
+    {
+        return $this->belongsTo(Customer::class);
+    }
+    public function rumah()
+    {
+        return $this->belongsTo(Rumah::class);
+    }
+    public function kasir()
+    {
+        return $this->belongsTo(User::class, 'kasir_id');
+    }
+    public function marketing()
+    {
+        return $this->belongsTo(User::class, 'marketing_id');
+    }
+    public function pencairandana()
+    {
+        return $this->belongsTo(PencairanDana::class, 'nomor_bukti');
+    }
 }
 
 ?>

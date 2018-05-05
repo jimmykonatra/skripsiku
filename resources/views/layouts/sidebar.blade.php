@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
-  <a class="navbar-brand" href="index.html">Sumber Langgeng Sejahtera</a>
+  <a class="navbar-brand" href={{( 'beranda')}}>Sumber Langgeng Sejahtera</a>
   <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive"
     aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -63,8 +63,8 @@
           <span class="nav-link-text">Nota</span>
         </a>
         <ul class="sidenav-second-level collapse" id="collapseExamplePages">
-          <li class="{{Request::is('nota')  ? 'active' : '' }}">
-            <a href={{url( 'nota')}}>Nota</a>
+          <li class="{{Request::is('jualrumah')  ? 'active' : '' }}">
+            <a href={{url( 'jualrumah')}}>Jual Rumah</a>
           </li>
         </ul>
         {{--

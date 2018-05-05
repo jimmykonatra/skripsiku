@@ -87,12 +87,12 @@ Route::post('berkas/ubah', 'BerkasController@update');
 Route::post('berkas/tambah', 'BerkasController@store');
 
 
-Route::get('nota', 'NotaController@index');
-Route::get('nota/buat', 'NotaController@create');
-Route::post('nota/hapus', 'NotaController@destroy');
-Route::get('nota/lihat/{id}', 'NotaController@edit');
-Route::post('nota/ubah', 'NotaController@update');
-Route::post('nota/tambah', 'NotaController@store');
+Route::get('jualrumah', 'JualRumahController@index');
+Route::get('jualrumah/buat', 'JualRumahController@create');
+Route::post('jualrumah/hapus', 'JualRumahController@destroy');
+Route::get('jualrumah/lihat/{id}', 'JualRumahController@edit');
+Route::post('jualrumah/ubah', 'JualRumahController@update');
+Route::post('jualrumah/tambah', 'JualRumahController@store');
 
 
 

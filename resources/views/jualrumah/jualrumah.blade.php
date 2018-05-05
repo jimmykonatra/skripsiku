@@ -6,14 +6,14 @@
 	<div class="container-fluid">
 		<div class="card mb-3">
 			<div class="card-header">
-				<i class="fa fa-table"></i> Data Nota</div>
+				<i class="fa fa-table"></i> Data Jual Rumah</div>
 			<div class="card-body">
 
 				@include('layouts.flash')
 
 				<div class="pull-right" style="padding-bottom:20px">
-					<a href="{{url('nota/buat')}}" class="btn btn-success">
-						<i class="fa fa-plus"></i> Buat Nota
+					<a href="{{url('jualrumah/buat')}}" class="btn btn-success">
+						<i class="fa fa-plus"></i> Buat Jual Rumah
 					</a>
 				</div>
 
@@ -22,15 +22,19 @@
 						<thead>
 							<tr>
 								<th>Nomor Nota</th>
-								<th>Customer</th>
-								<th>Total</th>
+								<th>Tanggal Down Payment</th>
 								<th>Tanggal Buat</th>
-								<th>Tanggal Serah Terima</th>
+								<th>Total</th>
 								<th>Status Kelengkapan</th>
 								<th>Keterangan</th>
+								<th>Tanggal Serah Terima</th>
+								<th>Jenis Bayar</th>
+								<th>Status Jual Rumah</th>
+								<th>Customer</th>
 								<th>Marketing</th>
 								<th>Kasir</th>
 								<th>Nomor Rumah</th>
+				
 								<th>Edit</th>
 								<th>Delete</th>
 							</tr>
@@ -38,38 +42,49 @@
 						<tfoot>
 							<tr>
 								<th>Nomor Nota</th>
-								<th>Customer</th>
-								<th>Total</th>
+								<th>Tanggal Down Payment</th>
 								<th>Tanggal Buat</th>
-								<th>Tanggal Serah Terima</th>
+								<th>Total</th>
 								<th>Status Kelengkapan</th>
 								<th>Keterangan</th>
+								<th>Tanggal Serah Terima</th>
+								<th>Jenis Bayar</th>
+								<th>Status Jual Rumah</th>
+								<th>Customer</th>
+								<th>Nomor Rumah</th>
 								<th>Marketing</th>
 								<th>Kasir</th>
-								<th>Nomor Rumah</th>
+							
 								<th>Edit</th>
 								<th>Delete</th>
 							</tr>
 						</tfoot>
 						<tbody>
-							@foreach($nota as $nota)
-							<tr id="{{$nota->id}}">
-								<td>{{$nota->nomor}}</td>
-								<td>{{$nota->customer->nama}}</td>
-								<td>{{$nota->total}}</td>
-								<td>{{$nota->tanggal_buat}}</td>
-								<td>{{$nota->tanggal_serah_terima}}</td>
-								@if($nota->status_kelengkapan == 1)
+							@foreach($jualrumah as $data)
+							<tr id="{{$data->id}}">
+								<td>{{$data->nomor_nota}}</td>
+								<td>{{$data->tanggal_dp}}</td>
+								<td>{{$data->tanggal_buat}}</td>
+								<td>{{$data->total}}</td>
+
+								@if($data->status_kelengkapan == 1)
 								<td>Lengkap</td>
 								@else
 								<td>Tidak Lengkap</td>
 								@endif
-								<td>{{$nota->keterangan}}</td>
+
+								<td>{{$data->keterangan}}</td>
+								<td>{{$data->tanggal_serah_terima}}</td>
+								<td>{{$data->jenis_bayar}}</td>
+								<td>{{$data->status_jual_rumah}}</td>
+								<td>{{$data->customer->nama}}</td>
+								<td>{{$data->rumah->tipe->blok}}{{$data->rumah->nomor}}</td>
+								<td>{{$data->marketing->karyawan->nama}}</td>
+								<td>{{$data->kasir->karyawan->nama}}</td>
+								
 								<td></td>
-								<td></td>
-								<td>{{$nota->rumah->tipe->blok}}{{$nota->rumah->nomor}}</td>
 								<td>
-									<a href = "{{url('nota/lihat/'.$nota->id)}}" class="btn btn-primary">Ubah</a>
+									<a href = "{{url('jualrumah/lihat/)}}" class="btn btn-primary">Ubah</a>
 								</td>
 								<td>
 									<a href class="btn btnHapus btn-danger">Hapus</a>
@@ -124,7 +139,7 @@
 					</div>
 				</div>  --}}
 
-				<div class="modal fade" id="modalHapusNota" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+				<div class="modal fade" id="modalHapusJualRumah" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 					<div class="modal-dialog" role="document">
 						<div class="modal-content">
 							<div class="modal-header">
@@ -138,9 +153,9 @@
 								<button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
 								<a href="#" class="btn btn-danger" onclick="event.preventDefault(); document.getElementById('hapus-form').submit();">Hapus</a>
 
-								<form id="hapus-form" action="{{ url('nota/hapus') }}" method="POST" style="display:none;">
+								<form id="hapus-form" action="{{ url('jualrumah/hapus') }}" method="POST" style="display:none;">
 									{{ csrf_field() }}
-									<input type="hidden" name="nota" id="idHapus">
+									<input type="hidden" name="jualrumah" id="idHapus">
 								</form>
 							</div>
 						</div>
