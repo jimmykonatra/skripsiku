@@ -74,17 +74,15 @@
 								@endif
 
 								<td>{{$data->keterangan}}</td>
-								<td>{{$data->tanggal_serah_terima}}</td>
+								<td>{{$data->tanggal_serah_terima_rumah}}</td>
 								<td>{{$data->jenis_bayar}}</td>
 								<td>{{$data->status_jual_rumah}}</td>
 								<td>{{$data->customer->nama}}</td>
-								<td>{{$data->rumah->tipe->blok}}{{$data->rumah->nomor}}</td>
 								<td>{{$data->marketing->karyawan->nama}}</td>
 								<td>{{$data->kasir->karyawan->nama}}</td>
-								
-								<td></td>
+								<td>{{$data->rumah->tipe->blok}}{{$data->rumah->nomor}}</td>
 								<td>
-									<a href = "{{url('jualrumah/lihat/)}}" class="btn btn-primary">Ubah</a>
+									<a href = "{{url('jualrumah/lihat')}}" class="btn btn-primary">Ubah</a>
 								</td>
 								<td>
 									<a href class="btn btnHapus btn-danger">Hapus</a>
