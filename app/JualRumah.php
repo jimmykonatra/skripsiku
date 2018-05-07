@@ -26,7 +26,7 @@ class JualRumah extends Model
 
     public function kpr()
     {
-        return $this->hasMany(Kpr::class);
+        return $this->belongsTo(Kpr::class);
     }
 
     public function tanda_terima()
@@ -51,7 +51,7 @@ class JualRumah extends Model
     }
     public function pencairandana()
     {
-        return $this->belongsTo(PencairanDana::class, 'nomor_bukti');
+        return $this->belongsTo(PencairanDana::class, 'pencairan_dana_id');
     }
 }
 

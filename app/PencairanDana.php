@@ -10,6 +10,6 @@ class PencairanDana extends Model
 
     public function jualrumah()
     {
-        return $this->belongsTo(JualRumah::class, 'nomor_bukti');
+        return $this->belongsTo(JualRumah::class, 'pencairan_dana_id');
     }
 }

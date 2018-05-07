@@ -34,7 +34,7 @@
 								<th>Marketing</th>
 								<th>Kasir</th>
 								<th>Nomor Rumah</th>
-				
+								<th>Tanggal Cair Dana</th>
 								<th>Edit</th>
 								<th>Delete</th>
 							</tr>
@@ -54,7 +54,7 @@
 								<th>Nomor Rumah</th>
 								<th>Marketing</th>
 								<th>Kasir</th>
-							
+								<th>Tanggal Cair Dana</th>
 								<th>Edit</th>
 								<th>Delete</th>
 							</tr>
@@ -81,6 +81,7 @@
 								<td>{{$data->marketing->karyawan->nama}}</td>
 								<td>{{$data->kasir->karyawan->nama}}</td>
 								<td>{{$data->rumah->tipe->blok}}{{$data->rumah->nomor}}</td>
+								<td>{{$data->pencairandana->tanggal_cair_dana}}</td>
 								<td>
 									<a href = "{{url('jualrumah/lihat')}}" class="btn btn-primary">Ubah</a>
 								</td>

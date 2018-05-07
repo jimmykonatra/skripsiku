@@ -40,7 +40,7 @@ class JualRumahController extends Controller
         
         $marketing = User::join('karyawans','users.id','=','karyawans.user_id')->where([['jabatan','Marketing'],['karyawans.hapuskah',0]])->get();
         $kasir = User::join('karyawans','users.id','=','karyawans.user_id')->where([['jabatan', 'Kasir'], ['karyawans.hapuskah', 0]])->get();
-        return view('nota.buatnota', compact('customer','rumah','berkas','marketing','kasir'));
+        return view('jualrumah.buatjualrumah', compact('customer','rumah','berkas','marketing','kasir'));
 
     }
 
@@ -135,7 +135,7 @@ class JualRumahController extends Controller
         $cekberkas = DB::table('berkas_nota')->where('nota_id','=',$id)->get();
 
         
-        return view('nota.ubahnota', compact('cekberkas','nota','customer', 'rumah', 'berkas', 'marketing', 'kasir'));
+        return view('jualrumah.ubahjualrumah', compact('cekberkas','nota','customer', 'rumah', 'berkas', 'marketing', 'kasir'));
 
      
 
@@ -163,11 +163,11 @@ class JualRumahController extends Controller
      */
     public function destroy(Request $request)
     {
-        $nota = Nota::find($request->nota);
-        $nota->hapuskah = 1;
-        $nota->save();
+        $jualrumah = JualRumah::find($request->jualrumah);
+        $jualrumah->hapuskah = 1;
+        $jualrumah->save();
 
-        Session::flash('flash_msg', 'Data Nota Berhasil Dihapus');
-        return redirect('nota');
+        Session::flash('flash_msg', 'Data Jual Rumah Berhasil Dihapus');
+        return redirect('jualrumah');
     }
 }

@@ -57,24 +57,42 @@
           </li>
         </ul>
       </li>
-      <li class="nav-item  {{ Request::is('nota') ? 'active' : '' }}" data-toggle="tooltip" data-placement="right" title="Example Pages">
-        <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseExamplePages" data-parent="#exampleAccordion">
+      <li class="nav-item  {{ Request::is('jualrumah') ? 'active' : '' }}" data-toggle="tooltip" data-placement="right" title="Nota">
+        <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseJualRumah" data-parent="#exampleAccordion">
           <i class="fa fa-fw fa-file"></i>
-          <span class="nav-link-text">Nota</span>
+          <span class="nav-link-text">Transaksi</span>
         </a>
-        <ul class="sidenav-second-level collapse" id="collapseExamplePages">
+        <ul class="sidenav-second-level collapse" id="collapseJualRumah">
           <li class="{{Request::is('jualrumah')  ? 'active' : '' }}">
             <a href={{url( 'jualrumah')}}>Jual Rumah</a>
           </li>
         </ul>
-        {{--
         <ul class="navbar-nav sidenav-toggler">
           <li class="nav-item">
             <a class="nav-link text-center" id="sidenavToggler">
               <i class="fa fa-fw fa-angle-left"></i>
             </a>
           </li>
-        </ul> --}}
+        </ul>
+         <li class="nav-item  {{ Request::is('kpr') ? 'active' : '' }}" data-toggle="tooltip" data-placement="right" title="KPR">
+        <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseKPR" data-parent="#exampleAccordion">
+          <i class="fa fa-fw fa-file"></i>
+          <span class="nav-link-text">KPR</span>
+        </a>
+        <ul class="sidenav-second-level collapse" id="collapseKPR">
+          <li class="{{Request::is('  ')  ? 'active' : '' }}">
+            <a href={{url( 'jualrumah')}}>Update Tanggal Akad Kredit</a>
+          </li>
+        </ul>
+        <ul class="navbar-nav sidenav-toggler">
+          <li class="nav-item">
+            <a class="nav-link text-center" id="sidenavToggler">
+              <i class="fa fa-fw fa-angle-left"></i>
+            </a>
+          </li>
+        </ul>
+
+
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
           </li>
