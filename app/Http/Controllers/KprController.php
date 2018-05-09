@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Kpr;
-
+use App\Bank;
+use App\JualRumah;
+use App\User;
 
 class KprController extends Controller
 {
@@ -16,7 +18,11 @@ class KprController extends Controller
     public function index()
     {
         $kpr = KPR::where('hapuskah',0)->get();
-        return view ('master.kpr', compact('kpr'));
+        $bank = Bank::where('hapuskah',0)->get();
+        $jualrumah = JualRumah::where('hapuskah',0)->get();
+        $kasir = User::where('jabatan','Kasir')->get();
+        
+        return view ('master.kpr', compact('kpr','bank','jualrumah','kasir'));
     }
 
     /**

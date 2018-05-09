@@ -43,16 +43,21 @@
           <li class="{{Request::is('pengeluaran')  ? 'active' : '' }}">
             <a href={{url( 'pengeluaran')}}>Pengeluaran</a>
           </li>
+
+          <li class="{{Request::is('kpr')  ? 'active' : '' }}">
+            <a href={{url('kpr')}}>Kpr</a>
+          </li>
           <li class="{{Request::is('cicilan')  ? 'active' : '' }}">
             <a href={{url( 'cicilan')}}>Cicilan</a>
           </li>
           <li class="{{Request::is('rumah')  ? 'active' : '' }}">
             <a href={{url('rumah')}}>Rumah</a>
           </li>
-           <li class="{{Request::is('berkas')  ? 'active' : '' }}">
+
+          <li class="{{Request::is('berkas')  ? 'active' : '' }}">
             <a href={{url('berkas')}}>Berkas</a>
           </li>
-           <li class="{{Request::is('pencairandana')  ? 'active' : '' }}">
+          <li class="{{Request::is('pencairandana')  ? 'active' : '' }}">
             <a href={{url('pencairandana')}}>Pencairan Dana</a>
           </li>
         </ul>
@@ -74,25 +79,7 @@
             </a>
           </li>
         </ul>
-         <li class="nav-item  {{ Request::is('kpr') ? 'active' : '' }}" data-toggle="tooltip" data-placement="right" title="KPR">
-        <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseKPR" data-parent="#exampleAccordion">
-          <i class="fa fa-fw fa-file"></i>
-          <span class="nav-link-text">KPR</span>
-        </a>
-        <ul class="sidenav-second-level collapse" id="collapseKPR">
-          <li class="{{Request::is('  ')  ? 'active' : '' }}">
-            <a href={{url( 'jualrumah')}}>Update Tanggal Akad Kredit</a>
-          </li>
-        </ul>
-        <ul class="navbar-nav sidenav-toggler">
-          <li class="nav-item">
-            <a class="nav-link text-center" id="sidenavToggler">
-              <i class="fa fa-fw fa-angle-left"></i>
-            </a>
-          </li>
-        </ul>
-
-
+        
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
           </li>

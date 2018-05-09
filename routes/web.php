@@ -80,6 +80,14 @@ Route::post('rumah/lihat', 'RumahController@edit');
 Route::post('rumah/ubah', 'RumahController@update');
 Route::post('rumah/tambah', 'RumahController@store');
 
+Route::get('kpr', 'KprController@index');
+Route::post('kpr/hapus', 'KprController@destroy');
+Route::post('kpr/lihat', 'KprController@edit');
+Route::post('kpr/ubah', 'KprController@update');
+Route::post('kpr/tambah', 'KprController@store');
+
+
+
 Route::get('berkas', 'BerkasController@index');
 Route::post('berkas/hapus', 'BerkasController@destroy');
 Route::post('berkas/lihat', 'BerkasController@edit');
