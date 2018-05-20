@@ -61,6 +61,12 @@ Route::post('cicilan/lihat', 'CicilanController@edit');
 Route::post('cicilan/ubah', 'CicilanController@update');
 Route::post('cicilan/tambah', 'CicilanController@store');
 
+Route::get('tandaterima', 'TandaTerimaController@index');
+Route::post('tandaterima/hapus', 'TandaTerimaController@destroy');
+Route::post('tandaterima/lihat', 'TandaTerimaController@edit');
+Route::post('tandaterima/ubah', 'TandaTerimaController@update');
+Route::post('tandaterima/tambah', 'TandaTerimaController@store');
+
 Route::get('jenispengeluaran', 'JenisPengeluaranController@index');
 Route::post('jenispengeluaran/hapus', 'JenisPengeluaranController@destroy');
 Route::post('jenispengeluaran/lihat', 'JenisPengeluaranController@edit');
@@ -72,7 +78,6 @@ Route::post('pencairandana/hapus', 'PencairanDanaController@destroy');
 Route::post('pencairandana/lihat', 'PencairanDanaController@edit');
 Route::post('pencairandana/ubah', 'PencairanDanaController@update');
 Route::post('pencairandana/tambah', 'PencairanDanaController@store');
-
 
 Route::get('rumah', 'RumahController@index');
 Route::post('rumah/hapus', 'RumahController@destroy');
@@ -86,6 +91,17 @@ Route::post('kpr/lihat', 'KprController@edit');
 Route::post('kpr/ubah', 'KprController@update');
 Route::post('kpr/tambah', 'KprController@store');
 
+Route::get('updatetanggalakadkredit', 'KprController@updatetanggalakadkreditindex');
+Route::post('updatetanggalakadkredit/lihat', 'KprController@updatetanggalakadkreditedit');
+Route::post('updatetanggalakadkredit/ubah', 'KprController@updatetanggalakadkreditupdate');
+
+Route::get('updatetanggalcair', 'KprController@updatetanggalcairindex');
+Route::post('updatetanggalcair/lihat', 'KprController@updatetanggalcairedit');
+Route::post('updatetanggalcair/ubah', 'KprController@updatetanggalcairupdate');
+
+Route::get('updatetanggalserahterimasertifikat', 'KprController@updatetanggalserahterimasertifikatindex');
+Route::post('updatetanggalserahterimasertifikat/lihat', 'KprController@updatetanggalserahterimasertifikatedit');
+Route::post('updatetanggalserahterimasertifikat/ubah', 'KprController@updatetanggalserahterimasertifikatupdate');
 
 
 Route::get('berkas', 'BerkasController@index');
@@ -93,7 +109,6 @@ Route::post('berkas/hapus', 'BerkasController@destroy');
 Route::post('berkas/lihat', 'BerkasController@edit');
 Route::post('berkas/ubah', 'BerkasController@update');
 Route::post('berkas/tambah', 'BerkasController@store');
-
 
 Route::get('jualrumah', 'JualRumahController@index');
 Route::get('jualrumah/buat', 'JualRumahController@create');

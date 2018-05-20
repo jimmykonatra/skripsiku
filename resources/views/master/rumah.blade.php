@@ -94,7 +94,7 @@
 								</button>
 							</div>
 							<div class="modal-body">
-								<form action="{{url('rumah/ubah')}}" method="post" id="formUbahRumah">
+								<form action="{{url('rumah/ubah')}}" enctype=multipart/form-data method="post" id="formUbahRumah">
 									{{csrf_field()}}
 									<p>
 										<input type="hidden" id="idUbah" name="rumah">
@@ -149,6 +149,12 @@
 										<label class="col-lg-6">Keterangan: </label>
 										<input type="text" class="col-lg-4" id="keteranganUbahRumah" name="keterangan" placeholder="Masukkan Keterangan Rumah">
 									</p>
+									<p>
+										<label class="col-lg-4">Gambar Rumah: </label>
+										<input type="file" class="col-lg-7" id="gambarUbahRumah" name="gambar" placeholder="Masukkan Gambar Rumah">
+										<img style="width:100% ; height:auto " id= "gambarRumah">
+									</p>
+
 									<p style="text-align:center">
 										<button type="submit" class="btn btn-success" style="text-align:center" id="btnUbahKonfirmasi" class="btn btn-primary">
 											<i class="fa fa-check"></i>Ubah</button>
@@ -199,7 +205,7 @@
 					</button>
 				</div>
 				<div class="modal-body">
-					<form action="{{url('rumah/tambah')}}" method="post" id="formTambahRumah">
+					<form action="{{url('rumah/tambah')}}" method="post" enctype="multipart/form-data"  id="formTambahRumah">
 						{{csrf_field()}}
                         <p>
 										<input type="hidden" id="idUbah" name="rumah">
@@ -254,6 +260,12 @@
 										<label class="col-lg-6">Keterangan: </label>
 										<input type="text" class="col-lg-4" id="keteranganTambahRumah" name="keterangan" placeholder="Masukkan Keterangan Rumah">
 									</p>
+
+									<p>
+										<label class="col-lg-4">Gambar Rumah: </label>
+										<input type="file" class="col-lg-7" id="gambarTambahRumah" name="gambar" placeholder="Masukkan Gambar Rumah">
+									</p>
+
 						<p style="text-align:center">
 							<button type="submit" class="btn btn-success" style="text-align:center" id="btnTambahKonfirmasi" class="btn btn-primary">
 								<i class="fa fa-check"></i>Tambah</button>
@@ -300,6 +312,7 @@
                         $('#statusbookingUbahRumah').val(data.statusbooking);
                         $('#statusterjualUbahRumah').val(data.statusterjual);
 						$('#keteranganUbahRumah').val(data.keterangan);
+						$("#gambarRumah").attr('src', 'images/'+ data.gambar);
 					
 						
 					}

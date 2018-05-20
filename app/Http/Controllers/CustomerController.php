@@ -126,7 +126,7 @@ class CustomerController extends Controller
         $customer->hapuskah = 1;
         $customer->save();
 
-        Session::flash('flash_msg', 'Data Customer Berhasil Dihapus');
+      
         return redirect('customer');
     }
 }

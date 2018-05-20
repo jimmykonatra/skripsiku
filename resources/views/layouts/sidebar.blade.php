@@ -18,7 +18,7 @@
           <span class="nav-link-text">Tentang Kami</span>
         </a>
       </li>
-      {{--  <li class="nav-item {{Request::is('karyawan') || Request::is('customer') ||  Request::is('bank') ||  Request::is('tipe') ||  Request::is('rumah') ||  Request::is('perumahan') ? 'active' : '' }}" data-toggle="tooltip" data-placement="right" title="Components">  --}}
+      <li class="nav-item {{Request::is('karyawan') || Request::is('customer') ||  Request::is('bank') ||  Request::is('tipe') ||  Request::is('rumah') ||  Request::is('perumahan') ? 'active' : '' }}" data-toggle="tooltip" data-placement="right" title="Components">
         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Components">
         <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseComponents" data-parent="#exampleAccordion">
           <i class="fa fa-fw fa-wrench"></i>
@@ -43,7 +43,6 @@
           <li class="{{Request::is('pengeluaran')  ? 'active' : '' }}">
             <a href={{url( 'pengeluaran')}}>Pengeluaran</a>
           </li>
-
           <li class="{{Request::is('kpr')  ? 'active' : '' }}">
             <a href={{url('kpr')}}>Kpr</a>
           </li>
@@ -53,7 +52,6 @@
           <li class="{{Request::is('rumah')  ? 'active' : '' }}">
             <a href={{url('rumah')}}>Rumah</a>
           </li>
-
           <li class="{{Request::is('berkas')  ? 'active' : '' }}">
             <a href={{url('berkas')}}>Berkas</a>
           </li>
@@ -62,6 +60,29 @@
           </li>
         </ul>
       </li>
+    </li>
+
+    <li class="nav-item {{Request::is('karyawan') || Request::is('customer') ||  Request::is('bank') ||  Request::is('tipe') ||  Request::is('rumah') ||  Request::is('perumahan') ? 'active' : '' }}" data-toggle="tooltip" data-placement="right" title="Components">
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Components">
+        <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseKPR" data-parent="#exampleAccordion">
+          <i class="fa fa-fw fa-wrench"></i>
+          <span class="nav-link-text">KPR</span>
+        </a>
+        <ul class="sidenav-second-level collapse" id="collapseKPR">
+
+          <li class="{{Request::is('updatetanggalcair')  ? 'active' : '' }}">
+            <a href={{url('updatetanggalcair')}}>Update Tanggal Cair</a>
+          </li>
+          <li class="{{Request::is('updatetanggalakadkredit')  ? 'active' : '' }}">
+            <a href={{url('updatetanggalakadkredit')}}>Update Akad Kredit</a>
+          </li>
+          <li class="{{Request::is('updatetanggalserahterimasertifikat')  ? 'active' : '' }}">
+            <a href={{url('updatetanggalserahterimasertifikat')}}>Update Tanggal Serah Terima Sertifikat</a>
+          </li>
+        </ul>
+      </li>
+    </li>
+
       <li class="nav-item  {{ Request::is('jualrumah') ? 'active' : '' }}" data-toggle="tooltip" data-placement="right" title="Nota">
         <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseJualRumah" data-parent="#exampleAccordion">
           <i class="fa fa-fw fa-file"></i>
@@ -69,26 +90,20 @@
         </a>
         <ul class="sidenav-second-level collapse" id="collapseJualRumah">
           <li class="{{Request::is('jualrumah')  ? 'active' : '' }}">
-            <a href={{url( 'jualrumah')}}>Jual Rumah</a>
-          </li>
-        </ul>
-        <ul class="navbar-nav sidenav-toggler">
-          <li class="nav-item">
-            <a class="nav-link text-center" id="sidenavToggler">
-              <i class="fa fa-fw fa-angle-left"></i>
-            </a>
+            <a href={{url('jualrumah')}}>Jual Rumah</a>
           </li>
         </ul>
         
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item">
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" data-toggle="modal" data-target="#exampleModal">
-              <li class="nav-item">
-                <i class="fa fa-fw fa-sign-out"></i>Logout</a>
-            </li>
-          </li>
-        </ul>
+          
+        
+      </li>
+      <li class="nav-item">
+          <a class="nav-link" data-toggle="modal" data-target="#exampleModal">
+            <i class="fa fa-fw fa-sign-out"></i>
+            <span class="nav-link-text">Logout</span>
+          </a>
+        </li>
+
+    </ul>
   </div>
 </nav>
