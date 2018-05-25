@@ -12,6 +12,7 @@ use App\Tipe;
 use App\Berkas;
 use App\Karyawan;
 use App\JualRumah; 
+use App\PencairanDana;
 use Illuminate\Support\Facades\DB;
 
 class JualRumahController extends Controller
@@ -24,9 +25,25 @@ class JualRumahController extends Controller
     public function index()
     {
         $jualrumah = JualRumah::where('hapuskah',0)->get();
-        return view('jualrumah.jualrumah' , compact('jualrumah'));
+        $customer = Customer::where('hapuskah',0)->get();
+        $marketing = User::where('jabatan','Marketing')->get();
+        $kasir = User::where('jabatan','Kasir')->get();
+        $rumah = Rumah::where('hapuskah',0)->get();
+        
+        return view('jualrumah.jualrumah' , compact('jualrumah','customer','marketing','kasir','rumah'));
     }
 
+    public function updatetanggalcairdanaindex()
+    {
+        $jualrumah = JualRumah::where('hapuskah',0)->get();
+        $customer = Customer::where('hapuskah',0)->get();
+        $marketing = User::where('jabatan','Marketing')->get();
+        $kasir = User::where('jabatan','Kasir')->get();
+        $rumah = Rumah::where('hapuskah',0)->get();
+        $pencairandana = PencairanDana::where('hapuskah',0)->get();
+        
+        return view('jualrumah.updatetanggalcairdana' , compact('jualrumah','customer','marketing','kasir','rumah','pencairandana'));
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -66,7 +83,7 @@ class JualRumahController extends Controller
         $kasir = $request->kasir;
 
                 
-        if(count($berkas) ==$jumlahberkas)
+        if(count($berkas) == $jumlahberkas)
         {
             $lengkap = 1;
         } else {
@@ -135,14 +152,14 @@ class JualRumahController extends Controller
         $cekberkas = DB::table('berkas_nota')->where('nota_id','=',$id)->get();
 
         
-        return view('jualrumah.ubahjualrumah', compact('cekberkas','nota','customer', 'rumah', 'berkas', 'marketing', 'kasir'));
-
-     
-
-        
+        return view('jualrumah.ubahjualrumah', compact('cekberkas','nota','customer', 'rumah', 'berkas', 'marketing', 'kasir')); 
         
     }
 
+    public function updatetanggalcairdanaedit()
+    {
+
+    }
     /**
      * Update the specified resource in storage.
      *
@@ -152,9 +169,13 @@ class JualRumahController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        
     }
 
+    public function updatetanggalcairdanaupdate(Request $request)
+    {
+
+    }
     /**
      * Remove the specified resource from storage.
      *

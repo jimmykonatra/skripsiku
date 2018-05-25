@@ -12,7 +12,7 @@
 				@include('layouts.flash')
 
 				<div class="pull-right" style="padding-bottom:20px">
-					<button class="btn btnTambah btn-success" data-toggle="modal" data-target="#modalTambahKaryawan">
+					<button class="btn btnTambah btn-success" data-toggle="modal" data-target="#modalTambahCustomer">
 						<i class="fa fa-plus"></i> Tambah Customer
 					</button>
 				</div>

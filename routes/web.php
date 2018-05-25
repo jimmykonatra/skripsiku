@@ -85,6 +85,14 @@ Route::post('rumah/lihat', 'RumahController@edit');
 Route::post('rumah/ubah', 'RumahController@update');
 Route::post('rumah/tambah', 'RumahController@store');
 
+Route::get('tipe', 'TipeController@index');
+Route::post('tipe/hapus', 'TipeController@destroy');
+Route::post('tipe/lihat', 'TipeController@edit');
+Route::post('tipe/ubah', 'TipeController@update');
+Route::post('tipe/tambah', 'TipeController@store');
+
+
+
 Route::get('kpr', 'KprController@index');
 Route::post('kpr/hapus', 'KprController@destroy');
 Route::post('kpr/lihat', 'KprController@edit');
@@ -116,6 +124,10 @@ Route::post('jualrumah/hapus', 'JualRumahController@destroy');
 Route::get('jualrumah/lihat/{id}', 'JualRumahController@edit');
 Route::post('jualrumah/ubah', 'JualRumahController@update');
 Route::post('jualrumah/tambah', 'JualRumahController@store');
+
+Route::get('updatetanggalcairdana', 'JualRumahController@updatetanggalcairdanaindex');
+Route::post('updatetanggalcairdana/ubah', 'JualRumahController@updatetanggalcairdanaupdate');
+Route::get('updatetanggalcairdana/lihat', 'JualRumahController@updatetanggalcairdanaedit');
 
 
 

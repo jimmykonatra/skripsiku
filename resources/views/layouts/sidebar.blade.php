@@ -52,6 +52,9 @@
           <li class="{{Request::is('rumah')  ? 'active' : '' }}">
             <a href={{url('rumah')}}>Rumah</a>
           </li>
+          <li class="{{Request::is('tipe')  ? 'active' : '' }}">
+            <a href={{url('tipe')}}>Tipe</a>
+          </li>
           <li class="{{Request::is('berkas')  ? 'active' : '' }}">
             <a href={{url('berkas')}}>Berkas</a>
           </li>
@@ -71,7 +74,7 @@
         <ul class="sidenav-second-level collapse" id="collapseKPR">
 
           <li class="{{Request::is('updatetanggalcair')  ? 'active' : '' }}">
-            <a href={{url('updatetanggalcair')}}>Update Tanggal Cair</a>
+            <a href={{url('updatetanggalcair')}}>Update Tanggal Cair KPR</a>
           </li>
           <li class="{{Request::is('updatetanggalakadkredit')  ? 'active' : '' }}">
             <a href={{url('updatetanggalakadkredit')}}>Update Akad Kredit</a>
@@ -82,7 +85,6 @@
         </ul>
       </li>
     </li>
-
       <li class="nav-item  {{ Request::is('jualrumah') ? 'active' : '' }}" data-toggle="tooltip" data-placement="right" title="Nota">
         <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseJualRumah" data-parent="#exampleAccordion">
           <i class="fa fa-fw fa-file"></i>
@@ -92,10 +94,10 @@
           <li class="{{Request::is('jualrumah')  ? 'active' : '' }}">
             <a href={{url('jualrumah')}}>Jual Rumah</a>
           </li>
+          <li class="{{Request::is('updatetanggalcairdana')  ? 'active' : '' }}">
+            <a href={{url('updatetanggalcairdana')}}>Update Tanggal Cair</a>
+          </li>
         </ul>
-        
-          
-        
       </li>
       <li class="nav-item">
           <a class="nav-link" data-toggle="modal" data-target="#exampleModal">
