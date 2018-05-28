@@ -38,15 +38,21 @@ class CustomerController extends Controller
     public function store(Request $request)
     {
         $nama = $request->nama;
+        $alamat = $request->alamat;
         $kota = $request->kota;
         $email = $request->email;
         $notelepon = $request->notelepon;
+        $noktp = $request->noktp;
+        $norekening = $request->norekening;
         
         Customer::create([
             'nama' => $nama,
+            'alamat' => $alamat,
             'kota' => $kota,
             'email' => $email,
             'no_telepon' => $notelepon,
+            'no_ktp' => $noktp,
+            'no_rekening' => $norekening,
             'hapuskah' => 0
         ]);
         Session::flash('flash_msg','Data Customer Berhasil Disimpan');
@@ -77,9 +83,12 @@ class CustomerController extends Controller
         return response()->json([
             'id' => $id,
             'nama' => $customer->nama,
+            'alamat' => $customer->alamat,
             'kota' => $customer->kota,
             'email' => $customer->email,
-            'notelepon' => $customer->no_telepon
+            'notelepon' => $customer->no_telepon,
+            'noktp' => $customer->no_ktp,
+            'norekening' => $customer->no_rekening
         ]);
     }
 
@@ -94,20 +103,27 @@ class CustomerController extends Controller
     {
         $id = $request->customer;
         $nama = $request->nama;
+        $alamat = $request->alamat;
         $kota = $request->kota;
         $email = $request->email;
         $notelepon = $request->notelepon;
+        $noktp = $request->noktp;
+        $norekening = $request->norekening;
        
 
         $customer = Customer::find($id);
 
         $customer->nama = $nama;
+        $customer->alamat = $alamat;
         $customer->kota = $kota;
         $customer->email = $email;
         $customer->no_telepon = $notelepon;
+        $customer->no_ktp = $noktp;
+        $customer->no_rekening = $norekening;
        
 
         $customer->save();
+        Session::flash('flash_msg', 'Data Customer Berhasil Diubah');
         return redirect('customer');
 
 
@@ -126,7 +142,7 @@ class CustomerController extends Controller
         $customer->hapuskah = 1;
         $customer->save();
 
-      
+        Session::flash('flash_msg', 'Data Customer Berhasil Dihapus');
         return redirect('customer');
     }
 }

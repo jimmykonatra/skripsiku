@@ -170,9 +170,8 @@ class TipeController extends Controller
 
         $tipe->gambar_rumah = $request->gambarrumah->getClientOriginalName();
         $request->gambarrumah->move(public_path('images'), $tipe->gambar_rumah);
+
         $tipe->lainnya = $lainnya;
-
-
         $tipe->save();
         Session::flash('flash_msg', 'Data Tipe Berhasil Disimpan');
         return redirect('tipe');

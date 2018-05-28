@@ -52,10 +52,10 @@ class RumahController extends Controller
         $statusbooking = $request->statusbooking;
         $statusterjual = $request->statusterjual;
         $keterangan = $request->keterangan;
-        $gambar = $request->gambar;
+        // $gambar = $request->gambar;
 
-        $uploadgambar = $request->gambar->getClientOriginalName();
-        $request->gambar->move(public_path('images'), $uploadgambar);
+        // $uploadgambar = $request->gambar->getClientOriginalName();
+        // $request->gambar->move(public_path('images'), $uploadgambar);
         
 
         $rumah = Rumah::create([
@@ -67,7 +67,7 @@ class RumahController extends Controller
             'status_booking' => $statusbooking,
             'status_terjual' => $statusterjual,
             'keterangan' => $keterangan,
-            'gambar' => $uploadgambar,
+            // 'gambar' => $uploadgambar,
             'hapuskah' => 0
         ]);
 
@@ -109,7 +109,7 @@ class RumahController extends Controller
             'keterangan' => $rumah->keterangan,
             'perumahan' => $rumah->perumahan_id,
             'tipe' => $rumah->tipe_id,
-            'gambar' => $rumah->gambar
+            // 'gambar' => $rumah->gambar
         ]);
     }
 
@@ -131,7 +131,7 @@ class RumahController extends Controller
         $statusbooking = $request->statusbooking;
         $statusterjual = $request->statusterjual;
         $keterangan = $request->keterangan;
-        $gambar = $request->gambar;
+        // $gambar = $request->gambar;
 
         $rumah = Rumah::find($id);
 
@@ -143,9 +143,9 @@ class RumahController extends Controller
         $rumah->keterangan = $keterangan;
         $rumah->perumahan_id = $perumahan;
         $rumah->tipe_id = $tipe;
-        $rumah->gambar = $request->gambar->getClientOriginalName();
+        // $rumah->gambar = $request->gambar->getClientOriginalName();
 
-        $request->gambar->move(public_path('images'), $rumah->gambar);
+        // $request->gambar->move(public_path('images'), $rumah->gambar);
 
         $rumah->save();
 

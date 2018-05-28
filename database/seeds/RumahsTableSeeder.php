@@ -20,7 +20,6 @@ class RumahsTableSeeder extends Seeder
             'keterangan' => 'Rumah siap huni',
             'perumahan_id' => 1,
             'tipe_id' => 1,
-            'gambar' => 0,
             'hapuskah' => 0
         ]);
     }

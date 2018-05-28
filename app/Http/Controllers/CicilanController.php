@@ -18,8 +18,8 @@ class CicilanController extends Controller
     public function index()
     {
         $cicilan = Cicilan::where('hapuskah',0)->get();
-        $tipe = Tipe::all();
-        $bank = Bank::all();
+        $tipe = Tipe::where('hapuskah',0)->get();
+        $bank = Bank::where('hapuskah',0)->get();
         return view('master.cicilan',compact('cicilan','tipe','bank'));
 
         

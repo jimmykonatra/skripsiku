@@ -23,7 +23,7 @@ class CreateRumahsTable extends Migration
             $table->string('keterangan');
             $table->unsignedInteger('perumahan_id');
             $table->unsignedInteger('tipe_id');
-            $table->mediumtext('gambar');
+         
             $table->boolean('hapuskah');
             $table->timestamps();
         });

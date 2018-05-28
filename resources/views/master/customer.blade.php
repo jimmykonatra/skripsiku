@@ -1,6 +1,4 @@
-@extends('layouts.master') @section('title', 'Sumber Langgeng Sejahtera') @section('content') 
-
-@include('layouts.sidebar')
+@extends('layouts.master') @section('title', 'Sumber Langgeng Sejahtera') @section('content') @include('layouts.sidebar')
 <!-- Example DataTables Card-->
 <div class="content-wrapper">
 	<div class="container-fluid">
@@ -22,9 +20,12 @@
 						<thead>
 							<tr>
 								<th>Nama</th>
-                                <th>Kota</th>
-                                <th>Email</th>
+								<th>Alamat</th>
+								<th>Kota</th>
+								<th>Email</th>
 								<th>No Telepon</th>
+								<th>No KTP</th>
+								<th>No Rekening</th>
 								<th>Edit</th>
 								<th>Delete</th>
 							</tr>
@@ -32,20 +33,26 @@
 						<tfoot>
 							<tr>
 								<th>Nama</th>
-                                <th>Kota</th>
-                                <th>Email</th>
+								<th>Alamat</th>
+								<th>Kota</th>
+								<th>Email</th>
 								<th>No Telepon</th>
+								<th>No KTP</th>
+								<th>No Rekening</th>
 								<th>Edit</th>
 								<th>Delete</th>
 							</tr>
 						</tfoot>
 						<tbody>
-							@foreach($customer as $customer)
-							<tr id="{{$customer->id}}">
-								<td>{{$customer->nama}}</td>
-                                <td>{{$customer->kota}}</td>
-                                <td>{{$customer->email}}</td>
-								<td>{{$customer->no_telepon}}</td>
+							@foreach($customer as $data)
+							<tr id="{{$data->id}}">
+								<td>{{$data->nama}}</td>
+								<td>{{$data->alamat}}</td>
+								<td>{{$data->kota}}</td>
+								<td>{{$data->email}}</td>
+								<td>{{$data->no_telepon}}</td>
+								<td>{{$data->no_ktp}}</td>
+								<td>{{$data->no_rekening}}</td>
 								<td>
 									<button class="btn btnUbah btn-primary">Ubah</button>
 								</td>
@@ -76,16 +83,29 @@
 										<input type="text" class="col-lg-4" id="namaUbahCustomer" name="nama" placeholder="Masukkan Nama Customer" required>
 									</p>
 									<p>
+										<label class="col-lg-6">Alamat: </label>
+										<input type="text" class="col-lg-4" id="alamatUbahCustomer" name="alamat" placeholder="Masukkan Alamat Customer" required>
+									</p>
+									<p>
 										<label class="col-lg-6">Kota: </label>
 										<input type="text" class="col-lg-4" id="kotaUbahCustomer" name="kota" placeholder="Masukkan Kota Customer" required>
-                                    </p>
-                                    <p>
+									</p>
+									<p>
 										<label class="col-lg-6">Email: </label>
 										<input type="email" class="col-lg-4" id="emailUbahCustomer" name="email" placeholder="Masukkan Alamat Email" required>
 									</p>
 									<p>
-										<label class="col-lg-6">No Telepon: </label>
+										<label class="col-lg-6">Nomor Telepon: </label>
 										<input type="tel" pattern="^[+]?[0-9]{9,15}$" class="col-lg-4" id="noteleponUbahCustomer" name="notelepon" placeholder="Masukkan No Telepon"
+										    required>
+									</p>
+									<p>
+										<label class="col-lg-6">Nomor KTP: </label>
+										<input type="number" class="col-lg-4" id="noktpUbahCustomer" name="noktp" placeholder="Masukkan Nomor KTP" required>
+									</p>
+									<p>
+										<label class="col-lg-6">Nomor Rekening: </label>
+										<input type="number" class="col-lg-4" id="norekeningUbahCustomer" name="norekening" placeholder="Masukkan Nomor Rekening"
 										    required>
 									</p>
 									<p style="text-align:center">
@@ -141,22 +161,37 @@
 					<form action="{{url('customer/tambah')}}" method="post" id="formTambahCustomer">
 						{{csrf_field()}}
 						<p>
+							<input type="hidden" id="idUbah" name="customer">
 							<label class="col-lg-6">Nama: </label>
 							<input type="text" class="col-lg-4" id="namaTambahCustomer" name="nama" placeholder="Masukkan Nama Customer" required>
 						</p>
 						<p>
+							<label class="col-lg-6">Alamat: </label>
+							<input type="text" class="col-lg-4" id="alamatTambahCustomer" name="alamat" placeholder="Masukkan Alamat Customer" required>
+						</p>
+						<p>
 							<label class="col-lg-6">Kota: </label>
-							<input type="text" class="col-lg-4" id="kotaTambahCustomer" name="kota" placeholder="Masukkan Alamat Customer" required>
-                        </p>
-                        <p>
+							<input type="text" class="col-lg-4" id="kotaTambahCustomer" name="kota" placeholder="Masukkan Kota Customer" required>
+						</p>
+						<p>
 							<label class="col-lg-6">Email: </label>
 							<input type="email" class="col-lg-4" id="emailTambahCustomer" name="email" placeholder="Masukkan Alamat Email" required>
 						</p>
 						<p>
-							<label class="col-lg-6">No Telepon: </label>
+							<label class="col-lg-6">Nomor Telepon: </label>
 							<input type="tel" pattern="^[+]?[0-9]{9,15}$" class="col-lg-4" id="noteleponTambahCustomer" name="notelepon" placeholder="Masukkan No Telepon"
 							    required>
-                        </p>						
+						</p>
+						<p>
+							<label class="col-lg-6">Nomor KTP: </label>
+							<input type="number" class="col-lg-4" id="noktpTambahCustomer" name="noktp" placeholder="Masukkan Nomor KTP" required>
+						</p>
+						<p>
+							<label class="col-lg-6">Nomor Rekening: </label>
+							<input type="number" class="col-lg-4" id="norekeningTambahCustomer" name="norekening" placeholder="Masukkan Nomor Rekening"
+							    required>
+						</p>
+
 						<p style="text-align:center">
 							<button type="submit" class="btn btn-success" style="text-align:center" id="btnTambahKonfirmasi" class="btn btn-primary">
 								<i class="fa fa-check"></i>Tambah</button>
@@ -196,10 +231,13 @@
 					function (data) {
 						$('#idUbah').val(data.id);
 						$('#namaUbahCustomer').val(data.nama);
+						$('#alamatUbahCustomer').val(data.alamat);
 						$('#kotaUbahCustomer').val(data.kota);
 						$('#emailUbahCustomer').val(data.email);
 						$('#noteleponUbahCustomer').val(data.notelepon);
-						}
+						$('#noktpUbahCustomer').val(data.noktp);
+						$('#norekeningUbahCustomer').val(data.norekening);
+					}
 				);
 				$('#modalUbahCustomer').modal('show');
 			});
