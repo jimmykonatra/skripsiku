@@ -1,4 +1,6 @@
-@extends('layouts.master') @section('title', 'Sumber Langgeng Sejahtera') @section('content') @include('layouts.sidebar')
+@extends('layouts.master') @section('title', 'Sumber Langgeng Sejahtera') @section('content') 
+
+@include('layouts.sidebar')
 
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
     <!-- Navigation-->
@@ -6,9 +8,9 @@
         <div class="container-fluid">
             <div class="card mb-3">
                 <div class="card-header">
-                    <i class="fa fa-table"></i> Ubah Nota</div>
+                    <i class="fa fa-table"></i> Ubah Nota Jual Rumah</div>
 
-                <form action="{{url('nota/ubah')}}" method="post">
+                <form action="{{url('jualrumah/ubah')}}" method="post">
                     {{csrf_field()}}
                     <div class="card-body col-lg-12">
                         <div class="col-lg-6 pull-right">
@@ -49,14 +51,14 @@
                             </div>
                             <br>
                             <label class="col-lg-4" for="keterangan">Keterangan</label>
-                            <input class="col-lg-4" type="text" id="keterangan" name="keterangan" value="{{$nota->keterangan}}">
+                            <input class="col-lg-4" type="text" id="keterangan" name="keterangan" value="{{$jualrumah->keterangan}}">
                         </div>
                         <div class="col-lg-6 pull-left">
 
                             <label class="col-lg-4" for="pemasok">Nama Customer</label>
                             <select class="col-lg-4" name="customer" id="customer">
                                 @foreach($customer as $customer) 
-                                    @if($customer->id == $nota->customer_id)
+                                    @if($customer->id == $jualrumah->customer_id)
                                         <option value="{{$customer->id}}" selected>{{$customer->nama}}</option>
                                     @else
                                         <option value="{{$customer->id}}">{{$customer->nama}}</option>
@@ -67,9 +69,9 @@
                             <br>
                             <br>
                             <label class="col-lg-4" for="nomornota">Nomor Nota</label>
-                            <input class="col-lg-4" type="number" id="nomornota" name="nomornota" value="{{$nota->nomor}}" required>
+                            <input class="col-lg-4" type="number" id="nomornota" name="nomornota" value="{{$jualrumah->nomor_nota}}" required>
                             <label class="col-lg-4" for="total">Total</label>
-                            <input class="col-lg-4" type="number" id="total" name="total" value="{{$nota->total}}" required> {{--
+                            <input class="col-lg-4" type="number" id="total" name="total" value="{{$jualrumah->total}}" required> {{--
                             <label class="col-lg-4" for="rumah">Rumah</label>
                             <select class="col-lg-4" name="rumah" id="rumah">
                                 @foreach($rumah as $rumah)
@@ -79,7 +81,7 @@
                             <label class="col-lg-4" for="rumah">Rumah</label>
                             <select class="col-lg-4" name="rumah" id="rumah">
                                 @foreach($rumah as $rumah)
-                                    @if($rumah->id == $nota->rumah_id)
+                                    @if($rumah->id == $jualrumah->rumah_id)
                                         <option value="{{$rumah->id}}" selected>{{$rumah->tipe->blok}}-{{$rumah->nomor}}
                                     @else
                                         <option value="{{$rumah->id}}">{{$rumah->tipe->blok}}-{{$rumah->nomor}}
@@ -93,7 +95,7 @@
                             <label class="col-lg-4" for="marketing">Marketing</label>
                             <select class="col-lg-4" name="marketing" id="marketing">
                                 @foreach($marketing as $marketing)
-                                    @if($marketing->id == $nota->marketing_id)
+                                    @if($marketing->id == $jualrumah->marketing_id)
                                         <option value="{{$marketing->id}}" selected>{{$marketing->nama}}</option>
                                     @else
                                         <option value="{{$marketing->id}}">{{$marketing->nama}}</option>
@@ -104,7 +106,7 @@
                             <label class="col-lg-4" for="kasir">Kasir</label>
                             <select class="col-lg-4" name="kasir" id="kasir">
                                 @foreach($kasir as $kasir)
-                                    @if($kasir->id == $nota->kasir_id)
+                                    @if($kasir->id == $jualrumah->kasir_id)
                                         <option value="{{$kasir->id}}" selected>{{$kasir->nama}}</option>
                                     @else
                                         <option value="{{$kasir->id}}">{{$kasir->nama}}</option>

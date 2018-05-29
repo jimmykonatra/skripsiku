@@ -17,6 +17,7 @@ class TandaTerimasTableSeeder extends Seeder
             'dana_kpr' => 0,
             'uang_tambahan' => 300000,
             'total' => 800000,
+            'keterangan' => 'qwerty',
             'kasir_id' => 1,
             'jual_rumah_id' => 1,
             'hapuskah' => 0
@@ -28,6 +29,7 @@ class TandaTerimasTableSeeder extends Seeder
             'dana_kpr' => 0,
             'uang_tambahan' => 300000,
             'total' => 1800000,
+            'keterangan' => 'qwerty',
             'kasir_id' => 1,
             'jual_rumah_id' => 1,
             'hapuskah' => 0

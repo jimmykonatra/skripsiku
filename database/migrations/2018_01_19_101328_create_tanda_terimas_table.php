@@ -20,6 +20,7 @@ class CreateTandaTerimasTable extends Migration
             $table->bigInteger('angsuran')->default(0);
             $table->bigInteger('uang_tambahan')->default(0);
             $table->bigInteger('total');
+            $table->string('keterangan')->nullable();
             $table->unsignedInteger('jual_rumah_id');
             $table->unsignedInteger('kasir_id');
             $table->boolean('hapuskah');

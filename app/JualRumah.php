@@ -53,6 +53,13 @@ class JualRumah extends Model
     {
         return $this->belongsTo(PencairanDana::class, 'pencairan_dana_id');
     }
+    public function getRumah()
+    {
+        return DB::table('rumahs')
+            ->join('tipes','tipes.id','=','rumahs.tipe_id')
+            ->where([['tipes.hapuskah','0'],['rumahs.hapuskah','0']])
+            ->get();
+    }
 }
 
 ?>

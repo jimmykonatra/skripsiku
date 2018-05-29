@@ -25,6 +25,7 @@
                                 <th>Angsuran</th>
                                 <th>Uang Tambahan</th>
                                 <th>Total</th>
+                                <th>Keterangan</th>
                                 <th>Kasir</th>
                                 <th>Edit</th>
                                 <th>Delete</th>
@@ -38,6 +39,7 @@
                                 <th>Angsuran</th>
                                 <th>Uang Tambahan</th>
                                 <th>Total</th>
+                                <th>Keterangan</th>
                                 <th>Kasir</th>
                                 <th>Edit</th>
                                 <th>Delete</th>
@@ -52,6 +54,7 @@
                                 <td>{{$data->angsuran}}</td>
                                 <td>{{$data->uang_tambahan}}</td>
                                 <td>{{$data->total}}</td>
+                                <td>{{$data->keterangan}}</td>
                                 <td>{{$data->kasir->karyawan->nama}}</td>
                                 <td>
                                     <button class="btn btnUbah btn-primary">Ubah</button>
@@ -80,7 +83,7 @@
                                     <p>
                                         <input type="hidden" id="idUbah" name="tandaterima">
                                         <label class="col-lg-6">Nomor Penjualan: </label>
-                                        <select name="jualrumah" id="jualrumahUbahTandaTerima">
+                                        <select name="nomornota" id="nomornotaUbahTandaTerima">
                                             @foreach($jualrumah as $data)
                                             <option value="{{$data->id}}">{{$data->nomor_nota}}</option>
                                             @endforeach
@@ -105,17 +108,21 @@
                                     <p>
                                         <label class="col-lg-6">Total: </label>
                                         <input type="number" class="col-lg-4" id="totalUbahTandaTerima" name="total" placeholder="Masukkan Total Tanda Terima">
-                                    </p>          
+                                    </p>
                                     <p>
-										<label class="col-lg-6">Kasir: </label>
-										<select name="kasir" id="kasirUbahTandaTerima">
-										@foreach($kasir as $data)
-											
-												<option value="{{$data->id}}">{{$data->karyawan->nama}}</option>
-											
-										@endforeach
-										</select>
-									</p>       
+                                        <label class="col-lg-6">Keterangan: </label>
+                                        <input type="text" class="col-lg-4" id="keteranganUbahTandaTerima" name="keterangan" placeholder="Masukkan Keterangan Tanda Terima">
+                                    </p>
+                                    <p>
+                                        <label class="col-lg-6">Kasir: </label>
+                                        <select name="kasir" id="kasirUbahTandaTerima">
+                                            @foreach($kasir as $data)
+
+                                            <option value="{{$data->id}}">{{$data->karyawan->nama}}</option>
+
+                                            @endforeach
+                                        </select>
+                                    </p>
                                     <p style="text-align:center">
                                         <button type="submit" class="btn btn-success" style="text-align:center" id="btnUbahKonfirmasi" class="btn btn-primary">
                                             <i class="fa fa-check"></i>Ubah</button>
@@ -169,44 +176,48 @@
                     <form action="{{url('tandaterima/tambah')}}" method="post" id="formTambahTandaTerima">
                         {{csrf_field()}}
                         <p>
-                                        <input type="hidden" id="idTambah" name="tandaterima">
-                                        <label class="col-lg-6">Nomor Penjualan: </label>
-                                        <select name="jualrumah" id="jualrumahTambahTandaTerima">
-                                            @foreach($jualrumah as $data)
-                                            <option value="{{$data->id}}">{{$data->nomor_nota}}</option>
-                                            @endforeach
-                                        </select>
-                                    </p>
-                                    <p>
-                                        <label class="col-lg-6">Booking Fee: </label>
-                                        <input type="number" class="col-lg-4" id="bookingfeeTambahTandaTerima" name="bookingfee" placeholder="Masukkan Booking Fee">
-                                    </p>
-                                    <p>
-                                        <label class="col-lg-6">Dana KPR: </label>
-                                        <input type="number" class="col-lg-4" id="danakprTambahTandaTerima" name="danakpr" placeholder="Masukkan Dana KPR">
-                                    </p>
-                                    <p>
-                                        <label class="col-lg-6">Angsuran: </label>
-                                        <input type="number" class="col-lg-4" id="angsuranTambahTandaTerima" name="angsuran" placeholder="Masukkan Angsuran">
-                                    </p>
-                                    <p>
-                                        <label class="col-lg-6">Uang Tambahan: </label>
-                                        <input type="number" class="col-lg-4" id="uangtambahanTambahTandaTerima" name="uangtambahan" placeholder="Masukkan Uang Tambahan">
-                                    </p>
-                                    <p>
-                                        <label class="col-lg-6">Total: </label>
-                                        <input type="number" class="col-lg-4" id="totalTambahTandaTerima" name="total" placeholder="Masukkan Total Tanda Terima">
-                                    </p>          
-                                    <p>
-										<label class="col-lg-6">Kasir: </label>
-										<select name="kasir" id="kasirTambahTandaTerima">
-										@foreach($kasir as $data)
-											
-												<option value="{{$data->id}}">{{$data->karyawan->nama}}</option>
-											
-										@endforeach
-										</select>
-									</p> 
+                            <input type="hidden" id="idTambah" name="tandaterima">
+                            <label class="col-lg-6">Nomor Penjualan: </label>
+                            <select name="nomornota" id="nomornotaTambahTandaTerima">
+                                @foreach($jualrumah as $data)
+                                <option value="{{$data->id}}">{{$data->nomor_nota}}</option>
+                                @endforeach
+                            </select>
+                        </p>
+                        <p>
+                            <label class="col-lg-6">Booking Fee: </label>
+                            <input type="number" class="col-lg-4" id="bookingfeeTambahTandaTerima" name="bookingfee" value="0">
+                        </p>
+                        <p>
+                            <label class="col-lg-6">Dana KPR: </label>
+                            <input type="number" class="col-lg-4" id="danakprTambahTandaTerima" name="danakpr" value="0">
+                        </p>
+                        <p>
+                            <label class="col-lg-6">Angsuran: </label>
+                            <input type="number" class="col-lg-4" id="angsuranTambahTandaTerima" name="angsuran" value="0">
+                        </p>
+                        <p>
+                            <label class="col-lg-6">Uang Tambahan: </label>
+                            <input type="number" class="col-lg-4" id="uangtambahanTambahTandaTerima" name="uangtambahan" value="0">
+                        </p>
+                        <p>
+                            <label class="col-lg-6">Keterangan: </label>
+                            <input type="text" class="col-lg-4" id="keteranganTambahTandaTerima" name="keterangan" placeholder="Masukkan Keterangan Tanda Terima">
+                        </p>
+                        <p>
+                            <label class="col-lg-6">Kasir: </label>
+                            <select name="kasir" id="kasirTambahTandaTerima">
+                                @foreach($kasir as $data)
+
+                                <option value="{{$data->id}}">{{$data->karyawan->nama}}</option>
+
+                                @endforeach
+                            </select>
+                        </p>
+                        <p>
+                            <label class="col-lg-6">Total: </label>
+                            <input type="number" class="col-lg-4" id="totalTambahTandaTerima" name="total" disabled placeholder="0">
+                        </p>
                         <p style="text-align:center">
                             <button type="submit" class="btn btn-success" style="text-align:center" id="btnTambahKonfirmasi" class="btn btn-primary">
                                 <i class="fa fa-check"></i>Tambah</button>
@@ -236,8 +247,45 @@
                 $('#modalTambahTandaTerima').modal('show');
             });
 
+            $('#bookingfeeTambahTandaTerima').on('change', function (e) {
+                var bookingfee = parseInt($('#bookingfeeTambahTandaTerima').val());
+                var danakpr = parseInt($('#danakprTambahTandaTerima').val());
+                var angsuran = parseInt($('#angsuranTambahTandaTerima').val());
+                var uangtambahan = parseInt($('#uangtambahanTambahTandaTerima').val());
+                var total = bookingfee + danakpr + angsuran + uangtambahan;
+                $('#totalTambahTandaTerima').val(total);
+            });
+
+            $('#danakprTambahTandaTerima').on('change', function (e) {
+                var bookingfee = parseInt($('#bookingfeeTambahTandaTerima').val());
+                var danakpr = parseInt($('#danakprTambahTandaTerima').val());
+                var angsuran = parseInt($('#angsuranTambahTandaTerima').val());
+                var uangtambahan = parseInt($('#uangtambahanTambahTandaTerima').val());
+                var total = bookingfee + danakpr + angsuran + uangtambahan;
+                $('#totalTambahTandaTerima').val(total);
+            });
+
+            $('#angsuranTambahTandaTerima').on('change', function (e) {
+                var bookingfee = parseInt($('#bookingfeeTambahTandaTerima').val());
+                var danakpr = parseInt($('#danakprTambahTandaTerima').val());
+                var angsuran = parseInt($('#angsuranTambahTandaTerima').val());
+                var uangtambahan = parseInt($('#uangtambahanTambahTandaTerima').val());
+                var total = bookingfee + danakpr + angsuran + uangtambahan;
+                $('#totalTambahTandaTerima').val(total);
+            });
+
+            $('#uangtambahanTambahTandaTerima').on('change', function (e) {
+                var bookingfee = parseInt($('#bookingfeeTambahTandaTerima').val());
+                var danakpr = parseInt($('#danakprTambahTandaTerima').val());
+                var angsuran = parseInt($('#angsuranTambahTandaTerima').val());
+                var uangtambahan = parseInt($('#uangtambahanTambahTandaTerima').val());
+                var total = bookingfee + danakpr + angsuran + uangtambahan;
+                $('#totalTambahTandaTerima').val(total);
+            });
+
+
             $('.btnUbah').on('click', function (e) {
-                e.preventDefault();
+                e.preventDefault(); //cek submit
                 var id = $(this).closest('tr').attr('id');
                 $.post("{{url('tandaterima/lihat')}}", {
                         'id': id,
@@ -245,12 +293,13 @@
                     },
                     function (data) {
                         $('#idUbah').val(data.id);
-                        $('#jualrumahUbahTandaTerima').val(data.jualrumah);
+                        $('#nomornotaUbahTandaTerima').val(data.nomornota);
                         $('#bookingfeeUbahTandaTerima').val(data.bookingfee);
                         $('#danakprUbahTandaTerima').val(data.danakpr);
                         $('#angsuranUbahTandaTerima').val(data.angsuran);
                         $('#uangtambahanUbahTandaTerima').val(data.uangtambahan);
                         $('#totalUbahTandaTerima').val(data.total);
+                        $('#keteranganUbahTandaTerima').val(data.total);
                         $('#kasirUbahTandaTerima').val(data.kasir);
                     }
                 );

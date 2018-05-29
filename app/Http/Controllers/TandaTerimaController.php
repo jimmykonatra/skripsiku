@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\JualRumah;
 use App\User;
 use App\TandaTerima;
+use Illuminate\Support\Facades\Session;
 
 
 class TandaTerimaController extends Controller
@@ -42,7 +43,51 @@ class TandaTerimaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+         
+        $nomornota = $request->nomornota;
+        $bookingfee = $request->bookingfee;
+        $danakpr = $request->danakpr;
+        $angsuran = $request->angsuran;
+        $uangtambahan = $request->uangtambahan;
+        $keterangan = $request->keterangan;
+        $kasir = $request->kasir;
+        $total = $bookingfee + $danakpr + $angsuran + $uangtambahan;
+
+      
+        $rumah = JualRumah::join('rumahs', 'jual_rumahs.rumah_id', '=', 'rumahs.id')
+            ->join('tipes','rumahs.tipe_id','=','tipes.id')
+            ->where('jual_rumahs.id', $nomornota)
+            ->first();
+        
+        TandaTerima::Create([
+            'booking_fee' => $bookingfee,
+            'dana_kpr' => $danakpr,
+            'angsuran' => $angsuran,
+            'uang_tambahan' => $uangtambahan,
+            'total' => $total,
+            'keterangan' => $keterangan,
+            'jual_rumah_id' => $nomornota,
+            'kasir_id' => $kasir,
+            'hapuskah' => 0
+        ]);
+        $tandaterima = TandaTerima::where('jual_rumah_id',$nomornota)->get();
+        $totaluangmuka = 0;
+
+        foreach($tandaterima as $data)
+        {
+            $totaluangmuka += $data->angsuran;
+        }
+        
+        if($totaluangmuka >= $rumah->uang_muka)
+        {
+            $jualrumah = JualRumah::find($nomornota);
+            $jualrumah->status_jual_rumah = 'Jadi';
+            $jualrumah->save();
+
+        }
+        Session::flash('flash_msg', 'Data Tanda Terima Berhasil Disimpan');
+        return redirect('tandaterima');
+
     }
 
     /**
@@ -85,8 +130,13 @@ class TandaTerimaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+        $tandaterima = Tandaterima::find($request->tandaterima);
+        $tandaterima->hapuskah = 1;
+        $tandaterima->save();
+
+        Session::flash('flash_msg', 'Data Tanda Terima Berhasil Dihapus');
+        return redirect('tandaterima');
     }
 }

@@ -58,6 +58,9 @@
           <li class="{{Request::is('berkas')  ? 'active' : '' }}">
             <a href={{url('berkas')}}>Berkas</a>
           </li>
+          <li class="{{Request::is('tandaterima')  ? 'active' : '' }}">
+            <a href={{url('tandaterima')}}>Tanda Terima</a>
+          </li>
           <li class="{{Request::is('pencairandana')  ? 'active' : '' }}">
             <a href={{url('pencairandana')}}>Pencairan Dana</a>
           </li>

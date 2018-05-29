@@ -67,7 +67,7 @@
 								<td>{{$data->tanggal_buat}}</td>
 								<td>{{$data->total}}</td>
 
-								@if($data->status_kelengkapan == 1)
+								@if($data->status_kelengkapan == "Lengkap")
 								<td>Lengkap</td>
 								@else
 								<td>Tidak Lengkap</td>
@@ -81,9 +81,13 @@
 								<td>{{$data->marketing->karyawan->nama}}</td>
 								<td>{{$data->kasir->karyawan->nama}}</td>
 								<td>{{$data->rumah->tipe->blok}}{{$data->rumah->nomor}}</td>
-								<td>{{$data->pencairandana->tanggal_cair_dana}}</td>
 								<td>
-									<a href = "{{url('jualrumah/lihat')}}" class="btn btn-primary">Ubah</a>
+								@if(isset($data->pencairandana->tanggal_cair_dana))
+								{{$data->pencairandana->tanggal_cair_dana}}
+								@endif
+								</td>
+								<td>
+									<a href = "{{url('jualrumah/lihat/'.$data->id)}}" class="btn btn-primary">Ubah</a>
 								</td>
 								<td>
 									<a href class="btn btnHapus btn-danger">Hapus</a>
@@ -216,7 +220,7 @@
 				e.preventDefault();
 				var id = $(this).closest('tr').attr('id');
 				$('#idHapus').val(id);
-				$('#modalHapusNota').modal('show');
+				$('#modalHapusJualRumah').modal('show');
 			});
 
 			$('.btnTambah').on('click', function (e) {

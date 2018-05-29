@@ -51,9 +51,10 @@ class JualRumahController extends Controller
      */
     public function create()
     {
-        $customer = Customer::all();
-        $rumah = Rumah::all();
-        $berkas = Berkas::all();
+        $customer = Customer::where('hapuskah','0')->get();
+        $rumah = Rumah::where('hapuskah','0')->get();
+        $berkas = Berkas::where('hapuskah','0')->get();
+        
         
         $marketing = User::join('karyawans','users.id','=','karyawans.user_id')->where([['jabatan','Marketing'],['karyawans.hapuskah',0]])->get();
         $kasir = User::join('karyawans','users.id','=','karyawans.user_id')->where([['jabatan', 'Kasir'], ['karyawans.hapuskah', 0]])->get();
@@ -71,13 +72,13 @@ class JualRumahController extends Controller
     {
         $customer = $request->customer;
         $nomornota = $request->nomornota;
-        $total = $request->total;
+      
         $rumah = $request->rumah;
         $tanggalbuat = $request->ambiltanggalbuat;
-        $tanggalserahterima = $request->tanggalserahterima;
+        $tanggaldp = $request->tanggaldp;
         $berkas = $request->berkas;
         $keterangan = $request->keterangan;
-
+        $jenisbayar = $request->jenisbayar;
         $jumlahberkas = Berkas::all()->count(); //untuk ambil jumlah berkas 
         $marketing = $request->marketing;
         $kasir = $request->kasir;
@@ -85,19 +86,25 @@ class JualRumahController extends Controller
                 
         if(count($berkas) == $jumlahberkas)
         {
-            $lengkap = 1;
+            $lengkap = 'Lengkap';
         } else {
            
-            $lengkap = 0;
+            $lengkap = "Tidak Lengkap";
         }
+        $total = Rumah::join('tipes','rumahs.tipe_id','=','tipes.id')
+                ->where('rumahs.id','=',$rumah)
+                ->first();
 
-        $inputnota = Nota::create([
-            'nomor' => $nomornota,
+
+        $inputnota = JualRumah::create([
+            'nomor_nota' => $nomornota,
             'tanggal_buat' => $tanggalbuat,
-            'total' => $total,
-            'tanggal_serah_terima' => $tanggalserahterima,
+            'total' => $total->harga_jual,
+            'tanggal_dp' => $tanggaldp,
             'status_kelengkapan' => $lengkap,
             'keterangan' => $keterangan,
+            'jenis_bayar' => $jenisbayar,
+            'status_jual_rumah' => 'Batal',
             'customer_id' => $customer,
             'marketing_id' => $marketing,
             'kasir_id' => $kasir,
@@ -105,16 +112,16 @@ class JualRumahController extends Controller
             'hapuskah' => 0
         ]);
 
-        foreach ($berkas as $berkas) {
-            DB::table('berkas_nota')->insert([
-                'nota_id' => $inputnota->id,
-                'berkas_id' => $berkas,
+        foreach ($berkas as $data) {
+            DB::table('berkas_jual_rumah')->insert([
+                'jual_rumah_id' => $inputnota->id,
+                'berkas_id' => $data,
                 'tanggal_terima' => $tanggalbuat,
                 'tanggal_kembali' => null,
                 'hapuskah' => 0
             ]);
-            return redirect('nota');
         }
+        return redirect('jualrumah');
 
         
     
@@ -138,9 +145,10 @@ class JualRumahController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request)
     {
-        $nota = Nota::find($id);
+        $id = $request->id;
+        $jualrumah = JualRumah::find($id);
         $customer = Customer::all();
         $rumah = Rumah::all();
         $berkas = Berkas::all();
@@ -149,10 +157,10 @@ class JualRumahController extends Controller
         $marketing = User::join('karyawans', 'users.id', '=', 'karyawans.user_id')->where([['jabatan', 'Marketing'], ['karyawans.hapuskah', 0]])->get();
         $kasir = User::join('karyawans', 'users.id', '=', 'karyawans.user_id')->where([['jabatan', 'Kasir'], ['karyawans.hapuskah', 0]])->get();
         
-        $cekberkas = DB::table('berkas_nota')->where('nota_id','=',$id)->get();
+        $cekberkas = DB::table('berkas_jual_rumah')->where('jual_rumah_id','=',$id)->get();
 
         
-        return view('jualrumah.ubahjualrumah', compact('cekberkas','nota','customer', 'rumah', 'berkas', 'marketing', 'kasir')); 
+        return view('jualrumah.ubahjualrumah', compact('jualrumah','cekberkas','customer', 'rumah', 'berkas', 'marketing', 'kasir')); 
         
     }
 

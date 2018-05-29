@@ -17,7 +17,7 @@ class CreateBerkasJualrumahTable extends Migration
             $table->unsignedInteger('berkas_id');
             $table->unsignedInteger('jual_rumah_id');
             $table->date('tanggal_terima');
-            $table->date('tanggal_kembali');
+            $table->date('tanggal_kembali')->nullable();
             $table->boolean('hapuskah');
             $table->primary(['berkas_id', 'jual_rumah_id']);
         });
