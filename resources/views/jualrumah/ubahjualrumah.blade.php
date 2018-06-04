@@ -14,16 +14,16 @@
                     {{csrf_field()}}
                     <div class="card-body col-lg-12">
                         <div class="col-lg-6 pull-right">
-
+                        <input type="hidden" name="jualrumah" value="{{$jualrumah->id}}">
                             <label for="tanggalbuat" class="col-lg-4">Tanggal Buat</label>
                             <input type="date" id="tanggalbuat" name="tanggalbuat" class="col-lg-6" min="{{date('Y-m-d')}}" value="{{date('Y-m-d')}}"
-                                data-date-format="dd-mm-yyyy" data-date-viewmode="years" required disabled>
+                                data-date-format="dd-mm-yyyy" data-date-viewmode="years" required readonly>
                             <input type="hidden" value="{{date('Y-m-d')}}" name="ambiltanggalbuat">
-
-                            <span class="fa fa-calendar"></span>
-                            <label for="tanggalserahterima" class="col-lg-4">Tanggal Serah Terima</label>
-                            <input type="date" id="tanggalserahterima" name="tanggalserahterima" class="col-lg-6" min="{{date('Y-m-d')}}" value="{{date('Y-m-d')}}"
-                                data-date-format="dd-mm-yyyy" data-date-viewmode="years">
+                            <span class="fa fa-calendar"></span><br/>
+                            <br>
+                            <label for="tanggaldp" class="col-lg-4">Tanggal DP </label>
+                            <input type="date" id="tanggaldp" name="tanggaldp" class="col-lg-6" min="{{date('Y-m-d')}}" value="{{date('Y-m-d')}}"
+                                data-date-format="dd-mm-yyyy" data-date-viewmode="years" readonly>
                             <span class="fa fa-calendar"></span>
                             <br>
                             <br>
@@ -34,14 +34,17 @@
                                 @foreach($berkas as $berkasberkas)
                                 <div class="row">
                                     <div class="col-sm">
+                                        <input type="checkbox" name="berkas[]" value="{{$berkasberkas->id}}" 
+                                        
                                         @foreach($cekberkas as $cekcekberkas)
                                             @if($cekcekberkas->berkas_id == $berkasberkas->id)
-                                               <input type="checkbox" name="berkas[]" value="{{$berkasberkas->id}}" checked>{{$berkasberkas->nama}} 
-                                            @else
-                                                <input type="checkbox" name="berkas[]" value="{{$berkasberkas->id}}">{{$berkasberkas->nama}}
+                                            checked
+                                                @break
                                             @endif
-
                                         @endforeach
+                                        
+                                        >{{$berkasberkas->nama}}
+
                                        
                                     </div>
                                 </div>
@@ -65,20 +68,10 @@
                                     @endif 
                                 @endforeach
                             </select>
-                            <br>
-                            <br>
-                            <br>
                             <label class="col-lg-4" for="nomornota">Nomor Nota</label>
-                            <input class="col-lg-4" type="number" id="nomornota" name="nomornota" value="{{$jualrumah->nomor_nota}}" required>
-                            <label class="col-lg-4" for="total">Total</label>
-                            <input class="col-lg-4" type="number" id="total" name="total" value="{{$jualrumah->total}}" required> {{--
-                            <label class="col-lg-4" for="rumah">Rumah</label>
-                            <select class="col-lg-4" name="rumah" id="rumah">
-                                @foreach($rumah as $rumah)
-                                <option value="{{$rumah->id}}">{{$rumah->tipe->blok}} - {{$rumah->nomor}}</option>
-                                @endforeach
-                            </select> --}}
-                            <label class="col-lg-4" for="rumah">Rumah</label>
+                            <input class="col-lg-4" type="number" id="nomornota" name="nomornota" value="{{$jualrumah->nomor_nota}}" readonly required><br/><br>
+
+                             <label class="col-lg-4" for="rumah">Rumah</label>
                             <select class="col-lg-4" name="rumah" id="rumah">
                                 @foreach($rumah as $rumah)
                                     @if($rumah->id == $jualrumah->rumah_id)
@@ -88,6 +81,20 @@
                                     @endif
                               </option>
                                 @endforeach
+                            </select>
+                            <br>
+
+                            <label class="col-lg-4" for="total">Total</label>
+                            <input class="col-lg-4" type="number" id="total" name="total" value="{{$jualrumah->total}}" required readonly>
+
+                           
+                            
+                            <label class="col-lg-4" for="jenisbayar">Jenis Bayar</label>
+                            <select class="col-lg-4" name="jenisbayar" id="jenisbayar">
+                                
+                                <option value="Cash">Cash</option>
+                                <option value="KPR">KPR</option>
+                              
                             </select>
                             <br>
 

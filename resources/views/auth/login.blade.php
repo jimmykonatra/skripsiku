@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
-  <title>Login</title>
+  <title>PT. Sumber Langgeng Sejahtera</title>
   <!-- Bootstrap core CSS-->
   <link href="{{asset('css/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
   <!-- Custom fonts for this template-->
@@ -17,12 +17,17 @@
 <body class="bg-dark">
   <div class="container">
     <div class="card card-login mx-auto mt-5">
-      <div class="card-header">Login</div>
+      
+      <div class="card-header text-center"><b>LOGIN</b>
+          <br><b>PT. Sumber Langgeng Sejahtera</b></div>
+      <div class="text-center">
+				<img style="width:100% ; height:auto"  src="{{asset('images/logo.jpg')}}" class="img-circle" alt="">
+			</div>
       <div class="card-body">
         <form class="form-horizontal" method="POST" action="{{ route('login') }}">
           {{ csrf_field() }}
           <div class="form-group{{ $errors->has('username') ? ' has-error' : '' }}">
-            <label for="exampleInputEmail1">Email Address</label>
+            <label for="exampleInputEmail1">Username</label>
             <input id="email" type="text" class="form-control" name="username" value="{{ old('username') }}" required autofocus>            @if ($errors->has('username'))
             <span class="help-block">
               <strong>{{ $errors->first('username') }}</strong>

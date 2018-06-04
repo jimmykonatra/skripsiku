@@ -6,10 +6,7 @@
     <div class="container-fluid">
       <!-- Breadcrumbs-->
       <ol class="breadcrumb">
-        <li class="breadcrumb-item">
-          <a href="#">Dashboard</a>
-        </li>
-        <li class="breadcrumb-item active">My Dashboard</li>
+        <li class=""><b>My Dashboard</b></li>
       </ol>
       <!-- Icon Cards-->
       <div class="row">

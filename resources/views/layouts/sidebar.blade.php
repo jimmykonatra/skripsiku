@@ -12,7 +12,7 @@
           <span class="nav-link-text">Beranda</span>
         </a>
       </li>
-      <li class="nav-item {{Request::is('tentangkami*') ? 'active' : '' }}" data-toggle="tooltip" data-placement="right" title="Charts">
+      <li class="nav-item {{Request::is('tentangkami') ? 'active' : '' }}" data-toggle="tooltip" data-placement="right" title="Charts">
         <a class="nav-link" href={{( 'tentangkami')}}>
           <i class="fa fa-fw fa-area-chart"></i>
           <span class="nav-link-text">Tentang Kami</span>
@@ -76,11 +76,11 @@
         </a>
         <ul class="sidenav-second-level collapse" id="collapseKPR">
 
-          <li class="{{Request::is('updatetanggalcair')  ? 'active' : '' }}">
-            <a href={{url('updatetanggalcair')}}>Update Tanggal Cair KPR</a>
-          </li>
           <li class="{{Request::is('updatetanggalakadkredit')  ? 'active' : '' }}">
             <a href={{url('updatetanggalakadkredit')}}>Update Akad Kredit</a>
+          </li>
+          <li class="{{Request::is('updatetanggalcair')  ? 'active' : '' }}">
+            <a href={{url('updatetanggalcair')}}>Update Tanggal Cair KPR</a>
           </li>
           <li class="{{Request::is('updatetanggalserahterimasertifikat')  ? 'active' : '' }}">
             <a href={{url('updatetanggalserahterimasertifikat')}}>Update Tanggal Serah Terima Sertifikat</a>

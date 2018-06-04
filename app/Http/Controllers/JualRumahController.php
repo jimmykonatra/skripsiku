@@ -28,7 +28,7 @@ class JualRumahController extends Controller
         $customer = Customer::where('hapuskah',0)->get();
         $marketing = User::where('jabatan','Marketing')->get();
         $kasir = User::where('jabatan','Kasir')->get();
-        $rumah = Rumah::where('hapuskah',0)->get();
+        $rumah = Rumah::where('hapuskah',0)->where('status_pembangunan','1')->get();
         
         return view('jualrumah.jualrumah' , compact('jualrumah','customer','marketing','kasir','rumah'));
     }
@@ -175,9 +175,63 @@ class JualRumahController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
+        $id = $request->jualrumah;
+        $customer = $request->customer;
+        $nomornota = $request->nomornota;
+        $total = $request->total;
+        $rumah = $request->rumah;
+        $marketing = $request->marketing;
+        $kasir = $request->kasir;
+        $tanggalbuat = $request->tanggalbuat;
+        $tanggaldp = $request->tanggaldp;
+        $berkas = $request->berkas;
+        $keterangan = $request->keterangan;
+        $jumlahberkas = Berkas::all()->count();
+
+        $jualrumah = JualRumah::find($id);
+
+        $jualrumah->nomor_nota = $nomornota;
+        $jualrumah->tanggal_dp = $tanggaldp;
+        $jualrumah->tanggal_buat = $tanggalbuat;
+        $jualrumah->total = $total;
+        $jualrumah->keterangan = $keterangan;
+        $jualrumah->customer_id = $customer;
+        $jualrumah->rumah_id = $rumah;
+        $jualrumah->marketing_id = $marketing;
+        $jualrumah->kasir_id = $kasir;
         
+
+        foreach ($berkas as $data) {
+            $kelengkapanberkas = DB::table('berkas_jual_rumah')
+                            ->where('jual_rumah_id',$id)
+                            ->where('berkas_id',$data)
+                            ->first();
+            if($kelengkapanberkas == null){
+                DB::table('berkas_jual_rumah')->insert([
+                    'jual_rumah_id' => $id,
+                    'berkas_id' => $data,
+                    'tanggal_terima' => date("Y-m-d"),
+                    'tanggal_kembali' => null,
+                    'hapuskah' => 0
+                ]);    
+            }
+            
+        }
+
+        if (count($berkas) == $jumlahberkas) {
+            $lengkap = 'Lengkap';
+        } else {
+
+            $lengkap = "Tidak Lengkap";
+        }
+        $jualrumah->status_kelengkapan = $lengkap;
+        $jualrumah->save();
+
+        Session::flash('flash_msg', 'Data Jual Rumah Berhasil Diubah');
+        return redirect('jualrumah');
+
     }
 
     public function updatetanggalcairdanaupdate(Request $request)

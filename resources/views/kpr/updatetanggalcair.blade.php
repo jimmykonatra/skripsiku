@@ -89,19 +89,20 @@
                             <div class="modal-body">
                                 <form action="{{url('updatetanggalcair/ubah')}}" method="post" id="formUpdateTanggalCairKpr">
                                     {{csrf_field()}}
-                                     <b>
+                                     
+                                     <p>
+										<label for="tanggalakadkreditkpr" class="col-lg-4">Tanggal Akad Kredit KPR:</label>
+										<input type="date" id="tanggalakadkreditUbahKpr" name="tanggalakadkredit" class="col-lg-6" min="{{date('Y-m-d')}}" value="{{date('Y-m-d')}}" 
+										    data-date-format="dd-mm-yyyy" data-date-viewmode="years" required disabled>
+										<input type="hidden" value="{{date('Y-m-d')}}" name="ambiltanggalakadkreditkpr">
+                                    </p>
+                                    <b>
                                         <input type="hidden" id="idUbah" name="updatetanggalcair">
 										<label for="tanggalcairkpr" class="col-lg-4">Tanggal Cair KPR:</label>
 										<input type="date" id="tanggalcairUbahKpr" name="tanggalcair" class="col-lg-6" min="{{date('Y-m-d')}}" value="{{date('Y-m-d')}}" style="border-style:solid"
 										    data-date-format="dd-mm-yyyy" data-date-viewmode="years" required>
 										<input type="hidden" value="{{date('Y-m-d')}}" name="ambiltanggalcairkpr">
 									</b>
-                                     <p>
-										<label for="tanggalakadkreditkpr" class="col-lg-4">Tanggal Akad Kredit KPR:</label>
-										<input type="date" id="tanggalakadkreditUbahKpr" name="tanggalakadkredit" class="col-lg-6" min="{{date('Y-m-d')}}" value="{{date('Y-m-d')}}" 
-										    data-date-format="dd-mm-yyyy" data-date-viewmode="years" required disabled>
-										<input type="hidden" value="{{date('Y-m-d')}}" name="ambiltanggalakadkreditkpr">
-									</p>
                                     <p>
 										<label for="tanggalserahterimasertifikatkpr" class="col-lg-4">Tanggal Serah Terima Sertifikat Rumah:</label>
 										<input type="date" id="tanggalserahterimasertifikatUbahKpr" name="tanggalserahterimasertifikat" class="col-lg-6" min="{{date('Y-m-d')}}" value="{{date('Y-m-d')}}"

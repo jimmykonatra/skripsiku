@@ -6,7 +6,7 @@
         <div class="container-fluid">
             <div class="card mb-3">
                 <div class="card-header">
-                    <i class="fa fa-table"></i> Buat Jual Rumah</div>
+                    <i class="fa fa-table"></i> Buat Nota Jual Rumah</div>
 
                 <form action="{{url('jualrumah/tambah')}}" method="post">
                     {{csrf_field()}}

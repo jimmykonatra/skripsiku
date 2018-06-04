@@ -30,5 +30,15 @@ class BerkasTableSeeder extends Seeder
             'nama' => 'Slip Gaji Terakhir',
             'hapuskah' => 0
         ]);
+
+        DB::table('berkas')->insert([
+            'nama' => 'Fotokopi Akta Kelahiran',
+            'hapuskah' => 0
+        ]);
+
+        DB::table('berkas')->insert([
+            'nama' => 'Fotokopi Surat Nikah',
+            'hapuskah' => 0
+        ]);
     }
 }

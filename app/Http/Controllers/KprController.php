@@ -39,7 +39,7 @@ class KprController extends Controller
 
     public function updatetanggalcairindex()
     {
-        $kpr = KPR::where('hapuskah', 0)->get();
+        $kpr = KPR::where('hapuskah', 0)->where('tanggal_akad_kredit','!=','null')->get();
         $bank = Bank::where('hapuskah', 0)->get();
         $jualrumah = JualRumah::where('hapuskah', 0)->get();
         $kasir = User::where('jabatan', 'Kasir')->get();
@@ -49,7 +49,7 @@ class KprController extends Controller
 
      public function updatetanggalserahterimasertifikatindex()
     {
-        $kpr = KPR::where('hapuskah', 0)->get();
+        $kpr = KPR::where('hapuskah', 0)->where('tanggal_cair','!=','null')->where('tanggal_akad_kredit','!=','null')->get();
         $bank = Bank::where('hapuskah', 0)->get();
         $jualrumah = JualRumah::where('hapuskah', 0)->get();
         $kasir = User::where('jabatan', 'Kasir')->get();

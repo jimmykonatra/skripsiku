@@ -7,6 +7,7 @@ use App\JualRumah;
 use App\User;
 use App\TandaTerima;
 use Illuminate\Support\Facades\Session;
+use App\Rumah;
 
 
 class TandaTerimaController extends Controller
@@ -53,12 +54,13 @@ class TandaTerimaController extends Controller
         $kasir = $request->kasir;
         $total = $bookingfee + $danakpr + $angsuran + $uangtambahan;
 
-      
+        //ambil data rumah pada nomor nota berikut
         $rumah = JualRumah::join('rumahs', 'jual_rumahs.rumah_id', '=', 'rumahs.id')
             ->join('tipes','rumahs.tipe_id','=','tipes.id')
             ->where('jual_rumahs.id', $nomornota)
             ->first();
         
+        //setor tanda terima atau mulai input data tanda terima
         TandaTerima::Create([
             'booking_fee' => $bookingfee,
             'dana_kpr' => $danakpr,
@@ -77,14 +79,28 @@ class TandaTerimaController extends Controller
         {
             $totaluangmuka += $data->angsuran;
         }
-        
-        if($totaluangmuka >= $rumah->uang_muka)
+
+
+        if($totaluangmuka >= $rumah->uang_muka)//jika DP telah lunas maka update status jual rumah
         {
             $jualrumah = JualRumah::find($nomornota);
-            $jualrumah->status_jual_rumah = 'Jadi';
+            $jualrumah->status_jual_rumah = 'Proses KPR';
             $jualrumah->save();
 
+            $rumah = Rumah::find($jualrumah->rumah_id);
+            $rumah->status_booking = 1;
+            $rumah->save();
         }
+        else
+        {
+            $jualrumah = JualRumah::find($nomornota);
+            $jualrumah->status_jual_rumah = 'Proses DP';
+            $jualrumah->save();
+            
+        }
+
+        //update status booking rumah
+        
         Session::flash('flash_msg', 'Data Tanda Terima Berhasil Disimpan');
         return redirect('tandaterima');
 
@@ -107,9 +123,22 @@ class TandaTerimaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request)
     {
-        //
+        $id = $request->id;
+
+        $tandaterima = TandaTerima::find($id);
+
+        return response()->json([
+            'bookingfee' => $tandaterima->booking_fee,
+            'danakpr' => $tandaterima->dana_kpr,
+            'angsuran' => $tandaterima->angsuran,
+            'uangtambahan' => $tandaterima->uang_tambahan,
+            'total' => $tandaterima->total,
+            'keterangan' => $tandaterima->keterangan,
+            'nomornota' => $tandaterima->jual_rumah_id,
+            'kasir' => $tandaterima->kasir_id
+        ]);
     }
 
     /**

@@ -13,7 +13,7 @@
 
 				<div class="pull-right" style="padding-bottom:20px">
 					<a href="{{url('jualrumah/buat')}}" class="btn btn-success">
-						<i class="fa fa-plus"></i> Buat Jual Rumah
+						<i class="fa fa-plus"></i> Buat Nota Jual Rumah
 					</a>
 				</div>
 

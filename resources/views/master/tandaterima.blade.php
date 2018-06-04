@@ -299,7 +299,7 @@
                         $('#angsuranUbahTandaTerima').val(data.angsuran);
                         $('#uangtambahanUbahTandaTerima').val(data.uangtambahan);
                         $('#totalUbahTandaTerima').val(data.total);
-                        $('#keteranganUbahTandaTerima').val(data.total);
+                        $('#keteranganUbahTandaTerima').val(data.keterangan);
                         $('#kasirUbahTandaTerima').val(data.kasir);
                     }
                 );

@@ -84,6 +84,12 @@
                             <div class="modal-body">
                                 <form action="{{url('updatetanggalserahterimasertifikat/ubah')}}" method="post" id="formUpdateTanggalSerahTerimaSertifikatKpr">
                                     {{csrf_field()}}
+                                    <p>
+										<label for="tanggalakadkreditkpr" class="col-lg-4">Tanggal Akad Kredit KPR:</label>
+										<input type="date" id="tanggalakadkreditUbahKpr" name="tanggalakadkredit" class="col-lg-6" min="{{date('Y-m-d')}}" value="{{date('Y-m-d')}}" 
+										    data-date-format="dd-mm-yyyy" data-date-viewmode="years" required disabled>
+										<input type="hidden" value="{{date('Y-m-d')}}" name="ambiltanggalakadkreditkpr">
+									</p>
                                      <p>
                                         <input type="hidden" id="idUbah" name="updatetanggalserahterimasertifikat">
 										<label for="tanggalcairkpr" class="col-lg-4">Tanggal Cair KPR:</label>
@@ -91,12 +97,7 @@
 										    data-date-format="dd-mm-yyyy" data-date-viewmode="years" required disabled>
 										<input type="hidden" value="{{date('Y-m-d')}}" name="ambiltanggalcairkpr">
 									</p>
-                                     <p>
-										<label for="tanggalakadkreditkpr" class="col-lg-4">Tanggal Akad Kredit KPR:</label>
-										<input type="date" id="tanggalakadkreditUbahKpr" name="tanggalakadkredit" class="col-lg-6" min="{{date('Y-m-d')}}" value="{{date('Y-m-d')}}" 
-										    data-date-format="dd-mm-yyyy" data-date-viewmode="years" required disabled>
-										<input type="hidden" value="{{date('Y-m-d')}}" name="ambiltanggalakadkreditkpr">
-									</p>
+                                     
                                     <b>
 										<label for="tanggalserahterimasertifikatkpr" class="col-lg-4">Tanggal Serah Terima Sertifikat Rumah:</label>
 										<input type="date" id="tanggalserahterimasertifikatUbahKpr" name="tanggalserahterimasertifikat" class="col-lg-6" min="{{date('Y-m-d')}}" value="{{date('Y-m-d')}}" style="border-style:solid"

@@ -21,8 +21,12 @@ class BerandaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function beranda()
     {
         return view('beranda');
+    }
+    public function tentangkami()
+    {
+        return view('tentangkami');
     }
 }
