@@ -30,5 +30,14 @@ class PengeluaransTableSeeder extends Seeder
             'jenis_pengeluaran_id' => 1,
             'hapuskah' => 0
         ]);
+        DB::table('pengeluarans')->insert([
+            'tanggal' => '2018/01/18',
+            'nominal' => '60000',
+            'keterangan' => '',
+            'status_lunas' => 'Lunas',
+            'kasir_id' => 1,
+            'jenis_pengeluaran_id' => 1,
+            'hapuskah' => 0
+        ]);
     }
 }

@@ -61,14 +61,14 @@
                                 <td>{{$data->nama}}</td>
                                 <td>{{$data->jalan}}</td>
                                 <td>{{$data->blok}}</td>
-                                <td>{{$data->luas_tanah}}</td>
+                                <td>{{number_format( $data->luas_tanah, 0 , '' , '.' )}}</td>
                                 <td>{{$data->luas_bangunan}}</td>
                                 <td>{{$data->kamar_tidur}}</td>
                                 <td>{{$data->kamar_mandi}}</td>
-                                <td>{{$data->listrik}}</td>
-                                <td>{{$data->harga_asli}}</td>
-                                <td>{{$data->harga_jual}}</td>
-                                <td>{{$data->uang_muka}}</td>
+                                <td>{{number_format( $data->listrik, 0 , '' , '.' )}}</td>
+                                <td>Rp {{number_format( $data->harga_asli, 0 , '' , '.' )}}</td>
+                                <td>Rp {{number_format( $data->harga_jual, 0 , '' , '.' )}}</td>
+                                <td>Rp {{number_format( $data->uang_muka, 0 , '' , '.' )}}</td>
                                 <td>{{$data->deskripsi}}</td>
                                 <td>{{$data->lainnya}}</td>
                                 <td>
@@ -154,12 +154,12 @@
                                     <p>
                                         <label class="col-lg-4">Gambar Denah: </label>
                                         <input type="file" class="col-lg-7" id="gambardenahUbahTipe" name="gambardenah" placeholder="Masukkan Gambar Denah">
-                                        <img style="width:100% ; height:auto " id="gambarDenah">
+                                        <img style="width:100% ; height:auto " id="gambarDenah" >
                                     </p>
                                     <p>
                                         <label class="col-lg-4">Gambar Rumah: </label>
                                         <input type="file" class="col-lg-7" id="gambarrumahUbahTipe" name="gambarrumah" placeholder="Masukkan Gambar Rumah">
-                                        <img style="width:100% ; height:auto " id="gambarRumah">
+                                        <img style="width:100% ; height:auto " id="gambarRumah" >
                                     </p>
                                     <p style="text-align:center">
                                         <button type="submit" class="btn btn-success" style="text-align:center" id="btnUbahKonfirmasi" class="btn btn-primary">

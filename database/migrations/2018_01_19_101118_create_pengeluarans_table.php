@@ -17,7 +17,7 @@ class CreatePengeluaransTable extends Migration
             $table->increments('id');
             $table->date('tanggal');
             $table->integer('nominal');
-            $table->string('keterangan');
+            $table->string('keterangan')->nullable();
             $table->string('status_lunas');
             $table->unsignedInteger('kasir_id');
             $table->unsignedInteger('jenis_pengeluaran_id');

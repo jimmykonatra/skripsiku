@@ -54,11 +54,27 @@ class TipeController extends Controller
         $gambarrumah = $request->gambarrumah;
         $gambardenah = $request->gambardenah;
 
-        $uploadgambardenah = $request->gambardenah->getClientOriginalName();
-        $request->gambardenah->move(public_path('images'), $uploadgambardenah);
+        // $uploadgambardenah = $request->gambardenah->getClientOriginalName();
+        // $request->gambardenah->move(public_path('images'), $uploadgambardenah);
 
+        // $uploadgambarrumah = $request->gambarrumah->getClientOriginalName();
+        // $request->gambarrumah->move(public_path('images'), $uploadgambarrumah);
+
+        if (isset($uploadgambardenah)) {
+        $uploadgambardenah = $request->gambardenah->getClientOriginalName();
+            $request->gambardenah->move(public_path('images'), $uploadgambardenah);
+        } else {
+            $uploadgambardenah = null;
+        }
+
+
+        if (isset($uploadgambarrumah)) {
         $uploadgambarrumah = $request->gambarrumah->getClientOriginalName();
-        $request->gambarrumah->move(public_path('images'), $uploadgambarrumah);
+            $request->gambarrumah->move(public_path('images'), $uploadgambarrumah);
+        } else {
+            $uploadgambarrumah = null;
+        }
+
 
         $tipe = Tipe::create([
             'nama' => $nama,
@@ -165,11 +181,25 @@ class TipeController extends Controller
         $tipe->uang_muka = $uangmuka;
         $tipe->deskripsi = $deskripsi;
 
+        
         $tipe->gambar_denah = $request->gambardenah->getClientOriginalName();
-        $request->gambardenah->move(public_path('images'), $tipe->gambar_denah);
+        if(isset($tipe->gambar_denah))
+        {
+            $request->gambardenah->move(public_path('images'), $tipe->gambar_denah);
+        }
+        else {
+            $tipe->gambar_denah = null;
+        }
+        
 
         $tipe->gambar_rumah = $request->gambarrumah->getClientOriginalName();
-        $request->gambarrumah->move(public_path('images'), $tipe->gambar_rumah);
+        if(isset($tipe->gambar_rumah))
+        {
+            $request->gambarrumah->move(public_path('images'), $tipe->gambar_rumah);
+        }
+        else {
+            $tipe->gambar_rumah = null;
+        }
 
         $tipe->lainnya = $lainnya;
         $tipe->save();

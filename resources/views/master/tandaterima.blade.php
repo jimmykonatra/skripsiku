@@ -49,11 +49,11 @@
                             @foreach($tandaterima as $data)
                             <tr id="{{$data->id}}">
                                 <td>{{$data->jual_rumah->nomor_nota}}</td>
-                                <td>{{$data->booking_fee}}</td>
-                                <td>{{$data->dana_kpr}}</td>
-                                <td>{{$data->angsuran}}</td>
-                                <td>{{$data->uang_tambahan}}</td>
-                                <td>{{$data->total}}</td>
+                                <td>Rp {{number_format( $data->booking_fee, 0 , '' , '.' )}}</td>
+                                <td>Rp {{number_format( $data->dana_kpr, 0 , '' , '.' )}}</td>
+                                <td>Rp {{number_format( $data->angsuran, 0 , '' , '.' )}}</td>
+                                <td>Rp {{number_format( $data->uang_tambahan, 0 , '' , '.' )}}</td>
+                                <td>Rp {{number_format( $data->total, 0 , '' , '.' )}}</td>
                                 <td>{{$data->keterangan}}</td>
                                 <td>{{$data->kasir->karyawan->nama}}</td>
                                 <td>

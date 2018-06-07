@@ -21,9 +21,12 @@ Route::get('/', function () {
     return redirect('login');
 });
 
+
+
 Auth::routes();
 
 Route::get('beranda', 'BerandaController@beranda')->name('beranda');
+Route::get('beranda', 'BerandaController@pengeluaran');
 Route::get('tentangkami', 'BerandaController@tentangkami')->name('tentangkami');
 
 Route::get('karyawan', 'KaryawanController@index');

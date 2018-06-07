@@ -27,7 +27,7 @@
 								<th>Total</th>
 								<th>Status Kelengkapan</th>
 								<th>Keterangan</th>
-								<th>Tanggal Serah Terima</th>
+								<th>Tanggal Serah Terima Rumah</th>
 								<th>Jenis Bayar</th>
 								<th>Status Jual Rumah</th>
 								<th>Customer</th>
@@ -47,7 +47,7 @@
 								<th>Total</th>
 								<th>Status Kelengkapan</th>
 								<th>Keterangan</th>
-								<th>Tanggal Serah Terima</th>
+								<th>Tanggal Serah Terima Rumah</th>
 								<th>Jenis Bayar</th>
 								<th>Status Jual Rumah</th>
 								<th>Customer</th>
@@ -65,7 +65,7 @@
 								<td>{{$data->nomor_nota}}</td>
 								<td>{{$data->tanggal_dp}}</td>
 								<td>{{$data->tanggal_buat}}</td>
-								<td>{{$data->total}}</td>
+								<td>Rp {{number_format( $data->total, 0 , '' , '.' )}}</td>
 
 								@if($data->status_kelengkapan == "Lengkap")
 								<td>Lengkap</td>

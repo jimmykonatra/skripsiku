@@ -52,7 +52,7 @@ class JualRumahController extends Controller
     public function create()
     {
         $customer = Customer::where('hapuskah','0')->get();
-        $rumah = Rumah::where('hapuskah','0')->get();
+        $rumah = Rumah::where('hapuskah','0')->where('status_booking','0')->where('status_pembangunan','0')->where('status_terjual','0')->get();
         $berkas = Berkas::where('hapuskah','0')->get();
         
         

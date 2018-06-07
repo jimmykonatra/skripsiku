@@ -127,22 +127,22 @@
                                     <p>
 										<label class="col-lg-6">Status Pembangunan: </label>
 										<select name="statuspembangunan" id="statuspembangunanUbahRumah">
-											<option value="1">Proses Pembangunan</option>
 											<option value="0">Selesai Pembangunan</option>
+											<option value="1">Proses Pembangunan</option>
 										</select>
 									</p>
                                     <p>
 										<label class="col-lg-6">Status Booking: </label>
 										<select name="statusbooking" id="statusbookingUbahRumah">
-											<option value="1">Terbooking</option>
 											<option value="0">Kosong</option>
+											<option value="1">Terbooking</option>
 										</select>
 									</p>
                                     <p>
 										<label class="col-lg-6">Status Terjual: </label>
 										<select name="statusterjual" id="statusterjualUbahRumah">
-											<option value="1">Terjual</option>
 											<option value="0">Belum Terjual</option>
+											<option value="1">Terjual</option>
 										</select>
 									</p>
 									<p>
@@ -234,22 +234,22 @@
                                     <p>
 										<label class="col-lg-6">Status Pembangunan: </label>
 										<select name="statuspembangunan" id="statuspembangunanTambahRumah">
-											<option value="1">Proses Pembangunan</option>
 											<option value="0">Selesai Pembangunan</option>
+											<option value="1">Proses Pembangunan</option>
 										</select>
 									</p>
                                     <p>
 										<label class="col-lg-6">Status Booking: </label>
 										<select name="statusbooking" id="statusbookingTambahRumah">
-											<option value="1">Terbooking</option>
 											<option value="0">Kosong</option>
+											<option value="1">Terbooking</option>
 										</select>
 									</p>
                                     <p>
 										<label class="col-lg-6">Status Terjual: </label>
 										<select name="statusterjual" id="statusterjualTambahRumah">
-											<option value="1">Terjual</option>
 											<option value="0">Belum Terjual</option>
+											<option value="1">Terjual</option>
 										</select>
 									</p>
 									<p>

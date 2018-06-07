@@ -22,9 +22,8 @@ class PengeluaranController extends Controller
         $pengeluaran = Pengeluaran::where('hapuskah', 0)->get();
         $jenispengeluaran = JenisPengeluaran::where('hapuskah',0)->get();
         $kasir = User::where('jabatan','Kasir')->get();
-
               
-                
+        
         return view('master.pengeluaran',compact('pengeluaran','jenispengeluaran','kasir'));
     }
 

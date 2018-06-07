@@ -38,12 +38,12 @@
                             </tr>
                         </tfoot>
                         <tbody>
-                            @foreach($cicilan as $cicilan)
-                            <tr id="{{$cicilan->id}}">
-                                <td>{{$cicilan->tipe->nama}}</td>
-                                <td>{{$cicilan->bank->nama}}</td>
-                                <td>{{$cicilan->lama_cicilan}}</td>
-                                <td>{{$cicilan->nominal}}</td>
+                            @foreach($cicilan as $data)
+                            <tr id="{{$data->id}}">
+                                <td>{{$data->tipe->nama}}</td>
+                                <td>{{$data->bank->nama}}</td>
+                                <td>{{$data->lama_cicilan}}</td>
+                                <td>Rp {{number_format( $data->nominal, 0 , '' , '.' )}}</td>
                                 <td>
                                     <button class="btn btnUbah btn-primary">Ubah</button>
                                 </td>

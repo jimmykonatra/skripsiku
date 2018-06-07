@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Pengeluaran;
 
 class BerandaController extends Controller
 {
@@ -24,6 +25,11 @@ class BerandaController extends Controller
     public function beranda()
     {
         return view('beranda');
+    }
+    public function pengeluaran()
+    {
+        $pengeluaran = Pengeluaran::where('status_lunas','Hutang')->where('hapuskah',0)->count();
+        return view('beranda',compact('pengeluaran'));
     }
     public function tentangkami()
     {
