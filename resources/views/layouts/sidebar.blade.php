@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
-  <a class="navbar-brand" href={{( 'beranda')}}>Sumber Langgeng Sejahtera</a>
+  <a class="navbar-brand" href={{( 'beranda')}}><b>Pessona WIROLEGI</b></a>
   <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive"
     aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -191,7 +191,12 @@
       </ul> --}}
 			<li class="nav-item">
 				<span class="nav-link">
-					<h5 style="color: white">Selamat Datang, {{Auth::user()->karyawan->nama}}</h5>
+          <h5 style="color: white">Selamat Datang, {{Auth::user()->karyawan->nama}}</h5>
+          @if(Auth::user()->karyawan->nama == "")
+          {
+            <a href={{url('public')}}>Jual Rumah</a>
+          }
+          @endif
 				</span>
 			</li>
 			<li class="nav-item">

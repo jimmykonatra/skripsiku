@@ -28,8 +28,8 @@ class JualRumahController extends Controller
         $customer = Customer::where('hapuskah',0)->get();
         $marketing = User::where('jabatan','Marketing')->get();
         $kasir = User::where('jabatan','Kasir')->get();
-        $rumah = Rumah::where('hapuskah',0)->where('status_pembangunan','1')->get();
-        
+        // $rumah = Rumah::where('status_pembangunan','Belum Dibangun')->orWhere('status_pembangunan','Proses Pembangunan')->orWhere('status_pembangunan','Selesai Pembangunan')->where('hapuskah', 0)->get();
+        $rumah = Rumah::where('hapuskah',0)->get();
         return view('jualrumah.jualrumah' , compact('jualrumah','customer','marketing','kasir','rumah'));
     }
 
@@ -52,10 +52,8 @@ class JualRumahController extends Controller
     public function create()
     {
         $customer = Customer::where('hapuskah','0')->get();
-        $rumah = Rumah::where('hapuskah','0')->where('status_booking','0')->where('status_pembangunan','0')->where('status_terjual','0')->get();
+        $rumah = Rumah::where('status_booking','Kosong')->orWhere('status_pembangunan','0')->orWhere('status_terjual','0')->where('hapuskah', '0')->get();
         $berkas = Berkas::where('hapuskah','0')->get();
-        
-        
         $marketing = User::join('karyawans','users.id','=','karyawans.user_id')->where([['jabatan','Marketing'],['karyawans.hapuskah',0]])->get();
         $kasir = User::join('karyawans','users.id','=','karyawans.user_id')->where([['jabatan', 'Kasir'], ['karyawans.hapuskah', 0]])->get();
         return view('jualrumah.buatjualrumah', compact('customer','rumah','berkas','marketing','kasir'));
@@ -121,10 +119,9 @@ class JualRumahController extends Controller
                 'hapuskah' => 0
             ]);
         }
+        Session::flash('flash_msg', 'Data Jual Rumah Berhasil Disimpan');
         return redirect('jualrumah');
-
-        
-    
+     
             
     }
 

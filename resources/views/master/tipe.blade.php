@@ -109,11 +109,11 @@
                                         <input type="text" class="col-lg-4" id="blokUbahTipe" name="blok" placeholder="Masukkan Blok Tipe" required>
                                     </p>
                                     <p>
-                                        <label class="col-lg-6">Luas Tanah: </label>
+                                        <label class="col-lg-6">Luas Tanah(m2): </label>
                                         <input type="number" class="col-lg-4" id="luastanahUbahTipe" name="luastanah" placeholder="Masukkan Luas Tanah" required>
                                     </p>
                                     <p>
-                                        <label class="col-lg-6">Luas Bangunan: </label>
+                                        <label class="col-lg-6">Luas Bangunan(m2): </label>
                                         <input type="number" class="col-lg-4" id="luasbangunanUbahTipe" name="luasbangunan" placeholder="Masukkan Luas Bangunan"
                                             required>
                                     </p>
@@ -128,7 +128,7 @@
                                             required>
                                     </p>
                                     <p>
-                                        <label class="col-lg-6">Listrik: </label>
+                                        <label class="col-lg-6">Listrik(kWh): </label>
                                         <input type="number" class="col-lg-4" id="listrikUbahTipe" name="listrik" placeholder="Masukkan Jumlah Listrik" required>
                                     </p>
                                     <p>
@@ -154,12 +154,12 @@
                                     <p>
                                         <label class="col-lg-4">Gambar Denah: </label>
                                         <input type="file" class="col-lg-7" id="gambardenahUbahTipe" name="gambardenah" placeholder="Masukkan Gambar Denah">
-                                        <img style="width:100% ; height:auto " id="gambarDenah" >
+                                        <img style="width:100% ; height:auto " id="gambarDenah" required >
                                     </p>
                                     <p>
                                         <label class="col-lg-4">Gambar Rumah: </label>
                                         <input type="file" class="col-lg-7" id="gambarrumahUbahTipe" name="gambarrumah" placeholder="Masukkan Gambar Rumah">
-                                        <img style="width:100% ; height:auto " id="gambarRumah" >
+                                        <img style="width:100% ; height:auto " id="gambarRumah" required>
                                     </p>
                                     <p style="text-align:center">
                                         <button type="submit" class="btn btn-success" style="text-align:center" id="btnUbahKonfirmasi" class="btn btn-primary">
@@ -227,11 +227,11 @@
                             <input type="text" class="col-lg-4" id="blokTambahTipe" name="blok" placeholder="Masukkan Blok Tipe" required>
                         </p>
                         <p>
-                            <label class="col-lg-6">Luas Tanah: </label>
+                            <label class="col-lg-6">Luas Tanah(m2): </label>
                             <input type="number" class="col-lg-4" id="luastanahTambahTipe" name="luastanah" placeholder="Masukkan Luas Tanah" required>
                         </p>
                         <p>
-                            <label class="col-lg-6">Luas Bangunan: </label>
+                            <label class="col-lg-6">Luas Bangunan(m2): </label>
                             <input type="number" class="col-lg-4" id="luasbangunanTambahTipe" name="luasbangunan" placeholder="Masukkan Luas Bangunan"
                                 required>
                         </p>
@@ -246,7 +246,7 @@
                                 required>
                         </p>
                         <p>
-                            <label class="col-lg-6">Listrik: </label>
+                            <label class="col-lg-6">Listrik(kWh): </label>
                             <input type="number" class="col-lg-4" id="listrikTambahTipe" name="listrik" placeholder="Masukkan Jumlah Listrik" required>
                         </p>
                         <p>
@@ -271,13 +271,13 @@
                         </p>
                         <p>
                             <label class="col-lg-4">Gambar Denah: </label>
-                            <input type="file" class="col-lg-7" id="gambardenahTambahTipe" name="gambardenah" placeholder="Masukkan Gambar Denah">
-                            <img style="width:100% ; height:auto " id="gambardenah">
+                            <input type="file" class="col-lg-7" id="gambardenahTambahTipe" name="gambardenah" placeholder="Masukkan Gambar Denah" required>
+                            <img style="width:100% ; height:auto " id="gambardenah" >
                         </p>
                         <p>
                             <label class="col-lg-4">Gambar Rumah: </label>
-                            <input type="file" class="col-lg-7" id="gambarrumahTambahTipe" name="gambarrumah" placeholder="Masukkan Gambar Rumah">
-                            <img style="width:100% ; height:auto " id="gambarrumah">
+                            <input type="file" class="col-lg-7" id="gambarrumahTambahTipe" name="gambarrumah" placeholder="Masukkan Gambar Rumah" required>
+                            <img style="width:100% ; height:auto " id="gambarrumah" >
                         </p>
                         
                         <p style="text-align:center">

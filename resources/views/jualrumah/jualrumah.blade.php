@@ -146,14 +146,14 @@
 					<div class="modal-dialog" role="document">
 						<div class="modal-content">
 							<div class="modal-header">
-								<h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+								<h5 class="modal-title" id="exampleModalLabel">Hapus Nota Jual Rumah</h5>
 								<button class="close" type="button" data-dismiss="modal" aria-label="Close">
 									<span aria-hidden="true">×</span>
 								</button>
 							</div>
-							<div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+							<div class="modal-body">Yakin menghapus nota jual rumah ini?</div>
 							<div class="modal-footer">
-								<button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+								<button class="btn btn-secondary" type="button" data-dismiss="modal">Batal</button>
 								<a href="#" class="btn btn-danger" onclick="event.preventDefault(); document.getElementById('hapus-form').submit();">Hapus</a>
 
 								<form id="hapus-form" action="{{ url('jualrumah/hapus') }}" method="POST" style="display:none;">

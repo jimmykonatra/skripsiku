@@ -54,23 +54,9 @@
                                 <td>{{$data->tipe->nama}}</td>
 								<td>{{$data->nomor}}</td>
 								<td>{{$data->tahun}}</td>
-							@if($data->status_pembangunan == 1)
-                                <td>Proses Pembangunan</td>
-                            @else
-                                <td>Selesai Pembangunan</td>
-                            @endif
-                    
-                            @if($data->status_booking == 1)
-							    <td>Terbooking</td>
-                            @else
-                                <td>Kosong</td>
-                            @endif
-                            
-                            @if($data->status_terjual == 1)
-							    <td>Terjual</td>
-                            @else
-                                <td>Belum Terjual</td>
-                            @endif
+								<td>{{$data->status_pembangunan}}</td>
+							<td>{{$data->status_booking}}</td>
+							<td>{{$data->status_terjual}}</td>
 							<td>{{$data->keterangan}}</td>
 						        <td>
 									<button class="btn btnUbah btn-primary">Ubah</button>
@@ -121,10 +107,9 @@
 									</p>
                                     <p>
 										<label class="col-lg-6">Tahun: </label>
-										<input type="year" class="col-lg-4" id="tahunUbahRumah" name="tahun" placeholder="Masukkan Tahun Rumah"
-										    required>
+										<input type="number" class="col-lg-4" id="tahunUbahRumah" name="tahun" placeholder="Masukkan Tahun Rumah" value="{{date('Y')}}" min=1990 max={{date( 'Y')}} required>
 									</p>
-                                    <p>
+                                    {{-- <p>
 										<label class="col-lg-6">Status Pembangunan: </label>
 										<select name="statuspembangunan" id="statuspembangunanUbahRumah">
 											<option value="0">Selesai Pembangunan</option>
@@ -144,7 +129,7 @@
 											<option value="0">Belum Terjual</option>
 											<option value="1">Terjual</option>
 										</select>
-									</p>
+									</p> --}}
 									<p>
 										<label class="col-lg-6">Keterangan: </label>
 										<input type="text" class="col-lg-4" id="keteranganUbahRumah" name="keterangan" placeholder="Masukkan Keterangan Rumah">
@@ -168,14 +153,14 @@
 					<div class="modal-dialog" role="document">
 						<div class="modal-content">
 							<div class="modal-header">
-								<h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+								<h5 class="modal-title" id="exampleModalLabel">Hapus Rumah</h5>
 								<button class="close" type="button" data-dismiss="modal" aria-label="Close">
 									<span aria-hidden="true">×</span>
 								</button>
 							</div>
-							<div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+							<div class="modal-body">Yakin akan menghapus rumah ini?</div>
 							<div class="modal-footer">
-								<button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+								<button class="btn btn-secondary" type="button" data-dismiss="modal">Batal</button>
 								<a href="#" class="btn btn-danger" onclick="event.preventDefault(); document.getElementById('hapus-form').submit();">Hapus</a>
 
 								<form id="hapus-form" action="{{ url('rumah/hapus') }}" method="POST" style="display:none;">
@@ -223,15 +208,14 @@
 									</p>	
 									<p>
 										<label class="col-lg-6">Nomor: </label>
-										<input type="number" class="col-lg-4" id="nomorTambahRumah" name="nomor" placeholder="Masukkan Nomor Rumah"
+										<input type="number" class="col-lg-4" id="nomorTambahRumah" name="nomor" placeholder="Masukkan Nomor Rumah" value="1" min=1
 										    required>
 									</p>
                                     <p>
 										<label class="col-lg-6">Tahun: </label>
-										<input type="number" class="col-lg-4" id="tahunTambahRumah" name="tahun" placeholder="Masukkan Tahun Rumah"
-										    required>
+										<input type="number" class="col-lg-4" id="tahunTambahRumah" name="tahun" placeholder="Masukkan Tahun Rumah" value="{{date('Y')}}" min=2000 max={{date( 'Y')}} required>
 									</p>
-                                    <p>
+                                    {{-- <p>
 										<label class="col-lg-6">Status Pembangunan: </label>
 										<select name="statuspembangunan" id="statuspembangunanTambahRumah">
 											<option value="0">Selesai Pembangunan</option>
@@ -251,7 +235,7 @@
 											<option value="0">Belum Terjual</option>
 											<option value="1">Terjual</option>
 										</select>
-									</p>
+									</p> --}}
 									<p>
 										<label class="col-lg-6">Keterangan: </label>
 										<input type="text" class="col-lg-4" id="keteranganTambahRumah" name="keterangan" placeholder="Masukkan Keterangan Rumah">
@@ -301,9 +285,9 @@
                         $('#tipeUbahRumah').val(data.tipe);
                         $('#nomorUbahRumah').val(data.nomor);
                         $('#tahunUbahRumah').val(data.tahun);
-						$('#statuspembangunanUbahRumah').val(data.statuspembangunan);
-                        $('#statusbookingUbahRumah').val(data.statusbooking);
-                        $('#statusterjualUbahRumah').val(data.statusterjual);
+						// $('#statuspembangunanUbahRumah').val(data.statuspembangunan);
+                        // $('#statusbookingUbahRumah').val(data.statusbooking);
+                        // $('#statusterjualUbahRumah').val(data.statusterjual);
 						$('#keteranganUbahRumah').val(data.keterangan);
 						
 					

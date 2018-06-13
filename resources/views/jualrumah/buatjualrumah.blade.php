@@ -62,9 +62,9 @@
                             <br>
                             <label class="col-lg-4" for="nomornota">Nomor Nota</label>
                             <input class="col-lg-4" type="number" id="nomornota" name="nomornota" required>
-                            <label class="col-lg-4" for="total">Total</label>
+                            {{-- <label class="col-lg-4" for="total">Total</label>
                             <input class="col-lg-4" type="number" id="total" name="total" required>
-                            
+                             --}}
                             <label class="col-lg-4" for="jenisbayar">Jenis Bayar</label>
                             <select class="col-lg-4" name="jenisbayar" id="jenisbayar">
                                 

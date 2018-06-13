@@ -44,7 +44,6 @@ class TandaTerimaController extends Controller
      */
     public function store(Request $request)
     {
-         
         $nomornota = $request->nomornota;
         $bookingfee = $request->bookingfee;
         $danakpr = $request->danakpr;
@@ -54,11 +53,6 @@ class TandaTerimaController extends Controller
         $kasir = $request->kasir;
         $total = $bookingfee + $danakpr + $angsuran + $uangtambahan;
 
-        //ambil data rumah pada nomor nota berikut
-        $rumah = JualRumah::join('rumahs', 'jual_rumahs.rumah_id', '=', 'rumahs.id')
-            ->join('tipes','rumahs.tipe_id','=','tipes.id')
-            ->where('jual_rumahs.id', $nomornota)
-            ->first();
         
         //setor tanda terima atau mulai input data tanda terima
         TandaTerima::Create([
@@ -72,6 +66,13 @@ class TandaTerimaController extends Controller
             'kasir_id' => $kasir,
             'hapuskah' => 0
         ]);
+
+        //ambil data rumah pada nomor nota berikut
+        $rumah = JualRumah::join('rumahs', 'jual_rumahs.rumah_id', '=', 'rumahs.id')
+            ->join('tipes', 'rumahs.tipe_id', '=', 'tipes.id')
+            ->where('jual_rumahs.id', $nomornota)
+            ->first();
+        
         $tandaterima = TandaTerima::where('jual_rumah_id',$nomornota)->get();
         $totaluangmuka = 0;
 
@@ -80,7 +81,6 @@ class TandaTerimaController extends Controller
             $totaluangmuka += $data->angsuran;
         }
 
-
         if($totaluangmuka >= $rumah->uang_muka)//jika DP telah lunas maka update status jual rumah
         {
             $jualrumah = JualRumah::find($nomornota);
@@ -88,7 +88,7 @@ class TandaTerimaController extends Controller
             $jualrumah->save();
 
             $rumah = Rumah::find($jualrumah->rumah_id);
-            $rumah->status_booking = 1;
+            $rumah->status_booking = 'Terbooking';
             $rumah->save();
         }
         else
@@ -98,12 +98,9 @@ class TandaTerimaController extends Controller
             $jualrumah->save();
             
         }
-
         //update status booking rumah
-        
         Session::flash('flash_msg', 'Data Tanda Terima Berhasil Disimpan');
         return redirect('tandaterima');
-
     }
 
     /**

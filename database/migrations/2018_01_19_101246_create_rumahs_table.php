@@ -17,10 +17,10 @@ class CreateRumahsTable extends Migration
             $table->increments('id');
             $table->integer('nomor');
             $table->year('tahun');
-            $table->tinyInteger('status_pembangunan');
-            $table->tinyInteger('status_booking');
-            $table->tinyInteger('status_terjual');
-            $table->string('keterangan');
+            $table->enum('status_pembangunan',(['Belum Dibangun','Proses Pembangunan','Selesai Pembangunan']))->default('Belum Dibangun');
+            $table->enum('status_booking',(['Terbooking','Kosong']))->default('Kosong');
+            $table->enum('status_terjual',(['Terjual','Belum Terjual']))->default('Belum Terjual');
+            $table->string('keterangan')->nullable();
             $table->unsignedInteger('perumahan_id');
             $table->unsignedInteger('tipe_id');
             $table->boolean('hapuskah');

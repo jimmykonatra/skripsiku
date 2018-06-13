@@ -18,8 +18,7 @@
   <div class="container">
     <div class="card card-login mx-auto mt-5">
       
-      <div class="card-header text-center"><b>LOGIN</b>
-          <br><b>PT. Sumber Langgeng Sejahtera</b></div>
+      <div class="card-header text-center"><b>LOGIN</b></div>
       <div class="text-center">
 				<img style="width:100% ; height:auto"  src="{{asset('images/logo.jpg')}}" class="img-circle" alt="">
 			</div>

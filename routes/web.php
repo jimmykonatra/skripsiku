@@ -26,7 +26,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('beranda', 'BerandaController@beranda')->name('beranda');
-Route::get('beranda', 'BerandaController@pengeluaran');
+Route::get('beranda', 'BerandaController@notifikasi');
 Route::get('tentangkami', 'BerandaController@tentangkami')->name('tentangkami');
 
 Route::get('karyawan', 'KaryawanController@index');

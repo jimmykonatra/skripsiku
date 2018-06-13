@@ -18,7 +18,7 @@ class RumahController extends Controller
      */
     public function index()
     {
-        $rumah = Rumah::where('hapuskah',0)->get();
+        $rumah = Rumah::where('hapuskah',0)->orderBy('id','desc')->get();
         $perumahan = Perumahan::where('hapuskah',0)->get();
         $tipe = Tipe::where('hapuskah',0)->get();
 
@@ -48,9 +48,9 @@ class RumahController extends Controller
         $tipe = $request->tipe;
         $nomor = $request->nomor;
         $tahun = $request->tahun;
-        $statuspembangunan = $request->statuspembangunan;
-        $statusbooking = $request->statusbooking;
-        $statusterjual = $request->statusterjual;
+        // $statuspembangunan = $request->statuspembangunan;
+        // $statusbooking = $request->statusbooking;
+        // $statusterjual = $request->statusterjual;
         $keterangan = $request->keterangan;
         // $gambar = $request->gambar;
 
@@ -63,9 +63,9 @@ class RumahController extends Controller
             'tipe_id' => $tipe,
             'nomor' => $nomor,
             'tahun' => $tahun,
-            'status_pembangunan' => $statuspembangunan,
-            'status_booking' => $statusbooking,
-            'status_terjual' => $statusterjual,
+            'status_pembangunan' => 'Belum Dibangun',
+            'status_booking' => 'Kosong',
+            'status_terjual' => 'Belum Terjual',
             'keterangan' => $keterangan,
             // 'gambar' => $uploadgambar,
             'hapuskah' => 0
