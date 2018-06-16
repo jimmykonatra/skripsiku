@@ -46,7 +46,7 @@ class PengeluaranController extends Controller
     public function store(Request $request)
     {
         $jenispengeluaran = $request->jenispengeluaran;
-        $tanggal = $request->tanggalpengeluaran;
+        $tanggal = $request->tanggal;
         $nominal = $request->nominal;
         $keterangan = $request->keterangan;
         $statuslunas = $request->statuslunas;
@@ -110,7 +110,7 @@ class PengeluaranController extends Controller
     {
         $id = $request->pengeluaran;
         $jenispengeluaran = $request->jenispengeluaran;
-        $tanggal = $request->tanggalpengeluaran;
+        $tanggal = $request->tanggal;
         $nominal = $request->nominal;
         $keterangan = $request->keterangan;
         $statuslunas = $request->statuslunas;

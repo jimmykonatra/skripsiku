@@ -1,6 +1,4 @@
-@extends('layouts.master') @section('title', 'Sumber Langgeng Sejahtera') @section('content') 
-
-@include('layouts.sidebar')
+@extends('layouts.master') @section('title', 'Sumber Langgeng Sejahtera') @section('content') @include('layouts.sidebar')
 <!-- Example DataTables Card-->
 <div class="content-wrapper">
 	<div class="container-fluid">
@@ -79,18 +77,21 @@
 									<p>
 										<input type="hidden" id="idUbah" name="pengeluaran">
 										<label class="col-lg-6">Jenis Pengeluaran: </label>
-										<select name="jenispengeluaran"  id="jenispengeluaranUbahPengeluaran">
-										@foreach($jenispengeluaran as $data)
+										<select name="jenispengeluaran" id="jenispengeluaranUbahPengeluaran">
+											@foreach($jenispengeluaran as $data)
 											<option value="{{$data->id}}">{{$data->nama}}</option>
-										@endforeach
-									</select>
+											@endforeach
+										</select>
 									</p>
-									<p>
-										<label for="tanggalbuat" class="col-lg-4">Tanggal Buat</label>
-										<input type="date" id="tanggalUbahPengeluaran" name="tanggalpengeluaran" class="col-lg-6" min="{{date('Y-m-d')}}" value="{{date('Y-m-d')}}"
-										    data-date-format="dd-mm-yyyy" data-date-viewmode="years" required>
-										<input type="hidden" value="{{date('Y-m-d')}}" name="ambiltanggalbuat">
-									</p>
+									<div class="row col-lg-12">
+										<label for="tanggal" class="col-lg-4">Tanggal Buat</label>
+										<div class="input-group date col-lg-6" data-provide="datepicker">
+										<input type="text" class="form-control tanggalPengeluaran" style="display:inline-block">
+										<div class="input-group-addon">
+											<span class="glyphicon glyphicon-th"></span>
+										</div>
+										</div>
+									</div>
 									<p>
 										<label class="col-lg-6">Nominal: </label>
 										<input type="number" class="col-lg-4" id="nominalUbahPengeluaran" name="nominal" placeholder="Masukkan Nominal Pengeluaran"
@@ -110,11 +111,11 @@
 									<p>
 										<label class="col-lg-6">Kasir: </label>
 										<select name="kasir" id="kasirUbahPengeluaran">
-										@foreach($kasir as $data)
-											
-												<option value="{{$data->id}}">{{$data->karyawan->nama}}</option>
-											
-										@endforeach
+											@foreach($kasir as $data)
+
+											<option value="{{$data->id}}">{{$data->karyawan->nama}}</option>
+
+											@endforeach
 										</select>
 									</p>
 									<p style="text-align:center">
@@ -174,42 +175,40 @@
 							<label class="col-lg-6">Jenis Pengeluaran: </label>
 							<select name="jenispengeluaran">
 								@foreach($jenispengeluaran as $data)
-									<option value="{{$data->id}}">{{$data->nama}}</option>
+								<option value="{{$data->id}}">{{$data->nama}}</option>
 								@endforeach
 							</select>
 						</p>
 						<p>
-							<label for="tanggalbuat" class="col-lg-4">Tanggal Buat:</label>
-							<input type="date" name="tanggalpengeluaran" class="col-lg-6" min="{{date('Y-m-d')}}" value="{{date('Y-m-d')}}"
-							    data-date-format="dd-mm-yyyy" data-date-viewmode="years" required>
-							<input type="hidden" value="{{date('Y-m-d')}}" name="ambiltanggalbuat">
+							<label for="tanggal" class="col-lg-4">Tanggal Buat:</label>
+							<input type="date" name="tanggal" class="col-lg-6" min="{{date('Y-m-d')}}" value="{{date('Y-m-d')}}" data-date-format="dd-mm-yyyy"
+							    data-date-viewmode="years" required>
 						</p>
 						<p>
 							<label class="col-lg-6">Nominal: </label>
-							<input type="number" class="col-lg-4" name="nominal" placeholder="Masukkan Nominal Pengeluaran"
-							    required>
+							<input type="number" class="col-lg-4" name="nominal" placeholder="Masukkan Nominal Pengeluaran" required>
 						</p>
 						<p>
 							<label class="col-lg-6">Keterangan: </label>
-							<input type="text" class="col-lg-4"name="keterangan" placeholder="Masukkan Keterangan Pengeluaran">
+							<input type="text" class="col-lg-4" name="keterangan" placeholder="Masukkan Keterangan Pengeluaran">
 						</p>
 						<p>
 							<label class="col-lg-6">Status Lunas: </label>
 							<select name="statuslunas">
-									<option value="Hutang">Hutang</option>
-									<option value="Lunas">Lunas</option>
+								<option value="Hutang">Hutang</option>
+								<option value="Lunas">Lunas</option>
 							</select>
 						</p>
-							<p>
-										<label class="col-lg-6">Kasir: </label>
-										<select name="kasir" id="kasirUbahPengeluaran">
-										@foreach($kasir as $data)
-											
-												<option value="{{$data->id}}">{{$data->karyawan->nama}}</option>
-											
-										@endforeach
-										</select>
-									</p>
+						<p>
+							<label class="col-lg-6">Kasir: </label>
+							<select name="kasir" id="kasirUbahPengeluaran">
+								@foreach($kasir as $data)
+
+								<option value="{{$data->id}}">{{$data->karyawan->nama}}</option>
+
+								@endforeach
+							</select>
+						</p>
 						<p style="text-align:center">
 							<button type="submit" class="btn btn-success" style="text-align:center" id="btnTambahKonfirmasi" class="btn btn-primary">
 								<i class="fa fa-check"></i>Tambah</button>
@@ -239,6 +238,10 @@
 				$('#modalTambahPengeluaran').modal('show');
 			});
 
+			// Bootstrap datepicker
+			
+			$.fn.datepicker.defaults.format = "dd/mm/yyyy";
+
 			$('.btnUbah').on('click', function (e) {
 				e.preventDefault();
 				var id = $(this).closest('tr').attr('id');
@@ -250,11 +253,12 @@
 						$('#idUbah').val(data.id);
 						$('#jenispengeluaranUbahPengeluaran').val(data.jenispengeluaran);
 						$('#tanggalUbahPengeluaran').val(data.tanggal);
+						$('.tanggalPengeluaran').datepicker('update', data.tanggal);
 						$('#nominalUbahPengeluaran').val(data.nominal);
 						$('#keteranganUbahPengeluaran').val(data.keterangan);
 						$('#statuslunasUbahPengeluaran').val(data.statuslunas);
 						$('#kasirUbahPengeluaran').val(data.kasir);
-						
+
 					}
 				);
 				$('#modalUbahPengeluaran').modal('show');

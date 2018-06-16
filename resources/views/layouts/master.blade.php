@@ -17,10 +17,14 @@
   <link href="{{asset('css/datatables/dataTables.bootstrap4.css')}}" rel="stylesheet">
   <!-- Custom styles for this template-->
   <link href="{{asset('css/sb-admin.css')}}" rel="stylesheet">
+
+  {{-- Boostrap datepicker --}}
+  <link href="{{asset('css/bootstrap/css/bootstrap-datepicker.css')}}" rel="stylesheet">
   <style>
   a {
 			color: gray
     }
+    @yield('css')
   </style>
 </head>
 
@@ -29,4 +33,6 @@
 
 @yield('content')
 </body>
+
+
 </html>

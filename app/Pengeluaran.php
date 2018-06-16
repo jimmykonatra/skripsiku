@@ -19,4 +19,12 @@ class Pengeluaran extends Model
         {
                 return $this->belongsTo(User::class, 'kasir_id');
         }
+        public function getTanggalAttribute($value)
+        {
+                return date('d-m-Y', strtotime($value));
+        }
+        public function getTanggalbuatAttribute($value)
+        {
+                return date('d-m-Y', strtotime($value));
+        }
 }

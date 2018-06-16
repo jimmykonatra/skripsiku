@@ -12,6 +12,7 @@ class TandaTerimasTableSeeder extends Seeder
     public function run()
     {
         DB::table('tanda_terimas')->insert([
+            'tanggal' => '25-06-2018',
             'booking_fee' => 0,
             'angsuran' => 500000,
             'dana_kpr' => 0,
@@ -24,6 +25,7 @@ class TandaTerimasTableSeeder extends Seeder
         ]);
 
         DB::table('tanda_terimas')->insert([
+            'tanggal' => '09-06-2018',
             'booking_fee' => 1000000,
             'angsuran' => 500000,
             'dana_kpr' => 0,

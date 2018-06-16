@@ -7,13 +7,13 @@
   <div class="collapse navbar-collapse" id="navbarResponsive">
     <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
       <li class="nav-item {{Request::is('beranda*') ? 'active' : '' }}" data-toggle="tooltip" data-placement="right" title="Dashboard">
-        <a class="nav-link" href={{( 'beranda')}}>
+        <a class="nav-link" href= {{url( 'beranda')}}>
           <i class="fa fa-fw fa-dashboard"></i>
           <span class="nav-link-text">Beranda</span>
         </a>
       </li>
       <li class="nav-item {{Request::is('tentangkami') ? 'active' : '' }}" data-toggle="tooltip" data-placement="right" title="Charts">
-        <a class="nav-link" href={{( 'tentangkami')}}>
+        <a class="nav-link" href={{url('tentangkami')}}>
           <i class="fa fa-fw fa-area-chart"></i>
           <span class="nav-link-text">Tentang Kami</span>
         </a>
@@ -191,11 +191,10 @@
       </ul> --}}
 			<li class="nav-item">
 				<span class="nav-link">
-          <h5 style="color: white">Selamat Datang, {{Auth::user()->karyawan->nama}}</h5>
-          @if(Auth::user()->karyawan->nama == "")
-          {
-            <a href={{url('public')}}>Jual Rumah</a>
-          }
+          @if(isset(Auth::user()->karyawan->nama))
+            <h5 style="color: white">Selamat Datang, {{Auth::user()->karyawan->nama}}</h5>
+            @else
+        <form action="{{ route('login')}}"></form>
           @endif
 				</span>
 			</li>

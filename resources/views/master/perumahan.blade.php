@@ -42,7 +42,7 @@
 							<tr id="{{$perumahan->id}}">
 								<td>{{$perumahan->nama}}</td>
                                 <td>{{$perumahan->alamat}}</td>
-                                <td>{{$perumahan->luas}}</td>
+                                <td>{{number_format( $perumahan->luas, 0 , '' , '.' )}}</td>
 								<td>
 									<button class="btn btnUbah btn-primary">Ubah</button>
 								</td>

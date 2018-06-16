@@ -43,3 +43,6 @@
     <script src="{{asset('js/sb-admin.min.js')}}"></script>
     <!-- Custom scripts for this page-->
     <script src="{{asset('js/sb-admin-datatables.min.js')}}"></script>
+    {{-- Boostrap datepicker --}}
+    <script src="{{asset('css/bootstrap/js/bootstrap-datepicker.min.js')}}"></script>
+ 

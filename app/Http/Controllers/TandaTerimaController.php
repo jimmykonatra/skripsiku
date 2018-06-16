@@ -45,6 +45,9 @@ class TandaTerimaController extends Controller
     public function store(Request $request)
     {
         $nomornota = $request->nomornota;
+        $tanggal = $request->tanggal;
+        $tglTerimaBaru = TandaTerima::changeDateFormat($tanggal);
+        
         $bookingfee = $request->bookingfee;
         $danakpr = $request->danakpr;
         $angsuran = $request->angsuran;
@@ -52,10 +55,12 @@ class TandaTerimaController extends Controller
         $keterangan = $request->keterangan;
         $kasir = $request->kasir;
         $total = $bookingfee + $danakpr + $angsuran + $uangtambahan;
-
         
+      
+       
         //setor tanda terima atau mulai input data tanda terima
         TandaTerima::Create([
+            'tanggal' => $tglTerimaBaru,
             'booking_fee' => $bookingfee,
             'dana_kpr' => $danakpr,
             'angsuran' => $angsuran,
@@ -127,6 +132,7 @@ class TandaTerimaController extends Controller
         $tandaterima = TandaTerima::find($id);
 
         return response()->json([
+            'tanggal' => $tandaterima->tanggal,
             'bookingfee' => $tandaterima->booking_fee,
             'danakpr' => $tandaterima->dana_kpr,
             'angsuran' => $tandaterima->angsuran,

@@ -198,7 +198,7 @@
                     <form action="{{url('kpr/tambah')}}" method="post" id="formTambahKpr">
                         {{csrf_field()}}
                             <p>
-										<label for="tanggalcairkpr" class="col-lg-4">Tanggal Cair KPR:</label>
+										<label for="tanggalcairtambahkpr" class="col-lg-4">Tanggal Cair KPR:</label>
 										<input type="date" id="tanggalcairTambahKpr" name="tanggalcair" class="col-lg-6" min="{{date('Y-m-d')}}" value="{{date('Y-m-d')}}"
 										    data-date-format="dd-mm-yyyy" data-date-viewmode="years" required>
 										<input type="hidden" value="{{date('Y-m-d')}}" name="ambiltanggalcairkpr">

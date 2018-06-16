@@ -22,4 +22,8 @@ class Kpr extends Model
     {
         return $this->belongsTo(User::class);
     }
+    public function gettanggalcairkprAttribute($value)
+    {
+        return date('d-m-Y', strtotime($value));
+    }
 }

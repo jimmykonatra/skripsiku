@@ -15,6 +15,7 @@ class CreateTandaTerimasTable extends Migration
     {
         Schema::create('tanda_terimas', function (Blueprint $table) {
             $table->increments('id');
+            $table->date('tanggal');
             $table->bigInteger('booking_fee')->default(0);
             $table->bigInteger('dana_kpr')->default(0);
             $table->bigInteger('angsuran')->default(0);
