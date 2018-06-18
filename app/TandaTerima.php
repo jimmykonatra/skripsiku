@@ -24,7 +24,6 @@ class TandaTerima extends Model
     public static function changeDateFormat($value)
     {
         $x = date_create_from_format('d/m/Y', $value);
-        
         return $x->format('Y-m-d');
     }
 }

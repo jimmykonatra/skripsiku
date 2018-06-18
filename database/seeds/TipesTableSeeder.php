@@ -29,5 +29,24 @@ class TipesTableSeeder extends Seeder
             'lainnya' => '',
             'hapuskah' => 0
             ]);
+
+        DB::table('tipes')->insert([
+            'nama' => 'Tipe 20',
+            'jalan' => 'Jalan Delima',
+            'blok' => 'Q',
+            'luas_tanah' => 100,
+            'luas_bangunan' => 65,
+            'kamar_tidur' => 2,
+            'kamar_mandi' => 1,
+            'listrik' => 2200,
+            'harga_asli' => 95000000,
+            'harga_jual' => 1155000000,
+            'uang_muka' => 4000000,
+            'deskripsi' => 'Tipe yang cocok untuk anda',
+            'gambar_denah' => '',
+            'gambar_rumah' => '',
+            'lainnya' => '',
+            'hapuskah' => 0
+        ]);
     }
 }

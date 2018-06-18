@@ -117,7 +117,6 @@ class PengeluaranController extends Controller
         $kasir = $request->kasir;
 
         $pengeluaran = Pengeluaran::find($id);
-
         $pengeluaran->jenis_pengeluaran_id = $jenispengeluaran;
         $pengeluaran->tanggal = $tanggal;
         $pengeluaran->nominal = $nominal;

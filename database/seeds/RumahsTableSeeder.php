@@ -14,11 +14,35 @@ class RumahsTableSeeder extends Seeder
         DB::table('rumahs')->insert([
             'nomor' => 18,
             'tahun' => 2017,
-            'status_pembangunan' => 0,
-            'status_booking' => 0,
-            'status_terjual' => 0,
+            'status_pembangunan' => '',
+            'status_booking' => '',
+            'status_terjual' => '',
             'keterangan' => 'Rumah siap huni',
             'perumahan_id' => 1,
+            'tipe_id' => 1,
+            'hapuskah' => 0
+        ]);
+
+        DB::table('rumahs')->insert([
+            'nomor' => 33,
+            'tahun' => 2018,
+            'status_pembangunan' => '',
+            'status_booking' => '',
+            'status_terjual' => '',
+            'keterangan' => 'Rumah siap huni',
+            'perumahan_id' => 1,
+            'tipe_id' => 2,
+            'hapuskah' => 0
+        ]);
+
+        DB::table('rumahs')->insert([
+            'nomor' => 11,
+            'tahun' => 2018,
+            'status_pembangunan' => '',
+            'status_booking' => '',
+            'status_terjual' => '',
+            'keterangan' => 'Rumah siap huni',
+            'perumahan_id' => 2,
             'tipe_id' => 1,
             'hapuskah' => 0
         ]);

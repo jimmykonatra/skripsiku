@@ -47,7 +47,7 @@ class TandaTerimaController extends Controller
         $nomornota = $request->nomornota;
         $tanggal = $request->tanggal;
         $tglTerimaBaru = TandaTerima::changeDateFormat($tanggal);
-        
+
         $bookingfee = $request->bookingfee;
         $danakpr = $request->danakpr;
         $angsuran = $request->angsuran;
@@ -127,8 +127,8 @@ class TandaTerimaController extends Controller
      */
     public function edit(Request $request)
     {
+        
         $id = $request->id;
-
         $tandaterima = TandaTerima::find($id);
 
         return response()->json([
@@ -151,9 +151,39 @@ class TandaTerimaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        
+        //request tanggal
+        $tanggal = $request->tanggalUbah;
+        //mengubah format sesuai MYSQL
+        $tglTerimaBaru = TandaTerima::changeDateFormat($tanggal);
+        $bookingfee = $request->bookingfee;
+        $danakpr = $request->danakpr;
+        $angsuran = $request->angsuran;
+        $uangtambahan = $request->uangtambahan;
+        $total = $request->total;
+        $keterangan = $request->keterangan;
+        $nomornota = $request->nomornota;
+        $kasir = $request->kasir;
+        $id = $request->tandaterima;
+        $tandaterima = TandaTerima::find($id);
+
+        $tandaterima->tanggal = $tglTerimaBaru;
+        $tandaterima->booking_fee = $bookingfee;
+        $tandaterima->dana_kpr = $danakpr;
+        $tandaterima->angsuran = $angsuran;
+        $tandaterima->uang_tambahan = $uangtambahan;
+        $tandaterima->total = $total;
+        $tandaterima->keterangan = $keterangan;
+        $tandaterima->jual_rumah_id = $nomornota;
+        $tandaterima->kasir_id = $kasir;
+        
+        $tandaterima->save();
+
+        Session::flash('flash_msg', 'Data Tanda Terima Berhasil Diubah');
+        return redirect('tandaterima');
+
     }
 
     /**

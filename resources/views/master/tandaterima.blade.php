@@ -1,5 +1,4 @@
-@extends('layouts.master') @section('title', 'Sumber Langgeng Sejahtera') @section('css') {{-- #modalTambahTandaTerima {
-width : 80%; } --}} @endsection @section('content') @include('layouts.sidebar')
+@extends('layouts.master') @section('title', 'Sumber Langgeng Sejahtera') @section('css') @endsection @section('content') @include('layouts.sidebar')
 <!-- Example DataTables Card-->
 <div class="content-wrapper">
     <div class="container-fluid">
@@ -84,23 +83,24 @@ width : 80%; } --}} @endsection @section('content') @include('layouts.sidebar')
                             <div class="modal-body">
                                 <form action="{{url('tandaterima/ubah')}}" method="post" id="formUbahTandaTerima">
                                     {{csrf_field()}}
-                                    <p>
-                                        <input type="hidden" id="idUbah" name="tandaterima">
+                                    <div class="row col-lg-12">
+                                        
+                                        <input type="hidden" id="idBisa" name="tandaterima" value="123">
                                         <label class="col-lg-6">Nomor Penjualan: </label>
                                         <select name="nomornota" id="nomornotaUbahTandaTerima">
                                             @foreach($jualrumah as $data)
                                             <option value="{{$data->id}}">{{$data->nomor_nota}}</option>
                                             @endforeach
                                         </select>
-                                    </p>
+                                    </div>
                                     <div class="row col-lg-12">
                                         <label for="tanggal" class="col-lg-4">Tanggal:</label>
                                         <div class="input-group date col-lg-6" data-provide="datepicker">
-                                            <input type="text" class="form-control tanggalTandaTerima" style="display:inline-block" name="tanggal">
+                                            <input type="text" class="form-control tanggalTandaTerima" style="display:inline-block" name="tanggalUbah">
                                             <div class="input-group-addon">
                                                 <span class="glyphicon glyphicon-th"></span>
                                             </div>
-                                        </div>
+                                        </div>  
                                     </div>
                                     <p>
                                         <label class="col-lg-6">Booking Fee: </label>
@@ -189,7 +189,7 @@ width : 80%; } --}} @endsection @section('content') @include('layouts.sidebar')
                     <form action="{{url('tandaterima/tambah')}}" method="post" id="formTambahTandaTerima">
                         {{csrf_field()}}
                         <div>
-                            <input type="hidden" id="idTambah" name="tandaterima">
+                            <input type="text" id="idTambah" name="tandaterima">
                             <label class="col-lg-6">Nomor Penjualan: </label>
                             <select name="nomornota" id="nomornotaTambahTandaTerima">
                                 @foreach($jualrumah as $data)
@@ -257,88 +257,91 @@ width : 80%; } --}} @endsection @section('content') @include('layouts.sidebar')
     <script>
         $(document).ready(function () {
 
-                    $('.btnHapus').on('click', function (e) {
-                        e.preventDefault();
-                        var id = $(this).closest('tr').attr('id');
-                        $('#idHapus').val(id);
-                        $('#modalHapusTandaTerima').modal('show');
-                    });
+            $('.btnHapus').on('click', function (e) {
+                e.preventDefault();
+                var id = $(this).closest('tr').attr('id');
+                $('#idHapus').val(id);
+                $('#modalHapusTandaTerima').modal('show');
+            });
 
-                    $('.btnTambah').on('click', function (e) {
-                            e.preventDefault();
-                            var d = new Date();
+            $('.btnTambah').on('click', function (e) {
+                e.preventDefault();
+                //menampilkan tanggal now ketika mulai tambah
+                var d = new Date();
 
-                            var month = d.getMonth() + 1;
-                            var day = d.getDate();
+                var month = d.getMonth() + 1;
+                var day = d.getDate();
 
-                            var output = d.getFullYear() + '/' +
-                                (month < 10 ? '0' : '') + month + '/' +
-                                (day < 10 ? '0' : '') + day;
-                            $('.datepicker').datepicker('update', output);
-                            $('#modalTambahTandaTerima').modal('show');
-                            });
+                var output = d.getFullYear() + '/' +
+                    (month < 10 ? '0' : '') + month + '/' +
+                    (day < 10 ? '0' : '') + day;
+                $('.datepicker').datepicker('update', output);
+                $('#modalTambahTandaTerima').modal('show');
 
-                        $('#bookingfeeTambahTandaTerima').on('change', function (e) {
-                            var bookingfee = parseInt($('#bookingfeeTambahTandaTerima').val());
-                            var danakpr = parseInt($('#danakprTambahTandaTerima').val());
-                            var angsuran = parseInt($('#angsuranTambahTandaTerima').val());
-                            var uangtambahan = parseInt($('#uangtambahanTambahTandaTerima').val());
-                            var total = bookingfee + danakpr + angsuran + uangtambahan;
-                            $('#totalTambahTandaTerima').val(total);
-                        });
+            });
 
-                        $('#danakprTambahTandaTerima').on('change', function (e) {
-                            var bookingfee = parseInt($('#bookingfeeTambahTandaTerima').val());
-                            var danakpr = parseInt($('#danakprTambahTandaTerima').val());
-                            var angsuran = parseInt($('#angsuranTambahTandaTerima').val());
-                            var uangtambahan = parseInt($('#uangtambahanTambahTandaTerima').val());
-                            var total = bookingfee + danakpr + angsuran + uangtambahan;
-                            $('#totalTambahTandaTerima').val(total);
-                        });
+            $('#bookingfeeTambahTandaTerima').on('change', function (e) {
+                var bookingfee = parseInt($('#bookingfeeTambahTandaTerima').val());
+                var danakpr = parseInt($('#danakprTambahTandaTerima').val());
+                var angsuran = parseInt($('#angsuranTambahTandaTerima').val());
+                var uangtambahan = parseInt($('#uangtambahanTambahTandaTerima').val());
+                var total = bookingfee + danakpr + angsuran + uangtambahan;
+                $('#totalTambahTandaTerima').val(total);
+            });
 
-                        $('#angsuranTambahTandaTerima').on('change', function (e) {
-                            var bookingfee = parseInt($('#bookingfeeTambahTandaTerima').val());
-                            var danakpr = parseInt($('#danakprTambahTandaTerima').val());
-                            var angsuran = parseInt($('#angsuranTambahTandaTerima').val());
-                            var uangtambahan = parseInt($('#uangtambahanTambahTandaTerima').val());
-                            var total = bookingfee + danakpr + angsuran + uangtambahan;
-                            $('#totalTambahTandaTerima').val(total);
-                        });
+            $('#danakprTambahTandaTerima').on('change', function (e) {
+                var bookingfee = parseInt($('#bookingfeeTambahTandaTerima').val());
+                var danakpr = parseInt($('#danakprTambahTandaTerima').val());
+                var angsuran = parseInt($('#angsuranTambahTandaTerima').val());
+                var uangtambahan = parseInt($('#uangtambahanTambahTandaTerima').val());
+                var total = bookingfee + danakpr + angsuran + uangtambahan;
+                $('#totalTambahTandaTerima').val(total);
+            });
 
-                        $('#uangtambahanTambahTandaTerima').on('change', function (e) {
-                            var bookingfee = parseInt($('#bookingfeeTambahTandaTerima').val());
-                            var danakpr = parseInt($('#danakprTambahTandaTerima').val());
-                            var angsuran = parseInt($('#angsuranTambahTandaTerima').val());
-                            var uangtambahan = parseInt($('#uangtambahanTambahTandaTerima').val());
-                            var total = bookingfee + danakpr + angsuran + uangtambahan;
-                            $('#totalTambahTandaTerima').val(total);
-                        });
+            $('#angsuranTambahTandaTerima').on('change', function (e) {
+                var bookingfee = parseInt($('#bookingfeeTambahTandaTerima').val());
+                var danakpr = parseInt($('#danakprTambahTandaTerima').val());
+                var angsuran = parseInt($('#angsuranTambahTandaTerima').val());
+                var uangtambahan = parseInt($('#uangtambahanTambahTandaTerima').val());
+                var total = bookingfee + danakpr + angsuran + uangtambahan;
+                $('#totalTambahTandaTerima').val(total);
+            });
+
+            $('#uangtambahanTambahTandaTerima').on('change', function (e) {
+                var bookingfee = parseInt($('#bookingfeeTambahTandaTerima').val());
+                var danakpr = parseInt($('#danakprTambahTandaTerima').val());
+                var angsuran = parseInt($('#angsuranTambahTandaTerima').val());
+                var uangtambahan = parseInt($('#uangtambahanTambahTandaTerima').val());
+                var total = bookingfee + danakpr + angsuran + uangtambahan;
+                $('#totalTambahTandaTerima').val(total);
+            });
 
 
-                        $('.btnUbah').on('click', function (e) {
-                            e.preventDefault(); //cek submit
-                            var id = $(this).closest('tr').attr('id');
-                            $.post("{{url('tandaterima/lihat')}}", {
-                                    'id': id,
-                                    '_token': "{{csrf_token()}}"
-                                },
-                                function (data) {
-                                    $('#idUbah').val(data.id);
-                                    $('#nomornotaUbahTandaTerima').val(data.nomornota);
-                                    $('.tanggalTandaTerima').datepicker('update', data.tanggal);
-                                    $('#bookingfeeUbahTandaTerima').val(data.bookingfee);
-                                    $('#danakprUbahTandaTerima').val(data.danakpr);
-                                    $('#angsuranUbahTandaTerima').val(data.angsuran);
-                                    $('#uangtambahanUbahTandaTerima').val(data.uangtambahan);
-                                    $('#totalUbahTandaTerima').val(data.total);
-                                    $('#keteranganUbahTandaTerima').val(data.keterangan);
-                                    $('#kasirUbahTandaTerima').val(data.kasir);
-                                }
-                            );
-                            $('#modalUbahTandaTerima').modal('show');
-                        });
+            $('.btnUbah').on('click', function (e) {
+                e.preventDefault(); //cek submit
+                var id = $(this).closest('tr').attr('id'); 
+                $('#idBisa').val(id);
+                $.post("{{url('tandaterima/lihat')}}", {
+                     'id': id, 
+                        '_token': "{{csrf_token()}}"
+                    },
+                    function (data) {
+                        $('#idUbah').val(data.id);
+                        $('#nomornotaUbahTandaTerima').val(data.nomornota);
+                        $('.tanggalTandaTerima').datepicker('update', data.tanggal);
+                        $('#bookingfeeUbahTandaTerima').val(data.bookingfee);
+                        $('#danakprUbahTandaTerima').val(data.danakpr);
+                        $('#angsuranUbahTandaTerima').val(data.angsuran);
+                        $('#uangtambahanUbahTandaTerima').val(data.uangtambahan);
+                        $('#totalUbahTandaTerima').val(data.total);
+                        $('#keteranganUbahTandaTerima').val(data.keterangan);
+                        $('#kasirUbahTandaTerima').val(data.kasir);
+                    }
+                );
+                $('#modalUbahTandaTerima').modal('show');
+            });
 
-                    });
+        });
     </script>
 
     @endsection
