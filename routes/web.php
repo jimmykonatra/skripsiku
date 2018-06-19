@@ -133,6 +133,8 @@ Route::post('jualrumah/hapus', 'JualRumahController@destroy');
 Route::get('jualrumah/lihat/{id}', 'JualRumahController@edit');
 Route::post('jualrumah/ubah', 'JualRumahController@update');
 Route::post('jualrumah/tambah', 'JualRumahController@store');
+Route::get('jualrumah/cetak/{id}','JualRumahController@print');
+
 
 Route::get('updatetanggalcairdana', 'JualRumahController@updatetanggalcairdanaindex');
 Route::post('updatetanggalcairdana/ubah', 'JualRumahController@updatetanggalcairdanaupdate');

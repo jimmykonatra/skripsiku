@@ -26,7 +26,7 @@
 								{{-- <th>Status Booking</th> --}}
 								{{-- <th>Status Terjual</th> --}}
 								{{-- <th>Keterangan</th> --}}
-								<th>Edit</th>
+								<th>Update</th>
 								{{-- <th>Delete</th> --}}
 							</tr>
 						</thead>
@@ -41,7 +41,7 @@
 								{{-- <th>Status Booking</th> --}}
 								{{-- <th>Status Terjual</th> --}}
 								{{-- <th>Keterangan</th> --}}
-								<th>Edit</th>
+								<th>Update</th>
 								{{-- <th>Delete</th> --}}
 							</tr>
 						</tfoot>

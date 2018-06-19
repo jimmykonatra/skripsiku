@@ -23,6 +23,7 @@
 							<tr>
                                 <th>Perumahan</th>
 								<th>Tipe Rumah</th>
+								<th>Blok Rumah</th>
 								<th>Nomor Rumah</th>
 								<th>Tahun </th>
 								<th>Nomor Sertifikat</th>
@@ -38,6 +39,7 @@
 							<tr>
 								<th>Perumahan</th>
 								<th>Tipe Rumah</th>
+								<th>Blok Rumah</th>
 								<th>Nomor Rumah</th>
 								<th>Tahun </th>
 								<th>Nomor Sertifikat</th>
@@ -53,7 +55,8 @@
 							@foreach($rumah as $data)
 							<tr id="{{$data->id}}">
 								<td>{{$data->perumahan->nama}}</td>
-                                <td>{{$data->tipe->nama}}</td>
+								<td>{{$data->tipe->nama}}</td>
+								<td>{{$data->tipe->blok}}</td>
 								<td>{{$data->nomor}}</td>
 								<td>{{$data->tahun}}</td>
 								<td>{{$data->nomor_sertifikat}}</td>
@@ -207,12 +210,16 @@
                                     <p>
 										<input type="hidden" id="idUbah" name="rumah">
 										<label class="col-lg-6">Tipe: </label>
-										<select name="tipe"  id="tipeTambahRumah">
+									<select name="tipe"  id="tipeTambahRumah">
 										@foreach($tipe as $data)
-											<option value="{{$data->id}}">{{$data->nama}}</option>
+										<option class="{{$data->blok}}" value="{{$data->id}}">{{$data->nama}}</option>
 										@endforeach
 									</select>
 									</p>	
+									<p>
+										<label class="col-lg-6">Blok Rumah: </label>
+										<input type="text" class="col-lg-4" id="blokTambahRumah" readonly>
+									</p>
 									<p>
 										<label class="col-lg-6">Nomor: </label>
 										<input type="number" class="col-lg-4" id="nomorTambahRumah" name="nomor" placeholder="Masukkan Nomor Rumah" value="1" min=1
@@ -243,6 +250,7 @@
 											<option value="1">Terjual</option>
 										</select>
 									</p> --}}
+									
 									<p>
 										<label class="col-lg-6">Keterangan: </label>
 										<input type="text" class="col-lg-4" id="keteranganTambahRumah" name="keterangan" placeholder="Masukkan Keterangan Rumah">
@@ -266,6 +274,15 @@
 	@include('layouts.footer')
 	<script>
 		$(document).ready(function () {
+			//load awal untuk baca blok rumah saat tambah rumah
+			var blok = $('#tipeTambahRumah option:selected').attr('class');
+			$('#blokTambahRumah').val(blok);
+			
+			//saat klik akan muncul blok rumah
+			$('#tipeTambahRumah').on('change', function (e) {
+				var blok = $('#tipeTambahRumah option:selected').attr('class');
+				$('#blokTambahRumah').val(blok);
+			});
 
 			$('.btnHapus').on('click', function (e) {
 				e.preventDefault();

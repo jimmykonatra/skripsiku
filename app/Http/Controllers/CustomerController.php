@@ -42,6 +42,7 @@ class CustomerController extends Controller
         $kota = $request->kota;
         $email = $request->email;
         $notelepon = $request->notelepon;
+        $pekerjaan = $request->pekerjaan;
         $noktp = $request->noktp;
         $norekening = $request->norekening;
         
@@ -51,6 +52,7 @@ class CustomerController extends Controller
             'kota' => $kota,
             'email' => $email,
             'no_telepon' => $notelepon,
+            'pekerjaan' => $pekerjaan,
             'no_ktp' => $noktp,
             'no_rekening' => $norekening,
             'hapuskah' => 0
@@ -85,6 +87,7 @@ class CustomerController extends Controller
             'nama' => $customer->nama,
             'alamat' => $customer->alamat,
             'kota' => $customer->kota,
+            'pekerjaan' => $customer->pekerjaan,
             'email' => $customer->email,
             'notelepon' => $customer->no_telepon,
             'noktp' => $customer->no_ktp,
@@ -106,6 +109,7 @@ class CustomerController extends Controller
         $alamat = $request->alamat;
         $kota = $request->kota;
         $email = $request->email;
+        $pekerjaan = $request->pekerjaan;
         $notelepon = $request->notelepon;
         $noktp = $request->noktp;
         $norekening = $request->norekening;
@@ -117,6 +121,7 @@ class CustomerController extends Controller
         $customer->alamat = $alamat;
         $customer->kota = $kota;
         $customer->email = $email;
+        $customer->pekerjaan = $pekerjaan;
         $customer->no_telepon = $notelepon;
         $customer->no_ktp = $noktp;
         $customer->no_rekening = $norekening;

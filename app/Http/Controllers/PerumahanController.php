@@ -41,13 +41,24 @@ class PerumahanController extends Controller
         $alamat = $request->alamat;
         $luas = $request->luas;
 
-        Perumahan::Create([
-            'nama' => $nama,
-            'alamat' => $alamat,
-            'luas' => $luas,
-            'hapuskah' => 0
-        ]);
-        Session::flash('flash_msg', 'Data Perumahan Berhasil Disimpan');
+        // Perumahan::Create([
+        //     'nama' => $nama,
+        //     'alamat' => $alamat,
+        //     'luas' => $luas,
+        //     'hapuskah' => 0
+        // ]);
+
+        $perumahan = Perumahan::firstOrCreate([
+            'nama' => $nama , 'alamat' => $alamat
+        ],[
+            'luas' => $luas, 'hapuskah' => 0]);
+
+        if($perumahan->wasRecentlyCreated){
+            Session::flash('flash_msg', 'Data Perumahan Berhasil Disimpan');
+        }
+        else {
+            Session::flash('error_msg', 'Data Perumahan Sudah Ada');
+        }
         return redirect('perumahan');
 
     }

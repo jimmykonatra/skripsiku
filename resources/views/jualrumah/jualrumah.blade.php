@@ -37,6 +37,7 @@
 								<th>Tanggal Cair Dana</th>
 								<th>Edit</th>
 								<th>Delete</th>
+								<th>Print</th>
 							</tr>
 						</thead>
 						<tfoot>
@@ -57,6 +58,7 @@
 								<th>Tanggal Cair Dana</th>
 								<th>Edit</th>
 								<th>Delete</th>
+								<th>Print</th>
 							</tr>
 						</tfoot>
 						<tbody>
@@ -91,6 +93,9 @@
 								</td>
 								<td>
 									<a href class="btn btnHapus btn-danger">Hapus</a>
+								</td>
+								<td>
+									<a href = "{{url('jualrumah/cetak/'.$data->id)}}" class="btn btnPrint btn-success">Print</a>
 								</td>
 							</tr>
 							@endforeach

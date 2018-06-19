@@ -24,6 +24,7 @@
 								<th>Kota</th>
 								<th>Email</th>
 								<th>No Telepon</th>
+								<th>Pekerjaan</th>
 								<th>No KTP</th>
 								<th>No Rekening</th>
 								<th>Edit</th>
@@ -37,6 +38,7 @@
 								<th>Kota</th>
 								<th>Email</th>
 								<th>No Telepon</th>
+								<th>Pekerjaan</th>
 								<th>No KTP</th>
 								<th>No Rekening</th>
 								<th>Edit</th>
@@ -50,7 +52,9 @@
 								<td>{{$data->alamat}}</td>
 								<td>{{$data->kota}}</td>
 								<td>{{$data->email}}</td>
+							
 								<td>{{$data->no_telepon}}</td>
+								<td>{{$data->pekerjaan}}</td>
 								<td>{{$data->no_ktp}}</td>
 								<td>{{$data->no_rekening}}</td>
 								<td>
@@ -98,6 +102,10 @@
 										<label class="col-lg-6">Nomor Telepon: </label>
 										<input type="tel" pattern="^[+]?[0-9]{9,15}$" class="col-lg-4" id="noteleponUbahCustomer" name="notelepon" placeholder="Masukkan No Telepon"
 										    required>
+									</p>
+									<p>
+										<label class="col-lg-6">Pekerjaan: </label>
+										<input type="text" class="col-lg-4" id="pekerjaanUbahCustomer" name="pekerjaan" placeholder="Masukkan Pekerjaan Customer" required>
 									</p>
 									<p>
 										<label class="col-lg-6">Nomor KTP: </label>
@@ -183,6 +191,10 @@
 							    required>
 						</p>
 						<p>
+							<label class="col-lg-6">Pekerjaan: </label>
+										<input type="text" class="col-lg-4" id="pekerjaanTambahCustomer" name="pekerjaan" placeholder="Masukkan Pekerjaan Customer" required>
+									</p>
+						<p>
 							<label class="col-lg-6">Nomor KTP: </label>
 							<input type="number" class="col-lg-4" id="noktpTambahCustomer" name="noktp" placeholder="Masukkan Nomor KTP" required>
 						</p>
@@ -234,6 +246,7 @@
 						$('#alamatUbahCustomer').val(data.alamat);
 						$('#kotaUbahCustomer').val(data.kota);
 						$('#emailUbahCustomer').val(data.email);
+						$('#pekerjaanUbahCustomer').val(data.pekerjaan);
 						$('#noteleponUbahCustomer').val(data.notelepon);
 						$('#noktpUbahCustomer').val(data.noktp);
 						$('#norekeningUbahCustomer').val(data.norekening);

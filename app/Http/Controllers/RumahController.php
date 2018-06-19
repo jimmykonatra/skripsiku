@@ -68,23 +68,40 @@ class RumahController extends Controller
         // $request->gambar->move(public_path('images'), $uploadgambar);
         
 
-        $rumah = Rumah::create([
-            'perumahan_id' => $perumahan,
-            'tipe_id' => $tipe,
-            'nomor' => $nomor,
-            'tahun' => $tahun,
-            'nomor_sertifikat' => null,
-            'status_pembangunan' => 'Belum Dibangun',
-            'status_booking' => 'Kosong',
-            'status_terjual' => 'Belum Terjual',
-            'keterangan' => $keterangan,
-            // 'gambar' => $uploadgambar,
-            'hapuskah' => 0
-        ]);
+        // $rumah = Rumah::create([
+        //     'perumahan_id' => $perumahan,
+        //     'tipe_id' => $tipe,
+        //     'nomor' => $nomor,
+        //     'tahun' => $tahun,
+        //     'nomor_sertifikat' => null,
+        //     'status_pembangunan' => 'Belum Dibangun',
+        //     'status_booking' => 'Kosong',
+        //     'status_terjual' => 'Belum Terjual',
+        //     'keterangan' => $keterangan,
+        //     // 'gambar' => $uploadgambar,
+        //     'hapuskah' => 0
+        // ]);
 
-      
-        Session::flash('flash_msg', 'Data Rumah Berhasil Disimpan');
-        return redirect('rumah');
+        $rumah = Rumah::firstOrCreate(
+            [ 'nomor' => $nomor, 'tipe_id' => $tipe],
+            
+            ['perumahan_id' => $perumahan,
+                'tahun' => $tahun,
+                'nomor_sertifikat' => null,
+                'status_pembangunan' => 'Belum Dibangun',
+                'status_booking' => 'Kosong',
+                'status_terjual' => 'Belum Terjual',
+                'keterangan' => $keterangan,
+                'hapuskah' => 0
+            ]);
+
+        if ($rumah->wasRecentlyCreated) {
+            Session::flash('flash_msg', 'Data Rumah Berhasil Disimpan');
+        } else {
+            Session::flash('error_msg', 'Data Rumah Sudah Ada');
+        }
+        
+        return redirect('rumah');    
     }
 
     /**
