@@ -462,8 +462,8 @@ class JualRumahController extends Controller
         <p style="text-align:right;padding-right:30px">Surabaya, '.date('d-M-Y').'</p>
                         <table style="text-align:center">
                         <tr>
-                            <td>Penerima Pesanan,</td>
-                            <td>Mengetahui,</td>
+                            <td>Marketing,</td>
+                            <td>Kasir,</td>
                             <td>Pemesan,</td>
                         </tr>
                         
@@ -478,8 +478,8 @@ class JualRumahController extends Controller
                             <td>....................................</td>
                         </tr>
                         <tr>
-                            <td>Marketing</td>
-                            <td>Kasir</td>
+                            <td>'.$jualrumah->marketing_id.'</td>
+                            <td>'.$jualrumah->kasir_id.'</td>
                             <td>'.$customer->nama.'</td>
                         </tr>
                     </table>
