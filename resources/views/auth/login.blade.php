@@ -13,9 +13,22 @@
   <link href="{{asset('css/font-awesome/css/font-awesome.min.css')}}" rel="stylesheet" type="text/css">
   <!-- Custom styles for this template-->
   <link href="{{asset('css/sb-admin.css')}}" rel="stylesheet">
+  <style>
+@media screen
+{
+    .noPrint{}
+    .noScreen{display:none;}
+}
+
+@media print
+{
+    .noPrint{display:none;}
+    .noScreen{}
+}
+  </style>
 </head>
 <body class="bg-dark">
-  <div class="container">
+  <div class="container noPrint">
     <div class="card card-login mx-auto mt-5">
       
       <div class="card-header text-center"><b>LOGIN</b></div>
@@ -54,6 +67,26 @@
     </div>
   </div>
   <!-- Bootstrap core JavaScript-->
+
+
+<div class="noScreen">
+  aasdasdasdasdasdac; v;;as
+  d'
+  a'sd
+   'as
+   c' 
+   a'sd
+    'as
+    d
+     a
+     sd
+      
+     as
+     d' 
+     sd
+      as
+      d''
+</div>
   <script src="{{asset('css/jquery/jquery.min.js')}}"></script>
   <script src="{{asset('css/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
   <!-- Core plugin JavaScript-->

@@ -167,6 +167,7 @@ class TandaTerimaController extends Controller
         $nomornota = $request->nomornota;
         $kasir = $request->kasir;
         $id = $request->tandaterima;
+        
         $tandaterima = TandaTerima::find($id);
 
         $tandaterima->tanggal = $tglTerimaBaru;

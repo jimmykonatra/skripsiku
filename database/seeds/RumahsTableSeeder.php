@@ -14,6 +14,7 @@ class RumahsTableSeeder extends Seeder
         DB::table('rumahs')->insert([
             'nomor' => 18,
             'tahun' => 2017,
+            'nomor_sertifikat' => '',
             'status_pembangunan' => '',
             'status_booking' => '',
             'status_terjual' => '',
@@ -26,6 +27,7 @@ class RumahsTableSeeder extends Seeder
         DB::table('rumahs')->insert([
             'nomor' => 33,
             'tahun' => 2018,
+            'nomor_sertifikat' => '',
             'status_pembangunan' => '',
             'status_booking' => '',
             'status_terjual' => '',
@@ -38,6 +40,7 @@ class RumahsTableSeeder extends Seeder
         DB::table('rumahs')->insert([
             'nomor' => 11,
             'tahun' => 2018,
+            'nomor_sertifikat' => '',
             'status_pembangunan' => '',
             'status_booking' => '',
             'status_terjual' => '',

@@ -17,6 +17,7 @@ class CreateRumahsTable extends Migration
             $table->increments('id');
             $table->integer('nomor');
             $table->year('tahun');
+            $table->string('nomor_sertifikat')->nullable();
             $table->enum('status_pembangunan',(['Belum Dibangun','Proses Pembangunan','Selesai Pembangunan']))->default('Belum Dibangun');
             $table->enum('status_booking',(['Terbooking','Kosong']))->default('Kosong');
             $table->enum('status_terjual',(['Terjual','Belum Terjual']))->default('Belum Terjual');

@@ -68,6 +68,7 @@
       </li>
     </li>
 
+    {{-- KPR --}}
     <li class="nav-item {{Request::is('karyawan') || Request::is('customer') ||  Request::is('bank') ||  Request::is('tipe') ||  Request::is('rumah') ||  Request::is('perumahan') ? 'active' : '' }}" data-toggle="tooltip" data-placement="right" title="Components">
         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Components">
         <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseKPR" data-parent="#exampleAccordion">
@@ -88,6 +89,23 @@
         </ul>
       </li>
     </li>
+
+    {{-- RUMAH --}}
+    <li class="nav-item {{Request::is('karyawan') || Request::is('customer') ||  Request::is('bank') ||  Request::is('tipe') ||  Request::is('rumah') ||  Request::is('perumahan') ? 'active' : '' }}" data-toggle="tooltip" data-placement="right" title="Components">
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Components">
+        <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseRumah" data-parent="#exampleAccordion">
+          <i class="fa fa-fw fa-wrench"></i>
+          <span class="nav-link-text">Rumah</span>
+        </a>
+        <ul class="sidenav-second-level collapse" id="collapseRumah">
+
+          <li class="{{Request::is('updatenomorsertifikat')  ? 'active' : '' }}">
+            <a href={{url('updatenomorsertifikat')}}>Update Sertifikat Rumah</a>
+          </li>
+        </ul>
+      </li>
+    </li>
+
       <li class="nav-item  {{ Request::is('jualrumah') ? 'active' : '' }}" data-toggle="tooltip" data-placement="right" title="Nota">
         <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseJualRumah" data-parent="#exampleAccordion">
           <i class="fa fa-fw fa-file"></i>

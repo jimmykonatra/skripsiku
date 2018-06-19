@@ -89,7 +89,6 @@
                             <div class="modal-body">
                                 <form action="{{url('updatetanggalcair/ubah')}}" method="post" id="formUpdateTanggalCairKpr">
                                     {{csrf_field()}}
-                                     
                                      <p>
 										<label for="tanggalakadkreditkpr" class="col-lg-4">Tanggal Akad Kredit KPR:</label>
 										<input type="date" id="tanggalakadkreditUbahKpr" name="tanggalakadkredit" class="col-lg-6" min="{{date('Y-m-d')}}" value="{{date('Y-m-d')}}" 

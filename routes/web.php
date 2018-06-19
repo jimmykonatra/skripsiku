@@ -89,6 +89,11 @@ Route::post('rumah/lihat', 'RumahController@edit');
 Route::post('rumah/ubah', 'RumahController@update');
 Route::post('rumah/tambah', 'RumahController@store');
 
+Route::get('updatenomorsertifikat', 'RumahController@updatenomorsertifikatindex');
+Route::post('updatenomorsertifikat/lihat', 'RumahController@updatenomorsertifikatedit');
+Route::post('updatenomorsertifikat/ubah', 'RumahController@updatenomorsertifikatupdate');
+
+
 Route::get('tipe', 'TipeController@index');
 Route::post('tipe/hapus', 'TipeController@destroy');
 Route::post('tipe/lihat', 'TipeController@edit');

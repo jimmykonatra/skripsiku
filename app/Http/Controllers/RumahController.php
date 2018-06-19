@@ -26,6 +26,16 @@ class RumahController extends Controller
     
     }
 
+    public function updatenomorsertifikatindex()
+    {
+        $rumah = Rumah::where('hapuskah', 0)->orderBy('id', 'desc')->get();
+        $perumahan = Perumahan::where('hapuskah', 0)->get();
+        $tipe = Tipe::where('hapuskah', 0)->get();
+
+        return view('rumah.updatenomorsertifikat', compact('rumah', 'perumahan', 'tipe'));
+
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -63,6 +73,7 @@ class RumahController extends Controller
             'tipe_id' => $tipe,
             'nomor' => $nomor,
             'tahun' => $tahun,
+            'nomor_sertifikat' => null,
             'status_pembangunan' => 'Belum Dibangun',
             'status_booking' => 'Kosong',
             'status_terjual' => 'Belum Terjual',
@@ -103,15 +114,38 @@ class RumahController extends Controller
             'id' => $id,
             'nomor' => $rumah->nomor,
             'tahun' => $rumah->tahun,
+            'nomorsertifikat' => $rumah->nomor_sertifikat,
             'statuspembangunan' => $rumah->status_pembangunan,
             'statusbooking' => $rumah->status_booking,
             'statusterjual' => $rumah->status_terjual,
             'keterangan' => $rumah->keterangan,
             'perumahan' => $rumah->perumahan_id,
-            'tipe' => $rumah->tipe_id,
+            'tipe' => $rumah->tipe_id
             // 'gambar' => $rumah->gambar
         ]);
     }
+
+    public function updatenomorsertifikatedit(Request $request)
+    {
+        $id = $request->id;
+
+        $rumah = Rumah::find($id);
+        return response()->json([
+            'id' => $id,
+            'nomor' => $rumah->nomor,
+            'tahun' => $rumah->tahun,
+            'nomorsertifikat' => $rumah->nomor_sertifikat,
+            // 'statuspembangunan' => $rumah->status_pembangunan,
+            // 'statusbooking' => $rumah->status_booking,
+            // 'statusterjual' => $rumah->status_terjual,
+            // 'keterangan' => $rumah->keterangan,
+            'perumahan' => $rumah->perumahan_id,
+            'tipe' => $rumah->tipe_id
+            // 'gambar' => $rumah->gambar
+        ]);
+    }
+
+
 
     /**
      * Update the specified resource in storage.
@@ -151,6 +185,21 @@ class RumahController extends Controller
 
         Session::flash('flash_msg', 'Data Rumah Berhasil Disimpan');
         return redirect('rumah');
+    }
+
+    public function updatenomorsertifikatupdate(Request $request)
+    {
+        $id = $request->updatenomorsertifikat;
+        $nomorsertifikat = $request->nomorsertifikat;
+
+        $rumah = Rumah::find($id);
+
+        $rumah->nomor_sertifikat = $nomorsertifikat;
+
+        $rumah->save();
+        Session::flash('flash_msg', 'Data Sertifikat Rumah Berhasil Disimpan');
+        return redirect('updatenomorsertifikat');
+
     }
 
     /**
