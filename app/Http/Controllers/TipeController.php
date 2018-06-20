@@ -76,26 +76,52 @@ class TipeController extends Controller
         }
 
 
-        $tipe = Tipe::create([
-            'nama' => $nama,
-            'jalan' => $jalan,
-            'blok' => $blok,
-            'luas_tanah' => $luastanah,
-            'luas_bangunan' => $luasbangunan,
-            'kamar_tidur' => $kamartidur,
-            'kamar_mandi' => $kamarmandi,
-            'listrik' => $listrik,
-            'harga_asli' => $hargaasli,
-            'harga_jual' => $hargajual,
-            'uang_muka' => $uangmuka,
-            'deskripsi' => $deskripsi,
-            'lainnya' => $lainnya,
-            'gambar_rumah' => $uploadgambarrumah,
-            'gambar_denah' => $uploadgambardenah,
-            'hapuskah' => 0
-        ]);
+        // $tipe = Tipe::create([
+        //     'nama' => $nama,
+        //     'jalan' => $jalan,
+        //     'blok' => $blok,
+        //     'luas_tanah' => $luastanah,
+        //     'luas_bangunan' => $luasbangunan,
+        //     'kamar_tidur' => $kamartidur,
+        //     'kamar_mandi' => $kamarmandi,
+        //     'listrik' => $listrik,
+        //     'harga_asli' => $hargaasli,
+        //     'harga_jual' => $hargajual,
+        //     'uang_muka' => $uangmuka,
+        //     'deskripsi' => $deskripsi,
+        //     'lainnya' => $lainnya,
+        //     'gambar_rumah' => $uploadgambarrumah,
+        //     'gambar_denah' => $uploadgambardenah,
+        //     'hapuskah' => 0
+        // ]);
 
-        Session::flash('flash_msg', 'Data Tipe Berhasil Disimpan');
+        $tipe = Tipe::firstOrCreate(
+            ['nama' => $nama,
+            'jalan' => $jalan,
+            'blok' =>  $blok],
+            [
+                'luas_tanah' => $luastanah,
+                'luas_bangunan' => $luasbangunan,
+                'kamar_tidur' => $kamartidur,
+                'kamar_mandi' => $kamarmandi,
+                'listrik' => $listrik,
+                'harga_asli' => $hargaasli,
+                'harga_jual' => $hargajual,
+                'uang_muka' => $uangmuka,
+                'deskripsi' => $deskripsi,
+                'lainnya' => $lainnya,
+                'gambar_rumah' => $uploadgambarrumah,
+                'gambar_denah' => $uploadgambardenah,
+                'hapuskah' => 0
+            ]
+        );
+        if($tipe->wasRecentlyCreated)
+        {
+            Session::flash('flash_msg', 'Data Tipe Berhasil Disimpan');
+        }
+        else {
+            Session::flash('error_msg', 'Data Tipe Sudah Ada');
+        }
         return redirect('tipe');
     }
 

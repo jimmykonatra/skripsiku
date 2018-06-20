@@ -39,11 +39,22 @@ class JenisPengeluaranController extends Controller
     {
         $nama = $request->nama;
 
-        JenisPengeluaran::create([
-            'nama' => $nama,
-            'hapuskah' => 0
-        ]);
-        Session::flash('flash_msg', 'Data Jenis Pengeluaran Berhasil Disimpan');
+        // JenisPengeluaran::create([
+        //     'nama' => $nama,
+        //     'hapuskah' => 0
+        // ]);
+        $jenispengeluaran = JenisPengeluaran::firstOrCreate(
+            ['nama' => $nama],
+            ['hapuskah' => 0]
+        );
+        if($jenispengeluaran->wasRecentlyCreated)
+        {
+            Session::flash('flash_msg', 'Data Jenis Pengeluaran Berhasil Disimpan');
+        }
+        else {
+            Session::flash('error_msg', 'Data Jenis Pengeluaran Sudah Ada');
+        }
+        
         return redirect('jenispengeluaran');
 
     }

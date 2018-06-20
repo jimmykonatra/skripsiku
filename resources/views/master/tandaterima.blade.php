@@ -189,7 +189,7 @@
                     <form action="{{url('tandaterima/tambah')}}" method="post" id="formTambahTandaTerima">
                         {{csrf_field()}}
                         <div>
-                            <input type="text" id="idTambah" name="tandaterima">
+                           
                             <label class="col-lg-6">Nomor Penjualan: </label>
                             <select name="nomornota" id="nomornotaTambahTandaTerima">
                                 @foreach($jualrumah as $data)

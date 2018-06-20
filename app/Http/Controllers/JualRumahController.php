@@ -478,8 +478,8 @@ class JualRumahController extends Controller
                             <td>....................................</td>
                         </tr>
                         <tr>
-                            <td>'.$jualrumah->marketing_id.'</td>
-                            <td>'.$jualrumah->kasir_id.'</td>
+                            <td>'.$jualrumah->marketing->karyawan->nama.'</td>
+                            <td>'.$jualrumah->kasir->karyawan->nama.'</td>
                             <td>'.$customer->nama.'</td>
                         </tr>
                     </table>

@@ -46,18 +46,31 @@ class CustomerController extends Controller
         $noktp = $request->noktp;
         $norekening = $request->norekening;
         
-        Customer::create([
-            'nama' => $nama,
-            'alamat' => $alamat,
-            'kota' => $kota,
+        // Customer::create([
+        //     'nama' => $nama,
+        //     'alamat' => $alamat,
+            
+        // ]);
+
+        $customer = Customer::firstOrCreate(
+            ['nama' => $nama, 'alamat' => $alamat],
+
+        ['kota' => $kota,
             'email' => $email,
-            'no_telepon' => $notelepon,
             'pekerjaan' => $pekerjaan,
+            'no_telepon' => $notelepon,
             'no_ktp' => $noktp,
             'no_rekening' => $norekening,
             'hapuskah' => 0
         ]);
-        Session::flash('flash_msg','Data Customer Berhasil Disimpan');
+
+        if($customer->wasRecentlyCreated)
+        {
+            Session::flash('flash_msg', 'Data Customer Berhasil Disimpan');
+        }
+        else {
+            Session::flash('error_msg','Data Customer Telah Ada');
+        }
         return redirect('customer');
     }
 
@@ -87,8 +100,8 @@ class CustomerController extends Controller
             'nama' => $customer->nama,
             'alamat' => $customer->alamat,
             'kota' => $customer->kota,
-            'pekerjaan' => $customer->pekerjaan,
             'email' => $customer->email,
+            'pekerjaan' => $customer->pekerjaan,
             'notelepon' => $customer->no_telepon,
             'noktp' => $customer->no_ktp,
             'norekening' => $customer->no_rekening

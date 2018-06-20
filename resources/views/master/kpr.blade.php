@@ -19,13 +19,13 @@
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                             <tr>
-                                <th>Tanggal Cair</th>
-                                <th>Tanggal Akad Kredit</th>
-                                <th>Tanggal Serah Terima Sertifikat</th>
+                                {{-- <th>Tanggal Cair</th> --}}
+                                {{-- <th>Tanggal Akad Kredit</th> --}}
+                                {{-- <th>Tanggal Serah Terima Sertifikat</th> --}}
+                                <th>Nomor Penjualan Rumah</th>
+                                <th>Bank</th>
                                 <th>Pemberi</th>
                                 <th>Penerima</th>
-                                <th>Bank</th>
-                                <th>Nomor Penjualan Rumah</th>
                                 <th>Kasir</th>
                                 <th>Edit</th>
                                 <th>Delete</th>
@@ -33,13 +33,13 @@
                         </thead>
                         <tfoot>
                             <tr>
-                                <th>Tanggal Cair</th>
-                                <th>Tanggal Akad Kredit</th>
-                                <th>Tanggal Serah Terima Sertifikat</th>
+                                {{-- <th>Tanggal Cair</th> --}}
+                                {{-- <th>Tanggal Akad Kredit</th> --}}
+                                {{-- <th>Tanggal Serah Terima Sertifikat</th> --}}
+                                <th>Nomor Penjualan Rumah</th>
+                                <th>Bank</th>
                                 <th>Pemberi</th>
                                 <th>Penerima</th>
-                                <th>Bank</th>
-                                <th>Nomor Penjualan Rumah</th>
                                 <th>Kasir</th>
                                 <th>Edit</th>
                                 <th>Delete</th>
@@ -47,26 +47,26 @@
                         </tfoot>
                         <tbody>
                             @foreach($kpr as $data)
-                            <tr>
-                                <td>{{$data->tanggal_cair}}</td>
+                        <tr id={{$data->id}}>
+                                {{-- <td>{{$data->tanggal_cair}}</td> --}}
 
-                                @if($data->tanggal_akad_kredit == "")
+                                {{-- @if($data->tanggal_akad_kredit == "")
                                 <td>Masih Kosong</td>
                                 @else
                                 <td>{{$data->tanggal_akad_kredit}}</td>
-                                @endif
+                                @endif --}}
 
-                                @if($data->tanggal_serah_terima_sertifikat == "")
+                                {{-- @if($data->tanggal_serah_terima_sertifikat == "")
                                 <td>Masih Kosong</td>
                                 @else
                                 <td>{{$data->tanggal_serah_terima_sertifikat}}</td>
                                 @endif
-                                
-                                
+                                 --}}
+                                 
+                                <td>{{$data->jual_rumah->nomor_nota}}</td>
+                                <td>{{$data->bank->nama}}</td>
                                 <td>{{$data->pemberi}}</td>
                                 <td>{{$data->penerima}}</td>
-                                <td>{{$data->bank->nama}}</td>
-                                <td>{{$data->jual_rumah->nomor_nota}}</td>
                                 <td>{{$data->kasir->karyawan->nama}}</td>
                                 <td>
                                     <button class="btn btnUbah btn-primary">Ubah</button>
@@ -92,25 +92,26 @@
                             <div class="modal-body">
                                 <form action="{{url('kpr/ubah')}}" method="post" id="formUbahKpr">
                                     {{csrf_field()}}
-                                     <p>
+                                     {{-- <p>
 										<label for="tanggalcairkpr" class="col-lg-4">Tanggal Cair KPR:</label>
 										<input type="date" id="tanggalcairUbahKpr" name="tanggalcair" class="col-lg-6" min="{{date('Y-m-d')}}" value="{{date('Y-m-d')}}"
 										    data-date-format="dd-mm-yyyy" data-date-viewmode="years" required>
 										<input type="hidden" value="{{date('Y-m-d')}}" name="ambiltanggalcairkpr">
-									</p>
-                                     <p>
+									</p> --}}
+                                     {{-- <p>
 										<label for="tanggalakadkreditkpr" class="col-lg-4">Tanggal Akad Kredit KPR:</label>
 										<input type="date" id="tanggalakadkreditUbahKpr" name="tanggalakadkredit" class="col-lg-6" min="{{date('Y-m-d')}}" value="{{date('Y-m-d')}}"
 										    data-date-format="dd-mm-yyyy" data-date-viewmode="years" required>
 										<input type="hidden" value="{{date('Y-m-d')}}" name="ambiltanggalakadkreditkpr">
-									</p>
-                                    <p>
+									</p> --}}
+                                    {{-- <p>
 										<label for="tanggalserahterimasertifikatkpr" class="col-lg-4">Tanggal Serah Terima Sertifikat Rumah:</label>
 										<input type="date" id="tanggalserahterimasertifikatUbahKpr" name="tanggalserahterimasertifikat" class="col-lg-6" min="{{date('Y-m-d')}}" value="{{date('Y-m-d')}}"
 										    data-date-format="dd-mm-yyyy" data-date-viewmode="years" required>
 										<input type="hidden" value="{{date('Y-m-d')}}" name="ambiltanggalserahterimasertifikatkpr">
-									</p>
+									</p> --}}
                                     <p>
+                                 
                                         <label class="col-lg-6">Pemberi: </label>
                                         <input type="text" class="col-lg-4" id="pemberiUbahKpr" name="pemberi" placeholder="Masukkan Pemberi KPR"
                                             required>
@@ -129,9 +130,9 @@
                                     </p>
                                     <p>
                                         <label class="col-lg-6">Penjualan Rumah: </label>
-                                        <select name="jualrumah" id="jualrumahUbahKpr" class="col-lg-4">
-                                            @foreach($jualrumah as $data)
-                                            <option value="{{$data->id}}">{{$data->nomor_nota}}</option>
+                                        <select  id="jualrumahUbahKpr" class="col-lg-4" name="jualrumah">
+                                            @foreach($jualrumah as $datajualrumah)
+                                            <option value="{{$datajualrumah->id}}">{{$datajualrumah->nomor_nota}}</option>
                                             @endforeach
                                         </select>
                                     </p>
@@ -144,7 +145,8 @@
 											
 										@endforeach
 										</select>
-									</p>
+                                    </p>
+                                    
                                     <p style="text-align:center">
                                         <button type="submit" class="btn btn-success" style="text-align:center" id="btnUbahKonfirmasi" class="btn btn-primary">
                                             <i class="fa fa-check"></i>Ubah</button>
@@ -197,24 +199,24 @@
                 <div class="modal-body">
                     <form action="{{url('kpr/tambah')}}" method="post" id="formTambahKpr">
                         {{csrf_field()}}
-                            <p>
+                            {{-- <p>
 										<label for="tanggalcairtambahkpr" class="col-lg-4">Tanggal Cair KPR:</label>
 										<input type="date" id="tanggalcairTambahKpr" name="tanggalcair" class="col-lg-6" min="{{date('Y-m-d')}}" value="{{date('Y-m-d')}}"
 										    data-date-format="dd-mm-yyyy" data-date-viewmode="years" required>
 										<input type="hidden" value="{{date('Y-m-d')}}" name="ambiltanggalcairkpr">
-									</p>
-                                     <p>
+									</p> --}}
+                                     {{-- <p>
 										<label for="tanggalakadkreditkpr" class="col-lg-4">Tanggal Akad Kredit KPR:</label>
 										<input type="date" id="tanggalakadkreditTambahKpr" name="tanggalakadkredit" class="col-lg-6" min="{{date('Y-m-d')}}" value="{{date('Y-m-d')}}"
 										    data-date-format="dd-mm-yyyy" data-date-viewmode="years" required disabled>
 										<input type="hidden" value="{{date('Y-m-d')}}" name="ambiltanggalakadkreditkpr">
-									</p>
-                                    <p>
+									</p> --}}
+                                    {{-- <p>
 										<label for="tanggalserahterimasertifikatkpr" class="col-lg-4">Tanggal Serah Terima Sertifikat Rumah:</label>
 										<input type="date" id="tanggalserahterimasertifikatTambahKpr" name="tanggalserahterimasertifikat" class="col-lg-6" min="{{date('Y-m-d')}}" value="{{date('Y-m-d')}}"
 										    data-date-format="dd-mm-yyyy" data-date-viewmode="years" required disabled>
 										<input type="hidden" value="{{date('Y-m-d')}}" name="ambiltanggalserahterimasertifikatkpr">
-									</p>
+									</p> --}}
                                     <p>
                                         <label class="col-lg-6">Pemberi: </label>
                                         <input type="text" class="col-lg-4" id="pemberiTambahKpr" name="pemberi" placeholder="Masukkan Pemberi KPR"
@@ -282,7 +284,7 @@
             $('.btnUbah').on('click', function (e) {
                 e.preventDefault();
                 var id = $(this).closest('tr').attr('id');
-                $.post("{{url('cicilan/lihat')}}", {
+                $.post("{{url('kpr/lihat')}}", {
                         'id': id,
                         '_token': "{{csrf_token()}}"
                     },
@@ -298,7 +300,7 @@
                         $('#kasirUbahKpr').val(data.kasir);
                     }
                 );
-                $('#modalUbahCicilan').modal('show');
+                $('#modalUbahKpr').modal('show');
             });
 
         });

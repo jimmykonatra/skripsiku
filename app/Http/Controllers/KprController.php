@@ -21,7 +21,7 @@ class KprController extends Controller
     {
         $kpr = KPR::where('hapuskah',0)->get();
         $bank = Bank::where('hapuskah',0)->get();
-        $jualrumah = JualRumah::where('hapuskah',0)->get();
+        $jualrumah = JualRumah::where('jenis_bayar','KPR')->where('status_jual_rumah','Proses KPR')->where('hapuskah',0)->get();
         $kasir = User::where('jabatan','Kasir')->get();
         
         return view ('master.kpr', compact('kpr','bank','jualrumah','kasir'));
@@ -31,7 +31,7 @@ class KprController extends Controller
     {
         $kpr = KPR::where('hapuskah', 0)->get();
         $bank = Bank::where('hapuskah', 0)->get();
-        $jualrumah = JualRumah::where('hapuskah', 0)->get();
+        $jualrumah = JualRumah::where('status_jual_rumah', 'Proses KPR')->where('hapuskah', 0)->get();
         $kasir = User::where('jabatan', 'Kasir')->get();
 
         return view('kpr.updatetanggalakadkredit', compact('kpr', 'bank', 'jualrumah', 'kasir'));
@@ -41,7 +41,7 @@ class KprController extends Controller
     {
         $kpr = KPR::where('hapuskah', 0)->where('tanggal_akad_kredit','!=','null')->get();
         $bank = Bank::where('hapuskah', 0)->get();
-        $jualrumah = JualRumah::where('hapuskah', 0)->get();
+        $jualrumah = JualRumah::where('status_jual_rumah', 'Proses KPR')->where('hapuskah', 0)->get();
         $kasir = User::where('jabatan', 'Kasir')->get();
 
         return view('kpr.updatetanggalcair', compact('kpr', 'bank', 'jualrumah', 'kasir'));
@@ -51,7 +51,7 @@ class KprController extends Controller
     {
         $kpr = KPR::where('hapuskah', 0)->where('tanggal_cair','!=','null')->where('tanggal_akad_kredit','!=','null')->get();
         $bank = Bank::where('hapuskah', 0)->get();
-        $jualrumah = JualRumah::where('hapuskah', 0)->get();
+        $jualrumah = JualRumah::where('status_jual_rumah','Proses KPR')->where('hapuskah', 0)->get();
         $kasir = User::where('jabatan', 'Kasir')->get();
 
         return view('kpr.updatetanggalserahterimasertifikat', compact('kpr', 'bank', 'jualrumah', 'kasir'));
@@ -74,7 +74,38 @@ class KprController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $tanggalcair = $request->tanggalcair;
+        $pemberi = $request->pemberi;
+        $penerima = $request->penerima;
+        $bank = $request->bank;
+        $jualrumah = $request->jualrumah;
+        $kasir = $request->kasir;
+
+        // Kpr::create([
+        //     'pemberi' => $pemberi,
+        //     'penerima' => $penerima,
+        //     'bank_id' => $bank,
+        //     'jual_rumah_id' => $jualrumah,
+        //     'kasir_id' => $kasir,
+        //     'hapuskah' => 0 
+        // ]);
+
+        $kpr = Kpr::firstOrCreate(
+            ['bank_id' => $bank, 'jual_rumah_id' => $jualrumah],
+            [
+                'pemberi' => $pemberi,
+                'penerima' => $penerima,
+                'kasir_id' => $kasir,
+                'hapuskah' => 0
+            ]
+        );
+        if($kpr->wasRecentlyCreated){
+            Session::flash('flash_msg', 'Data KPR Berhasil Disimpan');
+        }
+        else {
+            Session::flash('error_msg', 'Data Kpr Sudah Ada');
+        }
+        return redirect('kpr');
     }
 
     /**
@@ -174,10 +205,9 @@ class KprController extends Controller
         $tanggalcair = $request->tanggalcair;
 
         $kpr = Kpr::find($id);
-
         $kpr->tanggal_cair = $tanggalcair;
-
         $kpr->save();
+
         Session::flash('flash_msg', 'Data Tanggal Cair Berhasil Diubah');
         return redirect('updatetanggalcair');
     }
@@ -197,7 +227,7 @@ class KprController extends Controller
     }
 
     public function updatetanggalserahterimasertifikatupdate(Request $request)
-    {
+    {   
         $id = $request->updatetanggalserahterimasertifikat;
         $tanggalserahterimasertifikat = $request->tanggalserahterimasertifikat;
 
@@ -206,6 +236,20 @@ class KprController extends Controller
         $kpr->tanggal_serah_terima_sertifikat = $tanggalserahterimasertifikat;
 
         $kpr->save();
+
+       $nomorjualrumah = $request->jualrumah;
+       $jualrumah = JualRumah::find($nomorjualrumah);
+        $jualrumah->status_jual_rumah = 'Selesai';
+        $jualrumah->save();
+       
+   
+        // $jualrumah = JualRumah::find($nomorjualrumah);
+        // dd($jualrumah);
+
+        // $jualrumah->status_jual_rumah = 'Selesai';
+        // $jualrumah->save();
+        
+        
         Session::flash('flash_msg', 'Data Tanggal Serah Terima Sertifikat Berhasil Diubah');
         return redirect('updatetanggalserahterimasertifikat');
     }
@@ -217,9 +261,11 @@ class KprController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
-        $kpr = Kpr::find($request->kpr);
+    public function destroy(Request $request)
+    {   
+        $id = $request->kpr;
+
+        $kpr = Kpr::find($id);
         $kpr->hapuskah = 1;
         $kpr->save();
 

@@ -27,12 +27,13 @@
                             <br>
                             <br>
                             <br>
+                            
                             <div class="col-lg-8">
-                                <label> Cek Berkas </label>
+                                <label class="cekberkas"><b>Cek Berkas</b></label>
                                 <br> @foreach($berkas as $berkas)
-                                <div class="row">
-                                    <div class="col-sm">
-                                        <input type="checkbox" name="berkas[]" value="{{$berkas->id}}">{{$berkas->nama}}
+                                <div class="row" >
+                                    <div>
+                                        <input type="checkbox" class="cekberkas" name="berkas[]" value="{{$berkas->id}}">  <span class="cekberkas">{{$berkas->nama}}</span>
                                     </div>
                                 </div>
                                 @endforeach
@@ -66,10 +67,10 @@
                             <input class="col-lg-4" type="number" id="total" name="total" required>
                              --}}
                             <label class="col-lg-4" for="jenisbayar">Jenis Bayar</label>
-                            <select class="col-lg-4" name="jenisbayar" id="jenisbayar">
+                            <select class="col-lg-4" name="jenisbayar"  id="jenisbayar">
                                 
-                                <option value="Cash">Cash</option>
                                 <option value="KPR">KPR</option>
+                                <option value="Cash">Cash</option>
                               
                             </select>
                             <br>
@@ -145,6 +146,35 @@
                     $('#jatuhtempo').val(tanggalbuat);
                 }
             });
+
+            // $('#tipeTambahRumah').on('change', function (e) {
+			// 	var blok = $('#tipeTambahRumah option:selected').attr('class');
+			// 	$('#blokTambahRumah').val(blok);
+			// });
+            
+            $('#jenisbayar').on('change', function(e)
+            {   
+                
+                if(this.value == "Cash")
+                {   
+                    $('.cekberkas').hide();
+                }
+                else
+                {
+                   $('.cekberkas').show();
+                }
+                
+            });
+                
+               
+
+            // }
+
+            // $('#jenisbayar').on('change',function (e){
+            //    document.getElementById("#cekberkas").style.display = 'block';
+            // });
+
+            
 
         });
     </script>

@@ -14,29 +14,29 @@
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                             <tr>
-                                <th>Tanggal Cair</th>
                                 <th>Tanggal Akad Kredit</th>
+                                <th>Tanggal Cair</th>
                                 <th>Tanggal Serah Terima Sertifikat</th>
                                 <th>Pemberi</th>
                                 <th>Penerima</th>
                                 <th>Bank</th>
                                 <th>Nomor Penjualan Rumah</th>
                                 <th>Kasir</th>
-                                <th>Ubah</th>
+                                <th>Update</th>
                                 
                             </tr>
                         </thead>
                         <tfoot>
                             <tr>
-                                <th>Tanggal Cair</th>
                                 <th>Tanggal Akad Kredit</th>
+                                <th>Tanggal Cair</th>
                                 <th>Tanggal Serah Terima Sertifikat</th>
                                 <th>Pemberi</th>
                                 <th>Penerima</th>
                                 <th>Bank</th>
                                 <th>Nomor Penjualan Rumah</th>
                                 <th>Kasir</th>
-                                <th>Ubah</th>
+                                <th>Update</th>
                                 
                             </tr>
                         </tfoot>
@@ -44,18 +44,18 @@
                             @foreach($kpr as $data)
                             <tr id="{{$data->id}}">
 
-                                @if($data->tanggal_akad_kredit == "")
-                                <td>Masih Kosong</td>
-                                @else
-                                <td>{{$data->tanggal_cair}}</td>
-                                @endif
-                                
-                                @if($data->tanggal_akad_kredit == "")
-                                <td>Masih Kosong</td>
-                                @else
-                                <td>{{$data->tanggal_akad_kredit}}</td>
-                                @endif
-
+                                    @if($data->tanggal_akad_kredit == "")
+                                    <td>Masih Kosong</td>
+                                    @else
+                                    <td>{{$data->tanggal_akad_kredit}}</td>
+                                    @endif
+                                    
+                                    @if($data->tanggal_cair == "")
+                                    <td>Masih Kosong</td>
+                                    @else
+                                    <td>{{$data->tanggal_cair}}</td>
+                                    @endif
+                                    
                                 @if($data->tanggal_serah_terima_sertifikat == "")
                                 <td>Masih Kosong</td>
                                 @else
@@ -68,7 +68,7 @@
                                 <td>{{$data->jual_rumah->nomor_nota}}</td>
                                 <td>{{$data->kasir->karyawan->nama}}</td>
                                 <td>
-                                    <button class="btn btnUbah btn-primary">Ubah</button>
+                                    <button class="btn btnUbah btn-primary">Update</button>
                                 </td>
                                 
                             </tr>

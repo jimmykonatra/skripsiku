@@ -49,14 +49,25 @@ class CicilanController extends Controller
         $lamacicilan = $request->lamacicilan;
         $nominal = $request->nominal;
 
-        Cicilan::create([
-            'lama_cicilan' => $lamacicilan,
-            'nominal' => $nominal,
-            'tipe_id' => $tipe,
-            'bank_id' => $bank,
-            'hapuskah' => 0
-        ]);
-        Session::flash('flash_msg', 'Data Cicilan Berhasil Disimpan');
+        // Cicilan::create([
+        //     'lama_cicilan' => $lamacicilan,
+        //     'nominal' => $nominal,
+        //     'tipe_id' => $tipe,
+        //     'bank_id' => $bank,
+        //     'hapuskah' => 0
+        // ]);
+
+        $cicilan = Cicilan::firstOrCreate(
+            ['tipe_id' => $tipe, 'bank_id' => $bank, 'nominal' => $nominal, 'lama_cicilan' => $lamacicilan],['hapuskah' => 0]
+        );
+        if($cicilan->wasRecentlyCreated)
+        {
+            Session::flash('flash_msg', 'Data Cicilan Berhasil Disimpan');
+        }
+        else {
+            Session::flash('error_msg', 'Data Cicilan Sudah Ada');
+        }
+        
         return redirect('cicilan');
     }
 

@@ -14,8 +14,8 @@
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                             <tr>
-                                <th>Tanggal Cair</th>
                                 <th>Tanggal Akad Kredit</th>
+                                <th>Tanggal Cair</th>
                                 <th>Tanggal Serah Terima Sertifikat</th>
                                 <th>Pemberi</th>
                                 <th>Penerima</th>
@@ -28,8 +28,8 @@
                         </thead>
                         <tfoot>
                             <tr>
-                                <th>Tanggal Cair</th>
                                 <th>Tanggal Akad Kredit</th>
+                                <th>Tanggal Cair</th>
                                 <th>Tanggal Serah Terima Sertifikat</th>
                                 <th>Pemberi</th>
                                 <th>Penerima</th>
@@ -43,8 +43,12 @@
                         <tbody>
                             @foreach($kpr as $data)
                             <tr id="{{$data->id}}">
+                                @if($data->tanggal_cair == "")
+                                <td>Masih Kosong</td>
+                                @else
                                 <td>{{$data->tanggal_cair}}</td>
-
+                                @endif
+                                
                                 @if($data->tanggal_akad_kredit == "")
                                 <td>Masih Kosong</td>
                                 @else
@@ -63,7 +67,7 @@
                                 <td>{{$data->jual_rumah->nomor_nota}}</td>
                                 <td>{{$data->kasir->karyawan->nama}}</td>
                                 <td>
-                                    <button class="btn btnUbah btn-primary">Ubah</button>
+                                    <button class="btn btnUbah btn-primary">Update</button>
                                 </td>
                                 
                             </tr>
@@ -91,7 +95,7 @@
 										<input type="hidden" value="{{date('Y-m-d')}}" name="ambiltanggalakadkreditkpr">
 									</p>
                                      <p>
-                                        <input type="hidden" id="idUbah" name="updatetanggalserahterimasertifikat">
+                                       
 										<label for="tanggalcairkpr" class="col-lg-4">Tanggal Cair KPR:</label>
 										<input type="date" id="tanggalcairUbahKpr" name="tanggalcair" class="col-lg-6" min="{{date('Y-m-d')}}" value="{{date('Y-m-d')}}"
 										    data-date-format="dd-mm-yyyy" data-date-viewmode="years" required disabled>
@@ -99,6 +103,7 @@
 									</p>
                                      
                                     <b>
+                                         <input type="hidden" id="idUbah" name="updatetanggalserahterimasertifikat">
 										<label for="tanggalserahterimasertifikatkpr" class="col-lg-4">Tanggal Serah Terima Sertifikat Rumah:</label>
 										<input type="date" id="tanggalserahterimasertifikatUbahKpr" name="tanggalserahterimasertifikat" class="col-lg-6" min="{{date('Y-m-d')}}" value="{{date('Y-m-d')}}" style="border-style:solid"
 										    data-date-format="dd-mm-yyyy" data-date-viewmode="years" required>
@@ -123,13 +128,16 @@
                                     </p>
                                     <p>
                                         <label class="col-lg-6">Penjualan Rumah: </label>
-                                        <select name="jualrumah" id="jualrumahUbahKpr" class="col-lg-4" disabled>
+                                        <select id="jualrumahUbahKpr" class="col-lg-4" name="jualrumah" disabled>
                                             @foreach($jualrumah as $data)
                                             <option value="{{$data->id}}">{{$data->nomor_nota}}</option>
                                             @endforeach
                                         </select>
                                     </p>
-                                    <p>
+                                    {{-- <p>
+                                        <label class="col-lg-6">Nomor Jual Rumah: </label>
+                                    <input type="text" class="col-lg-4" id="jualrumahUbahKpr" name="jualrumah" disabled>
+                                    <p> --}}
 										<label class="col-lg-6">Kasir: </label>
 										<select name="kasir" id="kasirUbahKpr" disabled>
 										@foreach($kasir as $data)
@@ -140,7 +148,7 @@
 										</select>
 									</p>
                                     <p style="text-align:center">
-                                        <button type="submit" class="btn btn-success" style="text-align:center" id="btnUbahKonfirmasi" class="btn btn-primary">
+                                        <button type="submit"  class="btn btn-success" style="text-align:center" id="btnUbahKonfirmasi" class="btn btn-primary" onclick="makeEnable()">
                                             <i class="fa fa-check"></i>Ubah</button>
                                     </p>
                                 </form>
@@ -259,6 +267,10 @@
 
     @include('layouts.footer')
     <script>
+         function makeEnable() {
+                var x = document.getElementById('jualrumahUbahKpr');
+                x.disabled = false;
+            }
         $(document).ready(function () {
 
             // $('.btnHapus').on('click', function (e) {
@@ -272,6 +284,7 @@
             //     e.preventDefault();
             //     $('#modalTambahCicilan').modal('show');
             // });
+          
 
             $('.btnUbah').on('click', function (e) {
                 e.preventDefault();

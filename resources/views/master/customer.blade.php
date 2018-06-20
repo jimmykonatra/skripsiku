@@ -23,8 +23,8 @@
 								<th>Alamat</th>
 								<th>Kota</th>
 								<th>Email</th>
-								<th>No Telepon</th>
 								<th>Pekerjaan</th>
+								<th>No Telepon</th>
 								<th>No KTP</th>
 								<th>No Rekening</th>
 								<th>Edit</th>
@@ -37,8 +37,8 @@
 								<th>Alamat</th>
 								<th>Kota</th>
 								<th>Email</th>
-								<th>No Telepon</th>
 								<th>Pekerjaan</th>
+								<th>No Telepon</th>
 								<th>No KTP</th>
 								<th>No Rekening</th>
 								<th>Edit</th>
@@ -99,14 +99,15 @@
 										<input type="email" class="col-lg-4" id="emailUbahCustomer" name="email" placeholder="Masukkan Alamat Email" required>
 									</p>
 									<p>
+										<label class="col-lg-6">Pekerjaan: </label>
+										<input type="text" class="col-lg-4" id="pekerjaanUbahCustomer" name="pekerjaan" placeholder="Masukkan Pekerjaan Customer" required>
+									</p>
+									<p>
 										<label class="col-lg-6">Nomor Telepon: </label>
 										<input type="tel" pattern="^[+]?[0-9]{9,15}$" class="col-lg-4" id="noteleponUbahCustomer" name="notelepon" placeholder="Masukkan No Telepon"
 										    required>
 									</p>
-									<p>
-										<label class="col-lg-6">Pekerjaan: </label>
-										<input type="text" class="col-lg-4" id="pekerjaanUbahCustomer" name="pekerjaan" placeholder="Masukkan Pekerjaan Customer" required>
-									</p>
+									
 									<p>
 										<label class="col-lg-6">Nomor KTP: </label>
 										<input type="number" class="col-lg-4" id="noktpUbahCustomer" name="noktp" placeholder="Masukkan Nomor KTP" required>
@@ -186,15 +187,16 @@
 							<input type="email" class="col-lg-4" id="emailTambahCustomer" name="email" placeholder="Masukkan Alamat Email" required>
 						</p>
 						<p>
-							<label class="col-lg-6">Nomor Telepon: </label>
-							<input type="tel" pattern="^[+]?[0-9]{9,15}$" class="col-lg-4" id="noteleponTambahCustomer" name="notelepon" placeholder="Masukkan No Telepon"
-							    required>
-						</p>
-						<p>
 							<label class="col-lg-6">Pekerjaan: </label>
 										<input type="text" class="col-lg-4" id="pekerjaanTambahCustomer" name="pekerjaan" placeholder="Masukkan Pekerjaan Customer" required>
 									</p>
 						<p>
+						<p>
+							<label class="col-lg-6">Nomor Telepon: </label>
+							<input type="tel" pattern="^[+]?[0-9]{9,15}$" class="col-lg-4" id="noteleponTambahCustomer" name="notelepon" placeholder="Masukkan No Telepon"
+							    required>
+						</p>
+						
 							<label class="col-lg-6">Nomor KTP: </label>
 							<input type="number" class="col-lg-4" id="noktpTambahCustomer" name="noktp" placeholder="Masukkan Nomor KTP" required>
 						</p>

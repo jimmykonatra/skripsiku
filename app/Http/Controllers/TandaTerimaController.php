@@ -8,6 +8,7 @@ use App\User;
 use App\TandaTerima;
 use Illuminate\Support\Facades\Session;
 use App\Rumah;
+use App\Kpr;
 
 
 class TandaTerimaController extends Controller

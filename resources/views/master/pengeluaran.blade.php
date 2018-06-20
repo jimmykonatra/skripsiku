@@ -86,7 +86,7 @@
 									<div class="row col-lg-12">
 										<label for="tanggal" class="col-lg-4">Tanggal Buat</label>
 										<div class="input-group date col-lg-6" data-provide="datepicker">
-										<input type="text" class="form-control tanggalPengeluaran" style="display:inline-block">
+										<input type="text" class="form-control tanggalPengeluaran" style="display:inline-block" name="tanggal">
 										<div class="input-group-addon">
 											<span class="glyphicon glyphicon-th"></span>
 										</div>

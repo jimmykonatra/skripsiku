@@ -15,8 +15,8 @@ class CreateKprsTable extends Migration
     {
         Schema::create('kprs', function (Blueprint $table) {
             $table->increments('id');
-            $table->date('tanggal_cair');
-            $table->date('tanggal_akad_kredit');
+            $table->date('tanggal_cair')->nullable();
+            $table->date('tanggal_akad_kredit')->nullable();
             $table->date('tanggal_serah_terima_sertifikat')->nullable();
             $table->string('pemberi');
             $table->string('penerima');

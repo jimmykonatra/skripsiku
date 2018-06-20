@@ -83,10 +83,9 @@ class RumahController extends Controller
         // ]);
 
         $rumah = Rumah::firstOrCreate(
-            [ 'nomor' => $nomor, 'tipe_id' => $tipe],
+            [ 'nomor' => $nomor, 'tipe_id' => $tipe, 'perumahan_id' => $perumahan],
             
-            ['perumahan_id' => $perumahan,
-                'tahun' => $tahun,
+            [   'tahun' => $tahun,
                 'nomor_sertifikat' => null,
                 'status_pembangunan' => 'Belum Dibangun',
                 'status_booking' => 'Kosong',

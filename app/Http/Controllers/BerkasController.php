@@ -40,11 +40,22 @@ class BerkasController extends Controller
     {
         $nama = $request->nama;
 
-        Berkas::create([
-            'nama' => $nama,
-            'hapuskah' => 0
-        ]);
-        Session::flash('flash_msg', 'Data Berkas Berhasil Disimpan');
+        // Berkas::create([
+        //     'nama' => $nama,
+        //     'hapuskah' => 0
+        // ]);
+
+        $berkas = Berkas::firstOrCreate(
+            ['nama' => $nama]
+        );
+
+        if($berkas->wasRecentCreated)
+        {
+            Session::flash('flash_msg', 'Data Berkas Berhasil Disimpan');
+        }
+        else {
+            Session::flash('error_msg', 'Data Berkas Sudah Ada');
+        }
         return redirect('berkas');
     }
 

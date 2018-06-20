@@ -42,14 +42,29 @@ class BankController extends Controller
         $notelepon = $request->notelepon;
         $alamat = $request->alamat;
 
-        Bank::create([
-            'nama' => $nama,
-            'contact_person' => $contactperson,
-            'no_telepon' => $notelepon,
-            'alamat' => $alamat,
-            'hapuskah' => 0
-        ]);
-            Session::flash('flash_msg','Data Bank Berhasil Disimpan');
+        // Bank::create([
+        //     'nama' => $nama,
+        //     'contact_person' => $contactperson,
+        //     'no_telepon' => $notelepon,
+        //     'alamat' => $alamat,
+        //     'hapuskah' => 0
+        // ]);
+
+        $bank = Bank::firstOrCreate(
+            ['nama' => $nama],
+            ['contact_person ' => $contactperson,
+                'no_telepon ' => $notelepon,
+                'alamat ' => $alamat,
+                'hapuskah' => 0]);
+
+        if($bank->wasRecentyCreated)
+        {
+            Session::flash('flash_msg', 'Data Bank Berhasil Disimpan');
+        }
+        else {
+            Session::flash('error_msg', 'Data Bank Sudah Ada');
+        }
+            
             return redirect('bank');
     }
 

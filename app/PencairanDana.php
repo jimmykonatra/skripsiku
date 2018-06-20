@@ -12,4 +12,8 @@ class PencairanDana extends Model
     {
         return $this->belongsTo(JualRumah::class, 'pencairan_dana_id');
     }
+    public function getTanggalCairDanaAttribute($value)
+    {
+        return date('d-m-Y', strtotime($value));
+    }
 }

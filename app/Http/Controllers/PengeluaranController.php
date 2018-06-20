@@ -110,7 +110,9 @@ class PengeluaranController extends Controller
     {
         $id = $request->pengeluaran;
         $jenispengeluaran = $request->jenispengeluaran;
-        $tanggal = $request->tanggal;
+        $tgl = $request->tanggal;
+        $tanggal = Pengeluaran::changeDateFormat($tgl);
+
         $nominal = $request->nominal;
         $keterangan = $request->keterangan;
         $statuslunas = $request->statuslunas;
