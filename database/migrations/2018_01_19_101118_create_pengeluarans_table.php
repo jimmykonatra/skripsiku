@@ -21,6 +21,7 @@ class CreatePengeluaransTable extends Migration
             $table->string('status_lunas');
             $table->unsignedInteger('kasir_id');
             $table->unsignedInteger('jenis_pengeluaran_id');
+            $table->unsignedInteger('pembangunan_id');
             $table->boolean('hapuskah');
             $table->timestamps();
         });

@@ -30,19 +30,17 @@
                             
                             <div class="col-lg-8">
                                 <label class="cekberkas"><b>Cek Berkas</b></label>
-                                <br> @foreach($berkas as $berkas)
+                                <br> @foreach($berkas as $data)
                                 <div class="row" >
                                     <div>
-                                        <input type="checkbox" class="cekberkas" name="berkas[]" value="{{$berkas->id}}">  <span class="cekberkas">{{$berkas->nama}}</span>
+                                        <input type="checkbox" class="cekberkas" name="berkas[]" value="{{$data->id}}"><span class="cekberkas">{{$data->nama}}</span>
                                     </div>
                                 </div>
                                 @endforeach
-
-
                             </div>
                             <br>
-                            <label class="col-lg-4" for="keterangan">Keterangan</label>
-                            <input class="col-lg-4" type="text" id="keterangan" name="keterangan">
+                        <label class="col-lg-4" for="keterangan">Keterangan</label>
+                        <input class="col-lg-4" type="text" id="keterangan" name="keterangan">
                         </div>
                         <div class="col-lg-6 pull-left">
 
@@ -83,9 +81,9 @@
                                 <option value="{{$rumah->id}}">{{$rumah->tipe->blok}} - {{$rumah->nomor}}</option>
                                 @endforeach
                             </select> --}}
-                            
-                            <br>
 
+
+                            <br>
                             <h3>Mengetahui</h3>
                             <label class="col-lg-4" for="marketing">Marketing</label>
                             <select class="col-lg-4" name="marketing" id="marketing">
@@ -154,7 +152,6 @@
             
             $('#jenisbayar').on('change', function(e)
             {   
-                
                 if(this.value == "Cash")
                 {   
                     $('.cekberkas').hide();
@@ -162,8 +159,7 @@
                 else
                 {
                    $('.cekberkas').show();
-                }
-                
+                }  
             });
                 
                

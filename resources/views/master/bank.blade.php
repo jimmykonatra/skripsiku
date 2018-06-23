@@ -40,12 +40,12 @@
 							</tr>
 						</tfoot>
 						<tbody>
-							@foreach($bank as $bank)
-							<tr id="{{$bank->id}}">
-								<td>{{$bank->nama}}</td>
-                                <td>{{$bank->contact_person}}</td>
-                                <td>{{$bank->no_telepon}}</td>
-								<td>{{$bank->alamat}}</td>
+							@foreach($bank as $data)
+							<tr id="{{$data->id}}">
+								<td>{{$data->nama}}</td>
+                                <td>{{$data->contact_person}}</td>
+                                <td>{{$data->no_telepon}}</td>
+								<td>{{$data->alamat}}</td>
 								<td>
 									<button class="btn btnUbah btn-primary">Ubah</button>
 								</td>
@@ -105,12 +105,12 @@
 					<div class="modal-dialog" role="document">
 						<div class="modal-content">
 							<div class="modal-header">
-								<h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+								<h5 class="modal-title" id="exampleModalLabel">Hapus Data Bank</h5>
 								<button class="close" type="button" data-dismiss="modal" aria-label="Close">
 									<span aria-hidden="true">×</span>
 								</button>
 							</div>
-							<div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+							<div class="modal-body">Apakah anda yakin ingin menghapus data bank ini?</div>
 							<div class="modal-footer">
 								<button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
 								<a href="#" class="btn btn-danger" onclick="event.preventDefault(); document.getElementById('hapus-form').submit();">Hapus</a>

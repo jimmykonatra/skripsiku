@@ -18,6 +18,7 @@ class PengeluaransTableSeeder extends Seeder
             'status_lunas' => 'Hutang',
             'kasir_id' => 2,
             'jenis_pengeluaran_id' => 2,
+            'pembangunan_id' => 1,
             'hapuskah' => 0
         ]);
 
@@ -28,6 +29,7 @@ class PengeluaransTableSeeder extends Seeder
             'status_lunas' => 'Lunas',
             'kasir_id' => 1,
             'jenis_pengeluaran_id' => 1,
+            'pembangunan_id' => 1,
             'hapuskah' => 0
         ]);
         DB::table('pengeluarans')->insert([
@@ -37,6 +39,7 @@ class PengeluaransTableSeeder extends Seeder
             'status_lunas' => 'Lunas',
             'kasir_id' => 1,
             'jenis_pengeluaran_id' => 1,
+            'pembangunan_id' => 1,
             'hapuskah' => 0
         ]);
     }

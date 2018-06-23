@@ -86,10 +86,10 @@ class JualRumahController extends Controller
         $berkas = $request->berkas;
         $keterangan = $request->keterangan;
         $jenisbayar = $request->jenisbayar;
-        $jumlahberkas = Berkas::all()->count(); //untuk ambil jumlah berkas 
+        //untuk ambil jumlah total semua berkas yang ada di database
+        $jumlahberkas = Berkas::all()->count(); 
         $marketing = $request->marketing;
         $kasir = $request->kasir;
-
        
 
                 
@@ -123,6 +123,7 @@ class JualRumahController extends Controller
 
         $dataRumah = Rumah::where('id', '=', $rumah)->first();
         $dataRumah->status_terjual = 'Terjual';
+        $dataRumah->status_booking = 'Terbooking';
         $dataRumah->save(); 
 
         foreach ($berkas as $data) {

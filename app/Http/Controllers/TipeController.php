@@ -98,8 +98,7 @@ class TipeController extends Controller
         $tipe = Tipe::firstOrCreate(
             ['nama' => $nama,
             'jalan' => $jalan,
-            'blok' =>  $blok],
-            [
+            'blok' =>  $blok,
                 'luas_tanah' => $luastanah,
                 'luas_bangunan' => $luasbangunan,
                 'kamar_tidur' => $kamartidur,
@@ -109,7 +108,9 @@ class TipeController extends Controller
                 'harga_jual' => $hargajual,
                 'uang_muka' => $uangmuka,
                 'deskripsi' => $deskripsi,
-                'lainnya' => $lainnya,
+                'lainnya' => $lainnya
+            ],
+            [
                 'gambar_rumah' => $uploadgambarrumah,
                 'gambar_denah' => $uploadgambardenah,
                 'hapuskah' => 0
@@ -120,7 +121,7 @@ class TipeController extends Controller
             Session::flash('flash_msg', 'Data Tipe Berhasil Disimpan');
         }
         else {
-            Session::flash('error_msg', 'Data Tipe Sudah Ada');
+            Session::flash('warning_msg', 'Data Tipe Telah Terdaftar');
         }
         return redirect('tipe');
     }

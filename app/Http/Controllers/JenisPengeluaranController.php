@@ -43,7 +43,7 @@ class JenisPengeluaranController extends Controller
         //     'nama' => $nama,
         //     'hapuskah' => 0
         // ]);
-        $jenispengeluaran = JenisPengeluaran::firstOrCreate(
+        $jenispengeluaran = JenisPengeluaran::updateOrCreate(
             ['nama' => $nama],
             ['hapuskah' => 0]
         );
@@ -52,7 +52,7 @@ class JenisPengeluaranController extends Controller
             Session::flash('flash_msg', 'Data Jenis Pengeluaran Berhasil Disimpan');
         }
         else {
-            Session::flash('error_msg', 'Data Jenis Pengeluaran Sudah Ada');
+            Session::flash('warning_msg', 'Data Jenis Pengeluaran Telah Terdaftar');
         }
         
         return redirect('jenispengeluaran');

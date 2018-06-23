@@ -82,22 +82,24 @@ class RumahController extends Controller
         //     'hapuskah' => 0
         // ]);
 
-        $rumah = Rumah::firstOrCreate(
-            [ 'nomor' => $nomor, 'tipe_id' => $tipe, 'perumahan_id' => $perumahan],
-            
-            [   'tahun' => $tahun,
+        $rumah = Rumah::updateOrCreate(
+            [ 'nomor' => $nomor, 'tipe_id' => $tipe, 'perumahan_id' => $perumahan,
+                'tahun' => $tahun,
                 'nomor_sertifikat' => null,
                 'status_pembangunan' => 'Belum Dibangun',
                 'status_booking' => 'Kosong',
                 'status_terjual' => 'Belum Terjual',
-                'keterangan' => $keterangan,
+                'keterangan' => $keterangan
+            ],
+            
+            [   
                 'hapuskah' => 0
             ]);
 
         if ($rumah->wasRecentlyCreated) {
             Session::flash('flash_msg', 'Data Rumah Berhasil Disimpan');
         } else {
-            Session::flash('error_msg', 'Data Rumah Sudah Ada');
+            Session::flash('warning_msg', 'Data Rumah Telah Terdaftar');
         }
         
         return redirect('rumah');    

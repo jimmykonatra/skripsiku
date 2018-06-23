@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\DB;
 
 class Pengeluaran extends Model
 {
-        protected $fillable = ['tanggal', 'nominal', 'keterangan', 'status_lunas', 'kasir_id', 'jenis_pengeluaran_id', 'hapuskah'];
+        protected $fillable = ['tanggal', 'nominal', 'keterangan', 'status_lunas', 'kasir_id', 'jenis_pengeluaran_id','pembangunan_id','hapuskah'];
 
 
         public function jenis_pengeluaran()
@@ -18,6 +18,10 @@ class Pengeluaran extends Model
         public function kasir()
         {
                 return $this->belongsTo(User::class, 'kasir_id');
+        }
+        public function pembangunan()
+        {
+                return $this->belongsTo(Pembangunan::class);
         }
         public function getTanggalAttribute($value)
         {
@@ -32,4 +36,6 @@ class Pengeluaran extends Model
                 $x = date_create_from_format('d/m/Y', $value);
                 return $x->format('Y-m-d');
         }
+
+
 }

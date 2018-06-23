@@ -22,4 +22,8 @@ class Rumah extends Model
     {
         return $this->belongsTo(JualRumah::class);
     }
+    public function pembangunan()
+    {
+        return $this->hasOne(Pembangunan::class);
+    }
 }

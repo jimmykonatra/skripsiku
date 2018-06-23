@@ -22,10 +22,18 @@ class CreateForeignKeyTable extends Migration
             $table->foreign('jual_rumah_id')->references('id')->on('jual_rumahs')->onDelete('cascade')->onUpdate('cascade');
         });
 
+        Schema::table('pembangunans', function (Blueprint $table) {
+            $table->foreign('rumah_id')->references('id')->on('rumahs')->onDelete('cascade')->onUpdate('cascade');   
+        });
+        
+
         Schema::table('pengeluarans', function (Blueprint $table) {
             $table->foreign('kasir_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('jenis_pengeluaran_id')->references('id')->on('jenis_pengeluarans')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('pembangunan_id')->references('id')->on('pembangunans')->onDelete('cascade')->onUpdate('cascade');
         });
+
+        
 
         Schema::table('rumahs', function (Blueprint $table) {
             $table->foreign('perumahan_id')->references('id')->on('perumahans')->onDelete('cascade')->onUpdate('cascade');
@@ -35,7 +43,7 @@ class CreateForeignKeyTable extends Migration
         Schema::table('tanda_terimas', function (Blueprint $table) {
             $table->foreign('kasir_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('jual_rumah_id')->references('id')->on('jual_rumahs')->onDelete('cascade')->onUpdate('cascade');
-                        
+
         });
 
         Schema::table('cicilans', function (Blueprint $table) {

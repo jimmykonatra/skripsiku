@@ -53,11 +53,22 @@ Route::post('perumahan/lihat', 'PerumahanController@edit');
 Route::post('perumahan/ubah', 'PerumahanController@update');
 Route::post('perumahan/tambah', 'PerumahanController@store');
 
+Route::get('pembangunan', 'PembangunanController@index');
+Route::post('pembangunan/hapus', 'PembangunanController@destroy');
+Route::post('pembangunan/lihat', 'PembangunanController@edit');
+Route::post('pembangunan/ubah', 'PembangunanController@update');
+Route::post('pembangunan/tambah', 'PembangunanController@store');
+Route::post('pembangunan/selesai', 'PembangunanController@selesai');
+
+
 Route::get('pengeluaran', 'PengeluaranController@index');
 Route::post('pengeluaran/hapus', 'PengeluaranController@destroy');
 Route::post('pengeluaran/lihat', 'PengeluaranController@edit');
 Route::post('pengeluaran/ubah', 'PengeluaranController@update');
 Route::post('pengeluaran/tambah', 'PengeluaranController@store');
+
+Route::get('laporanpengeluaran','PengeluaranController@laporanpengeluaran');
+Route::post('laporanpengeluaran/lihat','PengeluaranController@laporanpengeluaranindex');
 
 Route::get('cicilan', 'CicilanController@index');
 Route::post('cicilan/hapus', 'CicilanController@destroy');

@@ -57,7 +57,7 @@ class CicilanController extends Controller
         //     'hapuskah' => 0
         // ]);
 
-        $cicilan = Cicilan::firstOrCreate(
+        $cicilan = Cicilan::updateOrCreate(
             ['tipe_id' => $tipe, 'bank_id' => $bank, 'nominal' => $nominal, 'lama_cicilan' => $lamacicilan],['hapuskah' => 0]
         );
         if($cicilan->wasRecentlyCreated)
@@ -65,7 +65,7 @@ class CicilanController extends Controller
             Session::flash('flash_msg', 'Data Cicilan Berhasil Disimpan');
         }
         else {
-            Session::flash('error_msg', 'Data Cicilan Sudah Ada');
+            Session::flash('warning_msg', 'Data Bank Telah Terdaftar');
         }
         
         return redirect('cicilan');

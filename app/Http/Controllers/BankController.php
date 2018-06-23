@@ -29,12 +29,6 @@ class BankController extends Controller
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $nama = $request->nama;
@@ -42,30 +36,30 @@ class BankController extends Controller
         $notelepon = $request->notelepon;
         $alamat = $request->alamat;
 
-        // Bank::create([
-        //     'nama' => $nama,
-        //     'contact_person' => $contactperson,
-        //     'no_telepon' => $notelepon,
-        //     'alamat' => $alamat,
-        //     'hapuskah' => 0
-        // ]);
+        // $bank = Bank::firstOrCreate(
+        //     ['nama' => $nama],
+        //     ['contact_person' => $contactperson,
+        //         'no_telepon' => $notelepon,
+        //         'alamat' => $alamat,
+        //         'hapuskah' => 0
+        //     ]);
+        $bank = Bank::updateOrCreate(
+            ['nama' => $nama,
+                'contact_person' => $contactperson,
+                'no_telepon' => $notelepon,
+                'alamat'=> $alamat,
+                ],['hapuskah' => 0]
+        );
 
-        $bank = Bank::firstOrCreate(
-            ['nama' => $nama],
-            ['contact_person ' => $contactperson,
-                'no_telepon ' => $notelepon,
-                'alamat ' => $alamat,
-                'hapuskah' => 0]);
-
-        if($bank->wasRecentyCreated)
+        if($bank->wasRecentlyCreated)
         {
             Session::flash('flash_msg', 'Data Bank Berhasil Disimpan');
         }
-        else {
-            Session::flash('error_msg', 'Data Bank Sudah Ada');
+        else 
+        {
+            Session::flash('warning_msg', 'Data Bank Telah Terdaftar');
         }
-            
-            return redirect('bank');
+        return redirect('bank');
     }
 
     /**
@@ -137,6 +131,7 @@ class BankController extends Controller
         $bank = Bank::find($request->bank);
         $bank->hapuskah = 1;
         $bank->save();
+        Session::flash('flash_msg','Data Bank Berhasil Dihapus');
         return redirect('bank');
     }
 }

@@ -45,16 +45,18 @@ class BerkasController extends Controller
         //     'hapuskah' => 0
         // ]);
 
-        $berkas = Berkas::firstOrCreate(
-            ['nama' => $nama]
+        $berkas = Berkas::updateOrCreate(
+            ['nama' => $nama],
+            ['hapuskah' => 0]
         );
 
-        if($berkas->wasRecentCreated)
+        if($berkas->wasRecentlyCreated)
         {
             Session::flash('flash_msg', 'Data Berkas Berhasil Disimpan');
         }
-        else {
-            Session::flash('error_msg', 'Data Berkas Sudah Ada');
+        else 
+        {
+            Session::flash('warning_msg', 'Data Bank Telah Terdaftar');
         }
         return redirect('berkas');
     }

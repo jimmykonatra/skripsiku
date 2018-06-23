@@ -90,12 +90,15 @@ class KprController extends Controller
         //     'hapuskah' => 0 
         // ]);
 
-        $kpr = Kpr::firstOrCreate(
-            ['bank_id' => $bank, 'jual_rumah_id' => $jualrumah],
-            [
+        $kpr = Kpr::updateOrCreate(
+            ['bank_id' => $bank, 
+                'jual_rumah_id' => $jualrumah,
                 'pemberi' => $pemberi,
                 'penerima' => $penerima,
                 'kasir_id' => $kasir,
+            ],
+            [
+                
                 'hapuskah' => 0
             ]
         );
@@ -103,7 +106,7 @@ class KprController extends Controller
             Session::flash('flash_msg', 'Data KPR Berhasil Disimpan');
         }
         else {
-            Session::flash('error_msg', 'Data Kpr Sudah Ada');
+            Session::flash('warning_msg', 'Data Kpr Telah Terdaftar');
         }
         return redirect('kpr');
     }

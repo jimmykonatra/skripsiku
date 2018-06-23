@@ -148,4 +148,27 @@ class PengeluaranController extends Controller
         Session::flash('flash_msg', 'Data pengeluaran Berhasil Dihapus');
         return redirect('pengeluaran');
     }
+    
+    public function laporanpengeluaran()
+    {
+        $pengeluaran = Pengeluaran::where('hapuskah', 0)->get();
+        $jenispengeluaran = JenisPengeluaran::where('hapuskah', 0)->get();
+        $kasir = User::where('jabatan', 'Kasir')->get();
+           
+        return view('laporan.pengeluaranperusahaan',compact('pengeluaran','jenispengeluaran','kasir'));
+    }
+
+    public function laporanpengeluaranindex(Request $request)
+    {
+        $tglawal = $request->tanggalawal;
+        $tglakhir = $request->tanggalakhir;
+
+        $tanggalawal = Pengeluaran::changeDateFormat($tglawal);
+        $tanggalakhir = Pengeluaran::changeDateFormat($tglakhir);
+
+        $pengeluaran = Pengeluaran::where('tanggal','>=',$tanggalawal)->where('tanggal','<=',$tanggalakhir)->where('hapuskah',0)->get();
+
+        return view('laporan.tabelpengeluaranperusahaan',compact('pengeluaran'));
+    }
+
 }

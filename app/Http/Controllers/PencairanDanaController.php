@@ -76,9 +76,11 @@ class PencairanDanaController extends Controller
     {
         $id = $request->id;
         $pencairandana = PencairanDana::find($id);
+    
+
         return response()->json([
             'id' => $id,
-            'tanggal' => $pencairandana->tanggal_cair_dana,
+            'tanggal' => PencairanDana::changeDateFormat($pencairandana->tanggal_cair_dana),
             'nomorbukti' => $pencairandana->nomor_bukti,
             'pemberi' => $pencairandana->pemberi,
             'penerima' => $pencairandana->penerima
@@ -101,6 +103,8 @@ class PencairanDanaController extends Controller
         $penerima = $request->penerima;
 
         $pencairandana = PencairanDana::find($id);
+        
+      
 
         $pencairandana->tanggal_cair_dana = $tanggal;
         $pencairandana->nomor_bukti = $nomorbukti;

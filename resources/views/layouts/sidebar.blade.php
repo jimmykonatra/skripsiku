@@ -52,6 +52,9 @@
           <li class="{{Request::is('rumah')  ? 'active' : '' }}">
             <a href={{url('rumah')}}>Rumah</a>
           </li>
+          <li class="{{Request::is('pembangunan')  ? 'active' : '' }}">
+            <a href={{url('pembangunan')}}>Pembangunan</a>
+          </li>
           <li class="{{Request::is('tipe')  ? 'active' : '' }}">
             <a href={{url('tipe')}}>Tipe</a>
           </li>
@@ -98,7 +101,6 @@
           <span class="nav-link-text">Rumah</span>
         </a>
         <ul class="sidenav-second-level collapse" id="collapseRumah">
-
           <li class="{{Request::is('updatenomorsertifikat')  ? 'active' : '' }}">
             <a href={{url('updatenomorsertifikat')}}>Update Sertifikat Rumah</a>
           </li>
@@ -120,6 +122,27 @@
           </li>
         </ul>
       </li>
+
+      <li class="nav-item {{Request::is('karyawan') || Request::is('customer') ||  Request::is('bank') ||  Request::is('tipe') ||  Request::is('rumah') ||  Request::is('perumahan') ? 'active' : '' }}" data-toggle="tooltip" data-placement="right" title="Components">
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Components">
+        <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseLaporan" data-parent="#exampleAccordion">
+          <i class="fa fa-fw fa-wrench"></i>
+          <span class="nav-link-text">Laporan</span>
+        </a>
+        <ul class="sidenav-second-level collapse" id="collapseLaporan">
+
+          <li class="{{Request::is('laporanpengeluaran')  ? 'active' : '' }}">
+            <a href={{url('laporanpengeluaran')}}>Pengeluaran Perusahaan</a>
+          </li>
+          <li class="{{Request::is('updatetanggalcair')  ? 'active' : '' }}">
+            <a href={{url('updatetanggalcair')}}>Pemasukan Perusahaan</a>
+          </li>
+          <li class="{{Request::is('updatetanggalserahterimasertifikat')  ? 'active' : '' }}">
+            <a href={{url('updatetanggalserahterimasertifikat')}}>Pencairan Kredit</a>
+          </li>
+        </ul>
+      </li>
+    </li>
       {{-- <li class="nav-item">
           <a class="nav-link" data-toggle="modal" data-target="#exampleModal">
             <i class="fa fa-fw fa-sign-out"></i>

@@ -18,7 +18,6 @@ class DatabaseSeeder extends Seeder
                 BanksTableSeeder::class,
                 JenisPengeluaransTableSeeder::class,
                 PerumahansTableSeeder::class,
-                PengeluaransTableSeeder::class,
                 PencairanDanasTableSeeder::class,
                 TipesTableSeeder::class,
                 BerkasTableSeeder::class,
@@ -26,7 +25,9 @@ class DatabaseSeeder extends Seeder
                 RumahsTableSeeder::class,
                 JualRumahsTableSeeder::class,
                 KprsTableSeeder::class,
-                TandaTerimasTableSeeder::class
+                TandaTerimasTableSeeder::class,
+                PembangunansTableSeeder::class,
+                PengeluaransTableSeeder::class
                 
                 
                 

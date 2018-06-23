@@ -21,7 +21,7 @@
                             <tr>
                                 <th>Tipe</th>
                                 <th>Bank</th>
-                                <th>Lama Cicilan</th>
+                                <th>Lama Cicilan (tahun)</th>
                                 <th>Nominal</th>
                                 <th>Edit</th>
                                 <th>Delete</th>
@@ -31,7 +31,7 @@
                             <tr>
                                 <th>Tipe</th>
                                 <th>Bank</th>
-                                <th>Lama Cicilan</th>
+                                <th>Lama Cicilan (tahun)</th>
                                 <th>Nominal</th>
                                 <th>Edit</th>
                                 <th>Delete</th>
@@ -86,7 +86,7 @@
                                         </select>
                                     </p>
                                     <p>
-                                        <label class="col-lg-6">Lama Cicilan: </label>
+                                        <label class="col-lg-6">Lama Cicilan (tahun): </label>
                                         <input type="number" class="col-lg-4" id="lamacicilanUbahCicilan" name="lamacicilan" placeholder="Masukkan Lama Cicilan"
                                             required>
                                     </p>
@@ -111,12 +111,12 @@
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                                <h5 class="modal-title" id="exampleModalLabel">Hapus Data Cicilan</h5>
                                 <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">×</span>
                                 </button>
                             </div>
-                            <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                            <div class="modal-body">Apakah anda yakin ingin menghapus data cicilan ini?</div>
                             <div class="modal-footer">
                                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
                                 <a href="#" class="btn btn-danger" onclick="event.preventDefault(); document.getElementById('hapus-form').submit();">Hapus</a>
@@ -164,7 +164,7 @@
                             </select>
                         </p>
                         <p>
-                            <label class="col-lg-6">Lama Cicilan: </label>
+                            <label class="col-lg-6">Lama Cicilan (tahun): </label>
                             <input type="number" class="col-lg-4" id="lamacicilanlTambahCicilan" name="lamacicilan" placeholder="Masukkan Lama Cicilan"
                                 required>
                         </p>

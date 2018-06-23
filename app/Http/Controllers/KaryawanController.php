@@ -148,6 +148,7 @@ class KaryawanController extends Controller
         $karyawan->save();
         $user->save();
         
+        Session::flash('flash_msg','Data Karyawan Berhasil Diubah');
         return redirect('karyawan');
     }
 
@@ -162,6 +163,7 @@ class KaryawanController extends Controller
         $karyawan = Karyawan::find($request->karyawan);
         $karyawan->hapuskah = 1;
         $karyawan->save();
+        Session::flash('flash_msg','Data Karyawan Berhasil Dihapus');
         return redirect('karyawan');
     }
 }
