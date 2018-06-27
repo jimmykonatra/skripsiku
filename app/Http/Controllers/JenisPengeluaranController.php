@@ -118,6 +118,8 @@ class JenisPengeluaranController extends Controller
         $jenispengeluaran = JenisPengeluaran::find($request->jenispengeluaran);
         $jenispengeluaran->hapuskah = 1;
         $jenispengeluaran->save();
+
+        Session::flash('flash_msg','Data Jenis Pengeluaran Berhasil Dihapus');
         return redirect('jenispengeluaran');
     }   
 }

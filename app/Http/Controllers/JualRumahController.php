@@ -15,6 +15,7 @@ use App\JualRumah;
 use App\PencairanDana;
 use App\TandaTerima;
 use PDF;
+use App\Kpr;
 use Dompdf\Dompdf;
 
 use Illuminate\Support\Facades\DB;
@@ -113,7 +114,7 @@ class JualRumahController extends Controller
             'status_kelengkapan' => $lengkap,
             'keterangan' => $keterangan,
             'jenis_bayar' => $jenisbayar,
-            'status_jual_rumah' => 'Batal',
+            'status_jual_rumah' => 'Belum DP',
             'customer_id' => $customer,
             'marketing_id' => $marketing,
             'kasir_id' => $kasir,
@@ -165,7 +166,7 @@ class JualRumahController extends Controller
         $customer = Customer::all();
         $rumah = Rumah::all();
         $berkas = Berkas::all();
-
+        $pencairandana = PencairanDana::all();
 
         $marketing = User::join('karyawans', 'users.id', '=', 'karyawans.user_id')->where([['jabatan', 'Marketing'], ['karyawans.hapuskah', 0]])->get();
         $kasir = User::join('karyawans', 'users.id', '=', 'karyawans.user_id')->where([['jabatan', 'Kasir'], ['karyawans.hapuskah', 0]])->get();
@@ -173,7 +174,7 @@ class JualRumahController extends Controller
         $cekberkas = DB::table('berkas_jual_rumah')->where('jual_rumah_id','=',$id)->get();
 
         
-        return view('jualrumah.ubahjualrumah', compact('jualrumah','cekberkas','customer', 'rumah', 'berkas', 'marketing', 'kasir')); 
+        return view('jualrumah.ubahjualrumah', compact('jualrumah','cekberkas','customer', 'rumah', 'berkas', 'marketing', 'kasir','pencairandana')); 
         
     }
 
@@ -200,6 +201,7 @@ class JualRumahController extends Controller
         $tanggalbuat = $request->tanggalbuat;
         $tanggaldp = $request->tanggaldp;
         $berkas = $request->berkas;
+        $pencairandana = $request->pencairandana;
         $keterangan = $request->keterangan;
         $jumlahberkas = Berkas::all()->count();
 
@@ -214,6 +216,7 @@ class JualRumahController extends Controller
         $jualrumah->rumah_id = $rumah;
         $jualrumah->marketing_id = $marketing;
         $jualrumah->kasir_id = $kasir;
+        $jualrumah->pencairan_dana_id = $pencairandana;
         
 
         foreach ($berkas as $data) {

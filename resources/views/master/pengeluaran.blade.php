@@ -20,6 +20,7 @@
 						<thead>
 							<tr>
 								<th>Jenis Pengeluaran</th>
+								<th>Nomor Pembangunan</th>
 								<th>Tanggal</th>
 								<th>Nominal</th>
 								<th>Keterangan</th>
@@ -32,6 +33,7 @@
 						<tfoot>
 							<tr>
 								<th>Jenis Pengeluaran</th>
+								<th>Nomor Pembangunan</th>
 								<th>Tanggal</th>
 								<th>Nominal</th>
 								<th>Keterangan</th>
@@ -45,6 +47,7 @@
 							@foreach($pengeluaran as $data)
 							<tr id="{{$data->id}}">
 								<td>{{$data->jenis_pengeluaran->nama}}</td>
+								<td>{{$data->pembangunan->nomor}}</td>
 								<td>{{$data->tanggal}}</td>
 								<td>Rp {{number_format( $data->nominal, 0 , '' , '.' )}}</td>
 								<td>{{$data->keterangan}}</td>
@@ -83,9 +86,20 @@
 											@endforeach
 										</select>
 									</p>
+									<p>
+										<label class="col-lg-6">Nomor Pembangunan: </label>
+										<select name="pembangunan" id="pembangunanUbahPengeluaran">
+											@foreach($pembangunan as $data)
+
+											<option value="{{$data->id}}">{{$data->nomor}}</option>
+											@endforeach
+										</select>
+									</p>
+
 									<div class="row col-lg-12">
-										<label for="tanggal" class="col-lg-4">Tanggal Buat</label>
+										<label for="tanggal" class="col-lg-6">Tanggal Buat</label>
 										<div class="input-group date col-lg-6" data-provide="datepicker">
+	
 										<input type="text" class="form-control tanggalPengeluaran" style="display:inline-block" name="tanggal">
 										<div class="input-group-addon">
 											<span class="glyphicon glyphicon-th"></span>
@@ -112,7 +126,6 @@
 										<label class="col-lg-6">Kasir: </label>
 										<select name="kasir" id="kasirUbahPengeluaran">
 											@foreach($kasir as $data)
-
 											<option value="{{$data->id}}">{{$data->karyawan->nama}}</option>
 
 											@endforeach
@@ -179,6 +192,16 @@
 								@endforeach
 							</select>
 						</p>
+						<p>
+										<label class="col-lg-6">Nomor Pembangunan: </label>
+										<select name="pembangunan" id="pembangunanTambahPengeluaran">
+											@foreach($pembangunan as $data)
+
+											<option value="{{$data->id}}">{{$data->nomor}}</option>
+											@endforeach
+										</select>
+									</p>
+
 						<p>
 							<label for="tanggal" class="col-lg-4">Tanggal Buat:</label>
 							<input type="date" name="tanggal" class="col-lg-6" min="{{date('Y-m-d')}}" value="{{date('Y-m-d')}}" data-date-format="dd-mm-yyyy"
@@ -252,7 +275,7 @@
 					function (data) {
 						$('#idUbah').val(data.id);
 						$('#jenispengeluaranUbahPengeluaran').val(data.jenispengeluaran);
-						$('#tanggalUbahPengeluaran').val(data.tanggal);
+						$('#pembangunanUbahPengeluaran').val(data.pembangunan);
 						$('.tanggalPengeluaran').datepicker('update', data.tanggal);
 						$('#nominalUbahPengeluaran').val(data.nominal);
 						$('#keteranganUbahPengeluaran').val(data.keterangan);

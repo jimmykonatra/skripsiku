@@ -25,8 +25,8 @@
 								<th>Lama Pembangunan (hari)</th>
 								<th>Tanggal Selesai</th>
                                 <th>Penanggung Jawab</th>
-								<th>Edit</th>
-								<th>Delete</th>
+								{{-- <th>Edit</th> --}}
+								{{-- <th>Delete</th> --}}
 								<th>Selesai</th>
 							</tr>
 						</thead>
@@ -38,8 +38,8 @@
 								<th>Lama Pembangunan (hari)</th>
 								<th>Tanggal Selesai</th>
                                 <th>Penanggung Jawab</th>
-								<th>Edit</th>
-								<th>Delete</th>
+								{{-- <th>Edit</th> --}}
+								{{-- <th>Delete</th> --}}
 								<th>Selesai</th>
 							</tr>
 						</tfoot>
@@ -58,29 +58,30 @@
                                 <td>{{$data->tanggal_selesai}}</td>
                                 @endif
 
-                                <td>{{$data->penanggungjawab}}</td>
-								@if($data->tanggal_selesai !== "0000-00-00")
+								<td>{{$data->penanggungjawab}}</td>
+								
+								{{-- @if($data->tanggal_selesai !== "0000-00-00")
 								<td> Sudah Selesai </td>
 								@else
 								<td>
 									<button class="btn btnUbah btn-primary">Ubah</button>
 								</td>
-								@endif
+								@endif --}}
 								
-								@if($data->tanggal_selesai !== "0000-00-00")
+								{{-- @if($data->tanggal_selesai !== "0000-00-00")
 								<td> Sudah Selesai </td>
 								@else
 								<td>
 									<button class="btn btnHapus btn-danger">Hapus</button>
 								</td>
-								@endif
+								@endif --}}
 
-								@if($data->tanggal_selesai !== "0000-00-00")
-								<td> Sudah Selesai </td>
-								@else
+								@if($data->tanggal_selesai == null)
 								<td>
 									<button class="btn btnSelesai btn-success">Selesai</button>
 								</td>
+								@else
+								<td>Selesai</td>
 								@endif
 							</tr>
 							@endforeach
@@ -272,7 +273,7 @@
 										<input type="number" class="col-lg-4" id="lamaPembangunanTambahPembangunan" name="lamapembangunan" placeholder="Masukkan Lama Pembangunan"
 										    required>
 									</p>
-                                    
+{{--                                     
 									<div class="row col-lg-12">
 										<label for="tanggal" class="col-lg-6">Tanggal Selesai</label>
 										<div class="input-group date col-lg-6" data-provide="datepicker">
@@ -281,7 +282,7 @@
 											<span class="glyphicon glyphicon-th"></span>
 										</div>
 										</div>
-                                    </div>
+                                    </div> --}}
                                     
                                     <p>
 							<label class="col-lg-6">Penanggung Jawab: </label>

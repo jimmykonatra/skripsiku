@@ -18,8 +18,9 @@ class CreateKprsTable extends Migration
             $table->date('tanggal_cair')->nullable();
             $table->date('tanggal_akad_kredit')->nullable();
             $table->date('tanggal_serah_terima_sertifikat')->nullable();
-            $table->string('pemberi');
-            $table->string('penerima');
+            $table->date('tanggal_serah_sertifikat_bank')->nullable();
+            $table->string('pemberi')->nullable();
+            $table->string('penerima')->nullable();
             $table->unsignedInteger('bank_id');
             $table->unsignedInteger('jual_rumah_id');
             $table->unsignedInteger('kasir_id');

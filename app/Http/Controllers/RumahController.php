@@ -88,11 +88,11 @@ class RumahController extends Controller
                 'nomor_sertifikat' => null,
                 'status_pembangunan' => 'Belum Dibangun',
                 'status_booking' => 'Kosong',
-                'status_terjual' => 'Belum Terjual',
-                'keterangan' => $keterangan
+                'status_terjual' => 'Belum Terjual',   
             ],
             
-            [   
+            [
+                'keterangan' => $keterangan,
                 'hapuskah' => 0
             ]);
 

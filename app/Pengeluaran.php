@@ -21,7 +21,7 @@ class Pengeluaran extends Model
         }
         public function pembangunan()
         {
-                return $this->belongsTo(Pembangunan::class);
+                return $this->belongsTo(Pembangunan::class,'pembangunan_id');
         }
         public function getTanggalAttribute($value)
         {

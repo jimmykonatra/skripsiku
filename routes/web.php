@@ -81,6 +81,8 @@ Route::post('tandaterima/hapus', 'TandaTerimaController@destroy');
 Route::post('tandaterima/lihat', 'TandaTerimaController@edit');
 Route::post('tandaterima/ubah', 'TandaTerimaController@update');
 Route::post('tandaterima/tambah', 'TandaTerimaController@store');
+Route::post('tandaterima/lihattotal','TandaTerimaController@lihattotal');
+Route::get('tandaterima/cetak/{id}','TandaTerimaController@print');
 
 Route::get('jenispengeluaran', 'JenisPengeluaranController@index');
 Route::post('jenispengeluaran/hapus', 'JenisPengeluaranController@destroy');
@@ -127,6 +129,10 @@ Route::get('updatetanggalcair', 'KprController@updatetanggalcairindex');
 Route::post('updatetanggalcair/lihat', 'KprController@updatetanggalcairedit');
 Route::post('updatetanggalcair/ubah', 'KprController@updatetanggalcairupdate');
 
+Route::get('updatetanggalserahsertifikatbank', 'KprController@updatetanggalserahsertifikatbankindex');
+Route::post('updatetanggalserahsertifikatbank/lihat', 'KprController@updatetanggalserahsertifikatbankedit');
+Route::post('updatetanggalserahsertifikatbank/ubah', 'KprController@updatetanggalserahsertifikatbankupdate');
+
 Route::get('updatetanggalserahterimasertifikat', 'KprController@updatetanggalserahterimasertifikatindex');
 Route::post('updatetanggalserahterimasertifikat/lihat', 'KprController@updatetanggalserahterimasertifikatedit');
 Route::post('updatetanggalserahterimasertifikat/ubah', 'KprController@updatetanggalserahterimasertifikatupdate');
@@ -150,6 +156,8 @@ Route::get('jualrumah/cetak/{id}','JualRumahController@print');
 Route::get('updatetanggalcairdana', 'JualRumahController@updatetanggalcairdanaindex');
 Route::post('updatetanggalcairdana/ubah', 'JualRumahController@updatetanggalcairdanaupdate');
 Route::get('updatetanggalcairdana/lihat', 'JualRumahController@updatetanggalcairdanaedit');
+
+
 
 
 

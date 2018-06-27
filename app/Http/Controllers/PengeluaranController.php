@@ -8,6 +8,7 @@ use App\JenisPengeluaran;
 use App\User;
 use App\Karyawan;
 use DB;
+use App\Pembangunan;
 use Illuminate\Support\Facades\Session;
 
 class PengeluaranController extends Controller
@@ -22,9 +23,10 @@ class PengeluaranController extends Controller
         $pengeluaran = Pengeluaran::where('hapuskah', 0)->get();
         $jenispengeluaran = JenisPengeluaran::where('hapuskah',0)->get();
         $kasir = User::where('jabatan','Kasir')->get();
+        $pembangunan = Pembangunan::where('tanggal_selesai','=', null)->where('hapuskah',0)->get();
               
         
-        return view('master.pengeluaran',compact('pengeluaran','jenispengeluaran','kasir'));
+        return view('master.pengeluaran',compact('pengeluaran','jenispengeluaran','kasir','pembangunan'));
     }
 
     /**
@@ -51,6 +53,7 @@ class PengeluaranController extends Controller
         $keterangan = $request->keterangan;
         $statuslunas = $request->statuslunas;
         $kasir = $request->kasir;
+        $pembangunan = $request->pembangunan;
 
         Pengeluaran::create([
             'tanggal' => $tanggal,
@@ -59,6 +62,7 @@ class PengeluaranController extends Controller
             'status_lunas' => $statuslunas,
             'kasir_id' => $kasir,
             'jenis_pengeluaran_id' => $jenispengeluaran,
+            'pembangunan_id' => $pembangunan,
             'hapuskah' => 0
         ]);
         Session::flash('flash_msg', 'Data Pengeluaran Berhasil Disimpan');
@@ -95,6 +99,7 @@ class PengeluaranController extends Controller
             'nominal' => $pengeluaran->nominal,
             'keterangan' => $pengeluaran->keterangan,
             'statuslunas' => $pengeluaran->status_lunas,
+            'pembangunan' => $pengeluaran->pembangunan_id,
             'kasir' => $pengeluaran->kasir_id
         ]);
     }
@@ -117,6 +122,7 @@ class PengeluaranController extends Controller
         $keterangan = $request->keterangan;
         $statuslunas = $request->statuslunas;
         $kasir = $request->kasir;
+        $pembangunan = $request->pembangunan;
 
         $pengeluaran = Pengeluaran::find($id);
         $pengeluaran->jenis_pengeluaran_id = $jenispengeluaran;
@@ -125,6 +131,7 @@ class PengeluaranController extends Controller
         $pengeluaran->keterangan = $keterangan;
         $pengeluaran->status_lunas = $statuslunas;
         $pengeluaran->kasir_id = $kasir;
+        $pengeluaran->pembangunan_id = $pembangunan;
 
         $pengeluaran->save();
 
@@ -154,21 +161,24 @@ class PengeluaranController extends Controller
         $pengeluaran = Pengeluaran::where('hapuskah', 0)->get();
         $jenispengeluaran = JenisPengeluaran::where('hapuskah', 0)->get();
         $kasir = User::where('jabatan', 'Kasir')->get();
+        $pembangunan = Pembangunan::where('tanggal_selesai','!=',null)->where('hapuskah',0)->get();
            
-        return view('laporan.pengeluaranperusahaan',compact('pengeluaran','jenispengeluaran','kasir'));
+        return view('laporan.pengeluaranperusahaan',compact('pengeluaran','jenispengeluaran','kasir','pembangunan'));
     }
 
     public function laporanpengeluaranindex(Request $request)
     {
         $tglawal = $request->tanggalawal;
         $tglakhir = $request->tanggalakhir;
+        $pembangunan = $request->nomor;
 
         $tanggalawal = Pengeluaran::changeDateFormat($tglawal);
         $tanggalakhir = Pengeluaran::changeDateFormat($tglakhir);
 
-        $pengeluaran = Pengeluaran::where('tanggal','>=',$tanggalawal)->where('tanggal','<=',$tanggalakhir)->where('hapuskah',0)->get();
+        $pengeluaran = Pengeluaran::where('pembangunan_id','=',$pembangunan)->where('tanggal','>=',$tanggalawal)->where('tanggal','<=',$tanggalakhir)->get();
+        
 
-        return view('laporan.tabelpengeluaranperusahaan',compact('pengeluaran'));
+        return view('laporan.tabelpengeluaranperusahaan',compact('pengeluaran','pembangunan'));
     }
 
 }

@@ -53,8 +53,8 @@
 								<td>{{$data->kota}}</td>
 								<td>{{$data->email}}</td>
 							
-								<td>{{$data->no_telepon}}</td>
 								<td>{{$data->pekerjaan}}</td>
+								<td>{{$data->no_telepon}}</td>
 								<td>{{$data->no_ktp}}</td>
 								<td>{{$data->no_rekening}}</td>
 								<td>

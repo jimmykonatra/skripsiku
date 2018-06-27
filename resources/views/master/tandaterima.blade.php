@@ -30,6 +30,7 @@
                                 <th>Kasir</th>
                                 <th>Edit</th>
                                 <th>Delete</th>
+                                <th>Print</th>
                             </tr>
                         </thead>
                         <tfoot>
@@ -45,6 +46,8 @@
                                 <th>Kasir</th>
                                 <th>Edit</th>
                                 <th>Delete</th>
+                                <th>Print</th>
+                           
                             </tr>
                         </tfoot>
                         <tbody>
@@ -64,6 +67,9 @@
                                 </td>
                                 <td>
                                     <button class="btn btnHapus btn-danger">Hapus</button>
+                                </td>
+                                <td>
+                                    <a href = "{{url('tandaterima/cetak/'.$data->id)}}" class="btn btnPrint btn-success">Print</a>
                                 </td>
                             </tr>
                             @endforeach
@@ -240,6 +246,11 @@
                             <label class="col-lg-6">Total: </label>
                             <input type="number" class="col-lg-4" id="totalTambahTandaTerima" name="total" disabled placeholder="0">
                         </p>
+
+                        <p>
+                            <label class="col-lg-6">Total Angsuran Yang Sudah Dibayar: </label>
+                            <input type="text" class="col-lg-4" id="totalangsuranTambahTandaTerima" name="keterangan" placeholder="Masukkan Keterangan Tanda Terima" readonly>
+                        </p>
                         <p style="text-align:center">
                             <button type="submit" class="btn btn-success" style="text-align:center" id="btnTambahKonfirmasi" class="btn btn-primary">
                                 <i class="fa fa-check"></i>Tambah</button>
@@ -256,6 +267,18 @@
     @include('layouts.footer')
     <script>
         $(document).ready(function () {
+            
+            var nomornota = $('#nomornotaTambahTandaTerima').val();
+
+
+				$.post("{{url('tandaterima/lihattotal')}}", {
+						'nomornota' : nomornota,
+						'_token': "{{csrf_token()}}"
+					},
+					function (data) {
+                        $('#totalangsuranTambahTandaTerima').val(data);
+					}
+				);
 
             $('.btnHapus').on('click', function (e) {
                 e.preventDefault();
@@ -263,6 +286,27 @@
                 $('#idHapus').val(id);
                 $('#modalHapusTandaTerima').modal('show');
             });
+
+            $('#nomornotaTambahTandaTerima').on('change', function(e)
+			{
+				// var tanggalawal = $('#tanggalawal').val();
+				// var tanggalakhir = $('#tanggalakhir').val();
+				// var pembangunan = $('#pembangunan').val();
+				// console.log(pembangunan);
+				// console.log(tanggalawal);
+				// console.log(tanggalakhir);
+                var nomornota = $(this).val();
+
+
+				$.post("{{url('tandaterima/lihattotal')}}", {
+						'nomornota' : nomornota,
+						'_token': "{{csrf_token()}}"
+					},
+					function (data) {
+                        $('#totalangsuranTambahTandaTerima').val(data);
+					}
+				);
+			});
 
             $('.btnTambah').on('click', function (e) {
                 e.preventDefault();

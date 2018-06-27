@@ -19,13 +19,14 @@
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                             <tr>
-                                {{-- <th>Tanggal Cair</th> --}}
-                                {{-- <th>Tanggal Akad Kredit</th> --}}
-                                {{-- <th>Tanggal Serah Terima Sertifikat</th> --}}
                                 <th>Nomor Penjualan Rumah</th>
                                 <th>Bank</th>
-                                <th>Pemberi</th>
-                                <th>Penerima</th>
+                                <th>Tanggal Akad Kredit</th>
+                                <th>Tanggal Serah Sertifikat Ke Bank</th>
+                                <th>Tanggal Cair</th>
+                                <th>Tanggal Serah Terima Sertifikat</th>
+                                <th>Pemberi Cair Dana</th>
+                                <th>Penerima Cair Dana</th>
                                 <th>Kasir</th>
                                 <th>Edit</th>
                                 <th>Delete</th>
@@ -33,13 +34,14 @@
                         </thead>
                         <tfoot>
                             <tr>
-                                {{-- <th>Tanggal Cair</th> --}}
-                                {{-- <th>Tanggal Akad Kredit</th> --}}
-                                {{-- <th>Tanggal Serah Terima Sertifikat</th> --}}
                                 <th>Nomor Penjualan Rumah</th>
                                 <th>Bank</th>
-                                <th>Pemberi</th>
-                                <th>Penerima</th>
+                                    <th>Tanggal Akad Kredit</th>
+                                    <th>Tanggal Serah Sertifikat Ke Bank</th>
+                                <th>Tanggal Cair</th>
+                                <th>Tanggal Serah Terima Sertifikat</th>
+                                <th>Pemberi Cair Dana</th>
+                                <th>Penerima Cair Dana</th>
                                 <th>Kasir</th>
                                 <th>Edit</th>
                                 <th>Delete</th>
@@ -48,23 +50,34 @@
                         <tbody>
                             @foreach($kpr as $data)
                         <tr id={{$data->id}}>
-                                {{-- <td>{{$data->tanggal_cair}}</td> --}}
-
-                                {{-- @if($data->tanggal_akad_kredit == "")
+                                <td>{{$data->jual_rumah->nomor_nota}}</td>
+                                <td>{{$data->bank->nama}}</td>
+                                
+                                @if($data->tanggal_akad_kredit == "01-01-1970")
                                 <td>Masih Kosong</td>
                                 @else
                                 <td>{{$data->tanggal_akad_kredit}}</td>
-                                @endif --}}
+                                @endif
+                                
+                                @if($data->tanggal_serah_sertifikat_bank == "01-01-1970")
+                               <td>Masih Kosong</td>
+                               @else
+                               <td>{{$data->tanggal_serah_sertifikat_bank}}</td>
+                               @endif
 
-                                {{-- @if($data->tanggal_serah_terima_sertifikat == "")
+                                 @if($data->tanggal_cair == "01-01-1970")
+                               <td>Masih Kosong</td>
+                               @else
+                               <td>{{$data->tanggal_cair}}</td>
+                               @endif
+
+                                @if($data->tanggal_serah_terima_sertifikat == "01-01-1970")
                                 <td>Masih Kosong</td>
                                 @else
                                 <td>{{$data->tanggal_serah_terima_sertifikat}}</td>
                                 @endif
-                                 --}}
-                                 
-                                <td>{{$data->jual_rumah->nomor_nota}}</td>
-                                <td>{{$data->bank->nama}}</td>
+                                
+                                
                                 <td>{{$data->pemberi}}</td>
                                 <td>{{$data->penerima}}</td>
                                 <td>{{$data->kasir->karyawan->nama}}</td>
@@ -110,16 +123,16 @@
 										    data-date-format="dd-mm-yyyy" data-date-viewmode="years" required>
 										<input type="hidden" value="{{date('Y-m-d')}}" name="ambiltanggalserahterimasertifikatkpr">
 									</p> --}}
-                                    <p>
+                                    {{-- <p>
                                  
                                         <label class="col-lg-6">Pemberi: </label>
                                         <input type="text" class="col-lg-4" id="pemberiUbahKpr" name="pemberi" placeholder="Masukkan Pemberi KPR"
                                             required>
-                                    </p>
-                                    <p>
+                                    </p> --}}
+                                    {{-- <p>
                                         <label class="col-lg-6">Penerima: </label>
                                         <input type="text" class="col-lg-4" id="penerimaUbahKpr" name="penerima" placeholder="Masukkan Penerima KPR" required>
-                                    </p>
+                                    </p> --}}
                                     <p>
                                         <label class="col-lg-6">Bank: </label>
                                         <select name="bank" id="bankUbahKpr" class="col-lg-4">
@@ -217,15 +230,15 @@
 										    data-date-format="dd-mm-yyyy" data-date-viewmode="years" required disabled>
 										<input type="hidden" value="{{date('Y-m-d')}}" name="ambiltanggalserahterimasertifikatkpr">
 									</p> --}}
-                                    <p>
+                                    {{-- <p>
                                         <label class="col-lg-6">Pemberi: </label>
                                         <input type="text" class="col-lg-4" id="pemberiTambahKpr" name="pemberi" placeholder="Masukkan Pemberi KPR"
                                             required>
-                                    </p>
-                                    <p>
-                                        <label class="col-lg-6">Penerima: </label>
-                                        <input type="text" class="col-lg-4" id="penerimaTambahKpr" name="penerima" placeholder="Masukkan Penerima KPR" required>
-                                    </p>
+                                    </p> --}}
+                                        {{-- <p>
+                                            <label class="col-lg-6">Penerima: </label>
+                                            <input type="text" class="col-lg-4" id="penerimaTambahKpr" name="penerima" placeholder="Masukkan Penerima KPR" required>
+                                        </p> --}}
                                     <p>
                                         <label class="col-lg-6">Bank: </label>
                                         <select name="bank" id="bankTambahKpr" class="col-lg-4">

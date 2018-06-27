@@ -9,7 +9,7 @@
         <li class=""><b>My Dashboard</b></li>
       </ol>
 			<!-- Icon Cards-->
-			<label><b>Proses KPR</b></label>
+		
       <div class="row">
         <div class="col-xl-2 col-sm-6 mb-3">
 					<div class="card text-white bg-primary o-hidden w-100 h-100">

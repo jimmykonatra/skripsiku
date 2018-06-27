@@ -12,8 +12,6 @@ class KprsTableSeeder extends Seeder
     public function run()
     {
         DB::table('kprs')->insert([
-            'tanggal_cair' => '2018-02-03',
-            'tanggal_akad_kredit' => '2018-01-01',
             'pemberi' => 'Rina',
             'penerima' => 'Rudi',
             'bank_id' => 1,
@@ -21,5 +19,15 @@ class KprsTableSeeder extends Seeder
             'kasir_id' => 1,
             'hapuskah' => 0
         ]);
+
+        DB::table('kprs')->insert([
+            'pemberi' => 'Rina',
+            'penerima' => 'Rudi',
+            'bank_id' => 1,
+            'jual_rumah_id' => 1,
+            'kasir_id' => 1,
+            'hapuskah' => 0
+        ]);
+
     }
 }

@@ -95,7 +95,7 @@ class TipeController extends Controller
         //     'hapuskah' => 0
         // ]);
 
-        $tipe = Tipe::firstOrCreate(
+        $tipe = Tipe::updateOrCreate(
             ['nama' => $nama,
             'jalan' => $jalan,
             'blok' =>  $blok,
@@ -208,7 +208,7 @@ class TipeController extends Controller
         $tipe->uang_muka = $uangmuka;
         $tipe->deskripsi = $deskripsi;
 
-        
+        if(isset($request->gambardenah)){
         $tipe->gambar_denah = $request->gambardenah->getClientOriginalName();
         if(isset($tipe->gambar_denah))
         {
@@ -218,7 +218,8 @@ class TipeController extends Controller
             $tipe->gambar_denah = null;
         }
         
-
+    }
+          if(isset($request->gambarrumah)){
         $tipe->gambar_rumah = $request->gambarrumah->getClientOriginalName();
         if(isset($tipe->gambar_rumah))
         {
@@ -227,7 +228,7 @@ class TipeController extends Controller
         else {
             $tipe->gambar_rumah = null;
         }
-
+    }
         $tipe->lainnya = $lainnya;
         $tipe->save();
         Session::flash('flash_msg', 'Data Tipe Berhasil Disimpan');

@@ -9,7 +9,10 @@ use App\TandaTerima;
 use Illuminate\Support\Facades\Session;
 use App\Rumah;
 use App\Kpr;
-
+use App\Customer;
+use App\Perumahan;
+use App\Tipe;
+use Dompdf\Dompdf;
 
 class TandaTerimaController extends Controller
 {
@@ -202,5 +205,46 @@ class TandaTerimaController extends Controller
 
         Session::flash('flash_msg', 'Data Tanda Terima Berhasil Dihapus');
         return redirect('tandaterima');
+    }
+
+    public function lihattotal(Request $request)
+    {
+        $nomornota = $request->nomornota;
+        $tandaterima = TandaTerima::where('jual_rumah_id',$nomornota)->get();
+
+        $jumlahangsuran = $tandaterima->sum("angsuran");
+
+        return $jumlahangsuran;
+    }
+
+    public function print($id)
+    {
+        $tandaterima = TandaTerima::where('id',$id)->first();
+        $jualrumah = JualRumah::where('id',$tandaterima->jual_rumah_id)->first();
+
+        $customer = Customer::where('id',$jualrumah->customer_id)->first();
+        $rumah = Rumah::where('id',$jualrumah->rumah_id)->first();
+        $tipe = Tipe::where('id',$rumah->tipe_id)->first();
+        $perumahan = Perumahan::where('id',$rumah->perumahan_id)->first();
+        $kasir = User::where('id',$tandaterima->kasir_id)->first();
+        
+        $content = view('tandaterima.cetaktandaterima',compact('tandaterima','jualrumah','customer','rumah','tipe','perumahan','kasir'));
+
+        $dompdf = new Dompdf();
+
+        //PDF::SetFont('', '', 8);
+        //PDF::AddPage();
+
+        $dompdf->loadHtml($content);
+
+        // (Optional) Setup the paper size and orientation
+        //$dompdf->setPaper('A4', 'potrait');
+        $dompdf->set_paper(array(0, 0, 595, 841), 'portrait');
+
+        // Render the HTML as PDF
+        $dompdf->render();
+
+        // Output the generated PDF to Browser
+        $dompdf->stream($tandaterima->id.".pdf", array("Attachment" => false));
     }
 }

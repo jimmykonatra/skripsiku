@@ -27,7 +27,13 @@
 										</div>
 										</div>
 					
-					<button class="btn btnLihat btn-success" type="submit" data-toggle="modal" >
+						<select name="nomor" id="pembangunan">
+											@foreach($pembangunan as $data)
+											<option value="{{$data->id}}">{{$data->nomor}}</option>
+											@endforeach
+										</select>
+					
+					<button class="btn btnLihat btn-success" type="submit" style="margin-left:20px" data-toggle="modal" >
 						Lihat
 					</button>
 					
@@ -202,10 +208,15 @@
 			{
 				var tanggalawal = $('#tanggalawal').val();
 				var tanggalakhir = $('#tanggalakhir').val();
-              
+				var pembangunan = $('#pembangunan').val();
+				console.log(pembangunan);
+				console.log(tanggalawal);
+				console.log(tanggalakhir);
+
 				$.post("{{url('laporanpengeluaran/lihat')}}", {
 						'tanggalawal' : tanggalawal,
                         'tanggalakhir': tanggalakhir,
+						'nomor': pembangunan,
 						'_token': "{{csrf_token()}}"
 					},
 					function (data) {

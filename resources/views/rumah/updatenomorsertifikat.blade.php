@@ -19,7 +19,7 @@
 							<tr>
                                 <th>Perumahan</th>
 								<th>Tipe Rumah</th>
-								<th>Nomor Rumah</th>
+								<th>Rumah</th>
 								<th>Tahun </th>
 								<th>Nomor Sertifikat</th>
 								{{-- <th>Status Pembangunan</th> --}}
@@ -34,7 +34,7 @@
 							<tr>
 								<th>Perumahan</th>
 								<th>Tipe Rumah</th>
-								<th>Nomor Rumah</th>
+								<th>Rumah</th>
 								<th>Tahun </th>
 								<th>Nomor Sertifikat</th>
 								{{-- <th>Status Pembangunan</th> --}}
@@ -50,7 +50,7 @@
 							<tr id="{{$data->id}}">
 								<td>{{$data->perumahan->nama}}</td>
                                 <td>{{$data->tipe->nama}}</td>
-								<td>{{$data->nomor}}</td>
+								<td>{{$data->tipe->blok}} - {{$data->nomor}}</td>
 								<td>{{$data->tahun}}</td>
 								<td>{{$data->nomor_sertifikat}}</td>
 								{{-- <td>{{$data->status_pembangunan}}</td> --}}

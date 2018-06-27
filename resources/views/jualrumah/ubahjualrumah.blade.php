@@ -28,6 +28,14 @@
                             <br>
                             <br>
                             <br>
+                            <label class="col-lg-4" for="pencairandana">Pencairan Dana:</label>
+                            <select class="col-lg-4" name="pencairandana" id="pencairandana">
+                                @foreach($pencairandana as $data)
+                            <option value="{{$data->id}}">{{$data->nomor_bukti}}</option>
+                              @endforeach
+                            </select>
+                            <br>
+                            
                             <div class="col-lg-8">
                                 <label> Cek Berkas </label>
                                 <br>
@@ -96,8 +104,8 @@
                                 <option value="KPR">KPR</option>
                               
                             </select>
-                            <br>
 
+                            
                             <h3>Mengetahui</h3>
                             <label class="col-lg-4" for="marketing">Marketing</label>
                             <select class="col-lg-4" name="marketing" id="marketing">

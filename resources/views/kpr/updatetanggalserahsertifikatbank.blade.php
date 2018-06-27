@@ -4,7 +4,7 @@
     <div class="container-fluid">
         <div class="card mb-3">
             <div class="card-header">
-                <i class="fa fa-table"></i> Update Data Akad Kredit KPR</div>
+                <i class="fa fa-table"></i> Update Data KPR Serah Sertifikat ke Bank</div>
             <div class="card-body">
 
                 @include('layouts.flash')
@@ -19,8 +19,8 @@
                                 <th>Tanggal Serah Sertifikat Ke Bank</th>
                                 <th>Tanggal Cair</th>
                                 <th>Tanggal Serah Terima Sertifikat</th>
-                                <th>Pemberi</th>
-                                <th>Penerima</th>
+                                <th>Pemberi Cair Dana </th>
+                                <th>Penerima Cair Dana</th>
                                 <th>Bank</th>
                                 <th>Kasir</th>
                                 <th>Update</th>
@@ -34,8 +34,8 @@
                                 <th>Tanggal Serah Sertifikat Ke Bank</th>
                                 <th>Tanggal Cair</th>
                                 <th>Tanggal Serah Terima Sertifikat</th>
-                                <th>Pemberi</th>
-                                <th>Penerima</th>
+                                <th>Pemberi Cair Dana </th>
+                                <th>Penerima Cair Dana</th>
                                 <th>Bank</th>
                                 <th>Kasir</th>
                                 <th>Update</th>
@@ -52,26 +52,26 @@
                                     @else
                                     <td>{{$data->tanggal_akad_kredit}}</td>
                                     @endif
-                                    
-                                    @if($data->tanggal_serah_sertifikat_bank == "01-01-1970")
-                                     <td>Kosong</td>
-                                     @else
-                                     <td>{{$data->tanggal_serah_terima_sertifikat}}</td>
-                                     @endif
 
+                                     @if($data->tanggal_serah_sertifikat_bank == "01-01-1970")
+                                    <td>Kosong</td>
+                                    @else
+                                    <td>{{$data->tanggal_serah_sertifikat_bank}}</td>
+                                    @endif
+                                    
                                     @if($data->tanggal_cair == "")
                                     <td>Masih Kosong</td>
                                     @else
                                     <td>{{$data->tanggal_cair}}</td>
                                     @endif
-                                    
+
                                 @if($data->tanggal_serah_terima_sertifikat == "01-01-1970")
                                 <td>Kosong</td>
                                 @else
                                 <td>{{$data->tanggal_serah_terima_sertifikat}}</td>
                                 @endif
-                                
 
+            
                                 <td>{{$data->pemberi}}</td>
                                 <td>{{$data->penerima}}</td>
                                 <td>{{$data->bank->nama}}</td>
@@ -86,57 +86,100 @@
                     </table>
                 </div>
 
-                <div class="modal fade" id="modalUpdateTanggalAkadKreditKpr">
+                <div class="modal fade" id="modalUpdateTanggalCairKpr">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title">Update Tanggal Akad Kredit Kpr</h5>
+                                <h5 class="modal-title">Update Serah Sertifikat Ke Bank</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <form action="{{url('updatetanggalakadkredit/ubah')}}" method="post" id="formUpdateAkadKreditKpr">
+                                <form action="{{url('updatetanggalserahsertifikatbank/ubah')}}" method="post" id="formUpdateTanggalSerahSertifikatBankKPR">
                                     {{csrf_field()}}
-                                    {{-- <b>
+                                     {{-- <p>
 										<label for="tanggalakadkreditkpr" class="col-lg-4">Tanggal Akad Kredit KPR:</label>
-										<input type="date" id="tanggalakadkreditUbahKpr" name="tanggalakadkredit" class="col-lg-6" min="{{date('Y-m-d')}}" value="{{date('Y-m-d')}}" style="border-style:solid"
-										    data-date-format="dd-mm-yyyy" data-date-viewmode="years" required>
+										<input type="date" id="tanggalakadkreditUbahKpr" name="tanggalakadkredit" class="col-lg-6" min="{{date('Y-m-d')}}" value="{{date('Y-m-d')}}" 
+										    data-date-format="dd-mm-yyyy" data-date-viewmode="years" required disabled>
 										<input type="hidden" value="{{date('Y-m-d')}}" name="ambiltanggalakadkreditkpr">
-                                    </b> --}}
+                                    </p> --}}
                                     <div class="row col-lg-12">
-                                        <input type="hidden" id="idUbah" name="updatetanggalakadkredit">
-										<label for="tanggal" class="col-lg-6"><b>Tanggal Akad Kredit:</b></label>
+                                       
+										<label for="tanggal" class="col-lg-6">Tanggal Akad Kredit:</label>
 										<div class="input-group date col-lg-6" data-provide="datepicker">	
-										<input type="text" class="form-control tanggalakadkreditKPR" style="display:inline-block" name="tanggalakadkredit">
+										<input type="text" class="form-control tanggalakadkreditKPR" style="display:inline-block;border-style:solid" name="tanggalakadkredit" disabled>
 										<div class="input-group-addon">
 											<span class="glyphicon glyphicon-th"></span>
 										</div>
 										</div>
-									</div>
-                                     {{-- <p>
+                                    </div>
+
+                                    <div class="row col-lg-12">
+                                       <input type="hidden" id="idUbah" name="updatetanggalserahsertifikatbank">
+                                        <label for="tanggal" class="col-lg-6"><b>Tanggal Serah Sertifikat Ke Bank:</b></label>
+                                        <div class="input-group date col-lg-6" data-provide="datepicker">	
+                                        <input type="text" class="form-control tanggalserahsertifikatbankKPR" style="display:inline-block;border-style:solid" name="tanggalserahsertifikatbank" >
+                                        <div class="input-group-addon">
+                                            <span class="glyphicon glyphicon-th"></span>
+                                        </div>
+                                        </div>
+                                    </div>
+
+                                    <p>
+                                        <label class="col-lg-6">Rumah: </label>
+                                        <select name="bank" id="bankUbahKpr" class="col-lg-4" disabled>
+                                            @foreach($jualrumah as $data)
+                                        <option value="{{$data->rumah->id}}">{{$data->rumah->tipe->blok}} - {{$data->rumah->nomor}}</option>
+                                            @endforeach
+                                        </select>
+                                    </p>
+
+                                     <p>
+                                        <label class="col-lg-6">Nomor Sertifikat: </label>
+                                        <select name="bank" id="bankUbahKpr" class="col-lg-4" disabled>
+                                            @foreach($jualrumah as $data)
+                                            <option value="{{$data->id}}">{{$data->rumah->nomor_sertifikat}}</option>
+                                            @endforeach
+                                        </select>
+                                    </p>
+                                   
+                                    
+                                    {{-- <div class="row col-lg-12">
+                                        
+										<label for="tanggal" class="col-lg-6">Tanggal Cair KPR:</label>
+										<div class="input-group date col-lg-6" data-provide="datepicker">	
+										<input type="text" class="form-control tanggalcairKPR" style="display:inline-block;border-style:solid" name="tanggalcair" disabled >
+										<div class="input-group-addon">
+											<span class="glyphicon glyphicon-th"></span>
+										</div>
+										</div>
+                                    </div> --}}
+
+                                   
+
+                                    {{-- <b>
                                         
 										<label for="tanggalcairkpr" class="col-lg-4">Tanggal Cair KPR:</label>
-										<input type="date" id="tanggalcairUbahKpr" name="tanggalcair" class="col-lg-6" min="{{date('Y-m-d')}}" value="{{date('Y-m-d')}}"
-										    data-date-format="dd-mm-yyyy" data-date-viewmode="years" required disabled>
+										<input type="date" id="tanggalcairUbahKpr" name="tanggalcair" class="col-lg-6" min="{{date('Y-m-d')}}" value="{{date('Y-m-d')}}" style="border-style:solid"
+										    data-date-format="dd-mm-yyyy" data-date-viewmode="years" required>
 										<input type="hidden" value="{{date('Y-m-d')}}" name="ambiltanggalcairkpr">
-									</p> --}}
-                                     
+									</b> --}}
                                     {{-- <p>
 										<label for="tanggalserahterimasertifikatkpr" class="col-lg-4">Tanggal Serah Terima Sertifikat Rumah:</label>
 										<input type="date" id="tanggalserahterimasertifikatUbahKpr" name="tanggalserahterimasertifikat" class="col-lg-6" min="{{date('Y-m-d')}}" value="{{date('Y-m-d')}}"
 										    data-date-format="dd-mm-yyyy" data-date-viewmode="years" required disabled>
 										<input type="hidden" value="{{date('Y-m-d')}}" name="ambiltanggalserahterimasertifikatkpr">
 									</p> --}}
-                                    <p>
-                                        <label class="col-lg-6">Pemberi: </label>
+                                    {{-- <p>
+                                        <label class="col-lg-6">Pemberi Cair Dana: </label>
                                         <input type="text" class="col-lg-4" id="pemberiUbahKpr" name="pemberi" placeholder="Masukkan Pemberi KPR"
-                                            required disabled>
-                                    </p>
-                                    <p>
-                                        <label class="col-lg-6">Penerima: </label>
-                                        <input type="text" class="col-lg-4" id="penerimaUbahKpr" name="penerima" placeholder="Masukkan Penerima KPR" required disabled>
-                                    </p>
+                                           disabled required>
+                                    </p> --}}
+                                    {{-- <p>
+                                        <label class="col-lg-6">Penerima Cair Dana: </label>
+                                        <input type="text" class="col-lg-4" id="penerimaUbahKpr" name="penerima" placeholder="Masukkan Penerima KPR" disabled required>
+                                    </p> --}}
                                     <p>
                                         <label class="col-lg-6">Bank: </label>
                                         <select name="bank" id="bankUbahKpr" class="col-lg-4" disabled>
@@ -234,7 +277,7 @@
 										<input type="hidden" value="{{date('Y-m-d')}}" name="ambiltanggalserahterimasertifikatkpr">
 									</p>
                                     <p>
-                                        <label class="col-lg-6">Pemberi: </label>
+                                        <label class="col-lg-6">Pemberi Cair Dana: </label>
                                         <input type="text" class="col-lg-4" id="pemberiTambahKpr" name="pemberi" placeholder="Masukkan Pemberi KPR"
                                             required>
                                     </p>
@@ -301,14 +344,15 @@
             $('.btnUbah').on('click', function (e) {
                 e.preventDefault();
                 var id = $(this).closest('tr').attr('id');
-                $.post("{{url('updatetanggalakadkredit/lihat')}}", {
+                $.post("{{url('updatetanggalserahsertifikatbank/lihat')}}", {
                         'id': id,
                         '_token': "{{csrf_token()}}"
                     },
                     function (data) {
                         $('#idUbah').val(data.id);
-                        $('#tanggalcairUbahKpr').val(data.tanggalcair);
-                        $('.tanggalakadkreditKPR').datepicker('update', data.tanggalakadkredit);   
+                        $('.tanggalcairKPR').datepicker('update', data.tanggalcair); 
+                        $('.tanggalakadkreditKPR').datepicker('update', data.tanggalakadkredit); 
+                        $('.tanggalserahsertifikatbankKPR').datepicker('update',data.tanggalserahsertifikatbank);
                         $('#tanggalserahterimasertifikatUbahKpr').val(data.tanggalserahterimasertifikat);
                         $('#pemberiUbahKpr').val(data.pemberi);
                         $('#penerimaUbahKpr').val(data.penerima);
@@ -317,7 +361,7 @@
                         $('#kasirUbahKpr').val(data.kasir);
                     }
                 );
-                $('#modalUpdateTanggalAkadKreditKpr').modal('show');
+                $('#modalUpdateTanggalCairKpr').modal('show');
             });
 
         });
