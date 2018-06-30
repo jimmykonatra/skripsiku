@@ -29,7 +29,7 @@
                             <br>
                             <br>
                             <label class="col-lg-4" for="pencairandana">Pencairan Dana:</label>
-                            <select class="col-lg-4" name="pencairandana" id="pencairandana">
+                            <select class="col-lg-4" name="pencairandana" id="pencairandana" disabled>
                                 @foreach($pencairandana as $data)
                             <option value="{{$data->id}}">{{$data->nomor_bukti}}</option>
                               @endforeach
@@ -87,7 +87,7 @@
                                     @else
                                         <option value="{{$rumah->id}}">{{$rumah->tipe->blok}}-{{$rumah->nomor}}
                                     @endif
-                              </option>
+                                        </option>
                                 @endforeach
                             </select>
                             <br>
@@ -97,13 +97,17 @@
 
                            
                             
-                            <label class="col-lg-4" for="jenisbayar">Jenis Bayar</label>
+                            {{-- <label class="col-lg-4" for="jenisbayar">Jenis Bayar</label>
                             <select class="col-lg-4" name="jenisbayar" id="jenisbayar">
-                                
-                                <option value="Cash">Cash</option>
-                                <option value="KPR">KPR</option>
-                              
-                            </select>
+                              @foreach($jualrumah as $data)
+                                    @if($jualrumah->jenis_bayar == "KPR")
+                                        <option value="{{$jualrumah->jenis_bayar}}" selected>{{$jualrumah->jenis_bayar}}
+                                    @else
+                                        <option value="{{$jualrumah->jenis_bayar}}">{{$jualrumah->jenis_bayar}}
+                                    @endif
+                                        </option>
+                                @endforeach
+                            </select> --}}
 
                             
                             <h3>Mengetahui</h3>

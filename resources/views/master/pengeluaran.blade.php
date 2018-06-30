@@ -53,9 +53,15 @@
 								<td>{{$data->keterangan}}</td>
 								<td>{{$data->status_lunas}}</td>
 								<td>{{$data->kasir->karyawan->nama}}</td>
+								@if($data->status_lunas == "Lunas")
+								<td>
+									<button class="btn btnUbah btn-primary" disabled>Ubah</button>
+								</td>
+								@else
 								<td>
 									<button class="btn btnUbah btn-primary">Ubah</button>
 								</td>
+								@endif
 								<td>
 									<button class="btn btnHapus btn-danger">Hapus</button>
 								</td>

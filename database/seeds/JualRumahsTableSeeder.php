@@ -13,14 +13,14 @@ class JualRumahsTableSeeder extends Seeder
     {
         DB::table('jual_rumahs')->insert([
             'nomor_nota' => '342432',
-            'tanggal_dp' => '2018-11-10',
             'tanggal_buat'=> '2018-11-10',
             'total' => 125000000,
             'status_kelengkapan' => 'Tidak Lengkap',
             'keterangan' => 'Rumah yang dihuni pak rido',
             'tanggal_serah_terima_rumah' => null,
             'jenis_bayar' => 'KPR',
-            'status_jual_rumah' => 'Belum DP',
+            'status_jual_rumah' => 'Belum Booking',
+            'status_dp' => 'Belum Lunas',
             'customer_id' => 1,
             'rumah_id' => 1,
             'marketing_id' => 2,

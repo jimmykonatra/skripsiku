@@ -23,7 +23,7 @@
                                 <th>Tanggal</th>
                                 <th>Booking Fee</th>
                                 <th>Dana KPR</th>
-                                <th>Angsuran</th>
+                                <th>Uang Muka</th>
                                 <th>Uang Tambahan</th>
                                 <th>Total</th>
                                 <th>Keterangan</th>
@@ -39,7 +39,7 @@
                                 <th>Tanggal</th>
                                 <th>Booking Fee</th>
                                 <th>Dana KPR</th>
-                                <th>Angsuran</th>
+                                <th>Uang Muka</th>
                                 <th>Uang Tambahan</th>
                                 <th>Total</th>
                                 <th>Keterangan</th>
@@ -57,7 +57,7 @@
                                 <td>{{$data->tanggal}}</td>
                                 <td>Rp {{number_format( $data->booking_fee, 0 , '' , '.' )}}</td>
                                 <td>Rp {{number_format( $data->dana_kpr, 0 , '' , '.' )}}</td>
-                                <td>Rp {{number_format( $data->angsuran, 0 , '' , '.' )}}</td>
+                                <td>Rp {{number_format( $data->uang_muka, 0 , '' , '.' )}}</td>
                                 <td>Rp {{number_format( $data->uang_tambahan, 0 , '' , '.' )}}</td>
                                 <td>Rp {{number_format( $data->total, 0 , '' , '.' )}}</td>
                                 <td>{{$data->keterangan}}</td>
@@ -117,8 +117,8 @@
                                         <input type="number" class="col-lg-4" id="danakprUbahTandaTerima" name="danakpr" placeholder="Masukkan Dana KPR">
                                     </p>
                                     <p>
-                                        <label class="col-lg-6">Angsuran: </label>
-                                        <input type="number" class="col-lg-4" id="angsuranUbahTandaTerima" name="angsuran" placeholder="Masukkan Angsuran">
+                                        <label class="col-lg-6">Uang Muka: </label>
+                                        <input type="number" class="col-lg-4" id="uangmukaUbahTandaTerima" name="uangmuka" placeholder="Masukkan Uang Muka">
                                     </p>
                                     <p>
                                         <label class="col-lg-6">Uang Tambahan: </label>
@@ -221,8 +221,8 @@
                             <input type="number" class="col-lg-4" id="danakprTambahTandaTerima" name="danakpr" value="0">
                         </p>
                         <p>
-                            <label class="col-lg-6">Angsuran: </label>
-                            <input type="number" class="col-lg-4" id="angsuranTambahTandaTerima" name="angsuran" value="0">
+                            <label class="col-lg-6">Uang Muka: </label>
+                            <input type="number" class="col-lg-4" id="uangmukaTambahTandaTerima" name="uangmuka" value="0">
                         </p>
                         <p>
                             <label class="col-lg-6">Uang Tambahan: </label>
@@ -248,9 +248,15 @@
                         </p>
 
                         <p>
-                            <label class="col-lg-6">Total Angsuran Yang Sudah Dibayar: </label>
-                            <input type="text" class="col-lg-4" id="totalangsuranTambahTandaTerima" name="keterangan" placeholder="Masukkan Keterangan Tanda Terima" readonly>
+                            <label class="col-lg-6"><b>Total Uang Muka Yang Sudah Dibayar: </b></label>
+                            <input type="text" class="col-lg-4" id="totaluangmukaTambahTandaTerima" name="keterangan" readonly>
                         </p>
+                        <p>
+                            <label class="col-lg-6"><b>Total Uang Muka Yang HARUS Dibayar: </b></label>
+                        <input type="text" class="col-lg-4" id="uangmukawajibTambahTandaTerima" name="keterangan" readonly>
+                            
+                        </p>
+
                         <p style="text-align:center">
                             <button type="submit" class="btn btn-success" style="text-align:center" id="btnTambahKonfirmasi" class="btn btn-primary">
                                 <i class="fa fa-check"></i>Tambah</button>
@@ -276,7 +282,9 @@
 						'_token': "{{csrf_token()}}"
 					},
 					function (data) {
-                        $('#totalangsuranTambahTandaTerima').val(data);
+                         $('#totaluangmukaTambahTandaTerima').val(data.jumlahuangmuka);
+                        $('#uangmukawajibTambahTandaTerima').val(data.uangmuka);
+                        
 					}
 				);
 
@@ -296,14 +304,17 @@
 				// console.log(tanggalawal);
 				// console.log(tanggalakhir);
                 var nomornota = $(this).val();
-
+                
 
 				$.post("{{url('tandaterima/lihattotal')}}", {
 						'nomornota' : nomornota,
 						'_token': "{{csrf_token()}}"
 					},
 					function (data) {
-                        $('#totalangsuranTambahTandaTerima').val(data);
+                        $('#totaluangmukaTambahTandaTerima').val(data.jumlahuangmuka);
+                        $('#uangmukawajibTambahTandaTerima').val(data.uangmuka);
+                        
+                        
 					}
 				);
 			});
@@ -327,36 +338,36 @@
             $('#bookingfeeTambahTandaTerima').on('change', function (e) {
                 var bookingfee = parseInt($('#bookingfeeTambahTandaTerima').val());
                 var danakpr = parseInt($('#danakprTambahTandaTerima').val());
-                var angsuran = parseInt($('#angsuranTambahTandaTerima').val());
+                var uangmuka = parseInt($('#uangmukaTambahTandaTerima').val());
                 var uangtambahan = parseInt($('#uangtambahanTambahTandaTerima').val());
-                var total = bookingfee + danakpr + angsuran + uangtambahan;
+                var total = bookingfee + danakpr + uangmuka + uangtambahan;
                 $('#totalTambahTandaTerima').val(total);
             });
 
             $('#danakprTambahTandaTerima').on('change', function (e) {
                 var bookingfee = parseInt($('#bookingfeeTambahTandaTerima').val());
                 var danakpr = parseInt($('#danakprTambahTandaTerima').val());
-                var angsuran = parseInt($('#angsuranTambahTandaTerima').val());
+                var uangmuka = parseInt($('#uangmukaTambahTandaTerima').val());
                 var uangtambahan = parseInt($('#uangtambahanTambahTandaTerima').val());
-                var total = bookingfee + danakpr + angsuran + uangtambahan;
+                var total = bookingfee + danakpr + uangmuka + uangtambahan;
                 $('#totalTambahTandaTerima').val(total);
             });
 
-            $('#angsuranTambahTandaTerima').on('change', function (e) {
+            $('#uangmukaTambahTandaTerima').on('change', function (e) {
                 var bookingfee = parseInt($('#bookingfeeTambahTandaTerima').val());
                 var danakpr = parseInt($('#danakprTambahTandaTerima').val());
-                var angsuran = parseInt($('#angsuranTambahTandaTerima').val());
+                var uangmuka = parseInt($('#uangmukaTambahTandaTerima').val());
                 var uangtambahan = parseInt($('#uangtambahanTambahTandaTerima').val());
-                var total = bookingfee + danakpr + angsuran + uangtambahan;
+                var total = bookingfee + danakpr + uangmuka + uangtambahan;
                 $('#totalTambahTandaTerima').val(total);
             });
 
             $('#uangtambahanTambahTandaTerima').on('change', function (e) {
                 var bookingfee = parseInt($('#bookingfeeTambahTandaTerima').val());
                 var danakpr = parseInt($('#danakprTambahTandaTerima').val());
-                var angsuran = parseInt($('#angsuranTambahTandaTerima').val());
+                var uangmuka = parseInt($('#uangmukaTambahTandaTerima').val());
                 var uangtambahan = parseInt($('#uangtambahanTambahTandaTerima').val());
-                var total = bookingfee + danakpr + angsuran + uangtambahan;
+                var total = bookingfee + danakpr + uangmuka + uangtambahan;
                 $('#totalTambahTandaTerima').val(total);
             });
 
@@ -375,7 +386,7 @@
                         $('.tanggalTandaTerima').datepicker('update', data.tanggal);
                         $('#bookingfeeUbahTandaTerima').val(data.bookingfee);
                         $('#danakprUbahTandaTerima').val(data.danakpr);
-                        $('#angsuranUbahTandaTerima').val(data.angsuran);
+                        $('#uangmukaUbahTandaTerima').val(data.uangmuka);
                         $('#uangtambahanUbahTandaTerima').val(data.uangtambahan);
                         $('#totalUbahTandaTerima').val(data.total);
                         $('#keteranganUbahTandaTerima').val(data.keterangan);

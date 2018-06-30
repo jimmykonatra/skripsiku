@@ -16,9 +16,9 @@
                             <tr>
                                 <th>Nomor Penjualan Rumah</th>
                                 <th>Tanggal Akad Kredit</th>
-                                <th>Tanggal Serah Sertifikat Ke Bank</th>
+                                <th>Tanggal Serah Sertifikat Ke Notaris</th>
                                 <th>Tanggal Cair</th>
-                                <th>Tanggal Serah Terima Sertifikat</th>
+                            
                                 <th>Pemberi Cair Dana </th>
                                 <th>Penerima Cair Dana</th>
                                 <th>Bank</th>
@@ -31,9 +31,9 @@
                             <tr>
                                 <th>Nomor Penjualan Rumah</th>
                                 <th>Tanggal Akad Kredit</th>
-                                <th>Tanggal Serah Sertifikat Ke Bank</th>
+                                <th>Tanggal Serah Sertifikat Ke Notaris</th>
                                 <th>Tanggal Cair</th>
-                                <th>Tanggal Serah Terima Sertifikat</th>
+                            
                                 <th>Pemberi Cair Dana </th>
                                 <th>Penerima Cair Dana</th>
                                 <th>Bank</th>
@@ -47,31 +47,24 @@
                             <tr id="{{$data->id}}">
                                     <td>{{$data->jual_rumah->nomor_nota}}</td>
 
-                                    @if($data->tanggal_akad_kredit == "")
-                                    <td>Masih Kosong</td>
+                                    @if($data->tanggal_akad_kredit == "01-01-1970")
+                                    <td></td>
                                     @else
                                     <td>{{$data->tanggal_akad_kredit}}</td>
                                     @endif
 
-                                     @if($data->tanggal_serah_sertifikat_bank == "01-01-1970")
-                                    <td>Kosong</td>
+                                    @if($data->tanggal_serah_sertifikat_notaris == "01-01-1970")
+                                    <td></td>
                                     @else
-                                    <td>{{$data->tanggal_serah_sertifikat_bank}}</td>
+                                    <td>{{$data->tanggal_serah_sertifikat_notaris}}</td>
                                     @endif
                                     
-                                    @if($data->tanggal_cair == "")
-                                    <td>Masih Kosong</td>
+                                    @if($data->tanggal_cair == "01-01-1970")
+                                    <td></td>
                                     @else
                                     <td>{{$data->tanggal_cair}}</td>
                                     @endif
 
-                                @if($data->tanggal_serah_terima_sertifikat == "01-01-1970")
-                                <td>Kosong</td>
-                                @else
-                                <td>{{$data->tanggal_serah_terima_sertifikat}}</td>
-                                @endif
-
-            
                                 <td>{{$data->pemberi}}</td>
                                 <td>{{$data->penerima}}</td>
                                 <td>{{$data->bank->nama}}</td>
@@ -79,7 +72,6 @@
                                 <td>
                                     <button class="btn btnUbah btn-primary">Update</button>
                                 </td>
-                                
                             </tr>
                             @endforeach
                         </tbody>
@@ -90,13 +82,13 @@
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title">Update Serah Sertifikat Ke Bank</h5>
+                                <h5 class="modal-title">Update Serah Sertifikat Notaris</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <form action="{{url('updatetanggalserahsertifikatbank/ubah')}}" method="post" id="formUpdateTanggalSerahSertifikatBankKPR">
+                                <form action="{{url('updatetanggalserahsertifikatnotaris/ubah')}}" method="post" id="formUpdateTanggalSerahSertifikatNotarisKPR">
                                     {{csrf_field()}}
                                      {{-- <p>
 										<label for="tanggalakadkreditkpr" class="col-lg-4">Tanggal Akad Kredit KPR:</label>
@@ -116,10 +108,10 @@
                                     </div>
 
                                     <div class="row col-lg-12">
-                                       <input type="hidden" id="idUbah" name="updatetanggalserahsertifikatbank">
-                                        <label for="tanggal" class="col-lg-6"><b>Tanggal Serah Sertifikat Ke Bank:</b></label>
+                                       <input type="hidden" id="idUbah" name="updatetanggalserahsertifikatnotaris">
+                                        <label for="tanggal" class="col-lg-6"><b>Tanggal Serah Sertifikat Ke Notaris:</b></label>
                                         <div class="input-group date col-lg-6" data-provide="datepicker">	
-                                        <input type="text" class="form-control tanggalserahsertifikatbankKPR" style="display:inline-block;border-style:solid" name="tanggalserahsertifikatbank" >
+                                        <input type="text" class="form-control tanggalserahsertifikatnotarisKPR" style="display:inline-block;border-style:solid" name="tanggalserahsertifikatnotaris" >
                                         <div class="input-group-addon">
                                             <span class="glyphicon glyphicon-th"></span>
                                         </div>
@@ -271,12 +263,6 @@
 										<input type="hidden" value="{{date('Y-m-d')}}" name="ambiltanggalakadkreditkpr">
 									</p>
                                     <p>
-										<label for="tanggalserahterimasertifikatkpr" class="col-lg-4">Tanggal Serah Terima Sertifikat Rumah:</label>
-										<input type="date" id="tanggalserahterimasertifikatTambahKpr" name="tanggalserahterimasertifikat" class="col-lg-6" min="{{date('Y-m-d')}}" value="{{date('Y-m-d')}}"
-										    data-date-format="dd-mm-yyyy" data-date-viewmode="years" required>
-										<input type="hidden" value="{{date('Y-m-d')}}" name="ambiltanggalserahterimasertifikatkpr">
-									</p>
-                                    <p>
                                         <label class="col-lg-6">Pemberi Cair Dana: </label>
                                         <input type="text" class="col-lg-4" id="pemberiTambahKpr" name="pemberi" placeholder="Masukkan Pemberi KPR"
                                             required>
@@ -344,7 +330,7 @@
             $('.btnUbah').on('click', function (e) {
                 e.preventDefault();
                 var id = $(this).closest('tr').attr('id');
-                $.post("{{url('updatetanggalserahsertifikatbank/lihat')}}", {
+                $.post("{{url('updatetanggalserahsertifikatnotaris/lihat')}}", {
                         'id': id,
                         '_token': "{{csrf_token()}}"
                     },
@@ -352,8 +338,8 @@
                         $('#idUbah').val(data.id);
                         $('.tanggalcairKPR').datepicker('update', data.tanggalcair); 
                         $('.tanggalakadkreditKPR').datepicker('update', data.tanggalakadkredit); 
-                        $('.tanggalserahsertifikatbankKPR').datepicker('update',data.tanggalserahsertifikatbank);
-                        $('#tanggalserahterimasertifikatUbahKpr').val(data.tanggalserahterimasertifikat);
+                        $('.tanggalserahsertifikatnotarisKPR').datepicker('update',data.tanggalserahsertifikatnotaris);
+                      
                         $('#pemberiUbahKpr').val(data.pemberi);
                         $('#penerimaUbahKpr').val(data.penerima);
                         $('#bankUbahKpr').val(data.bank);

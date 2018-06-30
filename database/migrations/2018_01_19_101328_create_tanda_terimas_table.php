@@ -18,7 +18,7 @@ class CreateTandaTerimasTable extends Migration
             $table->date('tanggal');
             $table->bigInteger('booking_fee')->default(0);
             $table->bigInteger('dana_kpr')->default(0);
-            $table->bigInteger('angsuran')->default(0);
+            $table->bigInteger('uang_muka')->default(0);
             $table->bigInteger('uang_tambahan')->default(0);
             $table->bigInteger('total');
             $table->string('keterangan')->nullable();

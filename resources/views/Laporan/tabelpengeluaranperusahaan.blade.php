@@ -28,7 +28,4 @@
 						</tbody>
 					</table>
 				<h4 style="text-align:center">Total : Rp {{number_format( $pengeluaran->sum("nominal"), 0 , '' , '.' )}}</h4>
-				<button class="btn btnLihat btn-success pull-right"  type="submit" style="margin-left:20px" data-toggle="modal" >
-						Print
-					</button>
 				</div>

@@ -9,34 +9,40 @@
 
 				@include('layouts.flash')
 
-				
+				<form action="{{url('laporanpengeluaran/cetak')}}" method="post">
+					{{csrf_field()}}
 				<div style="padding-bottom:20px;padding-left:30px" class="row">
-				
+					
 					<span style="padding-top:5px">Periode</span>
 					<div class="input-group date col-lg-2" data-provide="datepicker">
-										<input type="text" class="form-control tanggalPengeluaran" style="display:inline-block" name="tanggal" id="tanggalawal">
+										<input type="text" class="form-control tanggalPengeluaran" style="display:inline-block" name="tanggalawal" id="tanggalawal">
 										<div class="input-group-addon">
 											<span class="glyphicon glyphicon-th"></span>
 										</div>
 										</div>
 					<span style="padding-top:5px"> - </span>
 					<div class="input-group date col-lg-2" data-provide="datepicker">
-										<input type="text" class="form-control tanggalPengeluaran" style="display:inline-block" name="tanggal" id="tanggalakhir">
+										<input type="text" class="form-control tanggalPengeluaran" style="display:inline-block" name="tanggalakhir" id="tanggalakhir">
 										<div class="input-group-addon">
 											<span class="glyphicon glyphicon-th"></span>
 										</div>
 										</div>
 					
-						<select name="nomor" id="pembangunan">
+						<select name="pembangunan" id="pembangunan">
 											@foreach($pembangunan as $data)
 											<option value="{{$data->id}}">{{$data->nomor}}</option>
 											@endforeach
 										</select>
 					
-					<button class="btn btnLihat btn-success" type="submit" style="margin-left:20px" data-toggle="modal" >
+					<button class="btn btnLihat btn-success" type="button" style="margin-left:20px" data-toggle="modal" >
 						Lihat
 					</button>
 					
+					<button class="btn btnPrint btn-warning pull-right"  type="submit" style="margin-left:20px" data-toggle="modal" >
+						Print
+					</button>
+					</form>
+						
                 </div>
                 <div id="dataTableAjax">
 
@@ -204,6 +210,9 @@
 	@include('layouts.footer')
 	<script>
 		$(document).ready(function () {
+
+			$('.btnPrint').hide();
+
 			$('.btnLihat').on('click', function(e)
 			{
 				var tanggalawal = $('#tanggalawal').val();
@@ -220,6 +229,7 @@
 						'_token': "{{csrf_token()}}"
 					},
 					function (data) {
+						$('.btnPrint').show();
                         $('#dataTableAjax').html(data);
 					}
 				);

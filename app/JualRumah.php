@@ -8,7 +8,6 @@ class JualRumah extends Model
 {
     protected $fillable = [
         'nomor_nota',
-        'tanggal_dp',
         'tanggal_buat',
         'total',
         'status_kelengkapan',

@@ -83,16 +83,12 @@
           <li class="{{Request::is('updatetanggalakadkredit')  ? 'active' : '' }}">
             <a href={{url('updatetanggalakadkredit')}}>Akad Kredit KPR</a>
           </li>
-          <li class="{{Request::is('updatetanggalserahsertifikatbank')  ? 'active' : '' }}">
-            <a href={{url('updatetanggalserahsertifikatbank')}}>Penyerahan Sertifikat ke Bank</a>
+          <li class="{{Request::is('updatetanggalserahsertifikatnotaris')  ? 'active' : '' }}">
+            <a href={{url('updatetanggalserahsertifikatnotaris')}}>Penyerahan Sertifikat ke Notaris</a>
           </li>
           <li class="{{Request::is('updatetanggalcair')  ? 'active' : '' }}">
             <a href={{url('updatetanggalcair')}}>Cair KPR</a>
-          </li>
-          <li class="{{Request::is('updatetanggalserahterimasertifikat')  ? 'active' : '' }}">
-            <a href={{url('updatetanggalserahterimasertifikat')}}>Serah Terima Sertifikat</a>
-          </li>
-          
+          </li>         
         </ul>
       </li>
     </li>
@@ -121,9 +117,7 @@
           <li class="{{Request::is('jualrumah')  ? 'active' : '' }}">
             <a href={{url('jualrumah')}}>Jual Rumah</a>
           </li>
-          <li class="{{Request::is('updatetanggalcairdana')  ? 'active' : '' }}">
-            <a href={{url('updatetanggalcairdana')}}>Serah Terima Rumah</a>
-          </li>
+          
         </ul>
       </li>
 

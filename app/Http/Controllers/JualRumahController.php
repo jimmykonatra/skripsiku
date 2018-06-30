@@ -110,11 +110,11 @@ class JualRumahController extends Controller
             'nomor_nota' => $nomornota,
             'tanggal_buat' => $tanggalbuat,
             'total' => $total->harga_jual,
-            'tanggal_dp' => $tanggaldp,
             'status_kelengkapan' => $lengkap,
             'keterangan' => $keterangan,
             'jenis_bayar' => $jenisbayar,
-            'status_jual_rumah' => 'Belum DP',
+            'status_jual_rumah' => 'Belum Booking',
+            'status_dp' => 'Belum Lunas',
             'customer_id' => $customer,
             'marketing_id' => $marketing,
             'kasir_id' => $kasir,
@@ -124,7 +124,6 @@ class JualRumahController extends Controller
 
         $dataRumah = Rumah::where('id', '=', $rumah)->first();
         $dataRumah->status_terjual = 'Terjual';
-        $dataRumah->status_booking = 'Terbooking';
         $dataRumah->save(); 
 
         foreach ($berkas as $data) {
@@ -172,7 +171,6 @@ class JualRumahController extends Controller
         $kasir = User::join('karyawans', 'users.id', '=', 'karyawans.user_id')->where([['jabatan', 'Kasir'], ['karyawans.hapuskah', 0]])->get();
         
         $cekberkas = DB::table('berkas_jual_rumah')->where('jual_rumah_id','=',$id)->get();
-
         
         return view('jualrumah.ubahjualrumah', compact('jualrumah','cekberkas','customer', 'rumah', 'berkas', 'marketing', 'kasir','pencairandana')); 
         
@@ -199,7 +197,7 @@ class JualRumahController extends Controller
         $marketing = $request->marketing;
         $kasir = $request->kasir;
         $tanggalbuat = $request->tanggalbuat;
-        $tanggaldp = $request->tanggaldp;
+       
         $berkas = $request->berkas;
         $pencairandana = $request->pencairandana;
         $keterangan = $request->keterangan;
@@ -208,7 +206,7 @@ class JualRumahController extends Controller
         $jualrumah = JualRumah::find($id);
 
         $jualrumah->nomor_nota = $nomornota;
-        $jualrumah->tanggal_dp = $tanggaldp;
+       
         $jualrumah->tanggal_buat = $tanggalbuat;
         $jualrumah->total = $total;
         $jualrumah->keterangan = $keterangan;
@@ -303,16 +301,17 @@ class JualRumahController extends Controller
                 <td>Rp ' . $danakpr->dana_kpr . '</td>
                 </tr>';
         }
-        $tandaterimaangsuran = TandaTerima::where('hapuskah', 0)
+
+        $tandaterimauangmuka = TandaTerima::where('hapuskah', 0)
                         ->where('jual_rumah_id', '=', $jualrumah->id)
-                        ->where('angsuran','!=',0)
+                        ->where('uang_muka','!=',0)
                         ->get();
-                        $cetakangsuran="";
-        foreach ($tandaterimaangsuran as $angsuran) {
-            $cetakangsuran.= '<tr>
-                <td>Angsuran</td>
-                <td>' . $angsuran->tanggal . '</td>
-                <td>Rp ' . $angsuran->angsuran . '</td>
+                        $cetakuangmuka="";
+        foreach ($tandaterimauangmuka as $uangmuka) {
+            $cetakuangmuka.= '<tr>
+                <td>uangmuka</td>
+                <td>' . $uangmuka->tanggal . '</td>
+                <td>Rp ' . $uangmuka->uang_muka . '</td>
                 </tr>';
         }
         $tandaterimauangtambahan = TandaTerima::where('hapuskah', 0)
@@ -420,7 +419,7 @@ class JualRumahController extends Controller
                 <th>  TANGGAL / BULAN / TAHUN </th>
                 <th>JUMLAH</th>
             </tr>
-            '.$cetakbookingfee.$cetakdanakpr.$cetakangsuran.$cetakuangtambahan. '
+            '.$cetakbookingfee.$cetakdanakpr.$cetakuangmuka.$cetakuangtambahan. '
             
 
         </table>

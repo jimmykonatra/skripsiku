@@ -69,6 +69,7 @@ Route::post('pengeluaran/tambah', 'PengeluaranController@store');
 
 Route::get('laporanpengeluaran','PengeluaranController@laporanpengeluaran');
 Route::post('laporanpengeluaran/lihat','PengeluaranController@laporanpengeluaranindex');
+Route::post('laporanpengeluaran/cetak','PengeluaranController@laporanpengeluaranprint');
 
 Route::get('cicilan', 'CicilanController@index');
 Route::post('cicilan/hapus', 'CicilanController@destroy');
@@ -129,9 +130,9 @@ Route::get('updatetanggalcair', 'KprController@updatetanggalcairindex');
 Route::post('updatetanggalcair/lihat', 'KprController@updatetanggalcairedit');
 Route::post('updatetanggalcair/ubah', 'KprController@updatetanggalcairupdate');
 
-Route::get('updatetanggalserahsertifikatbank', 'KprController@updatetanggalserahsertifikatbankindex');
-Route::post('updatetanggalserahsertifikatbank/lihat', 'KprController@updatetanggalserahsertifikatbankedit');
-Route::post('updatetanggalserahsertifikatbank/ubah', 'KprController@updatetanggalserahsertifikatbankupdate');
+Route::get('updatetanggalserahsertifikatnotaris', 'KprController@updatetanggalserahsertifikatnotarisindex');
+Route::post('updatetanggalserahsertifikatnotaris/lihat', 'KprController@updatetanggalserahsertifikatnotarisedit');
+Route::post('updatetanggalserahsertifikatnotaris/ubah', 'KprController@updatetanggalserahsertifikatnotarisupdate');
 
 Route::get('updatetanggalserahterimasertifikat', 'KprController@updatetanggalserahterimasertifikatindex');
 Route::post('updatetanggalserahterimasertifikat/lihat', 'KprController@updatetanggalserahterimasertifikatedit');

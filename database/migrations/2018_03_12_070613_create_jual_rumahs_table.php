@@ -16,14 +16,14 @@ class CreateJualrumahsTable extends Migration
         Schema::create('jual_rumahs', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nomor_nota')->unique();
-            $table->date('tanggal_dp');
             $table->date('tanggal_buat');
             $table->double('total');
             $table->enum('status_kelengkapan', ['Tidak Lengkap', 'Lengkap']);
             $table->string('keterangan')->nullable();
             $table->date('tanggal_serah_terima_rumah')->nullable();
             $table->enum('jenis_bayar',['Cash','KPR']);
-            $table->enum('status_jual_rumah',['Belum DP','Proses DP','Proses KPR','Selesai'])->default('Belum DP');
+            $table->enum('status_jual_rumah',['Belum Booking','Proses KPR','Selesai'])->default('Belum Booking');
+            $table->enum('status_dp',['Lunas','Belum Lunas'])->default('Belum Lunas');
             $table->unsignedInteger('customer_id');
             $table->unsignedInteger('rumah_id');
             $table->unsignedInteger('marketing_id');

@@ -26,6 +26,7 @@ class TandaTerimaController extends Controller
         $tandaterima = TandaTerima::where('hapuskah',0)->get();
         $kasir = User::where('jabatan','Kasir')->get();
         $jualrumah = JualRumah::where('hapuskah',0)->get();
+        
 
         return view('master.tandaterima',compact('tandaterima','kasir','jualrumah'));
     }
@@ -54,20 +55,33 @@ class TandaTerimaController extends Controller
 
         $bookingfee = $request->bookingfee;
         $danakpr = $request->danakpr;
-        $angsuran = $request->angsuran;
+        $uangmuka = $request->uangmuka;
         $uangtambahan = $request->uangtambahan;
         $keterangan = $request->keterangan;
         $kasir = $request->kasir;
-        $total = $bookingfee + $danakpr + $angsuran + $uangtambahan;
+        $total = $bookingfee + $danakpr + $uangmuka + $uangtambahan;
         
-      
+        $bookingfeelunas = false;
+        
+
+        if($bookingfee > 0 && $bookingfee < 500000)
+        {   
+            return redirect('tandaterima')->with('error_msg','Booking Fee Minimal Rp 500.000');
+        }
+        
+        if($bookingfee > 500000)
+        {
+            $uangmuka += $bookingfee - 500000;
+            $bookingfee = 500000;
+            $bookingfeelunas = true;
+        }
        
         //setor tanda terima atau mulai input data tanda terima
         TandaTerima::Create([
             'tanggal' => $tglTerimaBaru,
             'booking_fee' => $bookingfee,
             'dana_kpr' => $danakpr,
-            'angsuran' => $angsuran,
+            'uang_muka' => $uangmuka,
             'uang_tambahan' => $uangtambahan,
             'total' => $total,
             'keterangan' => $keterangan,
@@ -87,10 +101,10 @@ class TandaTerimaController extends Controller
 
         foreach($tandaterima as $data)
         {
-            $totaluangmuka += $data->angsuran;
+            $totaluangmuka += $data->uang_muka;
         }
 
-        if($totaluangmuka >= $rumah->uang_muka)//jika DP telah lunas maka update status jual rumah
+        if($bookingfeelunas == true)
         {
             $jualrumah = JualRumah::find($nomornota);
             $jualrumah->status_jual_rumah = 'Proses KPR';
@@ -100,12 +114,11 @@ class TandaTerimaController extends Controller
             $rumah->status_booking = 'Terbooking';
             $rumah->save();
         }
-        else
+        if($totaluangmuka >= $rumah->uang_muka)//jika DP telah lunas maka update status jual rumah
         {
             $jualrumah = JualRumah::find($nomornota);
-            $jualrumah->status_jual_rumah = 'Proses DP';
+            $jualrumah->status_dp = 'Lunas';
             $jualrumah->save();
-            
         }
         //update status booking rumah
         Session::flash('flash_msg', 'Data Tanda Terima Berhasil Disimpan');
@@ -139,7 +152,7 @@ class TandaTerimaController extends Controller
             'tanggal' => $tandaterima->tanggal,
             'bookingfee' => $tandaterima->booking_fee,
             'danakpr' => $tandaterima->dana_kpr,
-            'angsuran' => $tandaterima->angsuran,
+            'uangmuka' => $tandaterima->uang_muka,
             'uangtambahan' => $tandaterima->uang_tambahan,
             'total' => $tandaterima->total,
             'keterangan' => $tandaterima->keterangan,
@@ -164,7 +177,7 @@ class TandaTerimaController extends Controller
         $tglTerimaBaru = TandaTerima::changeDateFormat($tanggal);
         $bookingfee = $request->bookingfee;
         $danakpr = $request->danakpr;
-        $angsuran = $request->angsuran;
+        $uangmuka = $request->uangmuka;
         $uangtambahan = $request->uangtambahan;
         $total = $request->total;
         $keterangan = $request->keterangan;
@@ -177,7 +190,7 @@ class TandaTerimaController extends Controller
         $tandaterima->tanggal = $tglTerimaBaru;
         $tandaterima->booking_fee = $bookingfee;
         $tandaterima->dana_kpr = $danakpr;
-        $tandaterima->angsuran = $angsuran;
+        $tandaterima->uang_muka = $uangmuka;
         $tandaterima->uang_tambahan = $uangtambahan;
         $tandaterima->total = $total;
         $tandaterima->keterangan = $keterangan;
@@ -211,10 +224,17 @@ class TandaTerimaController extends Controller
     {
         $nomornota = $request->nomornota;
         $tandaterima = TandaTerima::where('jual_rumah_id',$nomornota)->get();
+        $rumah = JualRumah::where('id',$nomornota)->first();
+        $tipe = Rumah::where('id',$rumah->rumah_id)->first();
+        $uangmuka = Tipe::where('id',$tipe->tipe_id)->first();
 
-        $jumlahangsuran = $tandaterima->sum("angsuran");
+        $jumlahuangmuka = $tandaterima->sum("uang_muka");
 
-        return $jumlahangsuran;
+        return response()->json(array(
+            'jumlahuangmuka' => number_format( $jumlahuangmuka, 0 , '' , '.' ),
+            'uangmuka' => number_format( $uangmuka->uang_muka, 0 , '' , '.' )
+
+        ));
     }
 
     public function print($id)
@@ -228,7 +248,8 @@ class TandaTerimaController extends Controller
         $perumahan = Perumahan::where('id',$rumah->perumahan_id)->first();
         $kasir = User::where('id',$tandaterima->kasir_id)->first();
         
-        $content = view('tandaterima.cetaktandaterima',compact('tandaterima','jualrumah','customer','rumah','tipe','perumahan','kasir'));
+        $total = ucfirst(TandaTerima::kekata($tandaterima->total));
+        $content = view('tandaterima.cetaktandaterima',compact('tandaterima','jualrumah','customer','rumah','tipe','perumahan','kasir','total'));
 
         $dompdf = new Dompdf();
 

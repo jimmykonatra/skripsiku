@@ -26,6 +26,11 @@
                             <td>: {{$customer->nama}} </td>
                             
                         </tr>
+                        <tr>
+                            <td width="200" style="padding-left:40px">Uang terbilang sebanyak</td>
+                            <td>: {{$total}} Rupiah </td>
+                            
+                        </tr>
                         
                         
                     </table>
@@ -66,8 +71,8 @@
                         </tr>
                             
                         <tr>
-                            <td style="padding-left:20px">Angsuran</td>
-                            <td colspan="4">: Rp {{number_format( $tandaterima->angsuran, 0 , '' , '.' )}} </td>
+                            <td style="padding-left:20px">Uang Muka</td>
+                            <td colspan="4">: Rp {{number_format( $tandaterima->uang_muka, 0 , '' , '.' )}} </td>
                             
                         </tr>
                         <tr>

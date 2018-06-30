@@ -23,6 +23,7 @@
 							<tr>
 								<th>Tanggal Cair Dana</th>
 								<th>Nomor Bukti</th>
+								<th>Nominal</th>
 								<th>Pemberi</th>
 								<th>Penerima</th>
 								<th>Edit</th>
@@ -33,6 +34,7 @@
 							<tr>
 								<th>Tanggal Cair Dana</th>
 								<th>Nomor Bukti</th>
+									<th>Nominal</th>
 								<th>Pemberi</th>
 								<th>Penerima</th>
 								<th>Edit</th>
@@ -44,6 +46,7 @@
 							<tr id="{{$data->id}}">
 								<td>{{$data->tanggal_cair_dana}}</td>
 								<td>{{$data->nomor_bukti}}</td>
+								<td>Rp {{number_format( $data->nominal, 0 , '' , '.' )}}	</td>
 								<td>{{$data->pemberi}}</td>
 								<td>{{$data->penerima}}</td>
 								<td>
@@ -71,15 +74,24 @@
 								<form action="{{url('pencairandana/ubah')}}" method="post" id="formUbahPencairanDana">
 									{{csrf_field()}}
 									<input type="hidden" name="pencairandana" id="idUbah">
-                                    <p>
-										<label for="tanggal" class="col-lg-4">Tanggal Cair Dana:</label>
-										<input type="date" id="tanggalUbahPencairanDana" name="tanggal" class="col-lg-6" min="{{date('Y-m-d')}}" value="{{date('Y-m-d')}}"
-										    data-date-format="dd-mm-yyyy" data-date-viewmode="years" required>
-										<input type="hidden" value="{{date('Y-m-d')}}" name="tanggal">
-									</p>
+                                    <div class="row col-lg-12">
+										<label for="tanggal" class="col-lg-6">Tanggal Cair Dana SBUM :</label>
+										<div class="input-group date col-lg-6" data-provide="datepicker">
+	
+										<input type="text" class="form-control tanggalcairPencairanDana" style="display:inline-block" name="tanggalcair">
+										<div class="input-group-addon">
+											<span class="glyphicon glyphicon-th"></span>
+										</div>
+										</div>
+									</div>
                                     <p>
 										<label class="col-lg-6">Nomor Bukti: </label>
 										<input type="number" class="col-lg-4" id="nomorbuktiUbahPencairanDana" name="nomorbukti" placeholder="Masukkan Nomor Bukti Pencairan Dana"
+										    required>
+									</p>
+									<p>
+										<label class="col-lg-6">Nominal: </label>
+										<input type="number" class="col-lg-4" id="nominalUbahPencairanDana" name="nominal" placeholder="Masukkan Nominal Pencairan Dana"
 										    required>
 									</p>
 									<p>
@@ -142,7 +154,7 @@
 				<div class="modal-body">
 					<form action="{{url('pencairandana/tambah')}}" method="post" id="formTambahPencairanDana">
 						{{csrf_field()}}
-						  <p>
+						  			<p>
 										<label for="tanggalcairdana" class="col-lg-4">Tanggal Cair Dana:</label>
 										<input type="date" id="tanggalTambahPencairanDana" name="tanggal" class="col-lg-6" min="{{date('Y-m-d')}}" value="{{date('Y-m-d')}}"
 										    data-date-format="dd-mm-yyyy" data-date-viewmode="years" required>
@@ -151,6 +163,11 @@
                                     <p>
 										<label class="col-lg-6">Nomor Bukti: </label>
 										<input type="number" class="col-lg-4" id="nomorbuktiTambahPengeluaran" name="nomorbukti" placeholder="Masukkan Nomor Bukti Pencairan Dana"
+										    required>
+									</p>
+									<p>
+										<label class="col-lg-6">Nominal: </label>
+										<input type="number" class="col-lg-4" id="nominalTambahPencairanDana" name="nominal" placeholder="Masukkan Nominal Pencairan Dana"
 										    required>
 									</p>
 									<p>
@@ -190,6 +207,8 @@
 				$('#modalTambahPencairanDana').modal('show');
 			});
 
+			$.fn.datepicker.defaults.format = "dd/mm/yyyy";
+
 			$('.btnUbah').on('click', function (e) {
 				e.preventDefault();
 				var id = $(this).closest('tr').attr('id');
@@ -199,8 +218,9 @@
 					},
 					function (data) {
 						$('#idUbah').val(data.id);
-						$('#tanggalUbahPencairanDana').val(data.tanggal);
+						$('.tanggalcairPencairanDana').datepicker('update', data.tanggalcair);
 						$('#nomorbuktiUbahPencairanDana').val(data.nomorbukti);
+						$('#nominalUbahPencairanDana').val(data.nominal);
 						$('#pemberiUbahPencairanDana').val(data.pemberi);
 						$('#penerimaUbahPencairanDana').val(data.penerima);						
 					}

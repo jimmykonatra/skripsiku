@@ -16,9 +16,9 @@
                             <tr>
                                 <th>Nomor Penjualan Rumah</th>
                                 <th>Tanggal Akad Kredit</th>
-                                <th>Tanggal Serah Sertifikat Ke Bank</th>
+                                <th>Tanggal Serah Sertifikat Ke Notaris</th>
                                 <th>Tanggal Cair</th>
-                                <th>Tanggal Serah Terima Sertifikat</th>
+                         
                                 <th>Pemberi Cair Dana </th>
                                 <th>Penerima Cair Dana</th>
                                 <th>Bank</th>
@@ -31,9 +31,9 @@
                             <tr>
                                 <th>Nomor Penjualan Rumah</th>
                                 <th>Tanggal Akad Kredit</th>
-                                <th>Tanggal Serah Sertifikat Ke Bank</th>
+                                <th>Tanggal Serah Sertifikat Ke Notaris</th>
                                 <th>Tanggal Cair</th>
-                                <th>Tanggal Serah Terima Sertifikat</th>
+                              
                                 <th>Pemberi Cair Dana </th>
                                 <th>Penerima Cair Dana</th>
                                 <th>Bank</th>
@@ -47,31 +47,25 @@
                             <tr id="{{$data->id}}">
                                     <td>{{$data->jual_rumah->nomor_nota}}</td>
 
-                                    @if($data->tanggal_akad_kredit == "")
-                                    <td>Masih Kosong</td>
+                                    @if($data->tanggal_akad_kredit == "01-01-1970")
+                                    <td></td>
                                     @else
                                     <td>{{$data->tanggal_akad_kredit}}</td>
                                     @endif
 
-                                     @if($data->tanggal_serah_sertifikat_bank == "01-01-1970")
-                                    <td>Kosong</td>
+                                     @if($data->tanggal_serah_sertifikat_notaris == "01-01-1970")
+                                    <td></td>
                                     @else
-                                    <td>{{$data->tanggal_serah_sertifikat_bank}}</td>
+                                    <td>{{$data->tanggal_serah_sertifikat_notaris}}</td>
                                     @endif
                                     
-                                    @if($data->tanggal_cair == "")
-                                    <td>Masih Kosong</td>
+                                    @if($data->tanggal_cair == "01-01-1970")
+                                    <td></td>
                                     @else
                                     <td>{{$data->tanggal_cair}}</td>
                                     @endif
 
-                                @if($data->tanggal_serah_terima_sertifikat == "01-01-1970")
-                                <td>Kosong</td>
-                                @else
-                                <td>{{$data->tanggal_serah_terima_sertifikat}}</td>
-                                @endif
-
-            
+                            
                                 <td>{{$data->pemberi}}</td>
                                 <td>{{$data->penerima}}</td>
                                 <td>{{$data->bank->nama}}</td>
@@ -117,9 +111,9 @@
                                    
                                     <div class="row col-lg-12">
                                        
-                                        <label for="tanggal" class="col-lg-6">Tanggal Serah Sertifikat Ke Bank:</label>
+                                        <label for="tanggal" class="col-lg-6">Tanggal Serah Sertifikat Ke Notaris:</label>
                                         <div class="input-group date col-lg-6" data-provide="datepicker">	
-                                        <input type="text" class="form-control tanggalserahsertifikatbankKPR" style="display:inline-block" name="tanggalserahsertifikatbank" disabled>
+                                        <input type="text" class="form-control tanggalserahsertifikatnotarisKPR" style="display:inline-block" name="tanggalserahsertifikatnotaris" disabled>
                                         <div class="input-group-addon">
                                             <span class="glyphicon glyphicon-th"></span>
                                         </div>
@@ -168,7 +162,7 @@
                                     </p>
                                     <p>
                                         <label class="col-lg-6">Penjualan Rumah: </label>
-                                        <select name="jualrumah" id="jualrumahUbahKpr" class="col-lg-4" disabled>
+                                        <select name="jualrumah" id="jualrumahUbahKpr" class="col-lg-4">
                                             @foreach($jualrumah as $data)
                                             <option value="{{$data->id}}">{{$data->nomor_nota}}</option>
                                             @endforeach
@@ -329,7 +323,7 @@
                     function (data) {
                         $('#idUbah').val(data.id);
                         $('.tanggalcairKPR').datepicker('update', data.tanggalcair); 
-                        $('.tanggalserahsertifikatbankKPR').datepicker('update', data.tanggalserahsertifikatbank); 
+                        $('.tanggalserahsertifikatnotarisKPR').datepicker('update', data.tanggalserahsertifikatnotaris); 
                         $('.tanggalakadkreditKPR').datepicker('update', data.tanggalakadkredit); 
                         $('#tanggalserahterimasertifikatUbahKpr').val(data.tanggalserahterimasertifikat);
                         $('#pemberiUbahKpr').val(data.pemberi);

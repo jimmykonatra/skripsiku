@@ -24,14 +24,15 @@
 								<th>Nomor Nota</th>
 								<th>Customer</th>
 								<th>Nomor Rumah</th>
-								<th>Tanggal Down Payment</th>
+								
 								<th>Tanggal Buat</th>
 								<th>Total</th>
+								<th>Status Jual Rumah</th>
+								<th>Status DP</th>
 								<th>Status Kelengkapan</th>
 								<th>Keterangan</th>
 								<th>Tanggal Serah Terima Rumah</th>
 								<th>Jenis Bayar</th>
-								<th>Status Jual Rumah</th>
 								<th>Marketing</th>
 								<th>Kasir</th>
 								<th>Tanggal Cair Dana</th>
@@ -45,14 +46,15 @@
 								<th>Nomor Nota</th>
 								<th>Customer</th>
 								<th>Nomor Rumah</th>
-								<th>Tanggal Down Payment</th>
+								
 								<th>Tanggal Buat</th>
 								<th>Total</th>
+								<th>Status Jual Rumah</th>
+								<th>Status DP</th>
 								<th>Status Kelengkapan</th>
 								<th>Keterangan</th>
 								<th>Tanggal Serah Terima Rumah</th>
 								<th>Jenis Bayar</th>
-								<th>Status Jual Rumah</th>
 								<th>Marketing</th>
 								<th>Kasir</th>
 								<th>Tanggal Cair Dana</th>
@@ -67,10 +69,11 @@
 								<td>{{$data->nomor_nota}}</td>
 								<td>{{$data->customer->nama}}</td>
 								<td>{{$data->rumah->tipe->blok}}{{$data->rumah->nomor}}</td>
-								<td>{{$data->tanggal_dp}}</td>
 								<td>{{$data->tanggal_buat}}</td>
 								<td>Rp {{number_format( $data->total, 0 , '' , '.' )}}</td>
 
+								<td>{{$data->status_jual_rumah}}</td>
+								<td>{{$data->status_dp}}</td>
 								@if($data->status_kelengkapan == "Lengkap")
 								<td>Lengkap</td>
 								@else
@@ -80,7 +83,6 @@
 								<td>{{$data->keterangan}}</td>
 								<td>{{$data->tanggal_serah_terima_rumah}}</td>
 								<td>{{$data->jenis_bayar}}</td>
-								<td>{{$data->status_jual_rumah}}</td>
 								<td>{{$data->marketing->karyawan->nama}}</td>
 								<td>{{$data->kasir->karyawan->nama}}</td>
 								<td>

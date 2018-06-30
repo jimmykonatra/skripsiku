@@ -16,9 +16,9 @@
                             <tr>
                                 <th>Nomor Penjualan Rumah</th>
                                 <th>Tanggal Akad Kredit</th>
-                                <th>Tanggal Serah Sertifikat Ke Bank</th>
+                                <th>Tanggal Serah Sertifikat Ke Notaris</th>
                                 <th>Tanggal Cair</th>
-                                <th>Tanggal Serah Terima Sertifikat</th>
+                             
                                 <th>Pemberi</th>
                                 <th>Penerima</th>
                                 <th>Bank</th>
@@ -31,9 +31,9 @@
                             <tr>
                                 <th>Nomor Penjualan Rumah</th>
                                 <th>Tanggal Akad Kredit</th>
-                                <th>Tanggal Serah Sertifikat Ke Bank</th>
+                                <th>Tanggal Serah Sertifikat Ke Notaris</th>
                                 <th>Tanggal Cair</th>
-                                <th>Tanggal Serah Terima Sertifikat</th>
+                             
                                 <th>Pemberi</th>
                                 <th>Penerima</th>
                                 <th>Bank</th>
@@ -47,31 +47,24 @@
                             <tr id="{{$data->id}}">
                                     <td>{{$data->jual_rumah->nomor_nota}}</td>
 
-                                    @if($data->tanggal_akad_kredit == "")
-                                    <td>Masih Kosong</td>
+                                    @if($data->tanggal_akad_kredit == "01-01-1970")
+                                    <td></td>
                                     @else
                                     <td>{{$data->tanggal_akad_kredit}}</td>
                                     @endif
                                     
-                                    @if($data->tanggal_serah_sertifikat_bank == "01-01-1970")
-                                     <td>Kosong</td>
+                                    @if($data->tanggal_serah_sertifikat_notaris == "01-01-1970")
+                                     <td></td>
                                      @else
-                                     <td>{{$data->tanggal_serah_terima_sertifikat}}</td>
+                                     <td>{{$data->tanggal_serah_sertifikat_notaris}}</td>
                                      @endif
 
-                                    @if($data->tanggal_cair == "")
-                                    <td>Masih Kosong</td>
+                                    @if($data->tanggal_cair == "01-01-1970")
+                                    <td></td>
                                     @else
                                     <td>{{$data->tanggal_cair}}</td>
                                     @endif
-                                    
-                                @if($data->tanggal_serah_terima_sertifikat == "01-01-1970")
-                                <td>Kosong</td>
-                                @else
-                                <td>{{$data->tanggal_serah_terima_sertifikat}}</td>
-                                @endif
-                                
-
+                           
                                 <td>{{$data->pemberi}}</td>
                                 <td>{{$data->penerima}}</td>
                                 <td>{{$data->bank->nama}}</td>
@@ -291,12 +284,18 @@
             //     $('#idHapus').val(id);
             //     $('#modalHapusCicilan').modal('show');
             // });
+            $(".tanggalakadkreditKPR").datepicker("setDate", new Date());
 
             // $('.btnTambah').on('click', function (e) {
             //     e.preventDefault();
             //     $('#modalTambahCicilan').modal('show');
             // });
             $.fn.datepicker.defaults.format = "dd/mm/yyyy";
+            
+//             $('#datepicker').datepicker({
+//         "setDate": new Date(),
+//         "autoclose": true
+// });
 
             $('.btnUbah').on('click', function (e) {
                 e.preventDefault();

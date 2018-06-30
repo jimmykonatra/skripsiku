@@ -59,7 +59,6 @@
 							@foreach($jualrumah as $data)
 							<tr id="{{$data->id}}">
 								<td>{{$data->nomor_nota}}</td>
-								<td>{{$data->tanggal_dp}}</td>
 								<td>{{$data->tanggal_buat}}</td>
 								<td>{{$data->total}}</td>
 

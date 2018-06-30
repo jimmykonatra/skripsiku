@@ -21,7 +21,7 @@ class KprController extends Controller
     {
         $kpr = KPR::where('hapuskah',0)->get();
         $bank = Bank::where('hapuskah',0)->get();
-        $jualrumah = JualRumah::where('jenis_bayar','KPR')->where('status_jual_rumah','Proses KPR')->where('hapuskah',0)->get();
+        $jualrumah = JualRumah::where('jenis_bayar','KPR')->where('status_jual_rumah','Proses KPR')->where('status_dp','Lunas')->where('hapuskah',0)->get();
         $kasir = User::where('jabatan','Kasir')->get();
         
         return view ('master.kpr', compact('kpr','bank','jualrumah','kasir'));
@@ -37,14 +37,14 @@ class KprController extends Controller
         return view('kpr.updatetanggalakadkredit', compact('kpr', 'bank', 'jualrumah', 'kasir'));
     }
 
-    public function updatetanggalserahsertifikatbankindex()
+    public function updatetanggalserahsertifikatnotarisindex()
     {
         $kpr = KPR::where('hapuskah', 0)->get();
         $bank = Bank::where('hapuskah', 0)->get();
         $jualrumah = JualRumah::where('status_jual_rumah', 'Proses KPR')->where('hapuskah', 0)->get();
         $kasir = User::where('jabatan', 'Kasir')->get();
 
-        return view('kpr.updatetanggalserahsertifikatbank', compact('kpr', 'bank', 'jualrumah', 'kasir'));
+        return view('kpr.updatetanggalserahsertifikatnotaris', compact('kpr', 'bank', 'jualrumah', 'kasir'));
     }
 
     public function updatetanggalcairindex()
@@ -57,15 +57,15 @@ class KprController extends Controller
         return view('kpr.updatetanggalcair', compact('kpr', 'bank', 'jualrumah', 'kasir'));
     }
 
-     public function updatetanggalserahterimasertifikatindex()
-    {
-        $kpr = KPR::where('hapuskah', 0)->where('tanggal_cair','!=','null')->where('tanggal_akad_kredit','!=','null')->get();
-        $bank = Bank::where('hapuskah', 0)->get();
-        $jualrumah = JualRumah::where('status_jual_rumah','Proses KPR')->where('hapuskah', 0)->get();
-        $kasir = User::where('jabatan', 'Kasir')->get();
+    //  public function updatetanggalserahterimasertifikatindex()
+    // {
+    //     $kpr = KPR::where('hapuskah', 0)->where('tanggal_cair','!=','null')->where('tanggal_akad_kredit','!=','null')->get();
+    //     $bank = Bank::where('hapuskah', 0)->get();
+    //     $jualrumah = JualRumah::where('status_jual_rumah','Proses KPR')->where('hapuskah', 0)->get();
+    //     $kasir = User::where('jabatan', 'Kasir')->get();
 
-        return view('kpr.updatetanggalserahterimasertifikat', compact('kpr', 'bank', 'jualrumah', 'kasir'));
-    }
+    //     return view('kpr.updatetanggalserahterimasertifikat', compact('kpr', 'bank', 'jualrumah', 'kasir'));
+    // }
     /**
      * Show the form for creating a new resource.
      *
@@ -158,8 +158,8 @@ class KprController extends Controller
             'id' => $id,
             'tanggalcair' => $kpr->tanggal_cair,
             'tanggalakadkredit' => $kpr->tanggal_akad_kredit,
-            'tanggalserahterimasertifikat' => $kpr->tanggal_serah_terima_sertifikat,
-            'tanggalserahsertifikatbank' => $kpr->tanggal_serah_sertifikat_bank,
+            
+            'tanggalserahsertifikatnotaris' => $kpr->tanggal_serah_sertifikat_notaris,
             'pemberi' => $kpr->pemberi,
             'penerima' => $kpr->penerima,
             'bank' => $kpr->bank_id,
@@ -177,8 +177,8 @@ class KprController extends Controller
             'id' => $id,
             'tanggalcair' => $kpr->tanggal_cair,
             'tanggalakadkredit' => $kpr->tanggal_akad_kredit,
-            'tanggalserahterimasertifikat' => $kpr->tanggal_serah_terima_sertifikat,
-            'tanggalserahsertifikatbank' => $kpr->tanggal_serah_sertifikat_bank,
+        
+            'tanggalserahsertifikatbank' => $kpr->tanggal_serah_sertifikat_notaris,
             'pemberi' => $kpr->pemberi,
             'penerima' => $kpr->penerima,
             'bank' => $kpr->bank_id,
@@ -188,7 +188,7 @@ class KprController extends Controller
 
     }
 
-    public function updatetanggalserahsertifikatbankedit(Request $request)
+    public function updatetanggalserahsertifikatnotarisedit(Request $request)
     {
         $id = $request->id;
 
@@ -197,8 +197,7 @@ class KprController extends Controller
             'id' => $id,
             'tanggalcair' => $kpr->tanggal_cair,
             'tanggalakadkredit' => $kpr->tanggal_akad_kredit,
-            'tanggalserahterimasertifikat' => $kpr->tanggal_serah_terima_sertifikat,
-            'tanggalserahsertifikatbank' => $kpr->tanggal_serah_sertifikat_bank,
+            'tanggalserahsertifikatnotaris' => $kpr->tanggal_serah_sertifikat_notaris,
             'pemberi' => $kpr->pemberi,
             'penerima' => $kpr->penerima,
             'bank' => $kpr->bank_id,
@@ -207,25 +206,7 @@ class KprController extends Controller
         ]);
     }
 
-    public function updatetanggalserahterimasertifikatedit(Request $request)
-    {
-        $id = $request->id;
 
-        $kpr = Kpr::find($id);
-        return response()->json([
-            'id' => $id,
-            'tanggalcair' => $kpr->tanggal_cair,
-            'tanggalakadkredit' => $kpr->tanggal_akad_kredit,
-            'tanggalserahterimasertifikat' => $kpr->tanggal_serah_terima_sertifikat,
-            'tanggalserahsertifikatbank' => $kpr->tanggal_serah_sertifikat_bank,
-            'pemberi' => $kpr->pemberi,
-            'penerima' => $kpr->penerima,
-            'bank' => $kpr->bank_id,
-            'jualrumah' => $kpr->jual_rumah_id,
-            'kasir' => $kpr->kasir_id
-        ]);
-
-    }
 
     /**
      * Update the specified resource in storage.
@@ -252,6 +233,12 @@ class KprController extends Controller
         $kpr->tanggal_cair = $tanggalcair;
         $kpr->pemberi = $pemberi;
         $kpr->penerima = $penerima;
+
+        $nomorjualrumah = $request->jualrumah;
+        $jualrumah = JualRumah::find($nomorjualrumah);
+        $jualrumah->status_jual_rumah = 'Selesai';
+        $jualrumah->save();
+
         $kpr->save();
 
         Session::flash('flash_msg', 'Data Tanggal Cair Berhasil Diubah');
@@ -274,49 +261,46 @@ class KprController extends Controller
         return redirect('updatetanggalakadkredit');
     }
 
-    public function updatetanggalserahsertifikatbankupdate(Request $request)
+    public function updatetanggalserahsertifikatnotarisupdate(Request $request)
     {
-        $id = $request->updatetanggalserahsertifikatbank;
-        $tglserahsertifikatbank = $request->tanggalserahsertifikatbank;
-        $tanggal = Kpr::changeDateFormat($tglserahsertifikatbank);
+        $id = $request->updatetanggalserahsertifikatnotaris;
+        $tglserahsertifikatnotaris = $request->tanggalserahsertifikatnotaris;
+        $tanggal = Kpr::changeDateFormat($tglserahsertifikatnotaris);
 
         $kpr = Kpr::find($id);
 
-        $kpr->tanggal_serah_sertifikat_bank = $tanggal;
+        $kpr->tanggal_serah_sertifikat_notaris = $tanggal;
         $kpr->save();
 
-        Session::flash('flash_msg', 'Data Tanggal Serah Terima Sertifikat Ke Bank Berhasil Diubah');
-        return redirect('updatetanggalserahsertifikatbank');
+        Session::flash('flash_msg', 'Data Tanggal Serah Terima Sertifikat Ke Notaris Berhasil Diubah');
+        return redirect('updatetanggalserahsertifikatnotaris');
     }
 
-    public function updatetanggalserahterimasertifikatupdate(Request $request)
-    {   
-        $id = $request->updatetanggalserahterimasertifikat;
-        $tgl = $request->tanggalserahterimasertifikat;
-        $tanggal = Kpr::changeDateFormat($tgl);
+    // public function updatetanggalserahterimasertifikatupdate(Request $request)
+    // {   
+    //     $id = $request->updatetanggalserahterimasertifikat;
+    //     $tgl = $request->tanggalserahterimasertifikat;
+    //     $tanggal = Kpr::changeDateFormat($tgl);
 
-        $kpr = Kpr::find($id);
+    //     $kpr = Kpr::find($id);
 
-        $kpr->tanggal_serah_terima_sertifikat = $tanggal;
+    //     
         
-        $kpr->save();
+    //     $kpr->save();
 
-       $nomorjualrumah = $request->jualrumah;
-       $jualrumah = JualRumah::find($nomorjualrumah);
-        $jualrumah->status_jual_rumah = 'Selesai';
-        $jualrumah->save();
+       
        
    
-        // $jualrumah = JualRumah::find($nomorjualrumah);
-        // dd($jualrumah);
+    //     // $jualrumah = JualRumah::find($nomorjualrumah);
+    //     // dd($jualrumah);
 
-        // $jualrumah->status_jual_rumah = 'Selesai';
-        // $jualrumah->save();
+    //     // $jualrumah->status_jual_rumah = 'Selesai';
+    //     // $jualrumah->save();
         
         
-        Session::flash('flash_msg', 'Data Tanggal Serah Terima Sertifikat Berhasil Diubah');
-        return redirect('updatetanggalserahterimasertifikat');
-    }
+    //     Session::flash('flash_msg', 'Data Tanggal Serah Terima Sertifikat Berhasil Diubah');
+    //     return redirect('updatetanggalserahterimasertifikat');
+    // }
     
 
     /**

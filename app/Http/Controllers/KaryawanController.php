@@ -111,6 +111,7 @@ class KaryawanController extends Controller
         return response()->json(
             [
                 'id'=>$id,
+                'username' => $karyawan->user->username,
                 'nama'=>$karyawan->nama,
                 'alamat'=>$karyawan->alamat,
                 'email'=>$karyawan->email,

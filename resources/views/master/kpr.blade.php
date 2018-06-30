@@ -24,7 +24,7 @@
                                 <th>Tanggal Akad Kredit</th>
                                 <th>Tanggal Serah Sertifikat Ke Bank</th>
                                 <th>Tanggal Cair</th>
-                                <th>Tanggal Serah Terima Sertifikat</th>
+                                {{-- <th>Tanggal Serah Terima Sertifikat</th> --}}
                                 <th>Pemberi Cair Dana</th>
                                 <th>Penerima Cair Dana</th>
                                 <th>Kasir</th>
@@ -39,7 +39,7 @@
                                     <th>Tanggal Akad Kredit</th>
                                     <th>Tanggal Serah Sertifikat Ke Bank</th>
                                 <th>Tanggal Cair</th>
-                                <th>Tanggal Serah Terima Sertifikat</th>
+                                {{-- <th>Tanggal Serah Terima Sertifikat</th> --}}
                                 <th>Pemberi Cair Dana</th>
                                 <th>Penerima Cair Dana</th>
                                 <th>Kasir</th>
@@ -58,11 +58,11 @@
                                 @else
                                 <td>{{$data->tanggal_akad_kredit}}</td>
                                 @endif
-                                
-                                @if($data->tanggal_serah_sertifikat_bank == "01-01-1970")
+
+                                @if($data->tanggal_serah_sertifikat_notaris == "01-01-1970")
                                <td>Masih Kosong</td>
                                @else
-                               <td>{{$data->tanggal_serah_sertifikat_bank}}</td>
+                               <td>{{$data->tanggal_serah_sertifikat_notaris}}</td>
                                @endif
 
                                  @if($data->tanggal_cair == "01-01-1970")
@@ -70,13 +70,7 @@
                                @else
                                <td>{{$data->tanggal_cair}}</td>
                                @endif
-
-                                @if($data->tanggal_serah_terima_sertifikat == "01-01-1970")
-                                <td>Masih Kosong</td>
-                                @else
-                                <td>{{$data->tanggal_serah_terima_sertifikat}}</td>
-                                @endif
-                                
+                    
                                 
                                 <td>{{$data->pemberi}}</td>
                                 <td>{{$data->penerima}}</td>

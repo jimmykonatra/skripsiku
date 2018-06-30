@@ -10,6 +10,7 @@ use App\Karyawan;
 use DB;
 use App\Pembangunan;
 use Illuminate\Support\Facades\Session;
+use Dompdf\Dompdf;
 
 class PengeluaranController extends Controller
 {
@@ -179,6 +180,37 @@ class PengeluaranController extends Controller
         
 
         return view('laporan.tabelpengeluaranperusahaan',compact('pengeluaran','pembangunan'));
+    }
+
+    public function laporanpengeluaranprint(Request $request)
+    {
+        $tglawal = $request->tanggalawal;
+        $tglakhir = $request->tanggalakhir;
+        $pembangunan = $request->pembangunan;
+
+        $tanggalawal = Pengeluaran::changeDateFormat($tglawal);
+        $tanggalakhir = Pengeluaran::changeDateFormat($tglakhir);
+
+        $pengeluaran = Pengeluaran::where('pembangunan_id','=',$pembangunan)->where('tanggal','>=',$tanggalawal)->where('tanggal','<=',$tanggalakhir)->get();
+
+        $content = view('laporan.cetaklaporanpengeluaranperusahaan',compact('pengeluaran','pembangunan','tglawal','tglakhir'));
+
+        $dompdf = new Dompdf();
+
+        //PDF::SetFont('', '', 8);
+        //PDF::AddPage();
+
+        $dompdf->loadHtml($content);
+
+        // (Optional) Setup the paper size and orientation
+        //$dompdf->setPaper('A4', 'potrait');
+        $dompdf->set_paper(array(0, 0, 595, 841), 'portrait');
+
+        // Render the HTML as PDF
+        $dompdf->render();
+
+        // Output the generated PDF to Browser
+        $dompdf->stream("laporanpengeluaran".$tanggalawal."_".$tanggalakhir.".pdf", array("Attachment" => false));
     }
 
 }

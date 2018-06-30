@@ -42,12 +42,14 @@ class PencairanDanaController extends Controller
         $nomorbukti = $request->nomorbukti;
         $pemberi = $request->pemberi;
         $penerima = $request->penerima;
+        $nominal = $request->nominal;
 
         PencairanDana::create([
             'tanggal_cair_dana' => $tanggal,
             'nomor_bukti' => $nomorbukti,
             'pemberi' => $pemberi,
             'penerima' => $penerima,
+            'nominal' => $nominal,
             'hapuskah' => 0
         ]);
         Session::flash('flash_msg', 'Data Pencairan Dana Berhasil Disimpan');
@@ -80,9 +82,10 @@ class PencairanDanaController extends Controller
 
         return response()->json([
             'id' => $id,
-            'tanggal' => PencairanDana::changeDateFormat($pencairandana->tanggal_cair_dana),
+            'tanggalcair' => $pencairandana->tanggal_cair_dana,
             'nomorbukti' => $pencairandana->nomor_bukti,
             'pemberi' => $pencairandana->pemberi,
+            'nominal' => $pencairandana->nominal,
             'penerima' => $pencairandana->penerima
         ]);
     }
@@ -97,19 +100,22 @@ class PencairanDanaController extends Controller
     public function update(Request $request)
     {
         $id = $request->pencairandana;
-        $tanggal = $request->tanggal;
+        $tgl = $request->tanggalcair;
+        $tanggalcair = PencairanDana::changeDateFormat($tgl);
         $nomorbukti = $request->nomorbukti;
+        $nominal = $request->nominal;
         $pemberi = $request->pemberi;
         $penerima = $request->penerima;
 
+
         $pencairandana = PencairanDana::find($id);
         
-      
 
-        $pencairandana->tanggal_cair_dana = $tanggal;
+        $pencairandana->tanggal_cair_dana = $tanggalcair;
         $pencairandana->nomor_bukti = $nomorbukti;
         $pencairandana->pemberi = $pemberi;
         $pencairandana->penerima = $penerima;
+        $pencairandana->nominal = $nominal;
         $pencairandana->save();
 
         Session::flash('flash_msg', 'Data Pencairan Dana Berhasil Diubah');

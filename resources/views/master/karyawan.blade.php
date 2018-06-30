@@ -1,7 +1,4 @@
-@extends('layouts.master') @section('title', 'Sumber Langgeng Sejahtera') @section('content') 
-
-
-@include('layouts.sidebar')
+@extends('layouts.master') @section('title', 'Sumber Langgeng Sejahtera') @section('content') @include('layouts.sidebar')
 <!-- Example DataTables Card-->
 <div class="content-wrapper">
 	<div class="container-fluid">
@@ -74,6 +71,11 @@
 							<div class="modal-body">
 								<form action="{{url('karyawan/ubah')}}" method="post" id="formUbahKaryawan">
 									{{csrf_field()}}
+									<p>
+										<label class="col-lg-6">Username: </label>
+										<input type="text" class="col-lg-4" id="usernameUbahKaryawan" name="username" 
+										    required disabled>
+									</p>
 									<p>
 										<input type="hidden" id="idUbah" name="karyawan">
 										<label class="col-lg-6">Nama: </label>
@@ -163,7 +165,8 @@
 						{{csrf_field()}}
 						<p>
 							<label class="col-lg-6">Username: </label>
-							<input type="text" class="col-lg-4" id="usernameTambahKaryawan" name="username" placeholder="Masukkan Username Karyawan" required>
+							<input type="text" class="col-lg-4" id="usernameTambahKaryawan" name="username" placeholder="Masukkan Username Karyawan"
+							    required>
 						</p>
 						<p>
 							<label class="col-lg-6">Nama: </label>
@@ -260,6 +263,7 @@
 					},
 					function (data) {
 						$('#idUbah').val(data.id);
+						$('#usernameUbahKaryawan').val(data.username);
 						$('#namaUbahKaryawan').val(data.nama);
 						$('#alamatUbahKaryawan').val(data.alamat);
 						$('#emailUbahKaryawan').val(data.email);

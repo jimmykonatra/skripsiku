@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Kpr extends Model
 {
-    protected $fillable = ['tanggal_cair', 'tanggal_akad_kredit', 'tanggal_serah_terima_sertifikat','tanggal_serah_sertifikat_bank','pemberi','penerima','bank_id','jual_rumah_id', 'kasir_id','hapuskah'];
+    protected $fillable = ['tanggal_cair', 'tanggal_akad_kredit','tanggal_serah_sertifikat_notaris','pemberi','penerima','bank_id','jual_rumah_id', 'kasir_id','hapuskah'];
 
     public function bank()
     {
@@ -36,11 +36,8 @@ class Kpr extends Model
     {
         return date('d-m-Y', strtotime($value));
     }
-    public function getTanggalSerahTerimaSertifikatAttribute($value)
-    {
-        return date('d-m-Y', strtotime($value));
-    }
-    public function getTanggalSerahSertifikatBankAttribute($value)
+   
+    public function getTanggalSerahSertifikatNotarisAttribute($value)
     {
         return date('d-m-Y', strtotime($value));
     }

@@ -20,13 +20,6 @@
                             <span class="fa fa-calendar"></span>
                             <br>
                             <br>
-                            <label for="tanggaldp" class="col-lg-4">Tanggal DP</label>
-                            <input type="date" id="tanggaldp" name="tanggaldp" class="col-lg-6" min="{{date('Y-m-d')}}" value="{{date('Y-m-d')}}"
-                                data-date-format="dd-mm-yyyy" data-date-viewmode="years">
-                            <span class="fa fa-calendar"></span>
-                            <br>
-                            <br>
-                            <br>
                             
                             <div class="col-lg-8">
                                 <label class="cekberkas"><b>Cek Berkas</b></label>
