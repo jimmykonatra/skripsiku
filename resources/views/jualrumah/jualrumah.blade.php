@@ -31,7 +31,7 @@
 								<th>Status DP</th>
 								<th>Status Kelengkapan</th>
 								<th>Keterangan</th>
-								<th>Tanggal Serah Terima Rumah</th>
+								{{-- <th>Tanggal Serah Terima Rumah</th> --}}
 								<th>Jenis Bayar</th>
 								<th>Marketing</th>
 								<th>Kasir</th>
@@ -53,7 +53,7 @@
 								<th>Status DP</th>
 								<th>Status Kelengkapan</th>
 								<th>Keterangan</th>
-								<th>Tanggal Serah Terima Rumah</th>
+								{{-- <th>Tanggal Serah Terima Rumah</th> --}}
 								<th>Jenis Bayar</th>
 								<th>Marketing</th>
 								<th>Kasir</th>
@@ -81,7 +81,7 @@
 								@endif
 
 								<td>{{$data->keterangan}}</td>
-								<td>{{$data->tanggal_serah_terima_rumah}}</td>
+								{{-- <td>{{$data->tanggal_serah_terima_rumah}}</td> --}}
 								<td>{{$data->jenis_bayar}}</td>
 								<td>{{$data->marketing->karyawan->nama}}</td>
 								<td>{{$data->kasir->karyawan->nama}}</td>

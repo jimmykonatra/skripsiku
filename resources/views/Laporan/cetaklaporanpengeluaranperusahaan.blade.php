@@ -1,8 +1,12 @@
 <html>
                     <head>
+						<style>
+							
+						</style>
                     </head>
                     <body>
-                        <h2 style="text-align:center">LAPORAN PENGELUARAN PERUSAHAAN</h2>
+						<h2 style="text-align:center">LAPORAN PENGELUARAN PERUSAHAAN</h2>
+						<h2 style="text-align:center">PT SUMBER LANGGENG SEJAHTERA</h2>
                         <p><b>Periode </b></p>
                         <table>
                         <tr>
@@ -15,36 +19,34 @@
                         
                        
                        
-                    </table>
+            </table>
+        <br>    
         <br>
-        
-        <br>
-        
         <div>
-					<table style="text-align:center" width="100%">
-						<thead>
+					<table style="text-align:center;border-collapse:collapse;border:1px solid black" width="100%">
+						<thead  >
 							<tr>
-								<th>Nomor Pembangunan</th>
-								<th>Jenis Pengeluaran</th>
-								<th>Tanggal</th>
-								<th>Nominal</th>
-								<th>Keterangan</th>
-								<th>Status Lunas</th>
-								<th>Kasir</th>
+								<th height="30" style="border-collapse:collapse;border:1px solid black">Nomor Pembangunan</th>
+								<th style="border-collapse:collapse;border:1px solid black">Jenis Pengeluaran</th>
+								<th style="border-collapse:collapse;border:1px solid black">Tanggal</th>
+								<th style="border-collapse:collapse;border:1px solid black">Nominal</th>
+								<th style="border-collapse:collapse;border:1px solid black">Keterangan</th>
+								<th style="border-collapse:collapse;border:1px solid black">Status Lunas</th>
+								<th style="border-collapse:collapse;border:1px solid black">Kasir</th>
 								
 							</tr>
 						</thead>
 						 
-						<tbody>
+						<tbody >
 							@foreach($pengeluaran as $data)
 							<tr id="{{$data->id}}">
-								<td>{{$data->pembangunan->nomor}}</td>
-								<td>{{$data->jenis_pengeluaran->nama}}</td>
-								<td>{{$data->tanggal}}</td>
-								<td>Rp {{number_format( $data->nominal, 0 , '' , '.' )}}</td>
-								<td>{{$data->keterangan}}</td>
-								<td>{{$data->status_lunas}}</td>
-								<td>{{$data->kasir->karyawan->nama}}</td>
+								<td height="30" style="border-collapse:collapse;border:1px solid black">{{$data->pembangunan->nomor}}</td>
+								<td style="border-collapse:collapse;border:1px solid black">{{$data->jenis_pengeluaran->nama}}</td>
+								<td style="border-collapse:collapse;border:1px solid black">{{$data->tanggal}}</td>
+								<td style="border-collapse:collapse;border:1px solid black">Rp {{number_format( $data->nominal, 0 , '' , '.' )}}</td>
+								<td style="border-collapse:collapse;border:1px solid black">{{$data->keterangan}}</td>
+								<td style="border-collapse:collapse;border:1px solid black">{{$data->status_lunas}}</td>
+								<td style="border-collapse:collapse;border:1px solid black">{{$data->kasir->karyawan->nama}}</td>
 							</tr>
 							@endforeach
 						</tbody>

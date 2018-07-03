@@ -8,9 +8,12 @@ use App\JenisPengeluaran;
 use App\User;
 use App\Karyawan;
 use DB;
+use App\Rumah;
+use App\Tipe;
 use App\Pembangunan;
 use Illuminate\Support\Facades\Session;
 use Dompdf\Dompdf;
+
 
 class PengeluaranController extends Controller
 {
@@ -211,6 +214,37 @@ class PengeluaranController extends Controller
 
         // Output the generated PDF to Browser
         $dompdf->stream("laporanpengeluaran".$tanggalawal."_".$tanggalakhir.".pdf", array("Attachment" => false));
+    }
+
+    public function print($id)
+    {
+        $pengeluaran = Pengeluaran::find($id)->first();
+        $pembangunan = Pembangunan::where('id',$pengeluaran->pembangunan_id)->first();
+        $jenispengeluaran = JenisPengeluaran::where('id',$pengeluaran->jenis_pengeluaran_id)->first();
+        $kasir = User::where('id',$pengeluaran->kasir_id)->first();
+        $total = ucfirst(Pengeluaran::kekata($pengeluaran->nominal));
+        $rumah = Rumah::where('id',$pembangunan->rumah_id)->first();
+        $tipe = Tipe::where('id',$rumah->tipe_id)->first();
+        
+
+        $content = view('pengeluaran.cetakpengeluaran',compact('pengeluaran','pembangunan','jenispengeluaran','total','rumah','tipe','kasir'));
+
+        $dompdf = new Dompdf();
+
+        //PDF::SetFont('', '', 8);
+        //PDF::AddPage();
+
+        $dompdf->loadHtml($content);
+
+        // (Optional) Setup the paper size and orientation
+        //$dompdf->setPaper('A4', 'potrait');
+        $dompdf->set_paper(array(0, 0, 595, 841), 'portrait');
+
+        // Render the HTML as PDF
+        $dompdf->render();
+
+        // Output the generated PDF to Browser
+        $dompdf->stream("kwitansi_".$pengeluaran->id.".pdf", array("Attachment" => false));
     }
 
 }

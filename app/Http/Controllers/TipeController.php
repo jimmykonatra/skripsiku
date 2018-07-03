@@ -60,20 +60,42 @@ class TipeController extends Controller
         // $uploadgambarrumah = $request->gambarrumah->getClientOriginalName();
         // $request->gambarrumah->move(public_path('images'), $uploadgambarrumah);
 
-        if (isset($uploadgambardenah)) {
-        $uploadgambardenah = $request->gambardenah->getClientOriginalName();
-            $request->gambardenah->move(public_path('images'), $uploadgambardenah);
-        } else {
-            $uploadgambardenah = null;
-        }
+        // if (isset($uploadgambardenah)) {
+        // $uploadgambardenah = $request->gambardenah->getClientOriginalName();
+        //     $request->gambardenah->move(public_path('images'), $uploadgambardenah);
+        // } else {
+        //     $uploadgambardenah = null;
+        // }
 
 
-        if (isset($uploadgambarrumah)) {
-        $uploadgambarrumah = $request->gambarrumah->getClientOriginalName();
-            $request->gambarrumah->move(public_path('images'), $uploadgambarrumah);
-        } else {
-            $uploadgambarrumah = null;
+        // if (isset($uploadgambarrumah)) {
+        // $uploadgambarrumah = $request->gambarrumah->getClientOriginalName();
+        //     $request->gambarrumah->move(public_path('images'), $uploadgambarrumah);
+        // } else {
+        //     $uploadgambarrumah = null;
+        // }
+
+            if(isset($request->gambardenah)){
+        $tipe->gambar_denah = $request->gambardenah->getClientOriginalName();
+        if(isset($tipe->gambar_denah))
+        {
+            $request->gambardenah->move(public_path('images'), $tipe->gambar_denah);
         }
+        else {
+            $tipe->gambar_denah = null;
+        }
+        
+    }
+        if(isset($request->gambarrumah)){
+        $tipe->gambar_rumah = $request->gambarrumah->getClientOriginalName();
+        if(isset($tipe->gambar_rumah))
+        {
+            $request->gambarrumah->move(public_path('images'), $tipe->gambar_rumah);
+        }
+        else {
+            $tipe->gambar_rumah = null;
+        }
+    }
 
 
         // $tipe = Tipe::create([
@@ -111,8 +133,8 @@ class TipeController extends Controller
                 'lainnya' => $lainnya
             ],
             [
-                'gambar_rumah' => $uploadgambarrumah,
-                'gambar_denah' => $uploadgambardenah,
+                'gambar_rumah' => $gambarrumah,
+                'gambar_denah' => $gambardenah,
                 'hapuskah' => 0
             ]
         );
@@ -219,7 +241,7 @@ class TipeController extends Controller
         }
         
     }
-          if(isset($request->gambarrumah)){
+        if(isset($request->gambarrumah)){
         $tipe->gambar_rumah = $request->gambarrumah->getClientOriginalName();
         if(isset($tipe->gambar_rumah))
         {

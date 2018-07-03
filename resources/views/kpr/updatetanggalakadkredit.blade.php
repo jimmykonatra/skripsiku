@@ -121,7 +121,7 @@
 										    data-date-format="dd-mm-yyyy" data-date-viewmode="years" required disabled>
 										<input type="hidden" value="{{date('Y-m-d')}}" name="ambiltanggalserahterimasertifikatkpr">
 									</p> --}}
-                                    <p>
+                                    {{-- <p>
                                         <label class="col-lg-6">Pemberi: </label>
                                         <input type="text" class="col-lg-4" id="pemberiUbahKpr" name="pemberi" placeholder="Masukkan Pemberi KPR"
                                             required disabled>
@@ -129,7 +129,7 @@
                                     <p>
                                         <label class="col-lg-6">Penerima: </label>
                                         <input type="text" class="col-lg-4" id="penerimaUbahKpr" name="penerima" placeholder="Masukkan Penerima KPR" required disabled>
-                                    </p>
+                                    </p> --}}
                                     <p>
                                         <label class="col-lg-6">Bank: </label>
                                         <select name="bank" id="bankUbahKpr" class="col-lg-4" disabled>

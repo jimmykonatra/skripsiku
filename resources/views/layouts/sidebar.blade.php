@@ -117,6 +117,9 @@
           <li class="{{Request::is('jualrumah')  ? 'active' : '' }}">
             <a href={{url('jualrumah')}}>Jual Rumah</a>
           </li>
+          <li class="{{Request::is('updatanggalcairdana')  ? 'active' : '' }}">
+            <a href={{url('updatetanggalcairdana')}}>Input Cair Dana SBUM</a> 
+          </li>
           
         </ul>
       </li>
@@ -132,12 +135,15 @@
           <li class="{{Request::is('laporanpengeluaran')  ? 'active' : '' }}">
             <a href={{url('laporanpengeluaran')}}>Pengeluaran Perusahaan</a>
           </li>
-          <li class="{{Request::is('updatetanggalcair')  ? 'active' : '' }}">
+          <li class="{{Request::is('laporanrumahterjual')  ? 'active' : '' }}">
+            <a href={{url('laporanrumahterjual')}}>Rumah Terjual</a>
+          </li>
+          {{-- <li class="{{Request::is('updatetanggalcair')  ? 'active' : '' }}">
             <a href={{url('updatetanggalcair')}}>Pemasukan Perusahaan</a>
-          </li>
-          <li class="{{Request::is('updatetanggalserahterimasertifikat')  ? 'active' : '' }}">
+          </li> --}}
+          {{-- <li class="{{Request::is('updatetanggalserahterimasertifikat')  ? 'active' : '' }}">
             <a href={{url('updatetanggalserahterimasertifikat')}}>Pencairan Kredit</a>
-          </li>
+          </li> --}}
           
         </ul>
       </li>

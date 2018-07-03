@@ -110,34 +110,34 @@
                                     </p>
                                     <p>
                                         <label class="col-lg-6">Luas Tanah(m2): </label>
-                                        <input type="number" class="col-lg-4" id="luastanahUbahTipe" name="luastanah" placeholder="Masukkan Luas Tanah" required>
+                                        <input type="number" class="col-lg-4" id="luastanahUbahTipe" name="luastanah" placeholder="Masukkan Luas Tanah" min=1 required>
                                     </p>
                                     <p>
                                         <label class="col-lg-6">Luas Bangunan(m2): </label>
-                                        <input type="number" class="col-lg-4" id="luasbangunanUbahTipe" name="luasbangunan" placeholder="Masukkan Luas Bangunan"
+                                        <input type="number" class="col-lg-4" id="luasbangunanUbahTipe" name="luasbangunan" placeholder="Masukkan Luas Bangunan" min=1
                                             required>
                                     </p>
                                     <p>
                                         <label class="col-lg-6">Kamar Tidur: </label>
-                                        <input type="number" class="col-lg-4" id="kamartidurUbahTipe" name="kamartidur" placeholder="Masukkan Jumlah Kamar Tidur"
+                                        <input type="number" class="col-lg-4" id="kamartidurUbahTipe" name="kamartidur" placeholder="Masukkan Jumlah Kamar Tidur" min=1
                                             required>
                                     </p>
                                     <p>
                                         <label class="col-lg-6">Kamar Mandi: </label>
-                                        <input type="number" class="col-lg-4" id="kamarmandiUbahTipe" name="kamarmandi" placeholder="Masukkan Jumlah Kamar Mandi"
+                                        <input type="number" class="col-lg-4" id="kamarmandiUbahTipe" name="kamarmandi" placeholder="Masukkan Jumlah Kamar Mandi" min=1
                                             required>
                                     </p>
                                     <p>
                                         <label class="col-lg-6">Listrik(kWh): </label>
-                                        <input type="number" class="col-lg-4" id="listrikUbahTipe" name="listrik" placeholder="Masukkan Jumlah Listrik" required>
+                                        <input type="number" class="col-lg-4" id="listrikUbahTipe" name="listrik" placeholder="Masukkan Jumlah Listrik" min=1 required>
                                     </p>
                                     <p>
                                         <label class="col-lg-6">Harga Asli: </label>
-                                        <input type="number" class="col-lg-4" id="hargaasliUbahTipe" name="hargaasli" placeholder="Masukkan Harga Asli" required>
+                                        <input type="number" class="col-lg-4" id="hargaasliUbahTipe" name="hargaasli" placeholder="Masukkan Harga Asli" min=1000 required>
                                     </p>
                                     <p>
                                         <label class="col-lg-6">Harga Jual: </label>
-                                        <input type="number" class="col-lg-4" id="hargajualUbahTipe" name="hargajual" placeholder="Masukkan Harga Jual" required>
+                                        <input type="number" class="col-lg-4" id="hargajualUbahTipe" name="hargajual" placeholder="Masukkan Harga Jual" min=1000 required>
                                     </p>
                                     <p>
                                         <label class="col-lg-6">Uang Muka: </label>
@@ -178,12 +178,12 @@
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                                <h5 class="modal-title" id="exampleModalLabel">Hapus Data Tipe</h5>
                                 <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">×</span>
                                 </button>
                             </div>
-                            <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                            <div class="modal-body">Apakah anda yakin ingin menghapus data tipe ini?</div>
                             <div class="modal-footer">
                                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
                                 <a href="#" class="btn btn-danger" onclick="event.preventDefault(); document.getElementById('hapus-form').submit();">Hapus</a>
@@ -228,38 +228,38 @@
                         </p>
                         <p>
                             <label class="col-lg-6">Luas Tanah(m2): </label>
-                            <input type="number" class="col-lg-4" id="luastanahTambahTipe" name="luastanah" placeholder="Masukkan Luas Tanah" required>
+                            <input type="number" min=1 class="col-lg-4" id="luastanahTambahTipe" name="luastanah" placeholder="Masukkan Luas Tanah" required>
                         </p>
                         <p>
                             <label class="col-lg-6">Luas Bangunan(m2): </label>
-                            <input type="number" class="col-lg-4" id="luasbangunanTambahTipe" name="luasbangunan" placeholder="Masukkan Luas Bangunan"
+                            <input type="number" min=1 class="col-lg-4" id="luasbangunanTambahTipe" name="luasbangunan" placeholder="Masukkan Luas Bangunan"
                                 required>
                         </p>
                         <p>
                             <label class="col-lg-6">Kamar Tidur: </label>
-                            <input type="number" class="col-lg-4" id="kamartidurTambahTipe" name="kamartidur" placeholder="Masukkan Jumlah Kamar Tidur"
+                            <input type="number" min=1 class="col-lg-4" id="kamartidurTambahTipe" name="kamartidur" placeholder="Masukkan Jumlah Kamar Tidur"
                                 required>
                         </p>
                         <p>
                             <label class="col-lg-6">Kamar Mandi: </label>
-                            <input type="number" class="col-lg-4" id="kamarmandiTambahTipe" name="kamarmandi" placeholder="Masukkan Jumlah Kamar Mandi"
+                            <input type="number" min=1 class="col-lg-4" id="kamarmandiTambahTipe" name="kamarmandi" placeholder="Masukkan Jumlah Kamar Mandi"
                                 required>
                         </p>
                         <p>
                             <label class="col-lg-6">Listrik(kWh): </label>
-                            <input type="number" class="col-lg-4" id="listrikTambahTipe" name="listrik" placeholder="Masukkan Jumlah Listrik" required>
+                            <input type="number" min=1 class="col-lg-4" id="listrikTambahTipe" name="listrik" placeholder="Masukkan Jumlah Listrik" required>
                         </p>
                         <p>
                             <label class="col-lg-6">Harga Asli: </label>
-                            <input type="number" class="col-lg-4" id="hargaasliTambahTipe" name="hargaasli" placeholder="Masukkan Harga Asli" required>
+                            <input type="number" min=1000 class="col-lg-4" id="hargaasliTambahTipe" name="hargaasli" placeholder="Masukkan Harga Asli" required>
                         </p>
                         <p>
                             <label class="col-lg-6">Harga Jual: </label>
-                            <input type="number" class="col-lg-4" id="hargajualTambahTipe" name="hargajual" placeholder="Masukkan Harga Jual" required>
+                            <input type="number" min=1000 class="col-lg-4" id="hargajualTambahTipe" name="hargajual" placeholder="Masukkan Harga Jual" required>
                         </p>
                         <p>
                             <label class="col-lg-6">Uang Muka: </label>
-                            <input type="number" class="col-lg-4" id="uangmukaTambahTipe" name="uangmuka" placeholder="Masukkan Uang Muka Tipe" required>
+                            <input type="number" min=1000 class="col-lg-4" id="uangmukaTambahTipe" name="uangmuka" placeholder="Masukkan Uang Muka Tipe" required>
                         </p>
                         <p>
                             <label class="col-lg-6">Deskripsi: </label>
@@ -271,12 +271,12 @@
                         </p>
                         <p>
                             <label class="col-lg-4">Gambar Denah: </label>
-                            <input type="file" class="col-lg-7" id="gambardenahTambahTipe" name="gambardenah" placeholder="Masukkan Gambar Denah" required>
+                            <input type="file" class="col-lg-7" id="gambardenahTambahTipe" name="gambardenah" placeholder="Masukkan Gambar Denah">
                             <img style="width:100% ; height:auto " id="gambardenah" >
                         </p>
                         <p>
                             <label class="col-lg-4">Gambar Rumah: </label>
-                            <input type="file" class="col-lg-7" id="gambarrumahTambahTipe" name="gambarrumah" placeholder="Masukkan Gambar Rumah" required>
+                            <input type="file" class="col-lg-7" id="gambarrumahTambahTipe" name="gambarrumah" placeholder="Masukkan Gambar Rumah">
                             <img style="width:100% ; height:auto " id="gambarrumah" >
                         </p>
                         

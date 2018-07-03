@@ -22,7 +22,7 @@ class CreateJualrumahsTable extends Migration
             $table->string('keterangan')->nullable();
             $table->date('tanggal_serah_terima_rumah')->nullable();
             $table->enum('jenis_bayar',['Cash','KPR']);
-            $table->enum('status_jual_rumah',['Belum Booking','Proses KPR','Selesai'])->default('Belum Booking');
+            $table->enum('status_jual_rumah',['Belum Booking','Proses DP','Proses KPR','Selesai'])->default('Belum Booking');
             $table->enum('status_dp',['Lunas','Belum Lunas'])->default('Belum Lunas');
             $table->unsignedInteger('customer_id');
             $table->unsignedInteger('rumah_id');

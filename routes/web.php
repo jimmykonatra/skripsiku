@@ -66,10 +66,8 @@ Route::post('pengeluaran/hapus', 'PengeluaranController@destroy');
 Route::post('pengeluaran/lihat', 'PengeluaranController@edit');
 Route::post('pengeluaran/ubah', 'PengeluaranController@update');
 Route::post('pengeluaran/tambah', 'PengeluaranController@store');
+Route::get('pengeluaran/cetak/{id}','PengeluaranController@print');
 
-Route::get('laporanpengeluaran','PengeluaranController@laporanpengeluaran');
-Route::post('laporanpengeluaran/lihat','PengeluaranController@laporanpengeluaranindex');
-Route::post('laporanpengeluaran/cetak','PengeluaranController@laporanpengeluaranprint');
 
 Route::get('cicilan', 'CicilanController@index');
 Route::post('cicilan/hapus', 'CicilanController@destroy');
@@ -134,10 +132,6 @@ Route::get('updatetanggalserahsertifikatnotaris', 'KprController@updatetanggalse
 Route::post('updatetanggalserahsertifikatnotaris/lihat', 'KprController@updatetanggalserahsertifikatnotarisedit');
 Route::post('updatetanggalserahsertifikatnotaris/ubah', 'KprController@updatetanggalserahsertifikatnotarisupdate');
 
-Route::get('updatetanggalserahterimasertifikat', 'KprController@updatetanggalserahterimasertifikatindex');
-Route::post('updatetanggalserahterimasertifikat/lihat', 'KprController@updatetanggalserahterimasertifikatedit');
-Route::post('updatetanggalserahterimasertifikat/ubah', 'KprController@updatetanggalserahterimasertifikatupdate');
-
 
 Route::get('berkas', 'BerkasController@index');
 Route::post('berkas/hapus', 'BerkasController@destroy');
@@ -153,10 +147,18 @@ Route::post('jualrumah/ubah', 'JualRumahController@update');
 Route::post('jualrumah/tambah', 'JualRumahController@store');
 Route::get('jualrumah/cetak/{id}','JualRumahController@print');
 
+Route::get('laporanrumahterjual','JualRumahController@laporanrumahterjual');
+Route::post('laporanrumahterjual/lihat','JualRumahController@laporanrumahterjualindex');
+Route::post('laporanrumahterjual/cetak','JualRumahController@laporanrumahterjualprint');
+
+
+Route::get('laporanpengeluaran','PengeluaranController@laporanpengeluaran');
+Route::post('laporanpengeluaran/lihat','PengeluaranController@laporanpengeluaranindex');
+Route::post('laporanpengeluaran/cetak','PengeluaranController@laporanpengeluaranprint');
 
 Route::get('updatetanggalcairdana', 'JualRumahController@updatetanggalcairdanaindex');
 Route::post('updatetanggalcairdana/ubah', 'JualRumahController@updatetanggalcairdanaupdate');
-Route::get('updatetanggalcairdana/lihat', 'JualRumahController@updatetanggalcairdanaedit');
+Route::post('updatetanggalcairdana/lihat', 'JualRumahController@updatetanggalcairdanaedit');
 
 
 

@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Session;
 use App\Rumah;
 use App\Kpr;
 use App\Customer;
+use DB;
 use App\Perumahan;
 use App\Tipe;
 use Dompdf\Dompdf;
@@ -52,7 +53,6 @@ class TandaTerimaController extends Controller
         $nomornota = $request->nomornota;
         $tanggal = $request->tanggal;
         $tglTerimaBaru = TandaTerima::changeDateFormat($tanggal);
-
         $bookingfee = $request->bookingfee;
         $danakpr = $request->danakpr;
         $uangmuka = $request->uangmuka;
@@ -69,7 +69,7 @@ class TandaTerimaController extends Controller
             return redirect('tandaterima')->with('error_msg','Booking Fee Minimal Rp 500.000');
         }
         
-        if($bookingfee > 500000)
+        if($bookingfee >= 500000)
         {
             $uangmuka += $bookingfee - 500000;
             $bookingfee = 500000;
@@ -96,6 +96,8 @@ class TandaTerimaController extends Controller
             ->where('jual_rumahs.id', $nomornota)
             ->first();
         
+      
+    
         $tandaterima = TandaTerima::where('jual_rumah_id',$nomornota)->get();
         $totaluangmuka = 0;
 
@@ -103,19 +105,29 @@ class TandaTerimaController extends Controller
         {
             $totaluangmuka += $data->uang_muka;
         }
-
+        //kalau bookingfeelunasnya true maka akan update status proses DP dan rumahnya menjadi Terbooking
         if($bookingfeelunas == true)
         {
             $jualrumah = JualRumah::find($nomornota);
-            $jualrumah->status_jual_rumah = 'Proses KPR';
+            $jualrumah->status_jual_rumah = 'Proses DP';
             $jualrumah->save();
 
             $rumah = Rumah::find($jualrumah->rumah_id);
             $rumah->status_booking = 'Terbooking';
             $rumah->save();
         }
-        if($totaluangmuka >= $rumah->uang_muka)//jika DP telah lunas maka update status jual rumah
+        //ambil data uang dari rumah yang dipilih yg dibeli 
+        $getrumah = JualRumah::join('rumahs', 'jual_rumahs.rumah_id', '=', 'rumahs.id')
+            ->join('tipes', 'rumahs.tipe_id', '=', 'tipes.id')
+            ->where('jual_rumahs.id', $nomornota)
+            ->first();
+        
+        if($totaluangmuka >= $getrumah->uang_muka)//jika DP telah lunas maka update status jual rumah
         {
+            $jualrumah = JualRumah::find($nomornota);
+            $jualrumah->status_jual_rumah = 'Proses KPR';
+            $jualrumah->save();
+
             $jualrumah = JualRumah::find($nomornota);
             $jualrumah->status_dp = 'Lunas';
             $jualrumah->save();
@@ -144,7 +156,6 @@ class TandaTerimaController extends Controller
      */
     public function edit(Request $request)
     {
-        
         $id = $request->id;
         $tandaterima = TandaTerima::find($id);
 
@@ -213,9 +224,11 @@ class TandaTerimaController extends Controller
     public function destroy(Request $request)
     {
         $tandaterima = Tandaterima::find($request->tandaterima);
-        $tandaterima->hapuskah = 1;
-        $tandaterima->save();
+        // $tandaterima->hapuskah = 1;
+        // $tandaterima->save();
 
+        DB::table('tanda_terimas')->where('id',$tandaterima->id)->delete();
+        
         Session::flash('flash_msg', 'Data Tanda Terima Berhasil Dihapus');
         return redirect('tandaterima');
     }
@@ -223,7 +236,7 @@ class TandaTerimaController extends Controller
     public function lihattotal(Request $request)
     {
         $nomornota = $request->nomornota;
-        $tandaterima = TandaTerima::where('jual_rumah_id',$nomornota)->get();
+        $tandaterima = TandaTerima::where('jual_rumah_id',$nomornota)->where('hapuskah',0)->get();
         $rumah = JualRumah::where('id',$nomornota)->first();
         $tipe = Rumah::where('id',$rumah->rumah_id)->first();
         $uangmuka = Tipe::where('id',$tipe->tipe_id)->first();

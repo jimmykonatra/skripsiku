@@ -108,12 +108,12 @@
 									</p>	
 									<p>
 										<label class="col-lg-6">Nomor: </label>
-										<input type="number" class="col-lg-4" id="nomorUbahRumah" name="nomor" placeholder="Masukkan Nomor Rumah"
+										<input type="number" class="col-lg-4" id="nomorUbahRumah" name="nomor" placeholder="Masukkan Nomor Rumah" min=1
 										    required>
 									</p>
                                     <p>
 										<label class="col-lg-6">Tahun: </label>
-										<input type="number" class="col-lg-4" id="tahunUbahRumah" name="tahun" placeholder="Masukkan Tahun Rumah" value="{{date('Y')}}" min=1990 max={{date( 'Y')}} required>
+										<input type="number" class="col-lg-4" id="tahunUbahRumah" name="tahun" placeholder="Masukkan Tahun Rumah" value="{{date('Y')}}" min=2000 max={{date( 'Y')}} required>
 									</p>
 									<p>
 										<label class="col-lg-6">Nomor Sertifikat: </label>

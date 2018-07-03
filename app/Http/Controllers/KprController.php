@@ -31,7 +31,7 @@ class KprController extends Controller
     {
         $kpr = KPR::where('hapuskah', 0)->get();
         $bank = Bank::where('hapuskah', 0)->get();
-        $jualrumah = JualRumah::where('status_jual_rumah', 'Proses KPR')->where('hapuskah', 0)->get();
+        $jualrumah = JualRumah::where('status_jual_rumah', 'Proses KPR')->where('status_dp','Lunas')->where('hapuskah', 0)->get();
         $kasir = User::where('jabatan', 'Kasir')->get();
 
         return view('kpr.updatetanggalakadkredit', compact('kpr', 'bank', 'jualrumah', 'kasir'));
@@ -39,11 +39,11 @@ class KprController extends Controller
 
     public function updatetanggalserahsertifikatnotarisindex()
     {
-        $kpr = KPR::where('hapuskah', 0)->get();
+        $kpr = KPR::where('hapuskah', 0)->where('tanggal_akad_kredit','!=',null)->get();
         $bank = Bank::where('hapuskah', 0)->get();
         $jualrumah = JualRumah::where('status_jual_rumah', 'Proses KPR')->where('hapuskah', 0)->get();
         $kasir = User::where('jabatan', 'Kasir')->get();
-
+     
         return view('kpr.updatetanggalserahsertifikatnotaris', compact('kpr', 'bank', 'jualrumah', 'kasir'));
     }
 
@@ -177,7 +177,6 @@ class KprController extends Controller
             'id' => $id,
             'tanggalcair' => $kpr->tanggal_cair,
             'tanggalakadkredit' => $kpr->tanggal_akad_kredit,
-        
             'tanggalserahsertifikatbank' => $kpr->tanggal_serah_sertifikat_notaris,
             'pemberi' => $kpr->pemberi,
             'penerima' => $kpr->penerima,

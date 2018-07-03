@@ -28,13 +28,6 @@
                             <br>
                             <br>
                             <br>
-                            <label class="col-lg-4" for="pencairandana">Pencairan Dana:</label>
-                            <select class="col-lg-4" name="pencairandana" id="pencairandana" disabled>
-                                @foreach($pencairandana as $data)
-                            <option value="{{$data->id}}">{{$data->nomor_bukti}}</option>
-                              @endforeach
-                            </select>
-                            <br>
                             
                             <div class="col-lg-8">
                                 <label> Cek Berkas </label>

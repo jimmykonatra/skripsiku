@@ -4,7 +4,7 @@
     <div class="container-fluid">
         <div class="card mb-3">
             <div class="card-header">
-                <i class="fa fa-table"></i> Update Data KPR Serah Sertifikat ke Bank</div>
+                <i class="fa fa-table"></i> Update Data KPR Serah Sertifikat ke Notaris</div>
             <div class="card-body">
 
                 @include('layouts.flash')
@@ -118,16 +118,16 @@
                                         </div>
                                     </div>
 
-                                    <p>
+                                    {{-- <p>
                                         <label class="col-lg-6">Rumah: </label>
                                         <select name="bank" id="bankUbahKpr" class="col-lg-4" disabled>
-                                            @foreach($jualrumah as $data)
-                                        <option value="{{$data->rumah->id}}">{{$data->rumah->tipe->blok}} - {{$data->rumah->nomor}}</option>
+                                            @foreach($rumah as $data)
+                                        <option value="{{$rumah->id}}">{{$rumah->nomor}}</option>
                                             @endforeach
                                         </select>
-                                    </p>
+                                    </p> --}}
 
-                                     <p>
+                                     {{-- <p>
                                         <label class="col-lg-6">Nomor Sertifikat: </label>
                                         <select name="bank" id="bankUbahKpr" class="col-lg-4" disabled>
                                             @foreach($jualrumah as $data)
@@ -135,7 +135,7 @@
                                             @endforeach
                                         </select>
                                     </p>
-                                   
+                                    --}}
                                     
                                     {{-- <div class="row col-lg-12">
                                         

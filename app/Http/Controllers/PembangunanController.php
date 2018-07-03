@@ -42,7 +42,6 @@ class PembangunanController extends Controller
     public function store(Request $request)
     {
         $id = $request->pembangunan;
-        $all = $request->all();
 
         $nomor = $request->nomor;
         $rumah = $request->rumah;

@@ -28,7 +28,7 @@
                                 <th>Total</th>
                                 <th>Keterangan</th>
                                 <th>Kasir</th>
-                                <th>Edit</th>
+                             
                                 <th>Delete</th>
                                 <th>Print</th>
                             </tr>
@@ -44,7 +44,7 @@
                                 <th>Total</th>
                                 <th>Keterangan</th>
                                 <th>Kasir</th>
-                                <th>Edit</th>
+                                
                                 <th>Delete</th>
                                 <th>Print</th>
                            
@@ -62,9 +62,7 @@
                                 <td>Rp {{number_format( $data->total, 0 , '' , '.' )}}</td>
                                 <td>{{$data->keterangan}}</td>
                                 <td>{{$data->kasir->karyawan->nama}}</td>
-                                <td>
-                                    <button class="btn btnUbah btn-primary">Ubah</button>
-                                </td>
+                               
                                 <td>
                                     <button class="btn btnHapus btn-danger">Hapus</button>
                                 </td>
@@ -91,7 +89,7 @@
                                     {{csrf_field()}}
                                     <div class="row col-lg-12">
                                         
-                                        <input type="hidden" id="idBisa" name="tandaterima" value="123">
+                                        <input type="hidden" id="idBisa" name="tandaterima">
                                         <label class="col-lg-6">Nomor Penjualan: </label>
                                         <select name="nomornota" id="nomornotaUbahTandaTerima">
                                             @foreach($jualrumah as $data)
@@ -102,7 +100,7 @@
                                     <div class="row col-lg-12">
                                         <label for="tanggal" class="col-lg-4">Tanggal:</label>
                                         <div class="input-group date col-lg-6" data-provide="datepicker">
-                                            <input type="text" class="form-control tanggalTandaTerima" style="display:inline-block" name="tanggalUbah">
+                                            <input type="text" class="form-control tanggalTandaTerima" style="display:inline-block" name="tanggal">
                                             <div class="input-group-addon">
                                                 <span class="glyphicon glyphicon-th"></span>
                                             </div>
@@ -159,12 +157,12 @@
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                                <h5 class="modal-title" id="exampleModalLabel">Hapus Data Tanda Terima</h5>
                                 <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">×</span>
                                 </button>
                             </div>
-                            <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                            <div class="modal-body">Apakah anda yakin ingin menghapus data tanda terima ini?</div>
                             <div class="modal-footer">
                                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
                                 <a href="#" class="btn btn-danger" onclick="event.preventDefault(); document.getElementById('hapus-form').submit();">Hapus</a>
@@ -282,7 +280,7 @@
 						'_token': "{{csrf_token()}}"
 					},
 					function (data) {
-                         $('#totaluangmukaTambahTandaTerima').val(data.jumlahuangmuka);
+                        $('#totaluangmukaTambahTandaTerima').val(data.jumlahuangmuka);
                         $('#uangmukawajibTambahTandaTerima').val(data.uangmuka);
                         
 					}
@@ -371,6 +369,8 @@
                 $('#totalTambahTandaTerima').val(total);
             });
 
+
+            $.fn.datepicker.defaults.format = "dd/mm/yyyy";
 
             $('.btnUbah').on('click', function (e) {
                 e.preventDefault(); //cek submit

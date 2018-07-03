@@ -59,6 +59,12 @@ class JualRumah extends Model
             ->where([['tipes.hapuskah','0'],['rumahs.hapuskah','0']])
             ->get();
     }
+    public static function changeDateFormat($value)
+    {
+                $x = date_create_from_format('d/m/Y', $value);
+                return $x->format('Y-m-d');
+    }
+
 }
 
 ?>

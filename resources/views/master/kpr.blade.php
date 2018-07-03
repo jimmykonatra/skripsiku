@@ -28,7 +28,7 @@
                                 <th>Pemberi Cair Dana</th>
                                 <th>Penerima Cair Dana</th>
                                 <th>Kasir</th>
-                                <th>Edit</th>
+                            
                                 <th>Delete</th>
                             </tr>
                         </thead>
@@ -43,7 +43,7 @@
                                 <th>Pemberi Cair Dana</th>
                                 <th>Penerima Cair Dana</th>
                                 <th>Kasir</th>
-                                <th>Edit</th>
+                                
                                 <th>Delete</th>
                             </tr>
                         </tfoot>
@@ -54,19 +54,19 @@
                                 <td>{{$data->bank->nama}}</td>
                                 
                                 @if($data->tanggal_akad_kredit == "01-01-1970")
-                                <td>Masih Kosong</td>
+                                <td></td>
                                 @else
                                 <td>{{$data->tanggal_akad_kredit}}</td>
                                 @endif
 
                                 @if($data->tanggal_serah_sertifikat_notaris == "01-01-1970")
-                               <td>Masih Kosong</td>
+                               <td></td>
                                @else
                                <td>{{$data->tanggal_serah_sertifikat_notaris}}</td>
                                @endif
 
                                  @if($data->tanggal_cair == "01-01-1970")
-                               <td>Masih Kosong</td>
+                               <td></td>
                                @else
                                <td>{{$data->tanggal_cair}}</td>
                                @endif
@@ -75,9 +75,7 @@
                                 <td>{{$data->pemberi}}</td>
                                 <td>{{$data->penerima}}</td>
                                 <td>{{$data->kasir->karyawan->nama}}</td>
-                                <td>
-                                    <button class="btn btnUbah btn-primary">Ubah</button>
-                                </td>
+                               
                                 <td>
                                     <button class="btn btnHapus btn-danger">Hapus</button>
                                 </td>
@@ -171,12 +169,12 @@
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                                <h5 class="modal-title" id="exampleModalLabel">Hapus Data KPR</h5>
                                 <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">×</span>
                                 </button>
                             </div>
-                            <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                            <div class="modal-body">Apakah anda yakin ingin menghapus data KPR ini?</div>
                             <div class="modal-footer">
                                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
                                 <a href="#" class="btn btn-danger" onclick="event.preventDefault(); document.getElementById('hapus-form').submit();">Hapus</a>

@@ -35,20 +35,24 @@ class JualRumahController extends Controller
         $kasir = User::where('jabatan','Kasir')->get();
         // $rumah = Rumah::where('status_pembangunan','Belum Dibangun')->orWhere('status_pembangunan','Proses Pembangunan')->orWhere('status_pembangunan','Selesai Pembangunan')->where('hapuskah', 0)->get();
         $rumah = Rumah::where('hapuskah',0)->get();
-        return view('jualrumah.jualrumah' , compact('jualrumah','customer','marketing','kasir','rumah'));
+        $pencairandana = PencairanDana::where('hapuskah',0)->get();
+
+        return view('jualrumah.jualrumah' , compact('jualrumah','pencairandana','customer','marketing','kasir','rumah'));
     }
 
-    // public function updatetanggalcairdanaindex()
-    // {
-    //     $jualrumah = JualRumah::where('hapuskah',0)->get();
-    //     $customer = Customer::where('hapuskah',0)->get();
-    //     $marketing = User::where('jabatan','Marketing')->get();
-    //     $kasir = User::where('jabatan','Kasir')->get();
-    //     $rumah = Rumah::where('hapuskah',0)->get();
-    //     $pencairandana = PencairanDana::where('hapuskah',0)->get();
+    public function updatetanggalcairdanaindex()
+    {
+        $jualrumah = JualRumah::where('hapuskah',0)->get();
+        $customer = Customer::where('hapuskah',0)->get();
+        $marketing = User::where('jabatan','Marketing')->get();
+        $kasir = User::where('jabatan','Kasir')->get();
+        // $rumah = Rumah::where('status_pembangunan','Belum Dibangun')->orWhere('status_pembangunan','Proses Pembangunan')->orWhere('status_pembangunan','Selesai Pembangunan')->where('hapuskah', 0)->get();
+        $rumah = Rumah::where('hapuskah',0)->get();
+        $pencairandana = PencairanDana::where('hapuskah',0)->get();
         
-    //     return view('jualrumah.updatetanggalcairdana' , compact('jualrumah','customer','marketing','kasir','rumah','pencairandana'));
-    // }
+        return view('jualrumah.updatetanggalcairdana' , compact('jualrumah','pencairandana','customer','marketing','kasir','rumah'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -83,12 +87,11 @@ class JualRumahController extends Controller
         
         $rumah = $request->rumah;
         $tanggalbuat = $request->ambiltanggalbuat;
-        $tanggaldp = $request->tanggaldp;
         $berkas = $request->berkas;
         $keterangan = $request->keterangan;
         $jenisbayar = $request->jenisbayar;
         //untuk ambil jumlah total semua berkas yang ada di database
-        $jumlahberkas = Berkas::all()->count(); 
+        $jumlahberkas = Berkas::all()->where('hapuskah',0)->count(); 
         $marketing = $request->marketing;
         $kasir = $request->kasir;
        
@@ -131,7 +134,6 @@ class JualRumahController extends Controller
                 'jual_rumah_id' => $inputnota->id,
                 'berkas_id' => $data,
                 'tanggal_terima' => $tanggalbuat,
-                'tanggal_kembali' => null,
                 'hapuskah' => 0
             ]);
         }
@@ -164,7 +166,7 @@ class JualRumahController extends Controller
         $jualrumah = JualRumah::find($id);
         $customer = Customer::all();
         $rumah = Rumah::all();
-        $berkas = Berkas::all();
+        $berkas = Berkas::all()->where('hapuskah',0);
         $pencairandana = PencairanDana::all();
 
         $marketing = User::join('karyawans', 'users.id', '=', 'karyawans.user_id')->where([['jabatan', 'Marketing'], ['karyawans.hapuskah', 0]])->get();
@@ -176,9 +178,17 @@ class JualRumahController extends Controller
         
     }
 
-    public function updatetanggalcairdanaedit()
+    public function updatetanggalcairdanaedit(Request $request)
     {
+        $id = $request->id;
+        $jualrumah = JualRumah::find($id);
 
+        return response()->json([
+            'jualrumah' => $jualrumah->id,
+            'customer' => $jualrumah->customer_id,
+            'rumah' => $jualrumah->rumah_id,
+            'pencairandana' => $jualrumah->pencairan_dana_id
+        ]);
     }
     /**
      * Update the specified resource in storage.
@@ -201,7 +211,7 @@ class JualRumahController extends Controller
         $berkas = $request->berkas;
         $pencairandana = $request->pencairandana;
         $keterangan = $request->keterangan;
-        $jumlahberkas = Berkas::all()->count();
+        $jumlahberkas = Berkas::all()->where('hapuskah',0)->count();
 
         $jualrumah = JualRumah::find($id);
 
@@ -227,7 +237,6 @@ class JualRumahController extends Controller
                     'jual_rumah_id' => $id,
                     'berkas_id' => $data,
                     'tanggal_terima' => date("Y-m-d"),
-                    'tanggal_kembali' => null,
                     'hapuskah' => 0
                 ]);    
             }
@@ -250,6 +259,16 @@ class JualRumahController extends Controller
 
     public function updatetanggalcairdanaupdate(Request $request)
     {
+        $id = $request->jualrumah;
+        $pencairandana = $request->pencairandana;
+
+        $jualrumah = JualRumah::find($id);
+        $jualrumah->pencairan_dana_id = $pencairandana;
+        
+        $jualrumah->save();
+
+        Session::flash('flash_msg','Update Data Pencairan Dana Berhasil Diubah');
+        return redirect('updatetanggalcairdana');
 
     }
     /**
@@ -262,10 +281,112 @@ class JualRumahController extends Controller
     {
         $jualrumah = JualRumah::find($request->jualrumah);
         $jualrumah->hapuskah = 1;
+
+        $rumah = Rumah::where('id',$jualrumah->rumah_id)->first();
+        $rumah->status_terjual = "Belum Terjual";
+        $rumah->status_booking = "Kosong";
+        $rumah->save();
         $jualrumah->save();
+
+        // $tandaterima = TandaTerima::where('id',$jualrumah->id);
+        // $tandaterima->hapuskah = 1;
+        // $tandaterima->save();
 
         Session::flash('flash_msg', 'Data Jual Rumah Berhasil Dihapus');
         return redirect('jualrumah');
+    }
+    public function laporanrumahterjual()
+    {
+        $jualrumah = JualRumah::where('hapuskah',0)->get();
+        // $customer = Customer::where('hapuskah',0)->get();
+        // $rumah = Rumah::where('hapuskah',0)->get();
+        // $kasir = User::where('jabatan','Kasir')->get();
+        // $marketing = User::where('jabatan','Marketing')->get();
+        // $pencairandana = PencairanDana::where('hapuskah',0)->get();
+
+        return view('laporan.rumahterjual',compact('jualrumah','customer','rumah','kasir','marketing','pencairandana'));
+    }
+    public function laporanrumahterjualindex(Request $request)
+    {   
+        $tglawal = $request->tanggalawal;
+        $tglakhir = $request->tanggalakhir;
+
+        $tanggalawal = JualRumah::changeDateFormat($tglawal);
+        $tanggalakhir = JualRumah::changeDateFormat($tglakhir);   
+
+        // $getdatajualrumah = JualRumah::where('tanggal_buat','>=',$tanggalawal)->where('tanggal_buat','<=',$tanggalakhir)->where('hapuskah',0)->get();
+
+        $kpr = DB::table('kprs')
+                ->join('jual_rumahs','kprs.jual_rumah_id','=','jual_rumahs.id')
+                ->join('banks','kprs.bank_id','=','banks.id')
+                ->join('rumahs','jual_rumahs.rumah_id','=','rumahs.id')
+                ->join('tipes','rumahs.tipe_id','=','tipes.id')
+                ->join('customers','jual_rumahs.customer_id','=','customers.id')
+                ->select('jual_rumahs.nomor_nota as Nomor_Transaksi',
+                            'tipes.blok as Blok',
+                            'rumahs.nomor as Nomor_Rumah',
+                            'customers.nama as Nama_Customer',
+                            'customers.alamat as Alamat',
+                            'jual_rumahs.jenis_bayar as Jenis_Bayar',
+                            'banks.nama as Nama_Bank')
+                ->where('jual_rumahs.tanggal_buat','>=',$tanggalawal)
+                ->where('jual_rumahs.tanggal_buat','<=',$tanggalakhir)
+                ->get();
+        // $pengeluaran = Pengeluaran::where('pembangunan_id','=',$pembangunan)->where('tanggal','>=',$tanggalawal)->where('tanggal','<=',$tanggalakhir)->get();
+        
+
+        return view('laporan.tabelrumahterjual',compact('getdatajualrumah','kpr'));
+    }
+    public function laporanrumahterjualprint(Request $request)
+    {
+        $tglawal = $request->tanggalawal;
+        $tglakhir = $request->tanggalakhir;
+
+        $tanggalawal = JualRumah::changeDateFormat($tglawal);
+        $tanggalakhir = JualRumah::changeDateFormat($tglakhir);   
+
+        // $getdatajualrumah = JualRumah::where('tanggal_buat','>=',$tanggalawal)->where('tanggal_buat','<=',$tanggalakhir)->where('hapuskah',0)->get();
+
+        $kpr = DB::table('kprs')
+                ->join('jual_rumahs','kprs.jual_rumah_id','=','jual_rumahs.id')
+                ->join('banks','kprs.bank_id','=','banks.id')
+                ->join('rumahs','jual_rumahs.rumah_id','=','rumahs.id')
+                ->join('tipes','rumahs.tipe_id','=','tipes.id')
+                ->join('customers','jual_rumahs.customer_id','=','customers.id')
+                ->select('jual_rumahs.nomor_nota as Nomor_Transaksi',
+                            'tipes.blok as Blok',
+                            'rumahs.nomor as Nomor_Rumah',
+                            'customers.nama as Nama_Customer',
+                            'customers.alamat as Alamat',
+                            'jual_rumahs.jenis_bayar as Jenis_Bayar',
+                            'banks.nama as Nama_Bank')
+                ->where('jual_rumahs.tanggal_buat','>=',$tanggalawal)
+                ->where('jual_rumahs.tanggal_buat','<=',$tanggalakhir)
+                ->where('jual_rumahs.hapuskah','=','0')
+                ->where('kprs.hapuskah','=','0')
+                ->where('banks.hapuskah','=','0')
+                ->where('customers.hapuskah','=','0')
+                ->where('tipes.hapuskah','=','0')
+                ->where('rumahs.hapuskah','=','0')
+                ->get();
+
+        $content = view('laporan.cetaklaporanrumahterjual',compact('kpr','tglawal','tglakhir'));
+
+         $dompdf = new Dompdf();
+        //PDF::SetFont('', '', 8);
+        //PDF::AddPage();
+
+        $dompdf->loadHtml($content);
+
+        // (Optional) Setup the paper size and orientation
+        //$dompdf->setPaper('A4', 'potrait');
+        $dompdf->set_paper(array(0, 0, 595, 841), 'portrait');
+
+        // Render the HTML as PDF
+        $dompdf->render();
+
+        // Output the generated PDF to Browser
+        $dompdf->stream("laporanrumahterjual".$tanggalawal."_".$tanggalakhir.".pdf", array("Attachment" => false));
     }
 
     public function print($id)
