@@ -233,7 +233,7 @@
                                         </p> --}}
                                     <p>
                                         <label class="col-lg-6">Bank: </label>
-                                        <select name="bank" id="bankTambahKpr" class="col-lg-4">
+                                        <select name="bank" id="bankTambahKpr" class="col-lg-4" required>
                                             @foreach($bank as $data)
                                             <option value="{{$data->id}}">{{$data->nama}}</option>
                                             @endforeach
@@ -241,15 +241,16 @@
                                     </p>
                                     <p>
                                         <label class="col-lg-6">Penjualan Rumah: </label>
-                                        <select name="jualrumah" id="jualrumahTambahKpr" class="col-lg-4">
+                                        <select name="jualrumah" id="jualrumahTambahKpr" class="col-lg-4" required>
                                             @foreach($jualrumah as $data)
                                             <option value="{{$data->id}}">{{$data->nomor_nota}}</option>
+                                            
                                             @endforeach
                                         </select>
                                     </p>
                                    <p>
 										<label class="col-lg-6">Kasir: </label>
-										<select name="kasir" id="kasirUbahKpr">
+										<select name="kasir" id="kasirUbahKpr" required>
 										@foreach($kasir as $data)
 											
 												<option value="{{$data->id}}">{{$data->karyawan->nama}}</option>

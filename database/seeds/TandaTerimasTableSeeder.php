@@ -12,26 +12,26 @@ class TandaTerimasTableSeeder extends Seeder
     public function run()
     {
         DB::table('tanda_terimas')->insert([
-            'tanggal' => '25-06-2018',
-            'booking_fee' => 0,
+            'tanggal' => '09-06-2018',
+            'booking_fee' => 500000,
             'uang_muka' => 0,
             'dana_kpr' => 0,
-            'uang_tambahan' => 300000,
-            'total' => 800000,
-            'keterangan' => 'qwerty',
+            'uang_tambahan' => '',
+            'total' => 500000,
+            'keterangan' => '',
             'kasir_id' => 1,
             'jual_rumah_id' => 1,
             'hapuskah' => 0
         ]);
 
         DB::table('tanda_terimas')->insert([
-            'tanggal' => '09-06-2018',
-            'booking_fee' => 1000000,
-            'uang_muka' => 500000,
+            'tanggal' => '21-06-2018',
+            'booking_fee' => '',
+            'uang_muka' => 1500000,
             'dana_kpr' => 0,
             'uang_tambahan' => 0,
-            'total' => 1800000,
-            'keterangan' => 'qwerty',
+            'total' => 1500000,
+            'keterangan' => '',
             'kasir_id' => 1,
             'jual_rumah_id' => 1,
             'hapuskah' => 0

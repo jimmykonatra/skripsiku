@@ -106,7 +106,6 @@ class KprController extends Controller
                 'kasir_id' => $kasir,
             ],
             [
-                
                 'hapuskah' => 0
             ]
         );
@@ -114,7 +113,7 @@ class KprController extends Controller
             Session::flash('flash_msg', 'Data KPR Berhasil Disimpan');
         }
         else {
-            Session::flash('warning_msg', 'Data Kpr Telah Terdaftar');
+            Session::flash('warning_msg', 'Data KPPR Telah Terdaftar');
         }
         return redirect('kpr');
     }

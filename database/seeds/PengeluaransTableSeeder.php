@@ -16,7 +16,7 @@ class PengeluaransTableSeeder extends Seeder
             'nominal' => '60000',
             'keterangan' => 'bayar untuk gali sumur komplek',
             'status_lunas' => 'Hutang',
-            'kasir_id' => 2,
+            'kasir_id' => 1,
             'jenis_pengeluaran_id' => 2,
             'pembangunan_id' => 1,
             'hapuskah' => 0

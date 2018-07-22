@@ -18,7 +18,7 @@ class PembangunanController extends Controller
     public function index()
     {
         $pembangunan = Pembangunan::where('hapuskah',0)->get();
-        $rumah = Rumah::where('hapuskah',0)->where('status_pembangunan','Belum Dibangun')->orWhere('status_pembangunan','Proses Pembangunan')->get();
+        $rumah = Rumah::where('hapuskah',0)->where('status_pembangunan','Belum Dibangun')->get();
         
         return view('master.pembangunan',compact('pembangunan','rumah'));
     }

@@ -15,7 +15,7 @@ class PembangunansTableSeeder extends Seeder
             'nomor' => '0028',
             'tanggal_mulai' => '2018-06-01',
             'lama_pembangunan' => 90,
-            'tanggal_selesai' => '',
+            'tanggal_selesai' => null,
             'penanggungjawab' => 'Rudi',
             'rumah_id' => 1,
             'hapuskah' => 0

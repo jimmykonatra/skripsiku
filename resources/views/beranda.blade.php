@@ -31,7 +31,7 @@
 					<div class="card text-white bg-warning o-hidden w-100 h-100">
 						<div class="card-body">
 							<div class="card-body-icon">
-								<i class="fa fa-fw fa-users"></i>
+								<i class="fa fa-fw fa-book"></i>
 							</div>
             <div class="mr-5"><h1>{{$jualrumahdp}}</h1> Transaksi Belum Lunas Uang Muka</div>
 						</div>
@@ -47,7 +47,7 @@
 					<div class="card text-white bg-success o-hidden w-100 h-100">
 						<div class="card-body">
 							<div class="card-body-icon">
-								<i class="fa fa-fw fa-truck"></i>
+								<i class="fa fa-fw fa-folder-open"></i>
 							</div>
             <div class="mr-5"><h1>{{$jualrumahkpr}}</h1> Transaksi Dalam Proses KPR</div>
 						</div>
@@ -63,7 +63,7 @@
 					<div class="card text-white bg-secondary o-hidden w-100 h-100">
 						<div class="card-body">
 							<div class="card-body-icon">
-								<i class="fa fa-fw fa-shopping-bag"></i>
+								<i class="fa fa-fw fa-file-text"></i>
 							</div>
             <div class="mr-5"><h1>{{$jualrumahbelumlengkap}}</h1> Transaksi Tidak Lengkap Pemberkasan</div>
 						</div>

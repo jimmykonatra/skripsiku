@@ -19,7 +19,7 @@ class JualRumahsTableSeeder extends Seeder
             'keterangan' => 'Rumah yang dihuni pak rido',
             'tanggal_serah_terima_rumah' => null,
             'jenis_bayar' => 'KPR',
-            'status_jual_rumah' => 'Belum Booking',
+            'status_jual_rumah' => 'Proses DP',
             'status_dp' => 'Belum Lunas',
             'customer_id' => 1,
             'rumah_id' => 1,

@@ -13,8 +13,8 @@ class UsersTableSeeder extends Seeder
     public function run()
     {
         User::firstOrCreate([
-            'username' => 'q',
-            'password' => bcrypt('q'),
+            'username' => 'admin',
+            'password' => bcrypt('admin'),
             'jabatan' => 'Kasir'
             
         ]);

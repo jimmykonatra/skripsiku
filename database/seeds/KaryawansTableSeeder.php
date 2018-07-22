@@ -12,18 +12,18 @@ class KaryawansTableSeeder extends Seeder
     public function run()
     {
         DB::table('karyawans')->insert([
-            'nama' => 'Jimmy Konatra',
-            'alamat' => 'Jalan Delima',
-            'email' => 'jimmykonatra@gmail.com',
-            'no_telepon' => '082218000965',
+            'nama' => 'Admin',
+            'alamat' => 'Jalan Randu 01',
+            'email' => 'admin@gmail.com',
+            'no_telepon' => '082234567899',
             'hapuskah' => 0,
             'user_id' => 1
         ]);
 
         DB::table('karyawans')->insert([
-            'nama' => 'Ria Setiawan',
+            'nama' => 'Budi',
             'alamat' => 'Jalan Babatan',
-            'email' => 'ria@gmail.com',
+            'email' => 'budi@gmail.com',
             'no_telepon' => '083424234234',
             'hapuskah' => 0,
             'user_id' => 2

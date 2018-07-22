@@ -65,6 +65,7 @@ class JualRumahController extends Controller
         $customer = Customer::where('hapuskah','0')->get();
         $rumah = Rumah::where('status_booking','Kosong')
                     ->where('status_terjual','Belum Terjual')
+                    ->where('status_pembangunan','Selesai Pembangunan')
                     ->where('hapuskah', '0')
                     ->get();    
         $berkas = Berkas::where('hapuskah','0')->get();

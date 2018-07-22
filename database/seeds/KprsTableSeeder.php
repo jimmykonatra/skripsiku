@@ -20,14 +20,7 @@ class KprsTableSeeder extends Seeder
             'hapuskah' => 0
         ]);
 
-        DB::table('kprs')->insert([
-            'pemberi' => 'Rina',
-            'penerima' => 'Rudi',
-            'bank_id' => 1,
-            'jual_rumah_id' => 1,
-            'kasir_id' => 1,
-            'hapuskah' => 0
-        ]);
+   
 
     }
 }
